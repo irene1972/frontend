@@ -1,0 +1,38 @@
+.contenedor-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lista-flex{
+    display: flex;
+    gap:1rem;
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    color:white;
+}
+
+.activo{
+    color:yellowgreen;
+}
+h2{
+    padding: 0 1rem;
+    font-size: 2rem;
+}
+ul{
+    padding: 0 2rem 0 1rem;
+}
+@media screen and (max-width: 400px) {
+    .contenedor-flex{
+        display:block;
+    }
+    .lista-flex{
+        display:block;
+    }
+    h2,li{
+        margin:1rem 0;
+    }
+}
