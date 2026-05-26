@@ -25,10 +25,10 @@ export const routes: Routes = [
 
 
     {path:'/admin-panel', /*componenteAdminPanel*/ },
-    {path:'/admin-panel/users', /*componenteHome*/ },
-    {path:'/admin-panel/users/:userID', /*componenteHome*/ },
-    {path:'/admin-panel/categorias', /*componenteHome*/ },
-    {path:'/admin-panel/categorias/:categoriaID', /*componenteCategorias*/ },
+    {path:'/admin-panel/users', /*componenteAdminUsers*/ },
+    {path:'/admin-panel/users/:userID', /*componenteAdminUsersView*/ },
+    {path:'/admin-panel/categorias', /*componenteCategorias*/ },
+    {path:'/admin-panel/categorias/:categoriaID', /*componenteCategoriasView*/ },
     {path:'/admin-panel/estadistics', /*componenteEstadisticas*/ },
     {path:'**',component:C404}
 ];
