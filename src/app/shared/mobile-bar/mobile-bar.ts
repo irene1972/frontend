@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-bar',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './mobile-bar.html',
   styleUrl: './mobile-bar.css',
 })
 export class MobileBar {
-    indicatorTransform = 'translateX(0px)';
 
-  updateIndicator(index: number) {
-    const width = window.innerWidth / 3;
-    this.indicatorTransform =
-      `translateX(${width * index + width / 2 - 25}px)`;
-  }
 }
