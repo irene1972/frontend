@@ -1,12 +1,1 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
-
-:root {
-  --primary-color: #EFF4FF;
-  --secondary-color: #F8F9FF;
-
-}
-
-html,
-body {
-  font-family: 'IBM Plex Mono', monospace;
-}
+/* You can add global styles to this file, and also import other style files */
