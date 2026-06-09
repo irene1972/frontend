@@ -1,25 +1,24 @@
 <section class="container-fluid header-container">
     <div class="row align-items-center">
-
-        <!-- Logo -->
-        <div class="col-auto">
-            <a [routerLink]="['/home']">
-                <img src="logo.png" alt="Buy&Sell" class="logo-img">
-            </a>
-        </div>
-
-        <!-- Buscador -->
-        <div class="col">
-           <div class="search-box d-flex align-items-center">
-               <span class="search-icon">
-                    <i class="bi bi-search"></i>
-               </span>
-               <input type="text" class="form-control search-input w-100" placeholder="¿Qué estás buscando hoy?">
-           </div>
-        </div>
-
         <!-- Usuario no logado -->
         @if (isGuest) {
+            <!-- Logo -->
+            <div class="col-auto">
+                <a [routerLink]="['/home']">
+                    <img src="logo.png" alt="Buy&Sell" class="logo-img">
+                </a>
+            </div>
+
+            <!-- Buscador -->
+            <div class="col buscador">
+                <div class="search-box d-flex align-items-center">
+                    <span class="search-icon">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control search-input w-100" placeholder="¿Qué estás buscando hoy?">
+                </div>
+            </div>
+
             <div class="col-auto d-flex align-items-center gap-4">
                 <a class="btn login-button" [routerLink]="['/login']">
                     Regístrate | Inicia sesión
@@ -33,6 +32,23 @@
 
         <!-- Usuario logado -->
         @if (isUser) {
+            <!-- Logo -->
+            <div class="col-auto">
+                <a [routerLink]="['/home']">
+                    <img src="logo.png" alt="Buy&Sell" class="logo-img">
+                </a>
+            </div>
+
+            <!-- Buscador -->
+            <div class="col buscador">
+                <div class="search-box d-flex align-items-center">
+                    <span class="search-icon">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control search-input w-100" placeholder="¿Qué estás buscando hoy?">
+                </div>
+            </div>            
+
             <div class="col-auto d-flex align-items-center gap-4">
 
                 <a class="header-link" [routerLink]="['/user/favorites']">
@@ -62,6 +78,13 @@
 
         <!-- Staff -->
         @if (isStaff) {
+            <!-- Logo -->
+            <div class="col-auto">
+                <a [routerLink]="['/home']">
+                    <img src="logo.png" alt="Buy&Sell" class="logo-img">
+                </a>
+            </div>
+
             <div class="col-auto d-flex align-items-center gap-4">
                 <button class="btn icon-button" type="button">
                     <i class="bi bi-bell"></i>
