@@ -26,19 +26,19 @@
 }
 
 .login-button {
-    border: 2px solid blue;
-    color: blue;
+    border: 2px solid #003594;
+    color: #003594;
     border-radius: 1rem;
     padding: 0.5rem 1rem;
     font-weight: 600;
 }
 
 .login-button:hover {
-    color: blue;
+    color: #003594;
 }
 
 .upload-button {
-    background-color: orange;
+    background-color: #fe6b00;
     color: white;
     border-radius: 1rem;
     padding: 0.5rem 1rem;
@@ -50,7 +50,7 @@
 }
 
 .upload-button:hover {
-    background-color: orange;
+    background-color: #fe6b00;
     color: white;
 }
 
@@ -76,7 +76,7 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background-color: blue;
+    background-color: #003594;
     color: white;
     text-decoration: none;
     display: flex;
@@ -88,14 +88,16 @@
 }
 
 
-@media screen and (max-width: 400px) {
-    .contenedor-flex{
-        display:block;
+@media screen and (max-width: 850px) {
+    .buscador {
+        display: none;
     }
-    .lista-flex{
-        display:block;
+
+    .header-link {
+        display: none;
     }
-    h2,li{
-        margin:1rem 0;
+
+    .upload-button {
+        display: none;
     }
 }
