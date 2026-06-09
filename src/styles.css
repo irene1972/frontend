@@ -8,5 +8,8 @@
 
 html,
 body {
+  font-family: "Inter", sans-serif;
+}
+footer{
   font-family: 'IBM Plex Mono', monospace;
 }
