@@ -41,3 +41,12 @@ label{
 .pass{
     padding-bottom: 2rem;
 }
+.login-link{
+    margin-top: 1.5rem;
+    text-align: center;
+}
+.login-link a{
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--tertiary-color);
+}
