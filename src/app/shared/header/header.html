@@ -1,9 +1,101 @@
-<section class="contenedor contenedor-flex">
-    <h2><a [routerLink]="['/home']">MI WALLAPOP</a></h2>
-    <nav>
-        <ul class="lista-flex">
-            <li><a [routerLink]="['/home']" routerLinkActive="activo">Home</a></li>
+<section class="container-fluid header-container">
+    <div class="row align-items-center">
+        <!-- Usuario no logado -->
+        @if (isGuest) {
+            <!-- Logo -->
+            <div class="col-auto">
+                <a [routerLink]="['/home']">
+                    <img src="logo.png" alt="Buy&Sell" class="logo-img">
+                </a>
+            </div>
 
-        </ul>
-    </nav>
+            <!-- Buscador -->
+            <div class="col buscador">
+                <div class="search-box d-flex align-items-center">
+                    <span class="search-icon">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control search-input w-100" placeholder="¿Qué estás buscando hoy?">
+                </div>
+            </div>
+
+            <div class="col-auto d-flex align-items-center gap-4">
+                <a class="btn login-button" [routerLink]="['/login']">
+                    Regístrate | Inicia sesión
+                </a>
+
+                <a class="btn upload-button" [routerLink]="['/user/new-product']">
+                    + Subir producto
+                </a>
+            </div>
+        }
+
+        <!-- Usuario logado -->
+        @if (isUser) {
+            <!-- Logo -->
+            <div class="col-auto">
+                <a [routerLink]="['/home']">
+                    <img src="logo.png" alt="Buy&Sell" class="logo-img">
+                </a>
+            </div>
+
+            <!-- Buscador -->
+            <div class="col buscador">
+                <div class="search-box d-flex align-items-center">
+                    <span class="search-icon">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control search-input w-100" placeholder="¿Qué estás buscando hoy?">
+                </div>
+            </div>            
+
+            <div class="col-auto d-flex align-items-center gap-4">
+
+                <a class="header-link" [routerLink]="['/user/favorites']">
+                    <i class="bi bi-heart"></i>
+                    <span>Favoritos</span>
+                </a>
+
+                <a class="header-link" [routerLink]="['/user/messages']">
+                    <i class="bi bi-chat"></i>
+                    <span>Mensajes</span>
+                </a>
+
+                <a class="btn upload-button" [routerLink]="['/user/new-product']">
+                        + Subir producto
+                </a>
+
+                <button class="btn icon-button" type="button">
+                    <i class="bi bi-bell"></i>
+                </button>
+
+                <a class="avatar" [routerLink]="['/user/profile']">
+                    {{userInitials}}
+                </a>
+            </div>
+
+        }
+
+        <!-- Staff -->
+        @if (isStaff) {
+            <!-- Logo -->
+            <div class="col-auto">
+                <a [routerLink]="['/home']">
+                    <img src="logo.png" alt="Buy&Sell" class="logo-img">
+                </a>
+            </div>
+
+            <div class="col-auto d-flex align-items-center gap-4">
+                <button class="btn icon-button" type="button">
+                    <i class="bi bi-bell"></i>
+                </button>
+
+                <a class="avatar" [routerLink]="['/user/profile']">
+                    {{userInitials}}
+                </a>             
+            </div>
+        }
+
+
+    </div>
 </section>

@@ -1,38 +1,103 @@
-.contenedor-flex{
+.header-container {
+    min-height: 3rem;
+    padding: 0.5rem 2rem;
+}
+
+.logo-img {
+    display: block;
+}
+
+.search-box {
+    background-color: aliceblue;
+    border-radius: 0.75rem;
+    padding-left: 1rem;
+}
+
+.search-icon {
+    font-size: 1rem;
+    color: gray;
+    margin-right: 0.75rem;
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.login-button {
+    border: 2px solid #003594;
+    color: #003594;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+}
+
+.login-button:hover {
+    color: #003594;
+}
+
+.upload-button {
+    background-color: #fe6b00;
+    color: white;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.upload-button:hover {
+    background-color: #fe6b00;
+    color: white;
+}
+
+.header-link {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.icon-button {
+    color: black;
+    font-size: 1.2rem;
+    padding: 0;
+    display: flex;
     align-items: center;
 }
 
-.lista-flex{
-    display: flex;
-    gap:1rem;
-    list-style-type: none;
-}
-
-a{
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #003594;
+    color: white;
     text-decoration: none;
-    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+
 }
 
-.activo{
-    color:yellowgreen;
-}
-h2{
-    padding: 0 1rem;
-    font-size: 2rem;
-}
-ul{
-    padding: 0 2rem 0 1rem;
-}
-@media screen and (max-width: 400px) {
-    .contenedor-flex{
-        display:block;
+
+@media screen and (max-width: 850px) {
+    .buscador {
+        display: none;
     }
-    .lista-flex{
-        display:block;
+
+    .header-link {
+        display: none;
     }
-    h2,li{
-        margin:1rem 0;
+
+    .upload-button {
+        display: none;
     }
 }

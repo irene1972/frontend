@@ -1,0 +1,13 @@
+.flex{
+    display: flex;
+    justify-content: space-between;
+    gap:1rem;
+    align-items: center;
+}
+p{
+    margin-left: 2rem;
+    padding-top: 1rem;
+}
+div{
+    margin-right: 2rem;
+}
