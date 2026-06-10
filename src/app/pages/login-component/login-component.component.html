@@ -4,7 +4,7 @@
         <h1>Bienvenido de nuevo</h1>
         <p>Introduce tus credenciales para continuar.</p>
         <div [class.text-danger]="tipo===false" [class.text-success]="tipo===true">{{mensaje}}</div>
-    <form [formGroup]="miForm" (ngSubmit)="cargarDatos()">
+    <form [formGroup]="miForm" (ngSubmit)="loadData()">
         <div class="form-group">
             <label for="email">CORREO ELECTRÓNICO</label>
             <input type="email" id="email" class="form-control" formControlName="email">
