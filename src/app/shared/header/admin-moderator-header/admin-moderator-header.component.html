@@ -1,0 +1,26 @@
+<div class="user-header w-100">
+    <div class="user-top d-flex align-items-center">
+
+        <!-- Menú hamburguesa -->
+        <button class="btn menu-button d-md-none" type="button" (click)="openMenu()">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <!-- Logo -->
+        <div class="col-auto">
+            <a [routerLink]="['/home']">
+                <img src="logo.png" alt="Buy&Sell" class="logo-img">
+            </a>
+        </div>
+
+        <!-- Acciones Admin/Moderator -->
+        <div class="col-auto d-flex align-items-center gap-4">
+            <button class="btn icon-button" type="button">
+                <i class="bi bi-bell"></i>
+            </button>
+            <a class="avatar" [routerLink]="['/user/profile']">
+                {{userInitials}}
+            </a>             
+        </div>
+    </div>
+</div>

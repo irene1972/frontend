@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { GuestHeaderComponent } from './guest-header/guest-header.component';
+import { UserHeaderComponent } from './user-header/user-header.component';
+import { AdminModeratorHeaderComponent } from './admin-moderator-header/admin-moderator-header.component';
 
 type UserRole = 'guest' | 'user' | 'moderator' | 'admin';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, GuestHeaderComponent],
+  imports: [GuestHeaderComponent, UserHeaderComponent, AdminModeratorHeaderComponent],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
-  isLogged = false;
-  role: UserRole = 'guest';
-
-  userInitials = 'AA';
+  isLogged = true;
+  role: UserRole = 'user';
 
   get isGuest(): boolean {
     return !this.isLogged || this.role === 'guest';
