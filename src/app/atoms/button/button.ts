@@ -1,5 +1,5 @@
-import { Component, computed, EventEmitter, input, Output } from '@angular/core';
-import { ButtonConfigState } from './button.types';
+import { Component, computed, EventEmitter, Input, input, Output } from '@angular/core';
+import { ButtonConfigState, ButtonRounded, ButtonVariant } from './button.types';
 
 @Component({
   selector: 'app-button',
@@ -9,14 +9,23 @@ import { ButtonConfigState } from './button.types';
 })
 export class Button {
   //Inputs
+  config_type= input<ButtonVariant>('primary');
   config_state = input<ButtonConfigState>('enabled');
+  label = input<string>('Button');
+  rounded = input<ButtonRounded>('full');
+  shadow = input<boolean>(false);
 
   //Outputs 
   @Output() click: EventEmitter<MouseEvent> = new EventEmitter();
 
   //Clases computadas
   protected classes = computed(() => 
-    `btn btn-warning app-btn--${this.config_state()}`
+    `btn d-inline-flex align-items-center justify-content-center gap-2
+     app-btn--${this.config_type()}
+     app-btn--${this.config_state()}
+     app-btn--rounded-${this.rounded()}
+     ${this.shadow() ? 'app-btn--shadow' : ''}
+    `
   );
   // Funciones
   onClick(event: MouseEvent) {

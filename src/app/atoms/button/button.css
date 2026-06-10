@@ -1,1 +1,18 @@
-.app-btn--disabled   { opacity: 0.5; pointer-events: none; }
+.app-btn--primary {
+    background-color: var(--primary-cta);
+}
+.app-btn--disabled {
+    background-color: var(--secondary-cta);
+}
+
+.app-btn--rounded-full {
+    border-radius: 9999px;
+}
+
+.app-btn--rounded-semi {
+    border-radius: 6px;
+}
+
+.app-btn--shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
