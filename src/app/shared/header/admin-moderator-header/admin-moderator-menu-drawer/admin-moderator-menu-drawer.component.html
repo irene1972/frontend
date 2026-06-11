@@ -1,0 +1,73 @@
+<div class="drawer-backdrop" (click)="close()"></div>
+
+<aside class="drawer-menu">
+
+    <div class="drawer-header">
+        <h5>Menú</h5>
+
+        <button class="btn close-button" type="button" (click)="close()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+
+    <div class="drawer-user">
+        <a class="drawer-avatar" [routerLink]="['/user/profile']" (click)="close()">
+            {{userInitials}}
+        </a>
+
+        <div>
+            <p class="drawer-user-name">{{adminName}}</p>
+            <a class="drawer-user-profile" [routerLink]="['/user/profile']" (click)="close()">
+                Administrador · Ver mi perfil
+            </a>
+        </div>
+    </div>
+
+    <section class="drawer-section">
+        <h6>Navegación</h6>
+
+        <a [routerLink]="['/admin/panel']" (click)="close()">
+            Panel de administración
+            <i class="bi bi-chevron-right"></i>
+        </a>
+
+        <a [routerLink]="['/admin/users']" (click)="close()">
+            Usuarios y roles
+            <i class="bi bi-chevron-right"></i>
+        </a>
+
+        <a [routerLink]="['/admin/categories']" (click)="close()">
+            Categorías
+            <i class="bi bi-chevron-right"></i>
+        </a>
+
+        <a [routerLink]="['/admin/statistics']" (click)="close()">
+            Estadísticas
+            <i class="bi bi-chevron-right"></i>
+        </a>
+
+        <a href="#" (click)="close()">
+            Reportes pendientes
+            <i class="bi bi-chevron-right"></i>
+        </a>
+
+        <a href="#" (click)="close()">
+            Historial de moderación
+            <i class="bi bi-chevron-right"></i>
+        </a>
+    </section>
+
+    <section class="drawer-section">
+        <a [routerLink]="['/user/profile']" (click)="close()">
+            Mi perfil
+            <i class="bi bi-chevron-right"></i>
+        </a>
+    </section>
+
+    <section class="drawer-section">
+        <button class="logout-button" type="button" (click)="close()">
+            Cerrar sesión
+        </button>
+    </section>
+
+</aside>

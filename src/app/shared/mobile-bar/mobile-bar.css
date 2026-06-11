@@ -1,0 +1,110 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 80px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background: #fff;
+  border-top: 1px solid #ececec;
+  z-index: 1000;
+}
+
+@media (min-width: 768px){
+    .bottom-nav{
+        display: none;
+    }
+}
+
+.bottom-nav a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #747683;
+  font-size: 10px;
+  transition: all .3s ease;
+}
+
+.bottom-nav a i {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.bottom-nav a p {
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/*Active*/
+
+.bottom-nav a.active {
+  color: #FE6B00;
+}
+
+.bottom-nav a.active:not(.sell-btn) i {
+  color: #FE6B00;
+}
+
+.sell-btn.active i {
+  background: #FE6B00;
+}
+
+.sell-btn.active p {
+  color: #FE6B00;
+}
+
+
+/* Boton central */
+
+.sell-btn {
+  transform: translateY(-18px);
+}
+
+.sell-btn i {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #003594;
+  border-radius: 50%;
+  color: white;
+  font-size: 34px;
+
+  padding: 14px;
+
+  box-shadow: 0 4px 15px rgba(0,0,0,.15);
+}
+
+/*animacion*/
+
+.bottom-nav a.active i {
+  animation: jump .35s ease;
+}
+
+@keyframes jump {
+
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.25)
+               translateY(-5px);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+

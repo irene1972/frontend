@@ -1,0 +1,42 @@
+<div class="guest-header w-100">
+    <div class="guest-top d-flex align-items-center">
+
+        <!-- Menú hamburguesa -->
+        <button class="btn menu-button d-md-none" type="button" (click)="openMenu()">
+            <i class="bi bi-list"></i>
+        </button>
+                    
+        <!-- Logo -->
+        <a [routerLink]="['/home']">
+            <img src="logo_white.svg" alt="Buy&Sell" class="logo-img">
+        </a>
+
+        <!-- Buscador -->
+        <div class="flex-grow-1 d-none d-md-block">
+            <div class="search-box d-flex align-items-center">
+                <span class="search-icon">
+                    <i class="bi bi-search"></i>
+                </span>
+
+                <input type="text" class="form-control search-input w-100" placeholder="¿Qué estás buscando hoy?">
+            </div>
+        </div>
+
+        <!-- Acciones guest -->
+        <div class="guest-actions d-none d-md-flex align-items-center gap-3">
+            <a class="btn login-button" [routerLink]="['/login']">
+                Regístrate | Inicia sesión
+            </a>
+
+            <a class="btn upload-button" [routerLink]="['/login']">
+                <i class="bi bi-plus-lg"></i>
+                Subir producto
+            </a>
+        </div>
+
+    </div>
+</div>
+
+@if (isMenuOpen) {
+    <app-guest-menu-drawer (closeMenu)="closeMenu()"></app-guest-menu-drawer>
+}

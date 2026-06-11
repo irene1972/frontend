@@ -1,0 +1,42 @@
+<div class="drawer-backdrop" (click)="close()"></div>
+
+<aside class="drawer-menu">
+    <div class="drawer-header">
+        <h5>Menú</h5>
+
+        <button class="btn close-button" type="button" (click)="close()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+
+    <div class="drawer-auth">
+        <a class="btn drawer-login-button" [routerLink]="['/login']" (click)="close()">
+            Iniciar sesión
+        </a>
+
+        <a class="btn drawer-register-button" [routerLink]="['/register']" (click)="close()">
+            Crear cuenta
+        </a>
+    </div>
+
+    <section class="drawer-section">
+        <h6>Categorías</h6>
+
+        <a href="#">Todo <i class="bi bi-chevron-right"></i></a>
+        <a href="#">GPUs <i class="bi bi-chevron-right"></i></a>
+        <a href="#">CPUs <i class="bi bi-chevron-right"></i></a>
+        <a href="#">Portátiles <i class="bi bi-chevron-right"></i></a>
+        <a href="#">Consolas <i class="bi bi-chevron-right"></i></a>
+        <a href="#">RAM <i class="bi bi-chevron-right"></i></a>
+        <a href="#">Placas base <i class="bi bi-chevron-right"></i></a>
+        <a href="#">Discos <i class="bi bi-chevron-right"></i></a>
+    </section>
+
+    <section class="drawer-section">
+        <h6>Ayuda</h6>
+
+        <a href="#">Centro de ayuda <i class="bi bi-chevron-right"></i></a>
+        <a href="#">Reglas de convivencia <i class="bi bi-chevron-right"></i></a>
+        <a href="#">Consejos de seguridad <i class="bi bi-chevron-right"></i></a>
+    </section>
+</aside>

@@ -41,7 +41,7 @@ export const routes: Routes = [
         {path:'product/edit/:productID', component: ProductFormComponentComponent },
         {path:'product/checkout/:productID', component: ProductCheckoutComponentComponent },
         {path:'profile', component: UserProfileComponentComponent },
-        {path:'user/edit-profile/:userID', component: UserFormComponentComponent },
+        {path:'edit-profile/:userID', component: UserFormComponentComponent },
         {path:'favorites', component: FavoritesComponentComponent },
          // Ruta Mensajeria
         {path:'messages', component: MessagesComponentComponent },

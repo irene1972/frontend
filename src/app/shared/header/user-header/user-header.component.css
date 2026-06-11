@@ -1,0 +1,93 @@
+.user-header {
+    width: 100%;
+    padding: 0.75rem 2rem;
+}
+
+.user-top {
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.menu-button {
+    color: black;
+    font-size: 1.8rem;
+    padding: 0;
+    line-height: 1;
+}
+
+.logo-img {
+    display: block;
+}
+
+.search-box {
+    background-color: aliceblue;
+    border-radius: 0.75rem;
+    padding-left: 1rem;
+    height: 2.7rem;
+}
+
+.search-icon {
+    font-size: 1rem;
+    color: gray;
+    margin-right: 0.75rem;
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.user-actions {
+    margin-left: auto;
+}
+
+.upload-button {
+    background-color: #fe6b00;
+    color: white;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.upload-button:hover {
+    background-color: #fe6b00;
+    color: white;
+}
+
+.header-link {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.icon-button {
+    color: black;
+    font-size: 1.2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #003594;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+
+}

@@ -1,0 +1,100 @@
+.drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: gray;
+    z-index: 1000;
+}
+
+.drawer-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20rem;
+    max-width: 85%;
+    height: 100vh;
+    background-color: white;
+    z-index: 1001;
+    overflow-y: auto;
+}
+
+.drawer-header {
+    display: flex;
+    align-items: center;
+    background-color: aliceblue;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.drawer-header h5 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.close-button {
+    padding: 0;
+    font-size: 1.2rem;
+}
+
+.drawer-user {
+    display: flex;
+    align-items: center;
+    background-color: aliceblue;
+    gap: 0.75rem;
+    padding: 0 1rem 1rem;
+}
+
+.drawer-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: #003594;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.drawer-user-name {
+    margin: 0;
+    font-weight: 700;
+}
+
+.drawer-user-rating {
+    color: #003594;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.drawer-section {
+    border-top: 1px solid lightgray;
+    padding: 1rem;
+}
+
+.drawer-section h6 {
+    color: gray;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.drawer-section a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+}
+
+.logout-button {
+    border: none;
+    background-color: transparent;
+    color: red;
+    padding: 0;
+    font-weight: 500;
+}

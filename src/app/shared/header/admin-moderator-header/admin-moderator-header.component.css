@@ -1,0 +1,48 @@
+.admin-moderator-header {
+    width: 100%;
+    padding: 0.75rem 2rem;
+    background-color: #003594;
+}
+
+.admin-moderator-top {
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.menu-button {
+    color: white;
+    font-size: 1.8rem;
+    padding: 0;
+    line-height: 1;
+}
+
+.logo-img {
+    display: block;
+}
+
+.admin-moderator-actions {
+    margin-left: auto;
+}
+
+.icon-button {
+    color: white;
+    font-size: 1.2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: white;
+    color: #003594;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+
+}
