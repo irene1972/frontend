@@ -14,18 +14,21 @@ interface Config {
   shape?:     string;   // Container Shape (circle/square)
   iconColor?: string;   // Icon color
   bgColor?:   string;   // Container color
+  bgShadow?: string;
   label?:     string;   // Label text
 }
 
 /** Component Configuration Map*/
 const CONFIG_SHAPE_CIRCLE = `d-flex align-items-center justify-content-center rounded-circle`;
+const CONFIG_SHAPE_CIRCLE_SHADOW = `d-flex align-items-center justify-content-center rounded-circle SHADOW`;
+const CONFIG_SHAPE_SQUARE = `d-flex align-items-center justify-content-center rounded-1`;
 const CONFIG: Record<IconVariant, Config> = {
-  'error-403': { icon: 'bi bi-lock',                 shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--surface-card)', bgColor: 'var(--warn)',         label: '403' },
-  'error-404': { icon: 'bi bi-search',               shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--surface-card)', bgColor: 'var(--primary-deep)', label: '404' },
-  'error-500': { icon: 'bi bi-exclamation-triangle', shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--surface-card)', bgColor: 'var(--err)',          label: '500' },
-  check:       { icon: 'bi bi-check' },
-  trash:       { icon: 'bi bi-trash' },
-  reload:      { icon: 'bi bi-arrow-counterclockwise' },
+  'error-403': { icon: 'bi bi-lock',                   shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--surface-card)', bgColor: 'var(--warn)',         label: '403' },
+  'error-404': { icon: 'bi bi-search',                 shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--surface-card)', bgColor: 'var(--primary-deep)', label: '404' },
+  'error-500': { icon: 'bi bi-exclamation-triangle',   shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--surface-card)', bgColor: 'var(--err)',          label: '500' },
+  check:       { icon: 'bi bi-check',                  shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--success)', bgColor: 'var(--success-bg)', bgShadow: '0 4px 20px color-mix(in srgb, var(--success) 60%, transparent)'},
+  trash:       { icon: 'bi bi-trash3',                 shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--err)', bgColor: 'var(--err-bg)'},
+  reload:      { icon: 'bi bi-arrow-counterclockwise', shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--success', bgColor: 'var(--success-bg)'},
   flag:        { icon: 'bi bi-flag' },
   rise:        { icon: 'bi bi-graph-up-arrow' },
   people:      { icon: 'bi bi-people' },
@@ -93,7 +96,8 @@ export class Icon{
   protected container_style = computed(() => ({
     'background-color': this.config().bgColor ?? '',
     'width':            `calc(${this.size()}*2)`,
-    'height':           `calc(${this.size()}*2)`
+    'height':           `calc(${this.size()}*2)`,
+    'box-shadow':       this.config().bgShadow ?? '',
   }));
 
   protected icon_style = computed(() => ({
