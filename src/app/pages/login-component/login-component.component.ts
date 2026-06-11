@@ -49,6 +49,9 @@ export class LoginComponentComponent {
       next: (data) => {
         this.user.username = data.usuario.username;
         this.user.rol = data.usuario.roles_id;
+        //this.user.nombre=data.usuario.nombre;
+        //this.user.apellidos=data.usuario.apellidos,
+        this.user.iniciales=(data.usuario.nombre[0]+data.usuario.apellidos[0]).toUpperCase();
 
         localStorage.setItem(
           'usuarioBuy&Sell',
