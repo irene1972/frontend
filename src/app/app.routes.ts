@@ -10,12 +10,8 @@ import { FavoritesComponentComponent } from './pages/favorites-component/favorit
 import { MessagesComponentComponent } from './pages/messages-component/messages-component.component';
 import { ModeratorPanelComponentComponent } from './pages/moderator-panel-component/moderator-panel-component.component';
 import { IncidentViewComponentComponent } from './pages/incident-view-component/incident-view-component.component';
-import { AdminPanelComponentComponent } from './pages/admin-panel-component/admin-panel-component.component';
-import { AdminUsersComponentComponent } from './pages/admin-users-component/admin-users-component.component';
 import { AdminUsersViewComponentComponent } from './pages/admin-users-view-component/admin-users-view-component.component';
-import { AdminCategoriesComponentComponent } from './pages/admin-categories-component/admin-categories-component.component';
 import { AdminCategoriesViewComponentComponent } from './pages/admin-categories-view-component/admin-categories-view-component.component';
-import { AdminStatisticsViewComponentComponent } from './pages/admin-statistics-view-component/admin-statistics-view-component.component';
 import { UserComponentComponent } from './pages/user-component/user-component.component';
 import { ModeratorComponentComponent } from './pages/moderator-component/moderator-component.component';
 import { AdminComponentComponent } from './pages/admin-component/admin-component.component';
@@ -25,49 +21,132 @@ import { roleGuard } from './guards/role-guard';
 import { ChatComponentComponent } from './pages/chat-component/chat-component.component';
 import { C403componentComponent } from './errors/c403component/c403component.component';
 import { C500componentComponent } from './errors/c500component/c500component.component';
+import { UsuariosRoles } from './components/usuarios-roles/usuarios-roles';
+import { Panel } from './components/panel/panel';
+import { Categories } from './components/categories/categories';
+import { Statistics } from './components/statistics/statistics';
+import { Admin } from './pages/admin/admin';
+import { Reports } from './components/reports/reports';
+import { Historic } from './components/historic/historic';
+import { Ratings } from './components/ratings/ratings';
+import { Settings } from './components/settings/settings';
 
 export const routes: Routes = [
-    {path:'',pathMatch:'full',redirectTo:'home'},
-    {path:'home', component: HomeComponentComponent },
-    {path:'login', component: LoginComponentComponent },
-    {path:'register', component: UserFormComponentComponent },
-    {path:'product/:productID', component: ProductViewComponentComponent },
+    { path: '', pathMatch: 'full', redirectTo: 'home' },
+    { path: 'home', component: HomeComponentComponent },
+    { path: 'login', component: LoginComponentComponent },
+    { path: 'register', component: UserFormComponentComponent },
+    { path: 'product/:productID', component: ProductViewComponentComponent },
 
     // // Rutas Home: Usuario Normal. Falta implemetar el Guard y hacer sus hijos
-    {path:'user', component: UserComponentComponent, canActivate: [authGuard], children:[
-        {path: '', pathMatch:'full', redirectTo:'profile'},
-        {path:'new-product', component: ProductFormComponentComponent },
-        {path:'product/:productID', component: ProductViewComponentComponent },
-        {path:'product/edit/:productID', component: ProductFormComponentComponent },
-        {path:'product/checkout/:productID', component: ProductCheckoutComponentComponent },
-        {path:'profile', component: UserProfileComponentComponent },
-        {path:'edit-profile/:userID', component: UserFormComponentComponent },
-        {path:'favorites', component: FavoritesComponentComponent },
-         // Ruta Mensajeria
-        {path:'messages', component: MessagesComponentComponent },
-        {path:'messages/:chatID', component: ChatComponentComponent },
-    ]},
-    
+    {
+        path: 'user', component: UserComponentComponent, canActivate: [authGuard], children: [
+            { path: '', pathMatch: 'full', redirectTo: 'profile' },
+            { path: 'new-product', component: ProductFormComponentComponent },
+            { path: 'product/:productID', component: ProductViewComponentComponent },
+            { path: 'product/edit/:productID', component: ProductFormComponentComponent },
+            { path: 'product/checkout/:productID', component: ProductCheckoutComponentComponent },
+            { path: 'profile', component: UserProfileComponentComponent },
+            { path: 'edit-profile/:userID', component: UserFormComponentComponent },
+            { path: 'favorites', component: FavoritesComponentComponent },
+            // Ruta Mensajeria
+            { path: 'messages', component: MessagesComponentComponent },
+            { path: 'messages/:chatID', component: ChatComponentComponent },
+        ]
+    },
+
     // // Rutas Moderator Panel: Usuario Moderador. Falta implemetar el Guard y hacer sus hijos
 
-    {path:'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard],  children:[
-        {path: '', pathMatch:'full', redirectTo:'panel'},
-        {path:'panel', component: ModeratorPanelComponentComponent },
-        {path:'incident/:incidentID', component: IncidentViewComponentComponent },
-    ]},
-    
+    {
+        path: 'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard], children: [
+            { path: '', pathMatch: 'full', redirectTo: 'panel' },
+            { path: 'panel', component: ModeratorPanelComponentComponent },
+            { path: 'incident/:incidentID', component: IncidentViewComponentComponent },
+        ]
+    },
+
     // // Rutas Admin Panel: Usuario Administrador. Falta implemetar el Guard y hacer sus hijos
 
-    {path:'admin', component: AdminComponentComponent, canActivate: [authGuard, roleGuard],  children:[
-        {path: '', pathMatch:'full', redirectTo:'panel'},
-        {path: 'panel', component: AdminPanelComponentComponent },
-         {path:'users', component: AdminUsersComponentComponent },
-         {path:'users/:userID', component: AdminUsersViewComponentComponent},
-         {path:'categories', component: AdminCategoriesComponentComponent },
-         {path:'categories/:categoryID', component: AdminCategoriesViewComponentComponent },
-         {path:'statistics', component: AdminStatisticsViewComponentComponent}
-     ]},
-    {path:'**',component:C404componentComponent},
-    {path:'403error',component:C403componentComponent},
-    {path:'500error',component:C500componentComponent}
+    {
+        path: 'admin', component: AdminComponentComponent, canActivate: [authGuard, roleGuard], children: [
+            { path: '', pathMatch: 'full', redirectTo: 'panel' },
+            {
+                path: 'panel', component: Admin,
+                children: [
+                    {
+                        path: 'p',
+                        component: Panel
+                    }
+                ]
+            },
+            {
+                path: 'users', component: Admin,
+                children: [
+                    {
+                        path: 'roles',
+                        component: UsuariosRoles
+                    }
+                ]
+            },
+            { path: 'users/:userID', component: AdminUsersViewComponentComponent },
+            {
+                path: 'categories', component: Admin,
+                children: [
+                    {
+                        path: 'c',
+                        component: Categories
+                    }
+                ]
+            },
+            { path: 'categories/:categoryID', component: AdminCategoriesViewComponentComponent },
+            {
+                path: 'statistics', component: Admin,
+                children: [
+                    {
+                        path: 's',
+                        component: Statistics
+                    }
+                ]
+            },
+            {
+                path: 'reports', component: Admin,
+                children: [
+                    {
+                        path: 'r',
+                        component: Reports
+                    }
+                ]
+            },
+            {
+                path: 'historic', component: Admin,
+                children: [
+                    {
+                        path: 'h',
+                        component: Historic
+                    }
+                ]
+            },
+            {
+                path: 'ratings', component: Admin,
+                children: [
+                    {
+                        path: 'r',
+                        component: Ratings
+                    }
+                ]
+            },
+            {
+                path: 'settings', component: Admin,
+                children: [
+                    {
+                        path: 's',
+                        component: Settings
+                    }
+                ]
+            }
+        ]
+    },
+    { path: '**', component: C404componentComponent },
+    { path: '403error', component: C403componentComponent },
+    { path: '500error', component: C500componentComponent }
 ];

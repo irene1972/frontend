@@ -1,0 +1,47 @@
+<div class="sidebar">
+    <div class="header">
+        <div class="initials">IO</div>
+        <div class="admin">
+            <p class="text-admin">Admin</p>
+            <div class="stars">
+                <i class="bi bi-star-fill"></i>
+                <p>4.9 <span>(87)</span> </p>
+            </div>
+
+        </div>
+    </div>
+    <nav class="nav-sidebar">
+        <a [routerLink]="['/admin/panel/p']" routerLinkActive="active">
+            <i class="bi bi-person"></i>
+            <p>Panel</p>
+        </a>
+        <a [routerLink]="['/admin/users/roles']" routerLinkActive="active">
+            <i class="bi bi-people"></i>
+            <p>Usuarios y roles</p>
+        </a>
+        <a [routerLink]="['/admin/categories/c']" routerLinkActive="active">
+            <i class="bi bi-tags"></i>
+            <p>Categorías</p>
+        </a>
+        <a [routerLink]="['/admin/statistics/s']" routerLinkActive="active">
+            <i class="bi bi-bar-chart-fill"></i>
+            <p>Estadísticas</p>
+        </a>
+        <a [routerLink]="['/admin/reports/r']" routerLinkActive="active">
+            <i class="bi bi-flag"></i>
+            <p>Reportes pendientes</p>
+        </a>
+        <a class="historial" [routerLink]="['/admin/historic/h']" routerLinkActive="active">
+            <i class="bi bi-clock"></i>
+            <p>Historial</p>
+        </a>
+        <a class="mis-valoraciones" [routerLink]="['/admin/ratings/r']" routerLinkActive="active">
+            <i class="bi bi-star"></i>
+            <p>Mis valoraciones</p>
+        </a>
+        <a class="ajustes" [routerLink]="['/admin/settings/s']" routerLinkActive="active">
+            <i class="bi bi-gear"></i>
+            <p>Ajustes</p>
+        </a>
+    </nav>
+</div>
