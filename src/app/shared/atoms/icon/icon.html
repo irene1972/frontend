@@ -1,0 +1,12 @@
+<div class="d-inline-flex flex-column align-items-center gap-1">
+  <div [class]="shape_class()" [style]="container_style()">
+    @if (text_icon()) {
+      <span>{{ text_icon() }}</span>
+    } @else {
+      <i [class]="icon_class()" [style]="icon_style()"></i>
+    }
+  </div>
+  @if (label_text()) {
+    <span [style]="label_style()">{{ label_text() }}</span>
+  }
+</div>
