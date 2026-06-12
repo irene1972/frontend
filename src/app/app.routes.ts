@@ -10,8 +10,6 @@ import { FavoritesComponentComponent } from './pages/favorites-component/favorit
 import { MessagesComponentComponent } from './pages/messages-component/messages-component.component';
 import { ModeratorPanelComponentComponent } from './pages/moderator-panel-component/moderator-panel-component.component';
 import { IncidentViewComponentComponent } from './pages/incident-view-component/incident-view-component.component';
-import { AdminUsersViewComponentComponent } from './pages/admin-users-view-component/admin-users-view-component.component';
-import { AdminCategoriesViewComponentComponent } from './pages/admin-categories-view-component/admin-categories-view-component.component';
 import { UserComponentComponent } from './pages/user-component/user-component.component';
 import { ModeratorComponentComponent } from './pages/moderator-component/moderator-component.component';
 import { AdminComponentComponent } from './pages/admin-component/admin-component.component';
@@ -65,7 +63,7 @@ export const routes: Routes = [
         ]
     },
 
-    // // Rutas Admin Panel: Usuario Administrador. Falta implemetar el Guard y hacer sus hijos
+    // // Rutas Admin Panel: Usuario Administrador. Falta implemetar el Guard
 
     {
         path: 'admin', component: AdminComponentComponent, canActivate: [authGuard, roleGuard], children: [
