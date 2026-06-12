@@ -1,1 +1,90 @@
-<p>detalle-usuario works!</p>
+<section class="usuarios">
+    <h1>Detalle usuario</h1>
+    <div class="card">
+        <div class="card-user">
+            <div class="card-body cont">
+                <div class="iniciales">CR</div>
+                <div class="user">
+                    <h3 class="card-title">Carlos R.</h3>
+                    <p class="card-subtitle mb-2 text-muted">carlos@correo.com. Desde 2024</p>
+                    <div class="label">
+                        <div class="label-rol">MODERADOR</div>
+                        @if(1 > 0){
+                        <div class="label-bloqueado">BLOQUEADO</div>
+                        }@else{
+                        <div class="label-activo">ACTIVO</div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="resumen">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">24</h2>
+                <h6 class="card-subtitle mb-2 text-muted">ARTÍCULOS</h6>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">18</h2>
+                <h6 class="card-subtitle mb-2 text-muted">VENTAS</h6>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">4.7</h2>
+                <h6 class="card-subtitle mb-2 text-muted">VALORACIÓN</h6>
+
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h3>Asignar rol</h3>
+
+            <form  [formGroup]="miForm" (ngSubmit)="loadData()">
+                <div class="card">
+                    <div class="card-body mini-card">
+                        <input type="radio" formControlName="rol" value="Usuario">
+                        <div class="texto">
+                            <h4>Usuario</h4>
+                            <p>Comprar y vender artículos</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body mini-card">
+                        <input type="radio" formControlName="rol" value="Moderador">
+                        <div class="texto">
+                            <h4>Moderador</h4>
+                            <p>Revisar reportes y moderar</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body mini-card">
+                        <input type="radio" formControlName="rol" value="Administrador">
+                        <div class="texto">
+                            <h4>Administrador</h4>
+                            <p>Control total de la plataforma</p>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div class="btn btn-primary bloquear">Bloquear</div>
+                <button type="submit" class="btn btn-primary">Guardar rol</button>
+            </form>
+        </div>
+    </div>
+
+
+</section>
