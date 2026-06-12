@@ -16,6 +16,9 @@ export class UsuariosRoles {
   usuarios: IUsuario[] = [];
   usersService = inject(UsersService);
   iniciales:string='';
+  usersCount:number=0;
+  usersCountRol:number=0;
+  usersCountBlocked:number=0;
 
   constructor(private cd: ChangeDetectorRef) { }
 
@@ -30,5 +33,42 @@ export class UsuariosRoles {
         this.cd.detectChanges();
       }
     });
+
+    this.usersService.getCount().subscribe((data) => {
+      if (data.error) {
+        this.mensaje = data.error;
+        return;
+      } else {
+        console.log(data);
+        this.usersCount = data.count;
+        this.cd.detectChanges();
+      }
+    });
+
+    this.usersService.getCountRol().subscribe((data) => {
+      if (data.error) {
+        this.mensaje = data.error;
+        return;
+      } else {
+        console.log(data);
+        this.usersCountRol = data.count;
+        this.cd.detectChanges();
+      }
+    });
+
+    this.usersService.getCountBlocked().subscribe((data) => {
+      if (data.error) {
+        this.mensaje = data.error;
+        return;
+      } else {
+        console.log(data);
+        this.usersCountBlocked = data.count;
+        this.cd.detectChanges();
+      }
+    });
+
   }
+
+
+
 }

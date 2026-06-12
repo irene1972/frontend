@@ -13,4 +13,16 @@ export class UsersService {
    getAllUsers():Observable<any>{
     return this.httpClient.get<any>(this.baseUrl);
   }
+
+  getCount():Observable<any>{
+    return this.httpClient.get<any>(this.baseUrl + 'count');
+  }
+
+  getCountRol():Observable<any>{
+    return this.httpClient.get<any>(this.baseUrl + 'count/rol/Moderador');
+  }
+
+  getCountBlocked():Observable<any>{
+    return this.httpClient.get<any>(this.baseUrl + 'count/bloqueado/1');
+  }
 }
