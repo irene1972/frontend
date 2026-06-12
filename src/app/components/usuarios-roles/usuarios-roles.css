@@ -4,6 +4,9 @@ section {
 a{
     text-decoration: none;
 }
+.buscador{
+    margin-bottom: 1rem;
+}
 .usuarios {
     margin: 1rem;
     width: 200%;
