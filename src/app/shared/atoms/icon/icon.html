@@ -1,7 +1,7 @@
 <div class="d-inline-flex flex-column align-items-center gap-1">
   <div [class]="shape_class()" [style]="container_style()">
     @if (text_icon()) {
-      <span>{{ text_icon() }}</span>
+      <span [style]="icon_text_style()" >{{ text_icon() }}</span>
     } @else {
       <i [class]="icon_class()" [style]="icon_style()"></i>
     }

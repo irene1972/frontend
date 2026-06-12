@@ -10,18 +10,17 @@ export type IconVariant = IconErrors | IconActions | IconGeneral | IconProfile;
 
 /** Component Configuration Interface */
 interface Config {
-  icon:       string;   // Bootstrap Icon
+  icon?:      string;   // Bootstrap Icon
   shape?:     string;   // Container Shape (circle/square)
   iconColor?: string;   // Icon color
   bgColor?:   string;   // Container color
-  bgShadow?: string;
+  bgShadow?:  string;   // Container Shadow
   label?:     string;   // Label text
 }
 
 /** Component Configuration Map*/
 const CONFIG_SHAPE_CIRCLE = `d-flex align-items-center justify-content-center rounded-circle`;
-const CONFIG_SHAPE_CIRCLE_SHADOW = `d-flex align-items-center justify-content-center rounded-circle SHADOW`;
-const CONFIG_SHAPE_SQUARE = `d-flex align-items-center justify-content-center rounded-1`;
+const CONFIG_SHAPE_SQUARE = `d-flex align-items-center justify-content-center rounded-2`;
 const CONFIG: Record<IconVariant, Config> = {
   'error-403': { icon: 'bi bi-lock',                   shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--surface-card)', bgColor: 'var(--warn)',         label: '403' },
   'error-404': { icon: 'bi bi-search',                 shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--surface-card)', bgColor: 'var(--primary-deep)', label: '404' },
@@ -29,18 +28,18 @@ const CONFIG: Record<IconVariant, Config> = {
   check:       { icon: 'bi bi-check',                  shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--success)', bgColor: 'var(--success-bg)', bgShadow: '0 4px 20px color-mix(in srgb, var(--success) 60%, transparent)'},
   trash:       { icon: 'bi bi-trash3',                 shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--err)', bgColor: 'var(--err-bg)'},
   reload:      { icon: 'bi bi-arrow-counterclockwise', shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--success', bgColor: 'var(--success-bg)'},
-  flag:        { icon: 'bi bi-flag' },
-  rise:        { icon: 'bi bi-graph-up-arrow' },
-  people:      { icon: 'bi bi-people' },
-  person:      { icon: 'bi bi-person' },
-  cube:        { icon: 'bi bi-box' },
-  graph:       { icon: 'bi bi-bar-chart-line-fill' },
-  tag:         { icon: 'bi bi-tag' },
-  clock:       { icon: 'bi bi-clock' },
-  photo:       { icon: 'bi bi-camera' },
-  'profile':                { icon: 'bi bi-person-circle' },
-  'profile-primary-circle': { icon: 'bi bi-person-circle', shape: `d-flex align-items-center justify-content-center rounded-circle`, bgColor: 'var(--primary-deep)' },
-  'profile-primary-square': { icon: 'bi bi-person-square', shape: `d-flex align-items-center justify-content-center rounded-3`,      bgColor: 'var(--primary-deep)' },
+  flag:        { icon: 'bi bi-flag',                   shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-container)'},
+  rise:        { icon: 'bi bi-graph-up-arrow',         shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-container)'},
+  people:      { icon: 'bi bi-people',                 shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-container)'},
+  person:      { icon: 'bi bi-person',                 shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-container)'},
+  cube:        { icon: 'bi bi-box',                    shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-container)'},
+  graph:       { icon: 'bi bi-bar-chart-line-fill',    shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-container)'},
+  tag:         { icon: 'bi bi-tag',                    shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-container)'},
+  clock:       { icon: 'bi bi-clock',                  shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-container)'},
+  photo:       { icon: 'bi bi-camera',                 shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-container)'},
+  'profile':                { shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--secondary-cta', bgColor: 'var(--surface-high)'},
+  'profile-primary-circle': { shape: CONFIG_SHAPE_CIRCLE, iconColor: 'var(--surface-card)', bgColor: 'var(--secondary-cta)' },
+  'profile-primary-square': { shape: CONFIG_SHAPE_SQUARE, iconColor: 'var(--surface-card)', bgColor: 'var(--secondary-cta)' },
 };
 
 /**
@@ -88,8 +87,8 @@ export class Icon{
   protected label_text  = computed(() => this.config().label ?? '');
 
   /* Bootstrap Styles*/
-  protected icon_class  = computed(() => this.config().icon);
-  protected shape_class = computed(() => this.config().shape ?? '');
+  private icon_class  = computed(() => this.config().icon);
+  private readonly shape_class = computed(() => this.config().shape ?? '');
   
 
   /* Component Styles */
@@ -101,6 +100,11 @@ export class Icon{
   }));
 
   protected icon_style = computed(() => ({
+    'color':     this.config().iconColor ?? '',
+    'font-size': `${this.size()}`
+  }));
+
+  protected icon_text_style = computed(() => ({
     'color':     this.config().iconColor ?? '',
     'font-size': `${this.size()}`
   }));
