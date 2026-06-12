@@ -74,72 +74,35 @@ export const routes: Routes = [
                 path: 'panel', component: Admin,
                 children: [
                     {
-                        path: 'p',
+                        path: 'main',
                         component: Panel
-                    }
-                ]
-            },
-            {
-                path: 'users', component: Admin,
-                children: [
+                    },
                     {
-                        path: 'roles',
+                        path: 'users',
                         component: UsuariosRoles
-                    }
-                ]
-            },
-            { path: 'users/:userID', component: AdminUsersViewComponentComponent },
-            {
-                path: 'categories', component: Admin,
-                children: [
+                    },
                     {
-                        path: 'c',
+                        path: 'categories',
                         component: Categories
-                    }
-                ]
-            },
-            { path: 'categories/:categoryID', component: AdminCategoriesViewComponentComponent },
-            {
-                path: 'statistics', component: Admin,
-                children: [
+                    },
                     {
-                        path: 's',
+                        path: 'statistics',
                         component: Statistics
-                    }
-                ]
-            },
-            {
-                path: 'reports', component: Admin,
-                children: [
+                    },
                     {
-                        path: 'r',
+                        path: 'reports',
                         component: Reports
-                    }
-                ]
-            },
-            {
-                path: 'historic', component: Admin,
-                children: [
+                    },
                     {
-                        path: 'h',
+                        path: 'historic',
                         component: Historic
-                    }
-                ]
-            },
-            {
-                path: 'ratings', component: Admin,
-                children: [
+                    },
                     {
-                        path: 'r',
+                        path: 'ratings',
                         component: Ratings
-                    }
-                ]
-            },
-            {
-                path: 'settings', component: Admin,
-                children: [
+                    },
                     {
-                        path: 's',
+                        path: 'settings',
                         component: Settings
                     }
                 ]
