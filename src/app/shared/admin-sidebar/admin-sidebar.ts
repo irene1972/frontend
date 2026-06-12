@@ -8,5 +8,13 @@ import { RouterLink } from '@angular/router';
   styleUrl: './admin-sidebar.css',
 })
 export class AdminSidebar {
+  user:any={};
+  ngOnInit(){
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (usuarioString) {
+      this.user = JSON.parse(usuarioString);
+      
 
+    }
+  }
 }
