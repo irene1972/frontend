@@ -1,7 +1,9 @@
 section {
     background: #F8F9FF;
 }
-
+a{
+    text-decoration: none;
+}
 .usuarios {
     margin: 1rem;
     width: 200%;

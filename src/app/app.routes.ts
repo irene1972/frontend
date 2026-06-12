@@ -71,6 +71,7 @@ export const routes: Routes = [
             {
                 path: 'panel', component: Admin,
                 children: [
+                    { path: '', pathMatch: 'full', redirectTo: 'main' },
                     {
                         path: 'main',
                         component: Panel
