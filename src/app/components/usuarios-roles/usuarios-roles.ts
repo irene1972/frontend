@@ -19,8 +19,24 @@ export class UsuariosRoles {
   usersCount:number=0;
   usersCountRol:number=0;
   usersCountBlocked:number=0;
+  textoBusqueda:string='';
+  placeholder:string='Buscar usuario por nombre o correo...';
 
   constructor(private cd: ChangeDetectorRef) { }
+
+  get usuariosFiltrados(): IUsuario[] {
+  if (!this.textoBusqueda.trim()) {
+    return this.usuarios;
+  }
+
+  const texto = this.textoBusqueda.toLowerCase();
+
+  return this.usuarios.filter(usuario =>
+    usuario.nombre?.toLowerCase().includes(texto) ||
+    usuario.apellidos?.toLowerCase().includes(texto) ||
+    usuario.email?.toLowerCase().includes(texto)
+  );
+}
 
   ngOnInit(){
     this.usersService.getAllUsers().subscribe((data) => {

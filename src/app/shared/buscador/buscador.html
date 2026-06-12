@@ -1,5 +1,5 @@
 <input
   type="text"
-  [(ngModel)]="textoBusqueda"
-  placeholder="Buscar usuario por nombre o correo..."
+  (input)="onInput($event)"
+  placeholder="{{placeholder}}"
 />

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,19 +9,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './buscador.css',
 })
 export class Buscador {
-  textoBusqueda = '';
+  @Input() placeholder: string = '';
+  @Output() buscar = new EventEmitter<string>();
 
-  elementos = [
-    'Angular',
-    'React',
-    'Vue',
-    'Svelte',
-    'SolidJS'
-  ];
-
-  get resultados() {
-    return this.elementos.filter(item =>
-      item.toLowerCase().includes(this.textoBusqueda.toLowerCase())
-    );
-  }
+  onInput(event: Event) {
+  const valor = (event.target as HTMLInputElement).value;
+  this.buscar.emit(valor);
+}
 }

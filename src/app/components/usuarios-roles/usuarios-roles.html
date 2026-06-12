@@ -1,7 +1,10 @@
 <section class="usuarios">
     <h1>Usuarios</h1>
     <div class="buscador">
-        <app-buscador></app-buscador>
+        <app-buscador
+        (buscar)="textoBusqueda = $event" 
+         [placeholder]="placeholder"
+        ></app-buscador>
     </div>
     
     <div class="resumen">
@@ -27,7 +30,7 @@
             </div>
         </div>
     </div>
-    @for(usuario of usuarios;track usuario.id){
+    @for(usuario of usuariosFiltrados;track usuario.id){
         <div class="users">
         <a [routerLink]="['/admin/panel/main']">
             <div class="card">
