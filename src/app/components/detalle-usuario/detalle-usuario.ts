@@ -25,4 +25,8 @@ export class DetalleUsuario {
     }
     console.log(this.miForm.value);
   }
+
+  blockUser(){
+    console.log('prueba');
+  }
 }
