@@ -14,6 +14,10 @@ export class UsersService {
     return this.httpClient.get<any>(this.baseUrl);
   }
 
+  getUserById(id:string):Observable<any>{
+    return this.httpClient.get<any>(this.baseUrl+`${id}`);
+  }
+
   getCount():Observable<any>{
     return this.httpClient.get<any>(this.baseUrl + 'count');
   }
