@@ -1,4 +1,13 @@
+.sidebar{
+    height: 100vh;
+    background-color: white;
+    border:1px solid rgb(189, 187, 187);
+}
 .admin{
     display: flex;
     background: #F8F9FF;
+}
+.sidebar app-admin-sidebar {
+    display: block;
+    height: 100%;
 }

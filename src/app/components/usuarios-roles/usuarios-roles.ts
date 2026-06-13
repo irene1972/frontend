@@ -3,10 +3,11 @@ import { Buscador } from '../../shared/buscador/buscador';
 import { RouterLink } from '@angular/router';
 import { UsersService } from '../../services/users-service';
 import { IUsuario } from '../../interfaces/i-usuario';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-usuarios-roles',
-  imports: [Buscador,RouterLink],
+  imports: [Buscador,RouterLink,NgStyle],
   templateUrl: './usuarios-roles.html',
   styleUrl: './usuarios-roles.css',
 })
