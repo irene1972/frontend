@@ -1,4 +1,24 @@
 <section class="usuarios">
+    <div class="header">
+        <div class="navegador">
+            <a [routerLink]="['/admin/panel/users']">
+                <div class="atras"><</div></a>
+            <a [routerLink]="['/admin/panel/categories']">
+                <div class="alante">></div>
+            </a>
+        </div>
+        <div class="ruta">
+            <p class="panel">Panel</p>
+            <div>></div>
+            <p class="panel">Usuarios</p>
+            <div>></div>
+            @if(usuario){
+                <p>{{usuario.nombre}} {{usuario.apellidos[0]}}.</p>
+            }
+            
+        </div>
+    </div>
+
     <h1>Detalle usuario</h1>
     <div class="card">
         <div class="card-user">

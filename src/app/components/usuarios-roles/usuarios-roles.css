@@ -90,6 +90,8 @@ a{
     padding: 0.3rem 0.2rem;
     margin-top: .5rem;
 }
+
+/*header del componente*/
 .navegador{
     display: flex;
 }
@@ -107,7 +109,6 @@ a{
 
 
 }
-/*header del componente*/
 h1{
     margin-top: 1rem;
 }

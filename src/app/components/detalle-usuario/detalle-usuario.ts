@@ -2,12 +2,12 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IUsuario } from '../../interfaces/i-usuario';
 import { UsersService } from '../../services/users-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-usuario',
-  imports: [ReactiveFormsModule, DatePipe],
+  imports: [ReactiveFormsModule, DatePipe, RouterLink],
   templateUrl: './detalle-usuario.html',
   styleUrl: './detalle-usuario.css',
 })
