@@ -1,60 +1,77 @@
 <section class="usuarios">
-    <h1>Usuarios</h1>
-    <div class="buscador">
-        <app-buscador
-        (buscar)="textoBusqueda = $event" 
-         [placeholder]="placeholder"
-        ></app-buscador>
-    </div>
-    
-    <div class="resumen">
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title">{{usersCount}}</h2>
-                <h6 class="card-subtitle mb-2 text-muted">USUARIOS</h6>
-
+        <div class="header">
+            <div class="navegador">
+                <a [routerLink]="['/admin/panel/main']"><div class="atras"><</div></a>
+                <a [routerLink]="['/admin/panel/categories']"><div class="alante">></div></a>
+            </div>
+            <div class="ruta">
+                <p class="panel">Panel</p>
+                <div>></div>
+                <p>Usuarios</p>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title">{{usersCountRol}}</h2>
-                <h6 class="card-subtitle mb-2 text-muted">MODERADORES</h6>
+        
 
-            </div>
+        <h1>Usuarios</h1>
+        <div class="buscador">
+            <app-buscador (buscar)="textoBusqueda = $event" [placeholder]="placeholder"></app-buscador>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title">{{usersCountBlocked}}</h2>
-                <h6 class="card-subtitle mb-2 text-muted">BLOQUADOS</h6>
 
-            </div>
-        </div>
-    </div>
-    @for(usuario of usuariosFiltrados;track usuario.id){
-        <div class="users">
-        <a [routerLink]="['/admin/panel/user/',usuario.id]">
+        <div class="resumen">
             <div class="card">
-                <div class="card-user">
-                    <div class="card-body cont">
-                        <div class="iniciales">{{usuario.nombre[0]+usuario.apellidos[0]}}</div>
-                        <div class="user">
-                            <h3 class="card-title">{{usuario.nombre}} {{usuario.apellidos[0]}}.</h3>
-                            <p class="card-subtitle mb-2 text-muted">{{usuario.email}}</p>
-                        </div>
-                    </div>
-                    <div class="label">
-                        <div class="label-rol">{{usuario.roles_id.toUpperCase()}}</div>
-                        @if(usuario.bloqueado > 0){
-                            <div class="label-bloqueado">BLOQUEADO</div>
-                        }
-                        
-                    </div>
+                <div class="card-body">
+                    <h2 class="card-title">{{usersCount}}</h2>
+                    <h6 class="card-subtitle mb-2 text-muted">USUARIOS</h6>
+
                 </div>
             </div>
-        </a>
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{usersCountRol}}</h2>
+                    <h6 class="card-subtitle mb-2 text-muted">MODERADORES</h6>
 
-    </div>
-    }
-    
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{usersCountBlocked}}</h2>
+                    <h6 class="card-subtitle mb-2 text-muted">BLOQUADOS</h6>
+
+                </div>
+            </div>
+        </div>
+        @for(usuario of usuariosFiltrados;track usuario.id){
+        <div class="users">
+            <a [routerLink]="['/admin/panel/main']">
+                <div class="card">
+                    <div class="card-user">
+                        <div class="card-body cont">
+                            <div class="iniciales">{{usuario.nombre[0]+usuario.apellidos[0]}}</div>
+                            <div class="user">
+                                <h3 class="card-title">{{usuario.nombre}} {{usuario.apellidos[0]}}.</h3>
+                                <p class="card-subtitle mb-2 text-muted">{{usuario.email}}</p>
+                            </div>
+                        </div>
+                        <div class="label">
+                            <div class="label-rol" [ngStyle]="{
+                            'background-color':
+                            usuario.roles_id === 'Administrador' ? '#DCE9FF' :
+                            usuario.roles_id === 'Moderador' ? '#DCE9FF' :
+                            '#EFF1F5'
+                        }">
+                                {{ usuario.roles_id.toUpperCase() }}
+                            </div>
+                            @if(usuario.bloqueado > 0){
+                            <div class="label-bloqueado">BLOQUEADO</div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        }
+
 
 </section>
