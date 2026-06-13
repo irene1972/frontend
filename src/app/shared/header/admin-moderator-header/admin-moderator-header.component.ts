@@ -10,9 +10,18 @@ import { AdminModeratorMenuDrawerComponent } from './admin-moderator-menu-drawer
 })
 export class AdminModeratorHeaderComponent {
   
-  userInitials = 'AU';
+  userInitials:string = '';
   
   isMenuOpen = false;
+
+  ngOnInit(){
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      this.userInitials=usuario.iniciales;
+
+    }
+  }
 
   openMenu(): void {
     this.isMenuOpen = true;
