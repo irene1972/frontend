@@ -42,7 +42,7 @@
         </div>
         @for(usuario of usuariosFiltrados;track usuario.id){
         <div class="users">
-            <a [routerLink]="['/admin/panel/main']">
+            <a [routerLink]="['/admin/panel/user/',usuario.id]">
                 <div class="card">
                     <div class="card-user">
                         <div class="card-body cont">
