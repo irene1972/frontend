@@ -59,11 +59,14 @@ export class LoginComponentComponent {
         );
 
         if (this.user.rol === 'Administrador') {
-          this.router.navigate(['/admin']);
+          window.location.href='/admin';
+          /*this.router.navigate(['/admin']);*/
         } else if (this.user.rol === 'Moderador') {
-          this.router.navigate(['/moderator']);
+          window.location.href='/moderator';
+          /*this.router.navigate(['/moderator']);*/
         } else {
-          this.router.navigate(['/home']);
+          window.location.href='/home';
+          /*this.router.navigate(['/home']);*/
         }
       },
 

@@ -10,8 +10,17 @@ import { UserMenuDrawerComponent } from './user-menu-drawer/user-menu-drawer.com
 })
 export class UserHeaderComponent {
 
-  userInitials = 'UN';
+  userInitials:string = '';
   isMenuOpen = false;
+
+  ngOnInit(){
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      this.userInitials=usuario.iniciales;
+
+    }
+  }
 
   openMenu(): void {
     this.isMenuOpen = true;
