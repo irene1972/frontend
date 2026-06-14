@@ -26,32 +26,32 @@
     <section class="drawer-section">
         <h6>Navegación</h6>
 
-        <a [routerLink]="['/admin/panel']" (click)="close()">
+        <a [routerLink]="['/admin/panel/main']" (click)="close()">
             Panel de administración
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a [routerLink]="['/admin/users']" (click)="close()">
+        <a [routerLink]="['/admin/panel/users']" (click)="close()">
             Usuarios y roles
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a [routerLink]="['/admin/categories']" (click)="close()">
+        <a [routerLink]="['/admin/panel/categories']" (click)="close()">
             Categorías
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a [routerLink]="['/admin/statistics']" (click)="close()">
+        <a [routerLink]="['/admin/panel/statistics']" (click)="close()">
             Estadísticas
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a href="#" (click)="close()">
+        <a [routerLink]="['/admin/panel/reports']" (click)="close()">
             Reportes pendientes
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a href="#" (click)="close()">
+        <a [routerLink]="['/admin/panel/historic']" (click)="close()">
             Historial de moderación
             <i class="bi bi-chevron-right"></i>
         </a>
