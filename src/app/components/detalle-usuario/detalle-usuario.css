@@ -43,6 +43,11 @@ a {
     border-radius: 10px;
     background: #fff;
     font-weight: bold;
+    
+  }
+  .alante{
+    color: #9ca3af;
+    background-color: #f8f9ff;
   }
 
   .ruta {
@@ -167,7 +172,7 @@ a {
 .role-option {
     cursor: pointer;
     border: 1px solid #dbe1ea;
-    background: #fff;
+    background: hsl(0, 0%, 100%);
 }
 
 .role-option.selected {

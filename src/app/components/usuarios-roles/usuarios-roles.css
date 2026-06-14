@@ -38,7 +38,10 @@ a {
     font-weight: bold;
     background: #fff;
   }
-
+  .alante{
+    color: #9ca3af;
+    background-color: #f8f9ff;
+  }
   .ruta {
     display: flex;
     align-items: center;
