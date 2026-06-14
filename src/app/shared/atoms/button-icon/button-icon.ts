@@ -3,19 +3,22 @@ import { ButtonIconVariant, ButtonIconStates} from  './button-icon.config'
 import { BOOTSTRAP_STYLES } from './button-icon.styles'
 
 /**
- * Átomo de Boton tipo Icono.
+ * Atom Button icon type
  *
- * ## Descripción
- * Renderiza un botón con un icono Bootstrap en tres modos según la variante:
+ * ## Description
+ * Button Icon component used for implement predefined icons like button
  * 
- * ## Uso
- * El input `variant` selecciona la variante de botón icono (like, home, etc).
- * El input `size` controla el tamaño del botón.
- * 
+ * ## Use
+ * input `variant` select variant of the button like: like, home, search, etc.
+ * input `size` select the size of the icon button in pixels: 10px, 40px, 100px, etc.
+ * input 'text_icon' input string to add text inside button instead of icon svg.
  * @example
  * ```html
- * <!-- Icono corazón" -->
- * <atom-icon variant="like" size="48px" />
+ * <!-- Button Icon Like " -->
+ * <atom-icon variant="like" size="48px"/>
+ * 
+ * * <!-- Button Icon Profile " -->
+ * <atom-icon variant="profile" size="48px text_icon="John"/>
  * ```
  */
 
@@ -32,14 +35,13 @@ export class ButtonIcon {
   size      = input<string>('400px');
   text_icon = input<string>('');
 
-  
   /* Public outputs */
   clicked   = output<boolean>();
   
   /* Component State*/
   private state = signal<ButtonIconStates>(ButtonIconStates.INACTIVED);
   
-  /* Component Styles */
+  /* Component Computed Styles */
   protected btnClass = computed(() =>  {
     const variant = BOOTSTRAP_STYLES[this.variant()].btn;
     const style = `${variant} btn-icon btn--${this.variant()} ${this.state()}`
@@ -53,13 +55,18 @@ export class ButtonIcon {
   });
 
   protected labelClass = computed(() =>  {
-    const variant = BOOTSTRAP_STYLES[this.variant()].label;
-    const style = `${variant} label--${this.variant()} ${this.state()}`
+    const style = `label--text ${this.state()}`
     return style;
   });
 
+  /* Component Computed Text */
   protected label_text  = computed(() => {  
     const text = BOOTSTRAP_STYLES[this.variant()].label;
+    return text;
+  });
+
+  protected label_icon_text = computed(() => {  
+    const text = BOOTSTRAP_STYLES[this.variant()].iconText;
     return text;
   });
 
