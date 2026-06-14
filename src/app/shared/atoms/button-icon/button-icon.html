@@ -1,4 +1,3 @@
-<!-- Botón con est -->
 <div class="d-inline-flex flex-column align-items-center gap-1"  
   [style.--size]="size()" >
   <button type="button" 
@@ -6,9 +5,12 @@
     (click)="onClick()">   
     
     @if (text_icon()) {
-      <span class="text--icon">{{ text_icon() }}</span>
+      <span class="icon--text">{{ text_icon() }}</span>
     } @else {
       <i [class]="iconClass()"></i>
+      @if (label_icon_text()) {
+        <span class="label--icon-text">{{ label_icon_text() }}</span>
+      }
     }
   </button>
    @if (label_text()) {
