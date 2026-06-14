@@ -18,12 +18,6 @@ export class RegisterComponentComponent {
 
   constructor(private cd: ChangeDetectorRef, private router: Router) {
     this.miForm = new FormGroup({
-      nombre: new FormControl('', [
-        Validators.required
-      ]),
-      apellidos: new FormControl('', [
-        Validators.required
-      ]),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
@@ -38,26 +32,8 @@ export class RegisterComponentComponent {
       ]),
       repeatPassword: new FormControl('', [
         Validators.required
-      ]),
-      direccion: new FormControl('', [
-        Validators.required
-      ]),
-      zona_geografica: new FormControl('', [
-        Validators.required
-      ]),
-      cp: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^\d{5}$/)
       ])
     }, []);
-  }
-
-  get nombre() {
-    return this.miForm.get('nombre');
-  }
-
-  get apellidos() {
-    return this.miForm.get('apellidos');
   }
 
   get email() {
@@ -76,18 +52,6 @@ export class RegisterComponentComponent {
     return this.miForm.get('repeatPassword');
   }
 
-  get direccion() {
-    return this.miForm.get('direccion');
-  }
-
-  get zona_geografica() {
-    return this.miForm.get('zona_geografica');
-  }
-
-  get cp() {
-    return this.miForm.get('cp');
-  }
-
   registrar() {
     if (!this.miForm.valid) {
       this.miForm.markAllAsTouched();
@@ -101,18 +65,14 @@ export class RegisterComponentComponent {
       return;
     }
 
-    // El formulario recoge los datos que rellena el usuario; el backend completa
-    // el resto (foto, roles_id, bloqueado y created_at). La contrasena repetida
-    // no se envia: solo sirve para validar en el cliente.
+    // Registro simplificado con los datos esenciales: email, usuario y contrasena.
+    // El resto de los datos del perfil (nombre, apellidos, direccion, foto, etc.) se
+    // completan despues en "editar perfil". La contrasena repetida no se envia: solo
+    // sirve para validar en el cliente.
     const nuevoUsuario = {
-      nombre: this.miForm.value.nombre,
-      apellidos: this.miForm.value.apellidos,
       email: this.miForm.value.email,
       username: this.miForm.value.username,
-      password: this.miForm.value.password,
-      direccion: this.miForm.value.direccion,
-      zona_geografica: this.miForm.value.zona_geografica,
-      cp: this.miForm.value.cp
+      password: this.miForm.value.password
     };
 
     this.usersService.registerUser(nuevoUsuario).subscribe({
