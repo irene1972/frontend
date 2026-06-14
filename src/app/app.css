@@ -12,7 +12,7 @@ header{
 }
 
 main {
-    flex: initial;
+    width: 100%;
 }
 
 footer{

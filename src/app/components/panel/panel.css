@@ -4,16 +4,17 @@
   color: #0f172a;
 }
 
-.dashboard-header h1 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.dashboard-header p {
-  margin: 0.5rem 0 1.5rem;
-  color: #6b7280;
-  font-size: 0.95rem;
+.dashboard-header {
+    h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    p {
+        margin: 0.5rem 0 1.5rem;
+        color: #6b7280;
+        font-size: 0.95rem;
+    }
 }
 
 .stats-grid {
@@ -97,14 +98,15 @@
     padding-bottom: 6rem;
   }
 
-  .dashboard-header h1 {
-    font-size: 1.35rem;
-  }
-
-  .dashboard-header p {
-    font-size: 0.8rem;
-    line-height: 1.2;
-  }
+  .dashboard-header {
+    h1 {
+        font-size: 1.35rem;
+    }
+    p {
+        font-size: 0.8rem;
+        line-height: 1.2;
+    }
+  } 
 
   .stats-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -114,14 +116,12 @@
   .stat-card {
     padding: 0.8rem 0.5rem;
     text-align: center;
-  }
-
-  .stat-card h2 {
-    font-size: 1.15rem;
-  }
-
-  .stat-card p {
-    font-size: 0.55rem;
+    h2 {
+        font-size: 1.15rem;
+    }
+    p {
+        font-size: 0.55rem;
+    }
   }
 
   .desktop-only {
