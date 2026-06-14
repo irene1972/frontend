@@ -73,39 +73,41 @@
             <h3>Asignar rol</h3>
 
             <form [formGroup]="miForm" (ngSubmit)="loadData()">
-                <div class="card">
+                <label class="card role-option" [class.selected]="miForm.get('rol')?.value === 'Usuario'">
                     <div class="card-body mini-card">
                         <input type="radio" formControlName="rol" value="Usuario">
                         <div class="texto">
                             <h4>Usuario</h4>
                             <p>Comprar y vender artículos</p>
                         </div>
-
                     </div>
-                </div>
-                <div class="card">
+                </label>
+
+                <label class="card role-option" [class.selected]="miForm.get('rol')?.value === 'Moderador'">
                     <div class="card-body mini-card">
                         <input type="radio" formControlName="rol" value="Moderador">
                         <div class="texto">
                             <h4>Moderador</h4>
                             <p>Revisar reportes y moderar</p>
                         </div>
-
                     </div>
-                </div>
-                <div class="card">
+                </label>
+
+                <label class="card role-option" [class.selected]="miForm.get('rol')?.value === 'Administrador'">
                     <div class="card-body mini-card">
                         <input type="radio" formControlName="rol" value="Administrador">
                         <div class="texto">
                             <h4>Administrador</h4>
                             <p>Control total de la plataforma</p>
                         </div>
-
                     </div>
+                </label>
+
+                <div class="role-actions">
+                    <div (click)="blockUser()" class="btn btn-primary bloquear">Bloquear</div>
+                    <button type="submit" class="btn btn-primary guardar">Guardar rol</button>
                 </div>
 
-                <div (click)="blockUser()" class="btn btn-primary bloquear">Bloquear</div>
-                <button type="submit" class="btn btn-primary">Guardar rol</button>
             </form>
         </div>
     </div>
