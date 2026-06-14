@@ -2,7 +2,7 @@
     <app-login-register></app-login-register>
     <div class="login">
         <h1>Crea tu cuenta</h1>
-        <p>Unete a Buy&Sell para comprar y vender.</p>
+        <p>Únete a Buy&Sell para comprar y vender.</p>
         <div [class.text-danger]="tipo===false" [class.text-success]="tipo===true">{{mensaje}}</div>
     <form [formGroup]="miForm" (ngSubmit)="registrar()">
         <div class="form-group">
@@ -22,6 +22,16 @@
         </div>
 
         <div class="form-group">
+            <label for="email">CORREO ELECTRÓNICO</label>
+            <input type="email" id="email" class="form-control" formControlName="email">
+            @if(email?.touched && email?.hasError('required')){
+            <div class="text-danger">El campo es requerido</div>
+            }@else if(email?.touched && email?.hasError('pattern')){
+            <div class="text-danger">El email no es válido</div>
+            }
+        </div>
+
+        <div class="form-group">
             <label for="username">NOMBRE DE USUARIO</label>
             <input type="text" id="username" class="form-control" formControlName="username">
             @if(username?.touched && username?.hasError('required')){
@@ -32,22 +42,48 @@
         </div>
 
         <div class="form-group">
-            <label for="email">CORREO ELECTRÓNICO</label>
-            <input type="email" id="email" class="form-control" formControlName="email">
-            @if(email?.touched && email?.hasError('required')){
-            <div class="text-danger">El campo es requerido</div>
-            }@else if(email?.touched && email?.hasError('pattern')){
-            <div class="text-danger">El email no es válido</div>
-            }
-        </div>
-
-        <div class="form-group pass">
             <label for="password">CONTRASEÑA</label>
             <input type="password" id="password" class="form-control" formControlName="password">
             @if(password?.touched && password?.hasError('required')){
             <div class="text-danger">El campo es requerido</div>
             }@else if(password?.touched && password?.hasError('minlength')){
             <div class="text-danger">El campo debe tener al menos 8 carácteres</div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="repeatPassword">REPITE LA CONTRASEÑA</label>
+            <input type="password" id="repeatPassword" class="form-control" formControlName="repeatPassword">
+            @if(repeatPassword?.touched && repeatPassword?.hasError('required')){
+            <div class="text-danger">El campo es requerido</div>
+            }@else if(repeatPassword?.touched && password?.value !== repeatPassword?.value){
+            <div class="text-danger">Las contraseñas no coinciden</div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="direccion">DIRECCIÓN</label>
+            <input type="text" id="direccion" class="form-control" formControlName="direccion">
+            @if(direccion?.touched && direccion?.hasError('required')){
+            <div class="text-danger">El campo es requerido</div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="zona_geografica">PROVINCIA O CIUDAD</label>
+            <input type="text" id="zona_geografica" class="form-control" formControlName="zona_geografica">
+            @if(zona_geografica?.touched && zona_geografica?.hasError('required')){
+            <div class="text-danger">El campo es requerido</div>
+            }
+        </div>
+
+        <div class="form-group pass">
+            <label for="cp">CÓDIGO POSTAL</label>
+            <input type="text" id="cp" class="form-control" formControlName="cp">
+            @if(cp?.touched && cp?.hasError('required')){
+            <div class="text-danger">El campo es requerido</div>
+            }@else if(cp?.touched && cp?.hasError('pattern')){
+            <div class="text-danger">El código postal debe tener 5 dígitos</div>
             }
         </div>
         <button type="submit" class="btn btn-primary">Crear cuenta</button>
