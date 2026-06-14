@@ -1,4 +1,8 @@
-
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 header{
     background-color: white;
@@ -7,12 +11,13 @@ header{
     width: 100%;
 }
 
+main {
+    flex: initial;
+}
+
 footer{
     background-color: var(--primary-color);
-;
     color:gray;
-    /*position: fixed;*/
-    bottom: 0px;
     width: 100%;
     text-align: center;
     padding: .5rem 0 0.1rem 0;
