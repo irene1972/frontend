@@ -1,0 +1,156 @@
+.admin-dashboard {
+  padding: 2rem 2.5rem;
+  background: #f8f9ff;
+  color: #0f172a;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.dashboard-header p {
+  margin: 0.5rem 0 1.5rem;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #dbe1ea;
+  border-radius: 10px;
+  padding: 1.25rem;
+  h2 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+  p {
+    margin: 0.25rem 0 0;
+    color: #6b7280;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+}
+
+.section-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.management-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+  max-width: 100%;
+}
+
+.management-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid #dbe1ea;
+  border-radius: 10px;
+  padding: 1rem;
+  text-decoration: none;
+  color: inherit;
+  h3 {
+    margin: 0;
+    color: #003f9e;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  p {
+    margin: 0.25rem 0 0;
+    color: #6b7280;
+    font-size: 0.82rem;
+  }
+}
+
+.card-icon {
+  display: none;
+}
+
+.arrow {
+  margin-left: auto;
+  color: #6b7280;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 1rem;
+    padding-bottom: 6rem;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .dashboard-header p {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .stat-card {
+    padding: 0.8rem 0.5rem;
+    text-align: center;
+  }
+
+  .stat-card h2 {
+    font-size: 1.15rem;
+  }
+
+  .stat-card p {
+    font-size: 0.55rem;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .management-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .management-card {
+    min-height: 72px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.15);
+  }
+
+  .card-icon {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    align-items: center;
+    justify-content: center;
+    background: #e8f0ff;
+    color: #003f9e;
+    border-radius: 8px;
+  }
+
+  .mobile-only {
+    display: flex;
+  }
+}
