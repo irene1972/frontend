@@ -50,3 +50,18 @@ label{
     text-decoration: none;
     color: var(--tertiary-color);
 }
+
+/* Responsive movil (mismo breakpoint que usa el equipo: 768px) */
+@media (max-width: 768px) {
+    .flex {
+        flex-direction: column;
+    }
+    /* En movil ocultamos el panel azul lateral; el formulario ocupa todo el ancho */
+    app-login-register {
+        display: none;
+    }
+    .login {
+        flex: 1 1 100%;
+        padding: 2.5rem 1.5rem;
+    }
+}
