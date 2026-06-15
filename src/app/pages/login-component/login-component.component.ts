@@ -50,7 +50,8 @@ export class LoginComponentComponent {
         this.user.username = data.usuario.username;
         this.user.rol = data.usuario.roles_id;
         //this.user.nombre=data.usuario.nombre;
-        //this.user.apellidos=data.usuario.apellidos,
+        //this.user.apellidos=data.usuario.apellidos;
+        this.user.id=data.usuario.id;
         this.user.iniciales=(data.usuario.nombre[0]+data.usuario.apellidos[0]).toUpperCase();
 
         localStorage.setItem(
