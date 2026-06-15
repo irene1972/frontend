@@ -16,7 +16,7 @@ import { STYLES } from './icon.styles';
  * El input `type` selecciona la variante de icono(icono, forma, colores y etiqueta).
  * El input `size` controla el tamaño: el contenedor escala al doble y la
  * etiqueta a la mitad, manteniendo siempre la proporción.
- * El input `text_icon` permite añadir un texto en el interior de un icono
+ * El input `text_icon` permite añadir un texto en el interior de un icono.
  *
  * @example
  * ```html
