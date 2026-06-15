@@ -21,4 +21,8 @@ export class CategoriesService {
   updateCategory(id:number,body:any):Observable<any>{
     return this.httpClient.put(this.baseUrl + `${id}`,body,{})
   }
+
+  insertCategory(body: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl, body, {});
+  }
 }
