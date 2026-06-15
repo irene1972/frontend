@@ -13,4 +13,12 @@ export class CategoriesService {
    getAllCategories():Observable<any>{
     return this.httpClient.get<any>(this.baseUrl);
   }
+
+  getCategoryById(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + `${id}`);
+  }
+
+  updateCategory(id:number,body:any):Observable<any>{
+    return this.httpClient.put(this.baseUrl + `${id}`,body,{})
+  }
 }
