@@ -6,6 +6,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { RatingsService } from '../../services/ratings-service';
 import Swal from 'sweetalert2';
+import { OrdersService } from '../../services/orders-service';
+import { ArticlesService } from '../../services/articles-service';
 
 @Component({
   selector: 'app-detalle-usuario',
@@ -20,7 +22,11 @@ export class DetalleUsuario {
   usuario!: IUsuario;
   usersService = inject(UsersService);
   ratingsService = inject(RatingsService);
+  ordersService = inject(OrdersService);
+  articlesService = inject(ArticlesService);
   ratings: any = {};
+  sales: any = {};
+  articles: any = {};  
 
   constructor(private cd: ChangeDetectorRef, private route: ActivatedRoute) {
     this.miForm = new FormGroup({
@@ -47,6 +53,28 @@ export class DetalleUsuario {
           } else {
             console.log(data);
             this.ratings = data;
+            this.cd.detectChanges();
+          }
+        });
+
+        this.ordersService.getOrdersByUser(this.usuario.id).subscribe((data) => {
+          if (data.error) {
+            this.mensaje = data.error;
+            return;
+          } else {
+            console.log(data);
+            this.sales = data;
+            this.cd.detectChanges();
+          }
+        });
+
+        this.articlesService.getArticlesByUser(this.usuario.id).subscribe((data) => {
+          if (data.error) {
+            this.mensaje = data.error;
+            return;
+          } else {
+            console.log(data);
+            this.articles = data;
             this.cd.detectChanges();
           }
         });
