@@ -12,13 +12,16 @@ export class UserMenuDrawerComponent {
   userInitials = 'UN';
   userName = "User Name"
   userRating = 4.8
-  
+
   @Output() closeMenu = new EventEmitter<void>();
 
-  close(): void {
+  closeMenuOnly(): void {
     this.closeMenu.emit();
-    /*localStorage.removeItem('usuarioBuy&Sell');
-    window.location.href='/login';*/
+  }
+
+  logout(): void {
+    localStorage.removeItem('usuarioBuy&Sell');
+    window.location.href = '/login';
   }
 
 }
