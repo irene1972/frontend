@@ -29,6 +29,8 @@ import { Historic } from './components/historic/historic';
 import { Ratings } from './components/ratings/ratings';
 import { Settings } from './components/settings/settings';
 import { DetalleUsuario } from './components/detalle-usuario/detalle-usuario';
+import { IncidentsComponentComponent } from './pages/incidents-component/incidents-component.component';
+import { HistoricModeratorComponentComponent } from './pages/historic-moderator-component/historic-moderator-component.component';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -60,7 +62,9 @@ export const routes: Routes = [
         path: 'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard], children: [
             { path: '', pathMatch: 'full', redirectTo: 'panel' },
             { path: 'panel', component: ModeratorPanelComponentComponent },
+            { path: 'incidents', component: IncidentsComponentComponent},
             { path: 'incident/:incidentID', component: IncidentViewComponentComponent },
+            { path: 'historic', component: HistoricModeratorComponentComponent}
         ]
     },
 
