@@ -19,21 +19,28 @@
     <div class="heading">
         <h1>Nueva categoría</h1>
         <p class="descripcion">Crea una nueva categoría para el catálogo</p>
-        <div class="card-body">    
+        <div class="card-body">
             <div [class.text-danger]="tipo===false" [class.text-success]="tipo===true">{{mensaje}}</div>
             <form [formGroup]="miForm" (ngSubmit)="loadData()">
                 <div class="form-group">
                     <label for="nombre">Nombre de la categoría</label>
-                    <input type="text" id="nombre" class="form-control" formControlName="nombre" placeholder="Ej. Tarjetas gráficas">
+                    <input type="text" id="nombre" class="form-control" formControlName="nombre"
+                        placeholder="Ej. Tarjetas gráficas">
                     @if(nombre?.touched && nombre?.hasError('required')){
                     <div class="text-danger">El campo es requerido</div>
                     }@else if(nombre?.touched && nombre?.hasError('minlength')){
                     <div class="text-danger">El campo debe tener al menos 3 carácteres</div>
                     }
                 </div>
+                <div class="formulario__campo">
+                    <label for="imagen" class="formulario__label">Imagen</label>
+                    <input class="form-control" type="file" #fileInput formControlName="imagen" id="imagen"
+                        (change)="onFileSelected($event)">
+                </div>
                 <div class="form-group">
                     <label class="label-descripcion" for="descripcion">Descripcion</label>
-                    <textarea name="" id="descripcion" class="form-control descripcion" formControlName="descripcion" placeholder="Describe brevemente la categoría..."></textarea>
+                    <textarea name="" id="descripcion" class="form-control descripcion" formControlName="descripcion"
+                        placeholder="Describe brevemente la categoría..."></textarea>
                     @if(descripcion?.touched && descripcion?.hasError('required')){
                     <div class="text-danger">El campo es requerido</div>
                     }@else if(descripcion?.touched && descripcion?.hasError('minlength')){
@@ -41,13 +48,14 @@
                     }
                 </div>
                 <div class="acciones">
-                    <button [routerLink]="['/admin/panel/categories']" class="btn btn-primary guardar cancelar">Cancelar</button>
+                    <button [routerLink]="['/admin/panel/categories']"
+                        class="btn btn-primary guardar cancelar">Cancelar</button>
                     <button type="submit" class="btn btn-primary guardar">Guardar</button>
                 </div>
 
             </form>
         </div>
-        
+
     </div>
 
 

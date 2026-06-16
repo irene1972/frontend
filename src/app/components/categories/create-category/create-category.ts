@@ -16,6 +16,7 @@ export class CreateCategory {
   mensaje: string = '';
   tipo: boolean = false;
   categoriesService = inject(CategoriesService);
+  imagenFile!: File | null;
 
   constructor(private route: ActivatedRoute, private cd: ChangeDetectorRef, private router: Router) {
     this.miForm = new FormGroup({
@@ -26,7 +27,8 @@ export class CreateCategory {
       descripcion: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
-      ])
+      ]),
+      imagen: new FormControl('', [])
     }, []);
   }
 
@@ -47,16 +49,42 @@ export class CreateCategory {
       return;
     }
     console.log(this.miForm.value);
-    this.miForm.value;
 
-    this.categoriesService.insertCategory(this.miForm.value).subscribe((data) => {
+    const formData = new FormData();
 
-      if (data.error) {
-        Swal.fire('Ha habido un error', '', 'info');
-      } else {
-        //Swal.fire('Guardado!', '', 'success');
-        this.router.navigate(['/admin/panel/categories']);
+    formData.append('nombre', this.miForm.value.nombre);
+    formData.append('descripcion', this.miForm.value.descripcion);
+
+    if (this.imagenFile) {
+      formData.append('icono', this.imagenFile);
+    }
+
+    this.categoriesService.insertCategory(formData).subscribe({
+      next: (data) => {
+        console.log('RESPUESTA OK:', data);
+
+        if (data.error) {
+          Swal.fire('Ha habido un error', '', 'info');
+        } else {
+          this.router.navigate(['/admin/panel/categories']);
+        }
+      },
+
+      error: (err) => {
+        console.log('ERROR COMPLETO:', err);
+        console.log('STATUS:', err.status);
+        console.log('BODY:', err.error);
+        console.log(JSON.stringify(err.error, null, 2));
       }
     });
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.imagenFile = input.files[0];
+      console.log(this.imagenFile);
+    }
   }
 }
