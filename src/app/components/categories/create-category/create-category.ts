@@ -61,7 +61,7 @@ export class CreateCategory {
 
     this.categoriesService.insertCategory(formData).subscribe({
       next: (data) => {
-        console.log('RESPUESTA OK:', data);
+        console.log(data);
 
         if (data.error) {
           Swal.fire('Ha habido un error', '', 'info');
@@ -71,10 +71,8 @@ export class CreateCategory {
       },
 
       error: (err) => {
-        console.log('ERROR COMPLETO:', err);
-        console.log('STATUS:', err.status);
-        console.log('BODY:', err.error);
-        console.log(JSON.stringify(err.error, null, 2));
+        console.log(err);
+        Swal.fire('Ha habido un error', '', 'info');
       }
     });
   }
