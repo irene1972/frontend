@@ -19,7 +19,8 @@ export class Statistics implements AfterViewInit {
         labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
         datasets: [{
           label: 'Ventas',
-          data: [1200, 1800, 1500, 2200, 2800, 3100]
+          data: [1200, 1800, 1500, 2200, 2800, 3100],
+          backgroundColor: '#003594'
         }]
       }
     });
