@@ -1,52 +1,145 @@
-.flex{
+.login-page {
     display: flex;
     font-family: "Inter", sans-serif;
 }
-.head{
-    flex: 0 0 40%;
-    min-width: 0;
-    background: #003594;
-    /*background: var(--tertiary-color);*/
-    color:white;
-    padding: 4rem;
 
+.login-register {
+    flex: 0 0 42%;
 }
-.login{
-    flex:0 0 60%;
-    min-width: 0;
+
+.mobile-logo {
+    display: none;
+}
+
+.login {
+    flex: 1;
     background: var(--secondary-color);
-    padding: 6rem 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 8rem;
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: .75rem;
+    }
+    p {
+        margin-bottom: 2rem;
+        color: #0f172a;
+    }
 }
-.head img:last-child {
-    width: 100%;
-    height: auto;
+
+form {
+    max-width: 30rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
     display: block;
-    border-radius: 5px;
-}
-h2{
-    padding: 1rem 0;
-    font-size: 3rem;
-    font-weight: 600;
-}
-h1{
-    font-weight: bold;
-}
-label{
+    margin-bottom: .4rem;
     font-family: 'IBM Plex Mono', monospace;
-    font-size:.8rem;
+    font-size: .75rem;
+    color: #0f172a;
 }
-.form-group{
-    padding-top: 1.5rem;
+
+.form-control {
+    width: 100%;
+    height: 2.7rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
 }
-.pass{
-    padding-bottom: 2rem;
+
+.pass {
+    margin-bottom: 1rem;
 }
-.login-link{
+
+.btn-primary {
+    width: 100%;
+    height: 2.8rem;
+    background-color: #fe6b00;
+    border: none;
+    font-weight: 700;
+}
+
+.login-link {
     margin-top: 1.5rem;
     text-align: center;
+    color: #475569;
 }
-.login-link a{
-    font-weight: bold;
+
+.login-link a {
+    font-weight: 700;
     text-decoration: none;
     color: var(--tertiary-color);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .login-page {
+    display: block;
+    min-height: auto;
+    background: var(--secondary-color);
+  }
+
+  .login-register {
+    display: none;
+  }
+
+  .login {
+    width: 100%;
+    padding: 2.5rem 1.75rem;
+    align-items: center;
+    justify-content: flex-start;
+    h1 {
+        font-size: 1.7rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: transparent;
+        position: relative;
+    }
+
+    p {
+        text-align: center;
+        font-size: .95rem;
+        margin-bottom: 2rem;
+    }
+  }
+
+  .mobile-logo {
+    display: block;
+    text-align: center;
+    margin-bottom: 2rem;
+    img {
+        width: 8rem;
+    }
+  }
+
+  .login h1::after {
+    content: "Inicia sesión";
+    color: #0f172a;
+    position: absolute;
+    inset: 0;
+  }
+
+  form {
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .form-control {
+    height: 2.8rem;
+  }
+
+  .btn-primary {
+    margin-top: .5rem;
+    background-color: #fe6b00;
+  }
+
+  .login-link {
+    font-size: .9rem;
+  }
 }
