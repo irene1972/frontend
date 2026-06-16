@@ -22,6 +22,14 @@ export class Statistics implements AfterViewInit {
           data: [1200, 1800, 1500, 2200, 2800, 3100],
           backgroundColor: '#003594'
         }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
       }
     });
   }
