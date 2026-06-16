@@ -29,6 +29,8 @@ import { Historic } from './components/historic/historic';
 import { Ratings } from './components/ratings/ratings';
 import { Settings } from './components/settings/settings';
 import { DetalleUsuario } from './components/detalle-usuario/detalle-usuario';
+import { CreateCategory } from './components/categories/create-category/create-category';
+import { EditCategory } from './components/categories/edit-category/edit-category';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -88,6 +90,14 @@ export const routes: Routes = [
                     {
                         path: 'categories',
                         component: Categories
+                    },
+                    {
+                        path: 'categories/create',
+                        component: CreateCategory
+                    },
+                    {
+                        path: 'categories/edit/:id',
+                        component: EditCategory
                     },
                     {
                         path: 'statistics',

@@ -47,21 +47,21 @@
     <div class="resumen">
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">24</h2>
+                <h2 class="card-title">{{articles.total_publicados}}</h2>
                 <h6 class="card-subtitle mb-2 text-muted">ARTÍCULOS</h6>
 
             </div>
         </div>
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">18</h2>
+                <h2 class="card-title">{{sales.total_ventas}}</h2>
                 <h6 class="card-subtitle mb-2 text-muted">VENTAS</h6>
 
             </div>
         </div>
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">4.7</h2>
+                <h2 class="card-title">{{!ratings.puntuacion_media?'-':ratings.puntuacion_media}}</h2>
                 <h6 class="card-subtitle mb-2 text-muted">VALORACIÓN</h6>
 
             </div>
@@ -71,7 +71,7 @@
         <div class="card-body">
             <h3>Asignar rol</h3>
 
-            <form [formGroup]="miForm" (ngSubmit)="loadData()">
+            <form [formGroup]="miForm" (ngSubmit)="loadData(usuario.id)">
                 <label class="card role-option" [class.selected]="miForm.get('rol')?.value === 'Usuario'">
                     <div class="card-body mini-card">
                         <input type="radio" formControlName="rol" value="Usuario">
@@ -103,7 +103,7 @@
                 </label>
 
                 <div class="role-actions">
-                    <div (click)="blockUser()" class="btn btn-primary bloquear">Bloquear</div>
+                    <div (click)="blockUser(usuario.id)" class="btn btn-primary bloquear">Bloquear</div>
                     <button type="submit" class="btn btn-primary guardar">Guardar rol</button>
                 </div>
 
