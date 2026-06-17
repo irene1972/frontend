@@ -1,0 +1,5 @@
+.seller-description{
+    background-color: var(--surface-low);
+    border: 1px solid var(--outline-var);
+    border-radius: 8px;
+}

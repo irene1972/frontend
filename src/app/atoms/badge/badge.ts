@@ -2,7 +2,7 @@ import { Component, computed, input } from '@angular/core';
 import { BadgeIcon, BadgeIconPosition, BadgeVariant } from './badge.types';
 
 @Component({
-  selector: 'app-badge',
+  selector: 'atom-badge',
   imports: [],
   templateUrl: './badge.html',
   styleUrl: './badge.css',
