@@ -1,0 +1,15 @@
+@if(state() === ToastState.EXIST){
+    <div class="toast--container d-flex flex-row justify-content-left align-items-center rounded-square border-0 rounded-5"
+        [style.--size]="size()"
+        animate.enter="toast--in"
+        animate.leave="toast--out" >
+    <i [class]="iconClass()"></i>
+    <span class="toast--message">{{ message()}}</span>
+    @if(variant()=="trash"){
+        <div class="d-flex flex-row justify-content-end align-items-center flex-grow-1">
+            <button type="button" id="btn--trash" class="btn btn-link text-decoration-none"
+            (click)="onClick()">DESHACER</button>
+        </div>
+    }
+    </div>
+}
