@@ -1,13 +1,13 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { IUsuario } from '../../interfaces/i-usuario';
-import { UsersService } from '../../services/users-service';
+import { IUsuario } from '../../../interfaces/i-usuario';
+import { UsersService } from '../../../services/users-service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { RatingsService } from '../../services/ratings-service';
+import { RatingsService } from '../../../services/ratings-service';
 import Swal from 'sweetalert2';
-import { OrdersService } from '../../services/orders-service';
-import { ArticlesService } from '../../services/articles-service';
+import { OrdersService } from '../../../services/orders-service';
+import { ArticlesService } from '../../../services/articles-service';
 
 @Component({
   selector: 'app-detalle-usuario',

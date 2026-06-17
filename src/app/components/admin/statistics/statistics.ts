@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { AfterViewInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Chart } from 'chart.js/auto';
-import { StatisticsService } from '../../services/statistics-service';
+import { StatisticsService } from '../../../services/statistics-service';
 
 @Component({
   selector: 'app-statistics',
