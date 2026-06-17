@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 :root {
   --primary-color: #EFF4FF;
@@ -21,7 +22,7 @@
   --surface-low: #EFF4FF; /*BUSCADOR, PILDORAS*/
   --surface-container: #E5EEFF; /*CAJAS DE IMG*/
   --surface-high: #DCE9FF; /*BADGES DE CONDICION*/
-  --outline-bar: #C4C6D4; /*BORDES Y DIVISORES*/
+  --outline-var: #C4C6D4; /*BORDES Y DIVISORES*/
   --tertiary-container: #004259; /*ACENTO TERCIARIO*/
   --tertiary-fixed: #C2E8FF;  /*ACENTO CLARO*/
 
@@ -37,5 +38,11 @@
 
 html,
 body {
+<<<<<<< HEAD
+  font-family: 'IBM Plex Mono', monospace;
+}
+footer{
+=======
+>>>>>>> feature/atoms/badge
   font-family: 'IBM Plex Mono', monospace;
 }

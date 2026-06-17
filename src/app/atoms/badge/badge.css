@@ -1,0 +1,70 @@
+.app-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.app-badge--new{
+    background-color: #10B981;
+    color: white;
+}
+
+.app-badge--asnew{
+    background-color: var(--surface-high);
+    color: var(--secondary-cta);
+}
+
+.app-badge--good{
+    background-color: var(--warn-bg);
+    color: var(--warn);
+}
+
+.app-badge--acceptable{
+    background-color: var(--surface-low);
+    color: var(--text-outline);
+}
+
+.app-badge--pro-primary{
+    background-color: var(--primary-cta);
+    color: white;
+}
+
+.app-badge--pro-secondary{
+    background-color: var(--secondary-cta);
+    color: white;
+}
+
+.app-badge--verified{
+    background-color: var(--success-bg);
+    color: #10B981;
+}
+
+.app-badge--seller-new{
+    background-color: var(--surface-low);
+    color: var(--text-secondary);
+}
+
+.app-badge--moderator{
+    background-color: var(--tertiary-fixed);
+    color: var(--tertiary-container);
+}
+
+.app-badge--blocked{
+    background-color: var(--err-bg);
+    color: var(--err);
+}
+
+.app-badge--delivered{
+    background-color: var(--success-bg);
+    color: var(--success);
+}
+
+.app-badge--sale{
+    background-color: black;
+    color: white;
+}

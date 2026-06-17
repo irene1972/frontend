@@ -26,5 +26,5 @@ export type ButtonRounded = 'full' | 'semi';
 /* En el buttonIcon se define todos los iconos disponibles, que se añadiran mediante una clase de bootstrap en el componente button con el label i.
 En el buttonIconPosition se define la posición del icono, que puede ser a la izquierda o a la derecha del texto del botón. 
 */
-export type ButtonIcon = 'cart' | 'google' | 'like' | 'plus-lg' | 'trash' | 'arrow-right' | 'arrow-left' | 'load' | 'none';
+export type ButtonIcon = 'cart' | 'google' | 'like' | 'plus-lg' | 'trash' | 'arrow-right' | 'arrow-left' | 'load' | 'flag' | 'chat-left' |'none';
 export type ButtonIconPosition = 'left' | 'right';

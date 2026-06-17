@@ -2,7 +2,7 @@ import { Component, computed, EventEmitter, Input, input, Output } from '@angula
 import { ButtonConfigState, ButtonIcon, ButtonIconPosition, ButtonRounded, ButtonVariant } from './button.types';
 
 @Component({
-  selector: 'app-button',
+  selector: 'atom-button',
   imports: [],
   templateUrl: './button.html',
   styleUrl: './button.css',
