@@ -38,8 +38,11 @@
 
 html,
 body {
+<<<<<<< HEAD
   font-family: 'IBM Plex Mono', monospace;
 }
 footer{
+=======
+>>>>>>> feature/atoms/badge
   font-family: 'IBM Plex Mono', monospace;
 }
