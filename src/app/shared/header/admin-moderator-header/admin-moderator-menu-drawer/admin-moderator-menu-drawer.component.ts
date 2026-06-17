@@ -13,8 +13,13 @@ export class AdminModeratorMenuDrawerComponent {
 
   @Output() closeMenu = new EventEmitter<void>();
 
-  close(): void {
+  closeMenuOnly(): void {
     this.closeMenu.emit();
+  }
+
+  logout(): void {
+    localStorage.removeItem('usuarioBuy&Sell');
+    window.location.href = '/login';
   }
 
 }

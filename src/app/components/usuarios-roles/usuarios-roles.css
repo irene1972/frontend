@@ -1,0 +1,253 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.usuarios {
+  padding: 2rem 2.5rem;
+  background: #f8f9ff;
+  color: #0f172a;
+
+  h1 {
+    margin: 1rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .navegador {
+    display: flex;
+  }
+
+  .atras,
+  .alante {
+    display: flex;
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+    width: 2rem;
+    height: 2rem;
+    margin-right: .5rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background: #fff;
+  }
+  .alante{
+    color: #9ca3af;
+    background-color: #f8f9ff;
+  }
+  .ruta {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #dbe1ea;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    font-weight: bold;
+
+    p {
+      margin: 0;
+    }
+
+    div {
+      margin: 0 .5rem;
+      color: #9ca3af;
+    }
+
+    .panel {
+      color: #003594;
+    }
+  }
+}
+
+/* Buscador */
+.buscador {
+  margin-bottom: 1rem;
+}
+
+/* Cards resumen */
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  .card {
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  h6 {
+    margin: .25rem 0 0;
+    font-weight: bold;
+    font-size: .7rem;
+    color: #6b7280;
+  }
+}
+
+/* Lista usuarios */
+.users {
+  margin-bottom: 1rem;
+
+  .card {
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+  }
+}
+
+.card-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cont {
+  display: flex;
+  align-items: center;
+
+  .iniciales {
+    display: flex;
+    background: #003594;
+    color: white;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    font-weight: 600;
+  }
+
+  .user {
+    h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    p {
+      margin: .25rem 0 0;
+      color: #6b7280;
+      font-size: .9rem;
+    }
+  }
+}
+
+/* Labels */
+.label {
+  font-size: .7rem;
+  margin-right: 1rem;
+}
+
+.label-rol,
+.label-bloqueado {
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  padding: .3rem .45rem;
+}
+
+.label-rol {
+  background-color: #eff1f5;
+}
+
+.label-bloqueado {
+  background: #fee2e2;
+  color: #b91c1c;
+  margin-top: .5rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .usuarios {
+    padding: 1rem;
+
+    h1 {
+      font-size: 1.45rem;
+      margin: 0 0 .25rem;
+    }
+  }
+
+  .header {
+    display: none;
+  }
+
+  .buscador {
+    margin: .75rem 0;
+  }
+
+  .resumen {
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+
+    .card-body {
+      padding: .75rem .5rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    h6 {
+      font-size: .58rem;
+    }
+  }
+
+  .users {
+    margin-bottom: .6rem;
+
+    .card {
+      border-radius: 10px;
+    }
+  }
+
+  .card-user {
+    min-height: 58px;
+  }
+
+  .cont {
+    .iniciales {
+      width: 2.9rem;
+      height: 2.9rem;
+      min-width: 2.9rem;
+      font-size: .9rem;
+    }
+
+    .user {
+      h3 {
+        font-size: .95rem;
+      }
+
+      p {
+        font-size: .78rem;
+      }
+    }
+  }
+
+  .label {
+    margin-right: .7rem;
+    font-size: .62rem;
+  }
+
+  .label-rol,
+  .label-bloqueado {
+    padding: .25rem .4rem;
+  }
+}

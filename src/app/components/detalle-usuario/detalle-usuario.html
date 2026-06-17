@@ -1,0 +1,115 @@
+<section class="usuarios">
+    <div class="header">
+        <div class="navegador">
+            <a [routerLink]="['/admin/panel/users']">
+                <div class="atras"><</div></a>
+            <div class="alante">></div>
+            
+        </div>
+        <div class="ruta">
+            <p class="panel">Panel</p>
+            <div>></div>
+            <p class="panel">Usuarios</p>
+            <div>></div>
+            @if(usuario){
+                <p>{{usuario.nombre}} {{usuario.apellidos[0]}}.</p>
+            }
+            
+        </div>
+    </div>
+
+    <h1>Detalle usuario</h1>
+    <div class="card">
+        <div class="card-user">
+            <div class="card-body cont">
+                @if(usuario){
+                <div class="iniciales">{{usuario.nombre[0]}}{{usuario.apellidos[0]}}</div>
+                <div class="user">
+                    <h3 class="card-title">{{usuario.nombre}} {{usuario.apellidos[0]}}.</h3>
+                    <p class="card-subtitle mb-2 text-muted">{{usuario.email}}. Desde {{ usuario.created_at |
+                        date:'yyyy' }}</p>
+                    <div class="label">
+                        <div class="label-rol">{{usuario.roles_id.toUpperCase()}}</div>
+                        @if(usuario.bloqueado){
+                        <div class="label-bloqueado">BLOQUEADO</div>
+                        }@else{
+                        <div class="label-activo">ACTIVO</div>
+                        }
+
+                    </div>
+                </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <div class="resumen">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">24</h2>
+                <h6 class="card-subtitle mb-2 text-muted">ARTÍCULOS</h6>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">18</h2>
+                <h6 class="card-subtitle mb-2 text-muted">VENTAS</h6>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">4.7</h2>
+                <h6 class="card-subtitle mb-2 text-muted">VALORACIÓN</h6>
+
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h3>Asignar rol</h3>
+
+            <form [formGroup]="miForm" (ngSubmit)="loadData()">
+                <label class="card role-option" [class.selected]="miForm.get('rol')?.value === 'Usuario'">
+                    <div class="card-body mini-card">
+                        <input type="radio" formControlName="rol" value="Usuario">
+                        <div class="texto">
+                            <h4>Usuario</h4>
+                            <p>Comprar y vender artículos</p>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="card role-option" [class.selected]="miForm.get('rol')?.value === 'Moderador'">
+                    <div class="card-body mini-card">
+                        <input type="radio" formControlName="rol" value="Moderador">
+                        <div class="texto">
+                            <h4>Moderador</h4>
+                            <p>Revisar reportes y moderar</p>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="card role-option" [class.selected]="miForm.get('rol')?.value === 'Administrador'">
+                    <div class="card-body mini-card">
+                        <input type="radio" formControlName="rol" value="Administrador">
+                        <div class="texto">
+                            <h4>Administrador</h4>
+                            <p>Control total de la plataforma</p>
+                        </div>
+                    </div>
+                </label>
+
+                <div class="role-actions">
+                    <div (click)="blockUser()" class="btn btn-primary bloquear">Bloquear</div>
+                    <button type="submit" class="btn btn-primary guardar">Guardar rol</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+</section>

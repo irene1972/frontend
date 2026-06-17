@@ -1,23 +1,23 @@
-<div class="drawer-backdrop" (click)="close()"></div>
+<div class="drawer-backdrop" (click)="closeMenuOnly()"></div>
 
 <aside class="drawer-menu">
 
     <div class="drawer-header">
         <h5>Menú</h5>
 
-        <button class="btn close-button" type="button" (click)="close()">
+        <button class="btn close-button" type="button" (click)="closeMenuOnly()">
             <i class="bi bi-x-lg"></i>
         </button>
     </div>
 
     <div class="drawer-user">
-        <a class="drawer-avatar" [routerLink]="['/user/profile']" (click)="close()">
+        <a class="drawer-avatar" [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
             {{userInitials}}
         </a>
 
         <div>
             <p class="drawer-user-name">{{adminName}}</p>
-            <a class="drawer-user-profile" [routerLink]="['/user/profile']" (click)="close()">
+            <a class="drawer-user-profile" [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
                 Administrador · Ver mi perfil
             </a>
         </div>
@@ -26,46 +26,46 @@
     <section class="drawer-section">
         <h6>Navegación</h6>
 
-        <a [routerLink]="['/admin/panel']" (click)="close()">
+        <a [routerLink]="['/admin/panel/main']" (click)="closeMenuOnly()">
             Panel de administración
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a [routerLink]="['/admin/users']" (click)="close()">
+        <a [routerLink]="['/admin/panel/users']" (click)="closeMenuOnly()">
             Usuarios y roles
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a [routerLink]="['/admin/categories']" (click)="close()">
+        <a [routerLink]="['/admin/panel/categories']" (click)="closeMenuOnly()">
             Categorías
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a [routerLink]="['/admin/statistics']" (click)="close()">
+        <a [routerLink]="['/admin/panel/statistics']" (click)="closeMenuOnly()">
             Estadísticas
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a href="#" (click)="close()">
+        <a [routerLink]="['/admin/panel/reports']" (click)="closeMenuOnly()">
             Reportes pendientes
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a href="#" (click)="close()">
+        <a [routerLink]="['/admin/panel/historic']" (click)="closeMenuOnly()">
             Historial de moderación
             <i class="bi bi-chevron-right"></i>
         </a>
     </section>
 
     <section class="drawer-section">
-        <a [routerLink]="['/user/profile']" (click)="close()">
+        <a [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
             Mi perfil
             <i class="bi bi-chevron-right"></i>
         </a>
     </section>
 
     <section class="drawer-section">
-        <button class="logout-button" type="button" (click)="close()">
+        <button class="logout-button" type="button" (click)="logout()">
             Cerrar sesión
         </button>
     </section>

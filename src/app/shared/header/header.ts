@@ -15,7 +15,7 @@ type UserRole = 'guest' | 'user' | 'moderator' | 'admin';
 export class Header {
 
   isLogged = true;
-  role: UserRole = 'admin';
+  role!: UserRole;
 
   get isGuest(): boolean {
     return !this.isLogged || this.role === 'guest';
@@ -26,6 +26,29 @@ export class Header {
   }
   get isStaff(): boolean {
     return this.isLogged && (this.role === 'moderator' || this.role === 'admin');
+  }
+
+  ngOnInit(){
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      switch(usuario.rol){
+        case 'Administrador':
+          this.role='admin';
+          break;
+        case 'Moderador':
+          this.role='moderator';
+          break;
+        case 'Usuario':
+          this.role='user';
+          break;
+        default:
+          this.role='guest';
+      }
+
+    }else{
+      this.role='guest';
+    }
   }
 
 }
