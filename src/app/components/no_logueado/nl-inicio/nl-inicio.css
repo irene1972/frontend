@@ -1,0 +1,71 @@
+section{
+    margin: 2rem;
+}
+img{
+    border-radius-top: 10px;
+}
+
+h2{
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    
+}
+.destac,.recien{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.card{
+    margin: 1.5rem 0;
+    border-radius: 10px;
+    flex: 0 0 calc(25% - 0.75rem);
+}
+h5{
+    color:#003594;
+    font-weight: bold;
+
+}
+p.card-text{
+    font-size: .9rem;
+    font-weight: bold;
+}
+.card p{
+    margin: 0;
+}
+.texto-icono{
+    color: #444652;
+    font-size: .8rem;
+
+}
+.elemento{
+    flex: 0 0 15%;
+    border-radius: 10px;
+    margin:1.5rem 0 .5rem 0;
+}
+h6{
+    margin-top: .5rem;
+    font-weight: bold;
+    color: #003594;
+
+}
+.elemento p{
+    color:#444652;
+    font-size: .9rem;
+
+}
+button{
+    font-weight: bold;
+    padding: 1rem;
+    background-color: white;
+    color: #003594;
+    border:2px solid #003594;
+}
+.boton{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.recien img{
+    border-radius: 5px;
+}

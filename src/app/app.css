@@ -13,6 +13,7 @@ header{
 
 main {
     width: 100%;
+    background-color: #F8F9FF;
     flex: 1;
     /* main como columna flex: asi las paginas que lo necesiten (auth) pueden ocupar */
     /* todo el alto disponible. Las demas paginas se quedan igual (alto de contenido). */

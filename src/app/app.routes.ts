@@ -25,6 +25,7 @@ import { Panel } from './components/admin/panel/panel';
 import { Categories } from './components/admin/categories/categories';
 import { Statistics } from './components/admin/statistics/statistics';
 import { Admin } from './pages/admin/admin';
+import { HomeHeroComponent } from './pages/home-hero-component/home-hero-component';
 import { Reports } from './components/admin/reports/reports';
 import { Historic } from './components/admin/historic/historic';
 import { Ratings } from './components/admin/ratings/ratings';
@@ -38,6 +39,7 @@ import { HistoricModeratorComponentComponent } from './pages/historic-moderator-
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: HomeComponentComponent },
+    { path: 'home-hero', component: HomeHeroComponent },
     { path: 'login', component: LoginComponentComponent },
     { path: 'register', component: RegisterComponentComponent },
     { path: 'product/:productID', component: ProductViewComponentComponent },

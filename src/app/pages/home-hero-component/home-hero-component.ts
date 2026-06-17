@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
+import { NLInicioHero } from '../../components/no_logueado/nl-inicio-hero/nl-inicio-hero';
 import { NLInicio } from '../../components/no_logueado/nl-inicio/nl-inicio';
-import { USInicio } from '../../components/logueado/us-inicio/us-inicio';
 import { Heading } from '../../components/no_logueado/heading/heading';
 
 @Component({
-  selector: 'app-home-component',
-  imports: [NLInicio,USInicio,Heading],
-  templateUrl: './home-component.component.html',
-  styleUrl: './home-component.component.css',
+  selector: 'app-home-hero-component',
+  imports: [NLInicioHero,NLInicio,Heading],
+  templateUrl: './home-hero-component.html',
+  styleUrl: './home-hero-component.css',
 })
-export class HomeComponentComponent {
+export class HomeHeroComponent {
   user:any={};
 
   ngOnInit(){

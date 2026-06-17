@@ -1,0 +1,32 @@
+.encabezado{
+    margin: 2rem;
+}
+h1{
+    font-weight: bold;
+    margin-bottom: 0;
+    line-height: 1.1;
+}
+p.descripcion{
+    margin: 1rem 0;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+}
+span.populares{
+    font-size: .6rem;
+}
+.flex div{
+    font-size: .8rem;
+    border:1px solid black;
+    border-radius: 20px;
+    padding: .3rem 1rem;
+    background-color: white;
+}
+.labels{
+    flex-wrap: wrap;
+}
+.azul {
+  color: #003594;
+}
