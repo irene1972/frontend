@@ -1,5 +1,4 @@
 <section>
-    
         <!-- Usuario no logado -->
         @if (isGuest) {
             <app-guest-header></app-guest-header>
@@ -10,9 +9,13 @@
             <app-user-header></app-user-header>
         }
 
-        <!-- Staff -->
-        @if (isStaff) {
+        <!-- Administrador -->
+        @if (isAdmin) {
             <app-admin-moderator-header></app-admin-moderator-header>
         }
 
+        <!-- Moderador -->
+         @if (isModerator) {
+            <app-moderator-header></app-moderator-header>
+         }
 </section>

@@ -3,12 +3,13 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { GuestHeaderComponent } from './guest-header/guest-header.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { AdminModeratorHeaderComponent } from './admin-moderator-header/admin-moderator-header.component';
+import { ModeratorHeaderComponent } from './moderator-header/moderator-header.component';
 
 type UserRole = 'guest' | 'user' | 'moderator' | 'admin';
 
 @Component({
   selector: 'app-header',
-  imports: [GuestHeaderComponent, UserHeaderComponent, AdminModeratorHeaderComponent],
+  imports: [GuestHeaderComponent, UserHeaderComponent, AdminModeratorHeaderComponent, ModeratorHeaderComponent],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
@@ -24,8 +25,11 @@ export class Header {
   get isUser(): boolean {
     return this.isLogged && this.role === 'user';
   }
-  get isStaff(): boolean {
-    return this.isLogged && (this.role === 'moderator' || this.role === 'admin');
+  get isAdmin(): boolean {
+    return this.isLogged && this.role === 'admin';
+  }
+  get isModerator(): boolean {
+    return this.isLogged && this.role === 'moderator';
   }
 
   ngOnInit(){
