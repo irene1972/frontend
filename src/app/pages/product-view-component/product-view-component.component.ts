@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Button } from "../../atoms/button/button";
+import { Button } from "../../components/atoms/button/button";
 
 @Component({
   selector: 'app-product-view-component',
