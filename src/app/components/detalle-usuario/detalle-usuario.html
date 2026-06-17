@@ -103,7 +103,12 @@
                 </label>
 
                 <div class="role-actions">
-                    <div (click)="blockUser(usuario.id)" class="btn btn-primary bloquear">Bloquear</div>
+                    @if(!usuario.bloqueado){
+                        <div (click)="blockUser(usuario.id)" class="btn btn-primary bloquear">Bloquear</div>
+                    }@else{
+                        <div (click)="blockUser(usuario.id)" class="btn btn-secondaty desbloquear">Desbloquear</div>
+                    }
+                    
                     <button type="submit" class="btn btn-primary guardar">Guardar rol</button>
                 </div>
 

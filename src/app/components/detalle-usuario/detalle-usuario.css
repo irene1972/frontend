@@ -210,7 +210,7 @@ a {
 }
 
 .bloquear,
-.guardar {
+.guardar,.desbloquear {
     width: 100%;
     margin: 0;
     font-weight: bold;
@@ -219,6 +219,11 @@ a {
 .bloquear {
   background: #dc2626;
   border-color: #dc2626;
+}
+.desbloquear {
+  background: green;
+  border-color: green;
+  color:white;
 }
 
 .guardar {
@@ -323,7 +328,7 @@ a {
   }
 
   .bloquear,
-  .guardar {
+  .guardar,.desbloquear {
     width: 100%;
     margin: 0;
   }

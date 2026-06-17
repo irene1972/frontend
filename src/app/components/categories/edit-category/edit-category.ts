@@ -74,7 +74,7 @@ export class EditCategory {
         return;
       } else {
         this.mensaje=data.mensaje;
-        window.location.reload();
+        window.location.href='/admin/panel/categories';
       }
     });
   }
