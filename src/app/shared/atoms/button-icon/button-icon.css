@@ -1,0 +1,202 @@
+/* Variantes específicas con su color */
+/* Los estilos de las variantes se dfefinen con el siguiente formato: {.clase}--{variante}*/
+
+/*------------ Buttons -------------*/
+.btn--like,
+.btn--sell,
+.btn--trash-button,
+.btn--arrow-left-circle,
+.btn--arrow-right-circle  {
+  width:  calc(var(--size)*2);
+  height: calc(var(--size)*2); 
+}
+
+.btn--like{
+    background-color: var(--surface-page); 
+    color: var(--text-secondary); 
+    box-shadow: 0 9px 12px color-mix(in srgb, var(--text-secondary) 50%, transparent);
+
+    &:hover {
+        color: var(--text-primary); 
+        background-color: var(--surface-container); 
+    }
+}
+
+.btn--home { 
+  background-color: none; 
+  color: var(--text-primary); 
+}
+
+.btn--sell {
+  background-color: var(--secondary-cta); 
+  box-shadow: 0 5px 25px color-mix(in srgb, var(--primary-cta) 65%, transparent);
+  &.actived,
+  &.inactived  {
+    background-color: var(--secondary-cta); 
+  }
+}
+
+.btn--profile{
+    width:  calc(var(--size));
+    height: calc(var(--size));
+}
+
+.btn--star {
+  color: var(--secondary-cta);
+}
+
+.btn--arrow-left-circle,
+.btn--arrow-right-circle {
+  background-color: var(--primary-cta);
+}
+
+.btn--trash-button {
+  background-color: var(--err-bg);
+}
+
+.btn--add-photo,
+.btn--add-photo-icon {
+  width:  calc(var(--size)*3);
+  height: calc(var(--size)*3); 
+  border: 2px dashed var( --outline-var);
+  background-color: var(--surface-container);
+
+  &.actived,
+  &.inactived {
+    outline: none;
+    box-shadow: none;
+    border: 2px dashed var( --outline-var);
+    background-color: var(--surface-container);
+  }
+}
+
+/*------------ Icons -------------*/
+.icon--like,
+.icon--home,
+.icon--search,
+.icon--profile,
+.icon--message,
+.icon--sell,
+.icon--star,
+.icon--pencil,
+.icon--clip, 
+.icon--photo,
+.icon--bell,
+.icon--microphone,
+.icon--trash,
+.icon--trash-button,
+.icon--arrow-left,
+.icon--arrow-right, 
+.icon--add-photo-icon,
+.icon--arrow-left-circle,
+.icon--arrow-right-circle
+{
+  font-size: var(--size);
+}
+
+.icon--like,
+.icon--home,
+.icon--search,
+.icon--profile,
+.icon--message,
+.icon--star,
+.icon--pencil,
+.icon--clip, 
+.icon--photo,
+.icon--bell,
+.icon--microphone 
+{
+  color: var(--text-secondary); 
+}
+
+.icon--like {
+  &:hover {
+    color: var(--text-primary);
+  }
+  &.actived{ 
+     color: var(--primary-cta);
+  }   
+}
+
+.icon--home,
+.icon--search,
+.icon--profile,
+.icon--message {
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: var(--text-primary);
+  }
+  &.actived{ 
+     color: var(--primary-cta);
+  }   
+}
+
+.icon--sell,
+.icon--arrow-left-circle,
+.icon--arrow-right-circle {
+  color: var(--surface-page);
+}
+
+.icon--star {
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: rgb(255, 236, 22);
+  }
+  &.actived{ 
+    color: rgb(255, 236, 22);
+  }   
+}
+
+.icon--trash,
+.icon--trash-button {
+  color: var(--err);
+}
+
+.icon--arrow-left,
+.icon--arrow-right {
+  color: var(--text-primary);
+}
+
+.icon--add-photo-icon  {
+  color: var(--text-outline);
+}
+
+/*------------ Labels -------------*/
+.label--sell,
+.label--text,
+.label--profile,
+.label--icon-text {  
+  font-size: calc(var(--size) / 2);
+  font-weight: 500;
+}
+
+.label--sell {  
+  color: var(--text-secondary);
+  transition: all 0.2s ease-in-out;
+  &.actived{ 
+     color: var(--primary-cta);
+  }
+}
+
+.label--text {  
+  color: var(--text-secondary);
+  transition: all 0.2s ease-in-out;
+  &.actived{ 
+     color: var(--primary-cta);
+  }
+}
+
+.label--profile {  
+  color: var(--text-secondary);
+  transition: all 0.2s ease-in-out;
+  &.actived{ 
+     color: var(--primary-cta);
+  }
+}
+
+.label--icon-text {  
+  color: var(--text-outline);
+}
+
+
+

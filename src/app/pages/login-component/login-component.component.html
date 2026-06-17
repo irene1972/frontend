@@ -1,34 +1,43 @@
-<section class="flex">
+<section class="login-page">
     <div class="login-register">
         <app-login-register></app-login-register>
     </div>
     
     <div class="login">
+        <div class="mobile-logo">
+            <img src="logo-mobile.png" alt="Buy&Sell">
+        </div>
+        
         <h1>Bienvenido de nuevo</h1>
         <p>Introduce tus credenciales para continuar.</p>
         <div [class.text-danger]="tipo===false" [class.text-success]="tipo===true">{{mensaje}}</div>
-    <form [formGroup]="miForm" (ngSubmit)="loadData()">
-        <div class="form-group">
-            <label for="email">CORREO ELECTRÓNICO</label>
-            <input type="email" id="email" class="form-control" formControlName="email">
-            @if(email?.touched && email?.hasError('required')){
-            <div class="text-danger">El campo es requerido</div>
-            }@else if(email?.touched && email?.hasError('pattern')){
-            <div class="text-danger">El email no es válido</div>
-            }
-        </div>
+        
+        <form [formGroup]="miForm" (ngSubmit)="loadData()">
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" class="form-control" formControlName="email" placeholder="ejemplo@correo.com">
+                
+                @if(email?.touched && email?.hasError('required')){
+                    <div class="text-danger">El campo es requerido</div>
+                }@else if(email?.touched && email?.hasError('pattern')){
+                    <div class="text-danger">El email no es válido</div>
+                }
+            </div>
 
-        <div class="form-group pass">
-            <label for="password">CONTRASEÑA</label>
-            <input type="password" id="password" class="form-control" formControlName="password">
-            @if(password?.touched && password?.hasError('required')){
-            <div class="text-danger">El campo es requerido</div>
-            }@else if(password?.touched && password?.hasError('minlength')){
-            <div class="text-danger">El campo debe tener al menos 8 carácteres</div>
-            }
-        </div>
-        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-        <div class="login-link">¿Nuevo en Buy&Sell? <a [routerLink]="['/register']">Crea tu cuenta</a></div>
-    </form>
+            <div class="form-group pass">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" class="form-control" formControlName="password" placeholder="Tu contraseña">
+
+                @if(password?.touched && password?.hasError('required')){
+                <div class="text-danger">El campo es requerido</div>
+                }@else if(password?.touched && password?.hasError('minlength')){
+                <div class="text-danger">El campo debe tener al menos 8 carácteres</div>
+                }
+            </div>
+        
+            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        
+            <div class="login-link">¿Nuevo en Buy&Sell? <a [routerLink]="['/register']">Crea tu cuenta</a></div>
+        </form>
     </div>
 </section>

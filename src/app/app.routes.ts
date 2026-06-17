@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponentComponent } from './pages/home-component/home-component.component';
 import { LoginComponentComponent } from './pages/login-component/login-component.component';
+import { RegisterComponentComponent } from './pages/register-component/register-component.component';
 import { UserFormComponentComponent } from './pages/user-form-component/user-form-component.component';
 import { ProductViewComponentComponent } from './pages/product-view-component/product-view-component.component';
 import { ProductFormComponentComponent } from './pages/product-form-component/product-form-component.component';
@@ -36,7 +37,7 @@ export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: HomeComponentComponent },
     { path: 'login', component: LoginComponentComponent },
-    { path: 'register', component: UserFormComponentComponent },
+    { path: 'register', component: RegisterComponentComponent },
     { path: 'product/:productID', component: ProductViewComponentComponent },
 
     // // Rutas Home: Usuario Normal. Falta implemetar el Guard y hacer sus hijos

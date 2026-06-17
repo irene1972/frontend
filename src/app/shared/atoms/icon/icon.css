@@ -1,0 +1,172 @@
+/* Container*/
+.container--error-403,
+.container--error-404, 
+.container--error-500,
+.container--check,
+.container--trash,
+.container--reload,
+.container--flag,
+.container--rise,
+.container--people,
+.container--person,
+.container--cube,
+.container--graph,
+.container--tag,
+.container--clock,
+.container--camera,
+.container--profile,
+.container--profile-primary-circle,
+.container--profile-primary-square {
+    width:  calc(var(--size)*2);
+    height: calc(var(--size)*2);
+}
+
+.container--camera-round,
+.container--counter {
+    width:  calc(var(--size)*1.5);
+    height: calc(var(--size)*1.5);
+}
+
+.container--error-403 {
+    background-color: var(--warn);
+}
+
+.container--error-404 {
+    background-color: var(--primary-deep);
+}
+
+.container--error-500 {
+    background-color: var(--err);
+}
+
+.container--check {
+    background-color: var(--success);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--success) 60%, transparent);
+}
+
+.container--trash {
+    background-color: var(--err-bg);
+}
+
+.container--reload {
+    background-color: var(--success-bg);
+}
+
+.container--flag,
+.container--rise,
+.container--people,
+.container--person,
+.container--cube,
+.container--graph,
+.container--tag,
+.container--clock,
+.container--camera,
+.container--profile {
+    background-color: var(--surface-container);
+}
+
+.container--camera-round,
+.container--counter  {
+    background-color: var(--primary-cta);
+}
+
+.container--profile-primary-circle,
+.container--profile-primary-square {
+    background-color: var(--secondary-cta);
+}
+
+/* Icon*/
+.icon--error-403,
+.icon--error-404,
+.icon--error-500,
+.icon--check,
+.icon--trash,
+.icon--reload,
+.icon--flag,
+.icon--rise,
+.icon--people,
+.icon--person,
+.icon--cube,
+.icon--graph,
+.icon--tag,
+.icon--clock,
+.icon--camera,
+.icon--heart,
+.icon--star,
+.icon--star-inactived,
+.icon--camera-round {
+    font-size: var(--size);
+}
+
+
+.icon--error-403,
+.icon--error-404,
+.icon--error-500,
+.icon--check,
+.icon--camera-round {
+    color: var(--surface-card);
+}
+
+.icon--trash {
+    color: var(--err);
+}
+
+.icon--reload {
+    color: var(--success);
+}
+
+.icon--flag,
+.icon--rise,
+.icon--people,
+.icon--person,
+.icon--cube,
+.icon--graph,
+.icon--tag,
+.icon--clock,
+.icon--camera {
+    color: var(--secondary-cta); 
+}
+
+.icon--heart,
+.icon--star {
+    color: var(--primary-cta);
+}
+
+.icon--star-inactived {
+    color: var(--err-bg);
+}
+
+/*Icon Text*/
+.icontext--profile {
+    line-height: 1;
+    color:     var(--secondary-cta);
+    font-size: var(--size);
+}
+
+.icontext--profile-primary-circle,
+.icontext--profile-primary-square,
+.icontext--counter {
+    color:     var(--surface-card);
+    font-size: var(--size);
+}
+
+/*Label Error*/
+.label--error-403,
+.label--error-404, 
+.label--error-500 {
+    font-size: calc(var(--size)/2);
+    font-weight: 600;
+}
+
+
+.label--error-403 {
+    color: var(--warn);
+}
+
+.label--error-404 {
+    color: var(--primary-deep);
+}
+
+.label--error-500 {
+    color: var(--err);
+}

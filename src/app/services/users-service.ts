@@ -10,6 +10,10 @@ export class UsersService {
   private baseUrl=`${environment.apiUrl}/usuarios/`;
     httpClient=inject(HttpClient);
   
+   registerUser(body: any): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl, body);
+  }
+
    getAllUsers():Observable<any>{
     return this.httpClient.get<any>(this.baseUrl);
   }
