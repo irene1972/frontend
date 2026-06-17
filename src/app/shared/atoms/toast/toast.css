@@ -1,0 +1,66 @@
+/*------- Container --------*/
+.toast--container {
+  background-color: var(--text-primary);
+}
+
+/*------- Message--------*/
+.toast--message {
+    padding-left: calc(var(--size)/ 3);
+    font-size: var(--size);
+    color: var(--surface-page);
+}
+
+/*------- Button Trash --------*/
+#btn--trash {
+    font-weight: 500;
+    padding-right:var(--size);
+    font-size: calc(var(--size)/2);
+    color: var(--primary-cta);
+}
+
+/*------- Icons --------*/
+.icon--success,
+.icon--info,
+.icon--warn,
+.icon--error,
+.icon--trash{
+    font-size: var(--size);
+    padding-left: var(--size);
+}
+
+.icon--success {
+    color: rgb(108, 255, 108);
+}
+.icon--info {
+    color: rgb(138, 138, 255);
+}
+.icon--warn {
+    color: orange;
+}
+
+.icon--error {
+    color:var(--err);;
+}
+
+.icon--trash {
+    color: var(--primary-cta);
+}
+
+/**--------- Animations ----------*/
+.toast--in {
+  animation: toastFadeIn 250ms ease-out;
+}
+
+.toast--out {
+  animation: toastFadeOut 250ms ease-in;
+}
+
+@keyframes toastFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toastFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(8px); }
+}

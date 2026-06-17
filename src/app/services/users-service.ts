@@ -10,6 +10,10 @@ export class UsersService {
   private baseUrl=`${environment.apiUrl}/usuarios/`;
     httpClient=inject(HttpClient);
   
+   registerUser(body: any): Observable<any> {
+    return this.httpClient.post<any>(this.baseUrl, body);
+  }
+
    getAllUsers():Observable<any>{
     return this.httpClient.get<any>(this.baseUrl);
   }
@@ -28,5 +32,13 @@ export class UsersService {
 
   getCountBlocked():Observable<any>{
     return this.httpClient.get<any>(this.baseUrl + 'count/bloqueado/1');
+  }
+
+  updateBlock(user_id:number,body:any,bloqueo:number):Observable<any>{
+    return this.httpClient.patch(this.baseUrl + `${user_id}/bloqueado/${bloqueo}`,body,{})
+  }
+
+  updateRole(user_id:number,body:any,role:string):Observable<any>{
+    return this.httpClient.patch(this.baseUrl + `${user_id}/rol/${role}`,body,{})
   }
 }

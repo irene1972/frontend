@@ -1,0 +1,191 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.estadisticas {
+  padding: 2rem 2.5rem;
+  background: #f8f9ff;
+  color: #0f172a;
+
+  h1 {
+    margin: 1rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .card {
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Header navegación */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .navegador {
+    display: flex;
+  }
+
+  .atras,
+  .alante {
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    margin-right: .5rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+    background: #fff;
+    font-weight: bold;
+    
+  }
+  .alante{
+    color: #9ca3af;
+    background-color: #f8f9ff;
+  }
+
+  .ruta {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #dbe1ea;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    font-weight: bold;
+
+    p {
+      margin: 0;
+    }
+
+    div {
+      margin: 0 .5rem;
+      color: #9ca3af;
+    }
+
+    .panel {
+      color: #003594;
+    }
+  }
+}
+
+/* Cards resumen */
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  .card {
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+    margin-bottom: 0.2rem;
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  h6 {
+    margin: .25rem 0 0;
+    font-weight: bold;
+    font-size: .85rem;
+    color: gray;
+  }
+  .porcentaje{
+    color: #16A34A;
+  }
+  
+}
+h2.ventas{
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .icono-estadistica {
+    display: none;
+  }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .estadisticas {
+    padding: 2rem 1rem 6rem;
+    background: #f8f9ff;
+
+    h1 {
+      font-size: 1.8rem;
+      margin: 0 0 .75rem;
+      font-weight: 700;
+    }
+
+    > p {
+      margin-bottom: 1.25rem;
+      font-size: .95rem;
+    }
+  }
+
+  .header {
+    display: none;
+  }
+
+  .resumen {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+      background: #fff;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    h2 {
+      margin-top: .75rem;
+    }
+  }
+
+  .icono-estadistica {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 8px;
+    background: #eef4ff;
+    color: #003594;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  h2.ventas {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .estadisticas > .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+  }
+
+  .estadisticas > .card .card-body {
+    padding: 1rem;
+  }
+
+  #salesChart {
+    max-height: 230px;
+  }
+}

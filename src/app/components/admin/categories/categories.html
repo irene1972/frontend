@@ -1,0 +1,61 @@
+<section class="categorias">
+    <div class="header">
+        <div class="navegador">
+            <a [routerLink]="['/admin/panel/users']">
+                <div class="atras">
+                    <</div>
+            </a>
+            <div class="alante">></div>
+        </div>
+        <div class="ruta">
+            <p class="panel">Panel</p>
+            <div>></div>
+            <p>Categorías</p>
+        </div>
+    </div>
+
+    <div class="heading">
+        <div>
+            <h1>Categorías</h1>
+            <p class="descripcion">Gestiona el catálogo de categorías</p>
+        </div>
+        <div>
+            <button class="btn btn-secondary nueva" [routerLink]="['/admin/panel/categories/create']">+ Crear nueva categoría</button>
+        </div>
+    </div>
+        
+    
+
+    <div class="cat">
+        @if(categorias){
+            @for(categoria of categorias;track categoria.id){
+                <div class="card">
+                    <div class="card-body">
+                        <div class="icono-categoria">
+                            <i class="bi bi-tag"></i>
+                        </div>
+                    
+                        <div class="info-categoria">
+                            <h2 class="card-title">{{categoria.nombre}}</h2>
+                            <h6 class="card-subtitle mb-2 text-muted">142 artículos</h6>
+                        </div>
+                    
+                        <div class="acciones">
+                            <a [routerLink]="['/admin/panel/categories/edit/', categoria.id]">
+                                <span class="texto-accion">Editar</span>
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        
+                            <a class="borrar" (click)="borrar(categoria.id)">
+                                <span class="texto-accion">Borrar</span>
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            }@else{
+                <p>No hay datos</p>
+            }
+    </div>
+</section>

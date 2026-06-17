@@ -1,0 +1,100 @@
+/* El componente ocupa todo el alto disponible de main, para que el panel azul y */
+/* el formulario lleguen hasta el footer sin dejar hueco. Estira como flex item */
+/* (main es columna flex), en lugar de min-height:100% que el navegador ignoraba. */
+:host{
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+.flex{
+    flex: 1;
+    display: flex;
+    font-family: "Inter", sans-serif;
+}
+/* Panel azul: fijamos su ancho al 40% explicitamente para que no quede hueco a la */
+/* derecha, y pintamos su fondo del mismo azul para que cubra todo el alto. */
+app-login-register{
+    flex: 0 0 40%;
+    min-width: 0;
+    background: #003594;
+}
+.head{
+    flex: 0 0 40%;
+    min-width: 0;
+    background: #003594;
+    color:white;
+    padding: 4rem;
+}
+.login{
+    flex:0 0 60%;
+    min-width: 0;
+    background: var(--secondary-color);
+    padding: 6rem 8rem;
+}
+.head img:last-child {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+h2{
+    padding: 1rem 0;
+    font-size: 3rem;
+    font-weight: 600;
+}
+h1{
+    font-weight: bold;
+}
+label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size:.8rem;
+}
+.form-group{
+    padding-top: 1.5rem;
+}
+.pass{
+    padding-bottom: 2rem;
+}
+.login-link{
+    margin-top: 1.5rem;
+    text-align: center;
+}
+.login-link a{
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--tertiary-color);
+}
+
+/* Logo superior: solo se ve en movil (en desktop ya esta el panel azul lateral) */
+.logo-mobile{
+    display: none;
+}
+
+/* Responsive movil (mismo breakpoint que usa el equipo: 768px) */
+@media (max-width: 768px) {
+    .flex {
+        flex-direction: column;
+    }
+    /* En movil ocultamos el panel azul lateral y mostramos el logo arriba */
+    app-login-register {
+        display: none;
+    }
+    .logo-mobile {
+        display: block;
+        width: 140px;
+        height: auto;
+        margin: 0 auto 1.5rem;
+    }
+    .login {
+        flex: 1 1 100%;
+        padding: 2.5rem 1.5rem;
+    }
+    .login h1,
+    .login .subtitulo {
+        text-align: center;
+    }
+    .login button[type="submit"] {
+        width: 100%;
+    }
+}

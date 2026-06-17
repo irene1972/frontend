@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './pre-footer.css',
 })
 export class PreFooter {
-
 }

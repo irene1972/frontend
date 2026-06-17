@@ -1,0 +1,12 @@
+<button
+    [class]="classes()"
+    (click)="onClick($event)"
+>
+@if (icon() !== 'none' && iconPosition() === 'left') {
+    <i class="bi bi-{{icon()}}"></i>
+}
+{{label()}}
+@if (icon() !== 'none' && iconPosition() === 'right') {
+    <i class="bi bi-{{icon()}}"></i>
+}
+</button>
