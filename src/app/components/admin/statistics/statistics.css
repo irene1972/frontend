@@ -92,14 +92,14 @@ a {
 
   h2 {
     margin: 0;
-    font-size: 1.75rem;
+    font-size: 2rem;
     font-weight: 700;
   }
 
   h6 {
     margin: .25rem 0 0;
     font-weight: bold;
-    font-size: .7rem;
+    font-size: .85rem;
     color: gray;
   }
   .porcentaje{
@@ -111,17 +111,81 @@ h2.ventas{
     font-size: 1rem;
     font-weight: bold;
   }
+
+  .icono-estadistica {
+    display: none;
+  }
+
 /* Mobile */
 @media (max-width: 768px) {
-  .usuarios {
-    padding: 1rem;
+  .estadisticas {
+    padding: 2rem 1rem 6rem;
+    background: #f8f9ff;
 
     h1 {
-      display: none;
+      font-size: 1.8rem;
+      margin: 0 0 .75rem;
+      font-weight: 700;
+    }
+
+    > p {
+      margin-bottom: 1.25rem;
+      font-size: .95rem;
     }
   }
 
   .header {
     display: none;
+  }
+
+  .resumen {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+      background: #fff;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    h2 {
+      margin-top: .75rem;
+    }
+  }
+
+  .icono-estadistica {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 8px;
+    background: #eef4ff;
+    color: #003594;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  h2.ventas {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .estadisticas > .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+  }
+
+  .estadisticas > .card .card-body {
+    padding: 1rem;
+  }
+
+  #salesChart {
+    max-height: 230px;
   }
 }
