@@ -4,7 +4,6 @@
 :root {
   --primary-color: #EFF4FF;
   --secondary-color: #F8F9FF;
-  --tertiary-color:#003594;
   /*BOTONES*/
   --primary-cta: #FE6B00; /*COLOR PRINCIPAL BOTON*/
   --secondary-cta: #003594; /*COLOR SECUNDARIO BOTON*/
@@ -18,7 +17,7 @@
   --text-outline: #747683; /*PLACEHOLDER, ICONOS*/
 
   /*FONDOS Y SUPERFICIES*/
-  --surface-page: #F8F9FF; /*FONDO DE P?GINA*/
+  --surface-page: #F8F9FF; /*FONDO DE PÁGINA*/
   --surface-card: #FFFFFF; /*FONDO DE TARJETA Y NAVBAR*/
   --surface-low: #EFF4FF; /*BUSCADOR, PILDORAS*/
   --surface-container: #E5EEFF; /*CAJAS DE IMG*/
@@ -28,8 +27,8 @@
   --tertiary-fixed: #C2E8FF;  /*ACENTO CLARO*/
 
   /*COLORES DE ESTADO*/
-  --success: #1E7B34; /*COLOR DE ?XITO*/
-  --success-bg: #DDF3E1; /*FONDO DE ?XITO*/
+  --success: #1E7B34; /*COLOR DE ÉXITO*/
+  --success-bg: #DDF3E1; /*FONDO DE ÉXITO*/
   --err: #BA1A1A; /*COLOR DE ERROR*/
   --err-bg: #FFDAD6; /*FONDO DE ERROR*/
   --warn: #9A6700; /*COLOR DE ADVERTENCIA*/
@@ -39,10 +38,5 @@
 
 html,
 body {
-  font-family: "Inter", sans-serif;
-  font-family: 'IBM Plex Mono', monospace;
-}
-
-footer{
   font-family: 'IBM Plex Mono', monospace;
 }

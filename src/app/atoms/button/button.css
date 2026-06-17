@@ -1,0 +1,88 @@
+/*TIPADO*/
+.app-btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 12px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-btn--primary {
+    background-color: var(--primary-cta);
+    color: white;
+    padding: 12px 18px;
+    gap: 8px;
+}
+.app-btn--secondary {
+    background-color: var(--secondary-cta);
+    color: white;
+    padding: 12px 18px;
+    gap: 8px;
+}
+.app-btn--outline {
+    background-color: transparent;
+    color: var(--price-link-primary);
+    border: 2px solid var(--price-link-primary);
+    padding: 14px 28px;
+    gap: 8px;
+}
+.app-btn--link {
+    background-color: transparent;
+    border: none;
+    color: var(--price-link-primary);
+    padding-inline: 8px;
+}
+.app-btn--dashed {
+    background-color: var(--surface-high);
+    color: var(--price-link-primary);
+    border: 2px dashed var(--price-link-primary);
+    padding: 12px 28px;
+}
+
+.app-btn--activate{
+    background-color: transparent;
+    color: var(--success);
+    border: 2px solid var(--success);
+    padding: 12px 18px;
+    gap: 8px;
+}
+
+.app-btn--retire{
+    background-color: transparent;
+    color: var(--err);
+    border: 2px solid var(--err);
+    padding: 12px 18px;
+    gap: 8px;
+}
+
+.app-btn--block{
+    background-color: var(--err);
+    color: white;
+    padding: 12px 18px;
+    gap: 8px;
+}
+
+/*DESACTIVADO*/
+.app-btn--disabled {
+    background-color: var(--outline-var);
+    color: var(--text-outline);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/*REDONDEADO*/
+.app-btn--rounded-full {
+    border-radius: 12px;
+}
+
+.app-btn--rounded-semi {
+    border-radius: 5px;
+}
+
+/*SOMBREADO*/
+.app-btn--shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,19 @@
+<div class="d-inline-flex flex-column align-items-center gap-1"  
+  [style.--size]="size()" >
+  <button type="button" 
+    [class]="btnClass()"    
+    (click)="onClick()">   
+    
+    @if (text_icon()) {
+      <span class="icon--text">{{ text_icon() }}</span>
+    } @else {
+      <i [class]="iconClass()"></i>
+      @if (label_icon_text()) {
+        <span class="label--icon-text">{{ label_icon_text() }}</span>
+      }
+    }
+  </button>
+   @if (label_text()) {
+    <span [class]="labelClass()">{{ label_text() }}</span>
+  }
+</div>
