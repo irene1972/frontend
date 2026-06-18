@@ -1,0 +1,9 @@
+
+<a [class]="linkClass()" [routerLink]="link()" routerLinkActive="active" [style.--size]="size()">  
+    <i [class]="iconClass()"></i>
+    @if (text()) {
+    <span [class]="textClass()">{{ text() }}</span>
+    }
+</a>
+
+

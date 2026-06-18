@@ -1,0 +1,152 @@
+/* Variantes específicas con su color */
+/* Los estilos de las variantes se dfefinen con el siguiente formato: {.clase}--{variante}*/
+
+/*------------ Buttons -------------*/
+.link--arrow-left-circle,
+.link--arrow-right-circle  {
+  width:  calc(var(--size)*2);
+  height: calc(var(--size)*2); 
+}
+
+.link--home,
+.link--search,
+.link--message,
+.link--profile {
+  text-decoration: none;  
+  color: var(--text-secondary);
+  &.active {
+   i {
+    animation: jump .35s ease;
+   }
+   i, span {
+    color: var(--primary-cta);
+   }
+  }
+}
+
+.link--sell{
+   text-decoration: none;  
+   color: var(--text-secondary);
+   &.active {
+    i {
+        animation: jump .35s ease;
+        background: var(--primary-cta);
+    }
+    span {
+        color: var(--primary-cta);
+    }
+   }
+}
+
+.link--arrow-left-circle,
+.link--arrow-right-circle {
+  background-color: var(--primary-cta);
+}
+
+
+/*------------ Icons -------------*/
+.icon--home,
+.icon--search,
+.icon--profile,
+.icon--message,
+.icon--sell,
+.icon--star,
+.icon--pencil,
+.icon--clip, 
+.icon--camera,
+.icon--bell,
+.icon--microphone,
+.icon--trash,
+.icon--arrow-left,
+.icon--arrow-right, 
+.icon--add-photo-icon,
+.icon--arrow-left-circle,
+.icon--arrow-right-circle
+{
+  font-size: var(--size);
+  font-weight: 700;
+  line-height: 1;
+}
+
+
+.icon--home,
+.icon--search,
+.icon--profile,
+.icon--message,
+.icon--pencil,
+.icon--clip, 
+.icon--camera,
+.icon--bell,
+.icon--microphone 
+{
+  color: var(--text-secondary); 
+}
+
+
+.icon--home,
+.icon--search,
+.icon--message,
+.icon--profile {
+  /*transition: all 0.2s ease-in-out;*/
+  &:hover {
+    color: var(--text-primary);
+  }
+  .active{ 
+     animation: jump .35s ease;
+     color: var(--primary-cta);
+  }   
+}
+
+.icon--sell {
+  justify-content: center;
+  align-items: center;
+  background: #003594;
+  border-radius: 50%;
+  color: white;
+  font-size: 34px;
+  padding: 14px;
+}
+
+.icon--arrow-left-circle,
+.icon--arrow-right-circle {
+  color: var(--surface-page);
+}
+
+.icon--trash {
+  color: var(--err);
+}
+
+.icon--arrow-left,
+.icon--arrow-right {
+  color: var(--text-primary);
+}
+
+/*------------ Text -------------*/
+.text--home,
+.text--search,
+.text--sell,
+.text--message,
+.text--profile { 
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: calc(var(--size) / 2);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/*------------ Animations -------------*/
+@keyframes jump {
+
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.25)
+               translateY(-5px);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
