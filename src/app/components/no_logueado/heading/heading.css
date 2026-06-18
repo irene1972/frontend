@@ -37,3 +37,17 @@ span.populares{
 .labels div{
     font-size: .7rem;
 }
+/* Mobile */
+@media (max-width: 768px) {
+    .card {
+        flex: 0 0 calc(100% - 0rem);
+    }
+
+    h1,
+    .descripcion,
+    .labels {
+        display: none;
+    }
+    
+
+}

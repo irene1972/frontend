@@ -1,5 +1,13 @@
 <div class="nl">
-    <app-home-bar></app-home-bar>
+    <div class="buscador">
+        <app-buscador 
+        (buscar)="textoBusqueda = $event" 
+        [placeholder]="placeholder" 
+        ></app-buscador>
+    </div>
+    <div class="home-bar">
+        <app-home-bar></app-home-bar>
+    </div>
     <app-heading></app-heading>
     <app-nl-inicio></app-nl-inicio>
 </div>

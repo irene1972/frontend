@@ -1,0 +1,10 @@
+.buscador{
+    display:none;
+}
+/* Mobile */
+@media (max-width: 768px) {
+    .buscador{
+        display: block;
+        margin:2rem;
+    }
+}
