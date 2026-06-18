@@ -19,7 +19,7 @@ export interface ButtonIconConfig {
     actived?:   string;
     hover?:     string;
     inactived?: string;
+    animation?: string;
 }
-
 
 

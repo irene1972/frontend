@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal } from '@angular/core';
 import { ButtonIconVariant, ButtonIconStates} from  './button-icon.config'
 import { BOOTSTRAP_STYLES } from './button-icon.styles'
-
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NgTemplateOutlet } from '@angular/common';
 /**
  * Atom Button icon type
  *
@@ -24,7 +25,7 @@ import { BOOTSTRAP_STYLES } from './button-icon.styles'
 
 @Component({
   selector: 'atom-button-icon',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive, NgTemplateOutlet],
   templateUrl: './button-icon.html',
   styleUrl: './button-icon.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,6 +35,7 @@ export class ButtonIcon {
   variant   = input<ButtonIconVariant>('like');
   size      = input<string>('400px');
   text_icon = input<string>('');
+  link  = input<string | unknown[] | null>(null);
 
   /* Public outputs */
   clicked   = output<boolean>();
@@ -48,9 +50,15 @@ export class ButtonIcon {
     return style;
   });
 
+  protected linkClass = computed(() =>  {
+    const variant = BOOTSTRAP_STYLES[this.variant()].link;
+    const style = `${variant} btn-icon btn--${this.variant()} ${this.state()}`
+    return style;
+  });
+
   protected iconClass = computed(() => {
     const variant = BOOTSTRAP_STYLES[this.variant()].icon;
-    const style = `${variant?.[this.state()] ?? variant?.['actived']} icon--${this.variant()} ${this.state()}`
+    const style = `${variant[this.state()]} icon--${this.variant()} ${this.state()}`
     return style;
   });
 

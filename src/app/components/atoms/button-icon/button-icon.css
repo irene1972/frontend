@@ -92,7 +92,28 @@
 .icon--arrow-right-circle
 {
   font-size: var(--size);
+  font-weight: 700;
+  line-height: 1;
 }
+
+
+.bottom-nav a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #747683;
+  font-size: 10px;
+  transition: all .3s ease;
+}
+
+.bottom-nav a i {
+  font-size: 28px;
+  line-height: 1;
+}
+
+
 
 .icon--like,
 .icon--home,
@@ -120,16 +141,39 @@
 
 .icon--home,
 .icon--search,
-.icon--profile,
-.icon--message {
-  transition: all 0.2s ease-in-out;
+.icon--sell,
+.icon--message,
+.icon--profile {
+  /*transition: all 0.2s ease-in-out;*/
   &:hover {
     color: var(--text-primary);
   }
   &.actived{ 
+     animation: jump .35s ease;
      color: var(--primary-cta);
   }   
 }
+
+
+
+
+@keyframes jump {
+
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.25)
+               translateY(-5px);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
 
 .icon--sell,
 .icon--arrow-left-circle,
@@ -166,9 +210,15 @@
 .label--text,
 .label--profile,
 .label--icon-text {  
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 12px;
+  
   font-size: calc(var(--size) / 2);
-  font-weight: 500;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
+
 
 .label--sell {  
   color: var(--text-secondary);
