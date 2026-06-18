@@ -10,7 +10,7 @@ interface HtmlElements {
 }
 
 //type IconStylesMap = Record<IconVariant, HtmlElements>;
-type IconStylesMap = Record<any, HtmlElements>;
+type IconStylesMap = Record<IconVariant, HtmlElements>;
 
 /** Component Style*/
 const STYLE_SHAPE_CIRCLE = `d-flex align-items-center justify-content-center rounded-circle`;
