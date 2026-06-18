@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RatingsService } from '../../services/ratings-service';
+import { RatingsService } from '../../../services/ratings-service';
 
 @Component({
   selector: 'app-admin-sidebar',

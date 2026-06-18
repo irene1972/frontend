@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { LoginRegister } from '../../shared/login-register/login-register';
+import { LoginRegister } from '../../components/organisms/login-register/login-register';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UsersService } from '../../services/users-service';

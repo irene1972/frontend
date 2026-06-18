@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CategoriesService } from '../../../services/categories-service';
-import { ICategory } from '../../../interfaces/i-category';
+import { CategoriesService } from '../../../../services/categories-service';
+import { ICategory } from '../../../../interfaces/i-category';
 import Swal from 'sweetalert2';
 
 @Component({

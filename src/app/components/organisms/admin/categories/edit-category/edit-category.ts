@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ICategory } from '../../../../interfaces/i-category';
-import { CategoriesService } from '../../../../services/categories-service';
+import { ICategory } from '../../../../../interfaces/i-category';
+import { CategoriesService } from '../../../../../services/categories-service';
 
 @Component({
   selector: 'app-edit-category',

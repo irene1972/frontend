@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NLInicioHero } from '../../components/no_logueado/nl-inicio-hero/nl-inicio-hero';
-import { NLInicio } from '../../components/no_logueado/nl-inicio/nl-inicio';
-import { Heading } from '../../components/no_logueado/heading/heading';
+import { NLInicioHero } from '../../components/organisms/no_logueado/nl-inicio-hero/nl-inicio-hero';
+import { NLInicio } from '../../components/organisms/no_logueado/nl-inicio/nl-inicio';
+import { Heading } from '../../components/organisms/no_logueado/heading/heading';
 
 @Component({
   selector: 'app-home-hero-component',

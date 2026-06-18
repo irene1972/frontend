@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { Buscador } from '../../../shared/buscador/buscador';
+import { Buscador } from '../../../molecules/buscador/buscador';
 import { RouterLink } from '@angular/router';
-import { UsersService } from '../../../services/users-service';
-import { IUsuario } from '../../../interfaces/i-usuario';
+import { UsersService } from '../../../../services/users-service';
+import { IUsuario } from '../../../../interfaces/i-usuario';
 import { NgStyle } from '@angular/common';
 
 @Component({
