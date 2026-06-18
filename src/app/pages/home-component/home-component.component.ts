@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { NLInicio } from '../../components/no_logueado/nl-inicio/nl-inicio';
-import { USInicio } from '../../components/logueado/us-inicio/us-inicio';
 import { Heading } from '../../components/no_logueado/heading/heading';
 import { HomeBar } from '../../shared/home-bar/home-bar';
 
 @Component({
   selector: 'app-home-component',
-  imports: [NLInicio,USInicio,Heading,HomeBar],
+  imports: [NLInicio,Heading,HomeBar],
   templateUrl: './home-component.component.html',
   styleUrl: './home-component.component.css',
 })

@@ -9,7 +9,13 @@ h2{
     margin-top: 2rem;
     font-size: 1.5rem;
     font-weight: bold;
+    color:#0B1C30;
+
     
+}
+.flex{
+    display: flex;
+    align-items: center;
 }
 .destac,.recien{
     display: flex;
@@ -35,7 +41,7 @@ p.card-text{
 }
 .texto-icono{
     color: #444652;
-    font-size: .8rem;
+    font-size: .7rem;
 
 }
 .elemento{
@@ -68,4 +74,7 @@ button{
 }
 .recien img{
     border-radius: 5px;
+}
+.bi-geo-alt{
+    font-size: .7rem;
 }

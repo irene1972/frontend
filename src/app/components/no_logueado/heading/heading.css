@@ -8,6 +8,8 @@ h1{
 }
 p.descripcion{
     margin: 1rem 0;
+    color: #444652;
+
 }
 .flex{
     display: flex;
@@ -15,18 +17,23 @@ p.descripcion{
     gap:1rem;
 }
 span.populares{
-    font-size: .6rem;
+    font-size: .5rem;
+    font-family: 'JetBrains Mono','Inter','sans-serif';
 }
 .flex div{
     font-size: .8rem;
-    border:1px solid black;
+    border:1px solid rgb(206, 203, 203);
     border-radius: 20px;
-    padding: .3rem 1rem;
+    padding: .3rem .6rem;
     background-color: white;
 }
 .labels{
     flex-wrap: wrap;
+    gap:.5rem;
 }
 .azul {
   color: #003594;
+}
+.labels div{
+    font-size: .7rem;
 }

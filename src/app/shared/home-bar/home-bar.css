@@ -26,4 +26,6 @@ section div p {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: #444652;
+
 }
