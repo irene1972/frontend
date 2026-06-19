@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IArticle } from '../../../../interfaces/i-article';
 import { IUsuario } from '../../../../interfaces/i-usuario';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './favorites.html',
   styleUrl: './favorites.css',
 })

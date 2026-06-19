@@ -127,9 +127,72 @@ h5{
 .footer-card h5{
     color:#003594;
 }
-.footer-card a{
+.footer-card a,.perfil{
     color:#003594;
     background-color: white;
     border: 2px solid #003594;
-;
 }
+/******/
+/*Lista de usuarios*/
+.users {
+  margin-bottom: 1rem;
+
+  .card {
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+  }
+}
+
+.card-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cont {
+  display: flex;
+  align-items: center;
+
+  .iniciales {
+    display: flex;
+    background: #003594;
+    color: white;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    font-weight: 600;
+  }
+
+  .user {
+    h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    p {
+      margin: .25rem 0 0;
+      color: #6b7280;
+      font-size: .9rem;
+    }
+    
+  }
+  
+}
+.derecha{
+    display: flex;
+    align-items: center;
+}
+.derecha i{
+    color:red;
+    font-size: 1.5rem;
+    margin:0 1rem;
+  }
+  .conten p{
+    margin-bottom: 1.5rem;
+  }
+/*******/
