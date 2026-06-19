@@ -1,0 +1,13 @@
+
+<a class="management-card" [class.card-boxshadow]="shadow()" [routerLink]="link()">
+    <atom-icon [variant]="icon()!"></atom-icon>
+    <div class="card-text">
+        <div class="d-flex flex-row align-items-center justify-content-start gap-2">
+            <h3 c>{{title()}}</h3>
+            <atom-icon variant="counter" [text_icon]="notify()" size="1rem"></atom-icon>
+        </div>
+        <p>{{text()}}</p>
+    </div>
+    
+    <i class="bi bi-chevron-right arrow"></i>
+</a>
