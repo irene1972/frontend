@@ -10,6 +10,7 @@ h1{
 a{
     text-decoration: none;
     color:#747683;
+    cursor: pointer;
 
 }
 .tabs {
