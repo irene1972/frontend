@@ -71,27 +71,30 @@
     color: #003594;
 }
 
-.ajustes a {
+.cerrar-sesion {
+    padding-top: 1rem;
+}
+
+.cerrar-sesion button {
     display: flex;
     align-items: center;
     gap: .5rem;
-    color: #0f172a;
+    width: 100%;
+    color: red;
+    background: transparent;
+    border: none;
     text-decoration: none;
     padding: .65rem .75rem;
     border-radius: 6px;
+    cursor: pointer;
+    font: inherit;
 }
 
-.ajustes a p {
+.cerrar-sesion button p {
     margin: 0;
 }
 
-.ajustes a.active {
-    background-color: #eef4ff;
-    color: #003594;
-    font-weight: 700;
-}
-
-.ajustes a.active i,
-.ajustes a.active p {
-    color: #003594;
+.cerrar-sesion button:hover {
+    background-color: #FEF2F2;
+    color: red;
 }

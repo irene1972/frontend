@@ -24,10 +24,10 @@
         </a>
     </nav>
 
-    <nav class="ajustes">
-        <a class="ajustes" [routerLink]="['/moderator/panel/settings']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-            <i class="bi bi-gear"></i>
-            <p>Ajustes</p>
-        </a>
+    <nav class="cerrar-sesion">
+        <button type="button" (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i>
+            <p>Cerrar sesión</p>
+        </button>
     </nav>
 </div>
