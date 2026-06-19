@@ -13,8 +13,4 @@ export class NLInicio {
   
   @Input() best_sellers:IArticle[] = [];
   @Input() recents:IArticle[] = [];
-
-  ngOnInit() {
-   console.log(this.best_sellers);
-  }
 }
