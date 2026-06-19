@@ -1,59 +1,48 @@
 <section>
     <div class="destacados">
-        <h2>Artículos destacados</h2>
+        <div class="contenedor">
+            <h2>Artículos destacados</h2>
+            <a [routerLink]="['#']">Ver todo -></a>
+        </div>
         <div class="destac">
-            @for (n of items; track n) {
-                <div class="card">
-                <img src="/imgs/technology.jpg" class="card-img-top" alt="">
+            @for (bestSeller of best_sellers.slice(0,4);track bestSeller.id) {
+            <div class="card">
+                <img src="/imgs/technology.jpg" class="card-img-top" alt="{{bestSeller.titulo}}">
                 <div class="card-body">
-                    <h5 class="card-title">850 €</h5>
-                    <p class="card-text">NVIDIA RTX 4080 Founders</p>
+                    <h5 class="card-title">{{bestSeller.precio}} €</h5>
+                    <p class="card-text">{{bestSeller.titulo}}</p>
                     <div class="flex">
                         <i class="bi bi-geo-alt"></i>
-                        <p class=" texto-icono">Madrid, Centro</p>
+                        <p class=" texto-icono">{{bestSeller.provincia?.nombre}}</p>
                     </div>
 
                 </div>
             </div>
+            }@empty{
+                <p>No hay datos</p>
             }
-            
+
 
         </div>
 
     </div>
     <div class="recientes">
-        <h2>Subido recientemente</h2>
+        <div class="contenedor">
+            <h2>Subido recientemente</h2>
+            <a>Ver todo -></a>
+        </div>
         <div class="recien">
+            @for(recent of recents.slice(0,6);track recent.id){
             <div class="elemento">
-                <img src="/imgs/technology.jpg" alt="">
-                <h6>85 €</h6>
-                <p>Teclado custom 65%</p>
+                <img src="/imgs/technology.jpg" alt="{{recent.titulo}}">
+                <h6>{{recent.precio}} €</h6>
+                <p>{{recent.descripcion}}</p>
             </div>
-            <div class="elemento">
-                <img src="/imgs/technology.jpg" alt="">
-                <h6>85 €</h6>
-                <p>Teclado custom 65%</p>
-            </div>
-            <div class="elemento">
-                <img src="/imgs/technology.jpg" alt="">
-                <h6>85 €</h6>
-                <p>Teclado custom 65%</p>
-            </div>
-            <div class="elemento">
-                <img src="/imgs/technology.jpg" alt="">
-                <h6>85 €</h6>
-                <p>Teclado custom 65%</p>
-            </div>
-            <div class="elemento">
-                <img src="/imgs/technology.jpg" alt="">
-                <h6>85 €</h6>
-                <p>Teclado custom 65%</p>
-            </div>
-            <div class="elemento">
-                <img src="/imgs/technology.jpg" alt="">
-                <h6>85 €</h6>
-                <p>Teclado custom 65%</p>
-            </div>
+            }@empty{
+                <p>No hay datos</p>
+            }
+
+
         </div>
     </div>
     <div class="boton">

@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
+import { IArticle } from '../../../../interfaces/i-article';
+import { ArticlesService } from '../../../../services/articles-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nl-inicio',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './nl-inicio.html',
   styleUrl: './nl-inicio.css',
 })
 export class NLInicio {
-  items = Array.from({ length: 4 }, (_, i) => i + 1);
+  
+  @Input() best_sellers:IArticle[] = [];
+  @Input() recents:IArticle[] = [];
+
+  ngOnInit() {
+   console.log(this.best_sellers);
+  }
 }

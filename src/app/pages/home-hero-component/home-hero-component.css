@@ -1,0 +1,13 @@
+.buscador{
+    display:none;
+}
+.home-bar{
+    background-color: white !important;
+}
+/* Mobile */
+@media (max-width: 768px) {
+    .buscador{
+        display: block;
+        margin:2rem;
+    }
+}

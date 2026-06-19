@@ -1,7 +1,17 @@
-@if(!user.id){
 <div class="nl">
+    <div class="buscador">
+        <app-buscador 
+        (buscar)="textoBusqueda = $event" 
+        [placeholder]="placeholder" 
+        ></app-buscador>
+    </div>
+    <div class="home-bar">
+        <app-home-bar></app-home-bar>
+    </div>
     <app-heading></app-heading>
     <app-nl-inicio-hero></app-nl-inicio-hero>
-    <app-nl-inicio></app-nl-inicio>
+    <app-nl-inicio 
+        [best_sellers]="bestSellersFiltrados"
+        [recents]="recentsFiltrados" 
+        ></app-nl-inicio>
 </div>
-}
