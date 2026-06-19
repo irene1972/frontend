@@ -2,7 +2,7 @@
     <div class="destacados">
         <div class="contenedor">
             <h2>Artículos destacados</h2>
-            <a>Ver todo -></a>
+            <a [routerLink]="['#']">Ver todo -></a>
         </div>
         <div class="destac">
             @for (bestSeller of bestSellers.slice(0,4);track bestSeller.id) {
