@@ -34,8 +34,9 @@ import { CreateCategory } from './components/organisms/admin/categories/create-c
 import { EditCategory } from './components/organisms/admin/categories/edit-category/edit-category';
 import { IncidentsComponentComponent } from './pages/incidents-component/incidents-component.component';
 import { HistoricModeratorComponentComponent } from './pages/historic-moderator-component/historic-moderator-component.component';
-import { PanelUser } from './components/organisms/user/panel-user/panel-user';
 import { UserPanel } from './pages/user-panel/user-panel';
+import { Profile } from './components/organisms/user/profile/profile';
+import { Favorites } from './components/organisms/user/favorites/favorites';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -58,8 +59,13 @@ export const routes: Routes = [
                     { path: '', pathMatch: 'full', redirectTo: 'profile' },
                     {
                         path: 'profile',
-                        component: PanelUser
-                    }]
+                        component: Profile
+                    },
+                    {
+                        path: 'favorites',
+                        component: Favorites
+                    }
+                ]
              },
             { path: 'edit-profile/:userID', component: UserFormComponentComponent },
             { path: 'favorites', component: FavoritesComponentComponent },

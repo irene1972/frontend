@@ -5,41 +5,41 @@
             <p class="text-admin">User</p>
             <div class="stars">
                 <i class="bi bi-star-fill"></i>
-                <p>{{ratings.puntuacion_media}} <span>({{ratings.total_valoraciones}})</span> </p>
+                <p>{{ratings.puntuacion_media.toFixed(1)}} <span>({{ratings.total_valoraciones}})</span> </p>
             </div>
 
         </div>
     </div>
     <nav class="nav-sidebar">
-        <a [routerLink]="['/admin/panel/main']" routerLinkActive="active">
+        <a [routerLink]="['/user/panel/profile']" routerLinkActive="active">
             <i class="bi bi-person"></i>
-            <p>Panel</p>
+            <p>Mi perfil</p>
         </a>
-        <a [routerLink]="['/admin/panel/users']" routerLinkActive="active">
+        <a routerLinkActive="active">
             <i class="bi bi-people"></i>
-            <p>Usuarios y roles</p>
+            <p>Notificaciones</p>
         </a>
-        <a [routerLink]="['/admin/panel/categories']" routerLinkActive="active">
+        <a routerLinkActive="active">
             <i class="bi bi-grid-fill"></i>
-            <p>Categorías</p>
+            <p>Ventas</p>
         </a>
-        <a [routerLink]="['/admin/panel/statistics']" routerLinkActive="active">
+        <a routerLinkActive="active">
             <i class="bi bi-bar-chart-fill"></i>
-            <p>Estadísticas</p>
+            <p>Compras</p>
         </a>
-        <a [routerLink]="['/admin/panel/reports']" routerLinkActive="active">
+        <a routerLinkActive="active">
             <i class="bi bi-flag"></i>
-            <p>Reportes pendientes</p>
+            <p>Mensajes</p>
         </a>
-        <a class="historial" [routerLink]="['/admin/panel/historic']" routerLinkActive="active">
+        <a class="historial" [routerLink]="['/user/panel/favorites']" routerLinkActive="active">
             <i class="bi bi-clock"></i>
-            <p>Historial</p>
+            <p>Favoritos</p>
         </a>
-        <a class="mis-valoraciones" [routerLink]="['/admin/panel/ratings']" routerLinkActive="active">
+        <a class="mis-valoraciones" routerLinkActive="active">
             <i class="bi bi-star"></i>
             <p>Mis valoraciones</p>
         </a>
-        <a class="ajustes" [routerLink]="['/admin/panel/settings']" routerLinkActive="active">
+        <a class="ajustes"  routerLinkActive="active">
             <i class="bi bi-gear"></i>
             <p>Ajustes</p>
         </a>
