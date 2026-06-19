@@ -3,11 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { UserSidebar } from '../../components/organisms/user-sidebar/user-sidebar';
 
 @Component({
-  selector: 'app-user-profile-component',
+  selector: 'app-user-panel',
   imports: [UserSidebar,RouterOutlet],
-  templateUrl: './user-profile-component.component.html',
-  styleUrl: './user-profile-component.component.css',
+  templateUrl: './user-panel.html',
+  styleUrl: './user-panel.css',
 })
-export class UserProfileComponentComponent {
+export class UserPanel {
 
 }

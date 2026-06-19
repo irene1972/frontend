@@ -1,4 +1,4 @@
-.admin{
+.user{
     display: flex;
     background: #F8F9FF;
 }
@@ -22,7 +22,7 @@
 }
 
 @media (max-width: 768px) {
-  .admin {
+  .user {
     display: block;
   }
 

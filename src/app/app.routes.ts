@@ -6,7 +6,6 @@ import { UserFormComponentComponent } from './pages/user-form-component/user-for
 import { ProductViewComponentComponent } from './pages/product-view-component/product-view-component.component';
 import { ProductFormComponentComponent } from './pages/product-form-component/product-form-component.component';
 import { ProductCheckoutComponentComponent } from './pages/product-checkout-component/product-checkout-component.component';
-import { UserProfileComponentComponent } from './pages/user-profile-component/user-profile-component.component';
 import { FavoritesComponentComponent } from './pages/favorites-component/favorites-component.component';
 import { MessagesComponentComponent } from './pages/messages-component/messages-component.component';
 import { ModeratorPanelComponentComponent } from './pages/moderator-panel-component/moderator-panel-component.component';
@@ -36,6 +35,7 @@ import { EditCategory } from './components/organisms/admin/categories/edit-categ
 import { IncidentsComponentComponent } from './pages/incidents-component/incidents-component.component';
 import { HistoricModeratorComponentComponent } from './pages/historic-moderator-component/historic-moderator-component.component';
 import { PanelUser } from './components/organisms/user/panel-user/panel-user';
+import { UserPanel } from './pages/user-panel/user-panel';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -53,7 +53,7 @@ export const routes: Routes = [
             { path: 'product/:productID', component: ProductViewComponentComponent },
             { path: 'product/edit/:productID', component: ProductFormComponentComponent },
             { path: 'product/checkout/:productID', component: ProductCheckoutComponentComponent },
-            { path: 'panel', component: UserProfileComponentComponent,
+            { path: 'panel', component: UserPanel,
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'profile' },
                     {
