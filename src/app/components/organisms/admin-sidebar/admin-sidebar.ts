@@ -1,38 +1,25 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { RatingsService } from '../../../services/ratings-service';
 
 @Component({
   selector: 'app-admin-sidebar',
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './admin-sidebar.html',
   styleUrl: './admin-sidebar.css',
 })
 export class AdminSidebar {
-  mensaje: string = '';
-  tipo: boolean = false;
-  user:any={};
-  ratingsService = inject(RatingsService);
-  ratings:any={};
-
-  constructor(private cd: ChangeDetectorRef) { }
+  user: any = {};
 
   ngOnInit(){
     const usuarioString = localStorage.getItem('usuarioBuy&Sell');
     if (usuarioString) {
       this.user = JSON.parse(usuarioString);
-      
-      this.ratingsService.getRatingsByUser(this.user.id).subscribe((data) => {
-      if (data.error) {
-        this.mensaje = data.error;
-        return;
-      } else {
-        console.log(data);
-        this.ratings = data;
-        this.cd.detectChanges();
-      }
-    });
+    }    
+  }
 
-    }
+  logout(): void {
+    localStorage.removeItem('usuarioBuy&Sell');
+    window.location.href = '/login';
   }
 }

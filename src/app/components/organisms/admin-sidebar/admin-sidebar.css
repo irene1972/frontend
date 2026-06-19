@@ -1,9 +1,8 @@
 .sidebar{
     padding: 1.5rem 1rem;
-    /*border:1px solid rgb(189, 187, 187);*/
     background: white;
 }
-.header,.stars,.initials{
+.header,.rol,.initials{
     display:flex;
 }
 .initials{
@@ -14,61 +13,88 @@
     height: 3rem;
     color:white;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1rem;
     justify-content: center;
     align-items: center;
+}
 
-}
-p{
-    margin: 0;
-}
 .admin{
     margin-left: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    p {  
+        font-weight: bold;
+        margin: 0;
+    }
 }
-.text-admin{
-    font-weight: bold;
-}
-i.bi-star-fill{
-    color:#FE6B00;
 
-}
-.stars{
-    align-items: center;
-    
-}
-.stars p{
-    font-size: .8rem;
+.rol p {
+    font-size: .7rem;
     font-weight: bold;
-    margin-left: 0.3rem;
-    color:#FE6B00;
+    margin: 0;
+    color:#003594;
 }
-.stars span{
-    margin:0px;
-    font-weight: 400;
-    color:gray;
-}
+
 .header{
     padding-bottom: 1.5rem;
     border-bottom: 1px solid rgb(189, 187, 187);
 }
-.active{
-    color:green;
-}
+
 .nav-sidebar{
-    margin: 1rem 0rem;
-}
-a{
-    display: flex;
-    color:black;
-    text-decoration: none;
-    padding-bottom: 1rem;
-}
-a p{
-    padding-left: .5rem;
-}
-.mis-valoraciones{
+    padding: 1rem 0;
     border-bottom: 1px solid rgb(189, 187, 187);
 }
-.ajustes{
+
+.nav-sidebar a {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: #0f172a;
+    text-decoration: none;
+    padding: .65rem .75rem;
+    border-radius: 6px;
+}
+
+.nav-sidebar a p {
+    margin: 0;
+}
+
+.nav-sidebar a.active {
+    background-color: #eef4ff;
+    color: #003594;
+    font-weight: 700;
+}
+
+.nav-sidebar a.active i,
+.nav-sidebar a.active p {
+    color: #003594;
+}
+
+.cerrar-sesion {
     padding-top: 1rem;
+}
+
+.cerrar-sesion button {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    width: 100%;
+    color: red;
+    background: transparent;
+    border: none;
+    text-decoration: none;
+    padding: .65rem .75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.cerrar-sesion button p {
+    margin: 0;
+}
+
+.cerrar-sesion button:hover {
+    background-color: #FEF2F2;
+    color: red;
 }
