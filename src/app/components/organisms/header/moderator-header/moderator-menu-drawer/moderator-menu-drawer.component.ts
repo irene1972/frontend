@@ -13,9 +13,21 @@ export class ModeratorMenuDrawerComponent {
 
   @Output() closeMenu = new EventEmitter<void>();
 
+  ngOnInit(){
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      this.userInitials=usuario.iniciales;
+      this.moderatorName=usuario.username;
+
+    }
+  }
+
   close(): void {
     this.closeMenu.emit();
-    /*localStorage.removeItem('usuarioBuy&Sell');
-    window.location.href='/login';*/
+  }
+  logout(): void {
+    localStorage.removeItem('usuarioBuy&Sell');
+    window.location.href='/login';
   }
 }

@@ -13,6 +13,16 @@ export class AdminModeratorMenuDrawerComponent {
 
   @Output() closeMenu = new EventEmitter<void>();
 
+  ngOnInit(){
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      this.userInitials=usuario.iniciales;
+      this.adminName=usuario.username;
+
+    }
+  }
+
   closeMenuOnly(): void {
     this.closeMenu.emit();
   }
