@@ -5,7 +5,7 @@
             <a [routerLink]="['#']">Ver todo -></a>
         </div>
         <div class="destac">
-            @for (bestSeller of bestSellers.slice(0,4);track bestSeller.id) {
+            @for (bestSeller of best_sellers.slice(0,4);track bestSeller.id) {
             <div class="card">
                 <img src="/imgs/technology.jpg" class="card-img-top" alt="{{bestSeller.titulo}}">
                 <div class="card-body">
@@ -18,6 +18,8 @@
 
                 </div>
             </div>
+            }@empty{
+                <p>No hay datos</p>
             }
 
 
@@ -36,6 +38,8 @@
                 <h6>{{recent.precio}} €</h6>
                 <p>{{recent.descripcion}}</p>
             </div>
+            }@empty{
+                <p>No hay datos</p>
             }
 
 
