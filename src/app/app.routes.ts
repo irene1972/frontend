@@ -64,7 +64,7 @@ export const routes: Routes = [
     // // Rutas Moderator Panel: Usuario Moderador. Falta implemetar el Guard y hacer sus hijos
 
     {
-        path: 'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard], children: [
+        path: 'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard], data: {roles: ['Moderador']}, children: [
             { path: '', pathMatch: 'full', redirectTo: 'panel' },
             { path: 'panel', component: ModeratorPanelComponentComponent },
             { path: 'incidents', component: IncidentsComponentComponent},
@@ -76,7 +76,7 @@ export const routes: Routes = [
     // // Rutas Admin Panel: Usuario Administrador. Falta implemetar el Guard
 
     {
-        path: 'admin', component: AdminComponentComponent, canActivate: [authGuard, roleGuard], children: [
+        path: 'admin', component: AdminComponentComponent, canActivate: [authGuard, roleGuard], data: {roles: ['Administrador']}, children: [
             { path: '', pathMatch: 'full', redirectTo: 'panel' },
             {
                 path: 'panel', component: Admin,
