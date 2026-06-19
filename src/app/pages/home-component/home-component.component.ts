@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject } from "@angular/core";
 import { NLInicio } from "../../components/organisms/no_logueado/nl-inicio/nl-inicio";
 import { Heading } from "../../components/organisms/no_logueado/heading/heading";
-import { HomeBar } from "../../shared/home-bar/home-bar";
+import { HomeBar } from "../../components/organisms/home-bar/home-bar";
 import { Buscador } from "../../components/molecules/buscador/buscador";
 import { IArticle } from "../../interfaces/i-article";
 import { ArticlesService } from "../../services/articles-service";

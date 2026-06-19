@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { CategoriesService } from '../../services/categories-service';
-import { ICategory } from '../../interfaces/i-category';
+import { CategoriesService } from '../../../services/categories-service';
+import { ICategory } from '../../../interfaces/i-category';
 import { RouterLink } from '@angular/router';
 
 @Component({

@@ -4,7 +4,7 @@ import { ArticlesService } from '../../services/articles-service';
 import { NLInicioHero } from '../../components/organisms/no_logueado/nl-inicio-hero/nl-inicio-hero';
 import { NLInicio } from '../../components/organisms/no_logueado/nl-inicio/nl-inicio';
 import { Heading } from '../../components/organisms/no_logueado/heading/heading';
-import { HomeBar } from '../../shared/home-bar/home-bar';
+import { HomeBar } from '../../components/organisms/home-bar/home-bar';
 import { Buscador } from '../../components/molecules/buscador/buscador';
 
 @Component({
