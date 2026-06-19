@@ -1,0 +1,22 @@
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #dbe1ea;
+  border-radius: 10px;
+  padding: 1.25rem;
+  h2 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+  p {
+    margin: 0.25rem 0 0;
+    color: #6b7280;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+}
+
+.mobile-only {
+  display: none;
+}
+
