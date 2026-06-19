@@ -12,13 +12,13 @@
 
     <div class="drawer-user">
         <a class="drawer-avatar" [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
-            {{userInitials}}
+            {{user.iniciales}}
         </a>
 
         <div>
-            <p class="drawer-user-name">{{adminName}}</p>
+            <p class="drawer-user-name">{{user.username}}</p>
             <a class="drawer-user-profile" [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
-                Administrador · Ver mi perfil
+                {{user.rol}}
             </a>
         </div>
     </div>
@@ -43,16 +43,6 @@
 
         <a [routerLink]="['/admin/panel/statistics']" (click)="closeMenuOnly()">
             Estadísticas
-            <i class="bi bi-chevron-right"></i>
-        </a>
-
-        <a [routerLink]="['/admin/panel/reports']" (click)="closeMenuOnly()">
-            Reportes pendientes
-            <i class="bi bi-chevron-right"></i>
-        </a>
-
-        <a [routerLink]="['/admin/panel/historic']" (click)="closeMenuOnly()">
-            Historial de moderación
             <i class="bi bi-chevron-right"></i>
         </a>
     </section>

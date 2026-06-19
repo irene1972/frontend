@@ -18,7 +18,7 @@
         <div>
             <p class="drawer-user-name">{{user.username}}</p>
             <a class="drawer-user-profile" [routerLink]="['/user/profile']" (click)="close()">
-                Moderador
+                {{user.rol}}
             </a>
         </div>
     </div>
