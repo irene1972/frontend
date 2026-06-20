@@ -3,10 +3,12 @@ import { Button } from "../../components/atoms/button/button";
 import { ArticlesService } from '../../services/articles-service';
 import { IArticle } from '../../interfaces/i-article';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { Badge } from "../../components/atoms/badge/badge";
 
 @Component({
   selector: 'app-product-view-component',
-  imports: [Button],
+  imports: [Button, DatePipe, Badge],
   templateUrl: './product-view-component.component.html',
   styleUrl: './product-view-component.component.css',
 })
@@ -16,9 +18,7 @@ export class ProductViewComponentComponent {
   product = signal<IArticle | null>(null);
   router = inject(Router);
 
-  ngOnInit() {
-    console.log(this.productID());
-    
+  ngOnInit() { 
     this.loadProduct();
   }
 
@@ -27,8 +27,6 @@ export class ProductViewComponentComponent {
     if(!id) return;
     try {
       this.product.set(await this.articleService.getArticleById(id))
-      console.log(this.product());
-      
     } catch (error) {
       this.router.navigate(['/**'])
     }
