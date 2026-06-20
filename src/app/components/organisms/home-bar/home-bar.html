@@ -2,14 +2,14 @@
     <div [routerLink]="['#']">
         <img class="img1"
             src="https://res.cloudinary.com/djqduukxt/image/upload/v1781777075/categorias/iconos/lfagsflbnfy5uupwa3r8.png"
-            alt="">
+            alt="icono todos">
         <p class="todo">TODO</p>
     </div>
     @if(categorias){
     @for(categoria of categorias;track categoria.id){
     <div [routerLink]="['#']">
         <img src="{{categoria.icono}}"
-            alt="">
+            alt="icono categoría {{categoria.nombre}}">
         <p>{{categoria.nombre}}</p>
     </div>
     }
