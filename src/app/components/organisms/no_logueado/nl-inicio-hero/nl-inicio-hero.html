@@ -8,12 +8,12 @@
                 <div class="card-body">
                     <div class="flex">
                         <div class="fondo-azul-oscuro">DESTACADO</div>
-                        @if(bestSellers[0].estado_conservacion_id==='Buen estado'){
+                        @if(bestSellers[0]?.estado_conservacion_id==='Buen estado'){
                             <div class="fondo-azul-claro">COMO NUEVO</div>
                     }
                     </div>
-                    <h5 class="card-title">{{bestSellers[0].titulo}}</h5>
-                    <p class="card-text">{{bestSellers[0].provincia?.nombre}}. Vendedor verificado</p>
+                    <h5 class="card-title">{{bestSellers[0]?.titulo}}</h5>
+                    <p class="card-text">{{bestSellers[0]?.provincia?.nombre}}. Vendedor verificado</p>
                     <span>849 €</span>
                     <div class="flex links">
                         <button [routerLink]="['/login']" type="button" class="btn btn-warning">Comprar ahora</button>
