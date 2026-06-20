@@ -2,46 +2,37 @@
     <div class="header">
         <div class="initials">{{user.iniciales}}</div>
         <div class="admin">
-            <p class="text-admin">Admin</p>
-            <div class="stars">
-                <i class="bi bi-star-fill"></i>
-                <p>{{ratings.puntuacion_media}} <span>({{ratings.total_valoraciones}})</span> </p>
+            <p>{{user.username}}</p>
+            <div class="rol">
+                <p>{{user.rol}}</p>
             </div>
-
         </div>
     </div>
+
     <nav class="nav-sidebar">
-        <a [routerLink]="['/admin/panel/main']" routerLinkActive="active">
+        <a [routerLink]="['/admin/panel/main']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
             <i class="bi bi-person"></i>
             <p>Panel</p>
         </a>
-        <a [routerLink]="['/admin/panel/users']" routerLinkActive="active">
+        <a [routerLink]="['/admin/panel/users']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
             <i class="bi bi-people"></i>
             <p>Usuarios y roles</p>
         </a>
-        <a [routerLink]="['/admin/panel/categories']" routerLinkActive="active">
+        <a [routerLink]="['/admin/panel/categories']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
             <i class="bi bi-grid-fill"></i>
             <p>Categorías</p>
         </a>
-        <a [routerLink]="['/admin/panel/statistics']" routerLinkActive="active">
+        <a [routerLink]="['/admin/panel/statistics']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
             <i class="bi bi-bar-chart-fill"></i>
             <p>Estadísticas</p>
         </a>
-        <a [routerLink]="['/admin/panel/reports']" routerLinkActive="active">
-            <i class="bi bi-flag"></i>
-            <p>Reportes pendientes</p>
-        </a>
-        <a class="historial" [routerLink]="['/admin/panel/historic']" routerLinkActive="active">
-            <i class="bi bi-clock"></i>
-            <p>Historial</p>
-        </a>
-        <a class="mis-valoraciones" [routerLink]="['/admin/panel/ratings']" routerLinkActive="active">
-            <i class="bi bi-star"></i>
-            <p>Mis valoraciones</p>
-        </a>
-        <a class="ajustes" [routerLink]="['/admin/panel/settings']" routerLinkActive="active">
-            <i class="bi bi-gear"></i>
-            <p>Ajustes</p>
-        </a>
     </nav>
+
+    <nav class="cerrar-sesion">
+        <button type="button" (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i>
+            <p>Cerrar sesión</p>
+        </button>
+    </nav>
+
 </div>

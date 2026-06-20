@@ -12,13 +12,13 @@
 
     <div class="drawer-user">
         <a class="drawer-avatar" [routerLink]="['/user/profile']" (click)="close()">
-            {{userInitials}}
+            {{user.iniciales}}
         </a>
 
         <div>
-            <p class="drawer-user-name">{{moderatorName}}</p>
+            <p class="drawer-user-name">{{user.username}}</p>
             <a class="drawer-user-profile" [routerLink]="['/user/profile']" (click)="close()">
-                Moderador
+                {{user.rol}}
             </a>
         </div>
     </div>
@@ -26,17 +26,17 @@
     <section class="drawer-section">
         <h6>Navegación</h6>
 
-        <a [routerLink]="['/moderator/panel']" (click)="close()">
+        <a [routerLink]="['/moderator/panel/main']" (click)="close()">
             Panel del moderador
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a [routerLink]="['/moderator/incidents']" (click)="close()">
+        <a [routerLink]="['/moderator/panel/incidents']" (click)="close()">
             Reportes pendientes
             <i class="bi bi-chevron-right"></i>
         </a>
 
-        <a [routerLink]="['/moderator/historic']" (click)="close()">
+        <a [routerLink]="['/moderator/panel/historic']" (click)="close()">
             Historial de moderación
             <i class="bi bi-chevron-right"></i>
         </a>
@@ -50,7 +50,7 @@
     </section>
 
     <section class="drawer-section">
-        <button class="logout-button" type="button" (click)="close()">
+        <button class="logout-button" type="button" (click)="logout()">
             Cerrar sesión
         </button>
     </section>

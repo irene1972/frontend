@@ -17,6 +17,7 @@ export class EditCategory {
   id:string='';
   categoria!: ICategory;
   categoriesService = inject(CategoriesService);
+  imagenFile!: File | null;
 
   constructor(private route: ActivatedRoute, private cd: ChangeDetectorRef, private router: Router) {
     this.miForm = new FormGroup({
@@ -68,7 +69,16 @@ export class EditCategory {
     }
     console.log(this.miForm.value);
 
-    this.categoriesService.updateCategory(Number(this.id),this.miForm.value).subscribe((data) => {
+    const formData = new FormData();
+
+    formData.append('nombre', this.miForm.value.nombre);
+    formData.append('descripcion', this.miForm.value.descripcion);
+
+    if (this.imagenFile) {
+      formData.append('icono', this.imagenFile);
+    }
+
+    this.categoriesService.updateCategory(Number(this.id),formData).subscribe((data) => {
       if (data.error) {
         this.mensaje = data.error;
         return;
@@ -77,5 +87,13 @@ export class EditCategory {
         window.location.href='/admin/panel/categories';
       }
     });
+  }
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.imagenFile = input.files[0];
+      console.log(this.imagenFile);
+    }
   }
 }

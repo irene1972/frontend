@@ -9,7 +9,6 @@ import { AdminModeratorMenuDrawerComponent } from './admin-moderator-menu-drawer
   styleUrl: './admin-moderator-header.component.css',
 })
 export class AdminModeratorHeaderComponent {
-  
   userInitials:string = '';
   
   isMenuOpen = false;
