@@ -10,6 +10,10 @@
   justify-content: center;
 }
 
+.icon {
+    margin: 0 5px;
+}
+
 .app-btn--primary {
     background-color: var(--primary-cta);
     color: white;
