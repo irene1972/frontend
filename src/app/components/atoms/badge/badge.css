@@ -9,62 +9,79 @@
     text-transform: uppercase;
 }
 
-.app-badge--new{
+.app-badge--nuevo{
     background-color: #10B981;
     color: white;
 }
 
-.app-badge--asnew{
+.app-badge--como-nuevo{
     background-color: var(--surface-high);
     color: var(--secondary-cta);
 }
 
-.app-badge--good{
+.app-badge--buen-estado{
     background-color: var(--warn-bg);
     color: var(--warn);
 }
 
-.app-badge--acceptable{
+.app-badge--usado{
     background-color: var(--surface-low);
     color: var(--text-outline);
 }
 
-.app-badge--pro-primary{
-    background-color: var(--primary-cta);
-    color: white;
-}
-
-.app-badge--pro-secondary{
-    background-color: var(--secondary-cta);
-    color: white;
-}
-
-.app-badge--verified{
-    background-color: var(--success-bg);
-    color: #10B981;
-}
-
-.app-badge--seller-new{
-    background-color: var(--surface-low);
-    color: var(--text-secondary);
-}
-
-.app-badge--moderator{
-    background-color: var(--tertiary-fixed);
-    color: var(--tertiary-container);
-}
-
-.app-badge--blocked{
+.app-badge--dañado{
     background-color: var(--err-bg);
     color: var(--err);
 }
 
-.app-badge--delivered{
-    background-color: var(--success-bg);
-    color: var(--success);
+/* Estado artículo */
+.app-badge--borrador{
+    background-color: transparent; 
+    color: var(--text-outline); 
+}
+.app-badge--publicado{
+    background-color: transparent;
+    color: var(--success); 
+}
+.app-badge--en_revision{
+    background-color: transparent; 
+    color: var(--warn); 
+}
+.app-badge--retirado{
+    background-color: transparent; 
+    color: var(--err); 
+}
+.app-badge--reservado{
+    background-color: transparent; 
+    color: var(--secondary-cta); 
+}
+.app-badge--vendido{
+    background-color: transparent; 
+    color: var(--primary-cta); 
 }
 
-.app-badge--sale{
-    background-color: black;
-    color: white;
+/* Rol usuario */
+.app-badge--usuario{
+    background-color: var(--success); 
+    color: white; 
+}
+
+.app-badge--moderador{
+    background-color: #003594; 
+    color: white; 
+}
+
+.app-badge--administrador{
+    background-color: #FE6B00; 
+    color: white; 
+}
+
+/* Otros */
+.app-badge--bloqueado{
+    background-color: var(--err-bg); 
+    color: var(--err); 
+}
+.app-badge--verificado{
+    background-color: #D1FAE5; 
+    color: #047857; 
 }

@@ -9,6 +9,16 @@
 - delivered (verde) --> Se puede usar para etiqueta de mensaje: responde rápido
 */ 
 
-export type BadgeVariant = 'new' | 'asnew' | 'good' | 'acceptable' | 'pro-primary' | 'pro-secondary' | 'verified' | 'seller-new' | 'moderator' | 'blocked' | 'delivered' | 'sale';
+export type BadgeCondition = 'Nuevo' | 'Como nuevo' | 'Buen estado' | 'Usado' | 'Dañado';
+
+export type BadgeEstado = 'Borrador' | 'Publicado' | 'En_revision' | 'Retirado' | 'Reservado' | 'Vendido';
+
+export type BadgeRol = 'Usuario' | 'Moderador' | 'Administrador';
+
+export type BadgeVariant = BadgeCondition | BadgeEstado | BadgeRol | 'Bloqueado' | 'Verificado';
+
+
 export type BadgeIcon = 'shield-check' | 'lightning-charge' | 'chat' | 'none';
 export type BadgeIconPosition = 'left' | 'right';
+
+// enum('Nuevo','Como nuevo','Buen estado','Usado','Dañado')
