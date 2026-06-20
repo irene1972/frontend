@@ -7,14 +7,22 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class ArticlesService {
-  private baseUrl=`${environment.apiUrl}/articulos/`;
-      httpClient=inject(HttpClient);
-    
-     getArticlesByUser(user_id:number):Observable<any>{
-      return this.httpClient.get<any>(this.baseUrl+`usuario/${user_id}/publicados`);
-    }
+  private baseUrl = `${environment.apiUrl}/articulos/`;
+  httpClient = inject(HttpClient);
 
-    getArticleById(id:number): Observable<any> {
-      return this.httpClient.get<any>(this.baseUrl + id);
-    }
+  getArticlesByUser(user_id: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + `usuario/${user_id}/publicados`);
+  }
+
+  getArticlesRecentlyUploaded(): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + 'recientes');
+  }
+
+  getArticlesBestSellers(): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + 'mas-vendidos');
+  }
+
+  getArticleById(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + id);
+  }
 }
