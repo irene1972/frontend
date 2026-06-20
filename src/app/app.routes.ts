@@ -9,8 +9,8 @@ import { ProductCheckoutComponentComponent } from './pages/product-checkout-comp
 import { UserProfileComponentComponent } from './pages/user-profile-component/user-profile-component.component';
 import { FavoritesComponentComponent } from './pages/favorites-component/favorites-component.component';
 import { MessagesComponentComponent } from './pages/messages-component/messages-component.component';
-import { ModeratorPanelComponentComponent } from './pages/moderator-panel-component/moderator-panel-component.component';
-import { IncidentViewComponentComponent } from './pages/incident-view-component/incident-view-component.component';
+import { ModeratorPanelComponentComponent } from './components/organisms/moderator/moderator-panel-component/moderator-panel-component.component';
+import { IncidentViewComponentComponent } from './components/organisms/moderator/incident-view-component/incident-view-component.component';
 import { UserComponentComponent } from './pages/user-component/user-component.component';
 import { ModeratorComponentComponent } from './pages/moderator-component/moderator-component.component';
 import { AdminComponentComponent } from './pages/admin-component/admin-component.component';
@@ -33,8 +33,9 @@ import { Settings } from './components/organisms/admin/settings/settings';
 import { DetalleUsuario } from './components/organisms/admin/detalle-usuario/detalle-usuario';
 import { CreateCategory } from './components/organisms/admin/categories/create-category/create-category';
 import { EditCategory } from './components/organisms/admin/categories/edit-category/edit-category';
-import { IncidentsComponentComponent } from './pages/incidents-component/incidents-component.component';
-import { HistoricModeratorComponentComponent } from './pages/historic-moderator-component/historic-moderator-component.component';
+import { IncidentsComponentComponent } from './components/organisms/moderator/incidents-component/incidents-component.component';
+import { HistoricModeratorComponentComponent } from './components/organisms/moderator/historic-moderator-component/historic-moderator-component.component';
+import { ModeratorComponent } from './pages/moderator/moderator.component';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -61,15 +62,19 @@ export const routes: Routes = [
         ]
     },
 
-    // // Rutas Moderator Panel: Usuario Moderador. Falta implemetar el Guard y hacer sus hijos
+    // // Rutas Moderator Panel: Usuario Moderador. Falta implemetar el Guard
 
     {
         path: 'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard], data: {roles: ['Moderador']}, children: [
             { path: '', pathMatch: 'full', redirectTo: 'panel' },
-            { path: 'panel', component: ModeratorPanelComponentComponent },
-            { path: 'incidents', component: IncidentsComponentComponent},
-            { path: 'incident/:incidentID', component: IncidentViewComponentComponent },
-            { path: 'historic', component: HistoricModeratorComponentComponent}
+            { path: 'panel', component: ModeratorComponent, children: [
+                    { path: '', pathMatch: 'full', redirectTo: 'main' },
+                    { path: 'main', component: ModeratorPanelComponentComponent },
+                    { path: 'incidents', component: IncidentsComponentComponent },
+                    { path: 'incident/:incidentId', component: IncidentViewComponentComponent},
+                    { path: 'historic', component: HistoricModeratorComponentComponent}
+                ]
+            }
         ]
     },
 

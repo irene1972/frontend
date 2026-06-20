@@ -1,14 +1,13 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { RatingsService } from '../../../services/ratings-service';
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
-  selector: 'app-admin-sidebar',
+  selector: 'app-moderator-sidebar',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './admin-sidebar.html',
-  styleUrl: './admin-sidebar.css',
+  templateUrl: './moderator-sidebar.component.html',
+  styleUrl: './moderator-sidebar.component.css',
 })
-export class AdminSidebar {
+export class ModeratorSidebarComponent {
   user: any = {};
 
   ngOnInit(){

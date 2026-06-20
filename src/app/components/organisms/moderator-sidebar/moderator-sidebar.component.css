@@ -3,7 +3,7 @@
     background: white;
 }
 .header,.rol,.initials{
-    display:flex;
+    display: flex;
 }
 .initials{
     border: 1px solid #003594;
@@ -18,7 +18,7 @@
     align-items: center;
 }
 
-.admin{
+.moderator{
     margin-left: .5rem;
     display: flex;
     flex-direction: column;
@@ -35,13 +35,13 @@
     margin: 0;
     color:#003594;
 }
-
+    
 .header{
     padding-bottom: 1.5rem;
     border-bottom: 1px solid rgb(189, 187, 187);
 }
 
-.nav-sidebar{
+.nav-sidebar {
     padding: 1rem 0;
     border-bottom: 1px solid rgb(189, 187, 187);
 }
