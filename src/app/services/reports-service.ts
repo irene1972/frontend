@@ -13,4 +13,8 @@ export class ReportsService {
   getAllReports(): Observable<any[]> {
     return this.httpClient.get<any[]>(this.baseUrl);
   }
+
+  updateReport(id: number, report: any): Observable<any> {
+    return this.httpClient.put<any>(`${this.baseUrl}/${id}`, report)
+  }
 }
