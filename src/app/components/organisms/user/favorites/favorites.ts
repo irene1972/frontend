@@ -25,7 +25,10 @@ export class Favorites {
       this.user = JSON.parse(usuarioString);
     }
   }
-  irADetalle(id:number):void{
-    this.router.navigate(['/detalle',id]);
+  irADetalleUsuario(id:number):void{
+    this.router.navigate(['/usuario/detalle',id]);
+  }
+  irADetalleArticulo(id:number):void{
+    this.router.navigate(['/articulo/detalle',id]);
   }
 }

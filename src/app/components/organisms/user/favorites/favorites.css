@@ -33,107 +33,15 @@ a.active {
   
 }
 
-/*Posicionamiento corazón*/
-.card {
-  position: relative;
-}
-
-.favorite-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-
-  width: 40px;
-  height: 40px;
-
-  border: none;
-  border-radius: 50%;
-
-  background-color: #fff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 2;
-  color:#FE6B00;
-}
-
-.favorite-btn i {
-  font-size: 1.2rem;
-}
-/*****/
 .contenedor{
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
 }
-.card{
-    flex: 0 0 31%;
+app-favorite-article{
+  flex: 0 0 31%;
 }
-.contenedor p:first-child{
-    color: #444652;
-    margin-bottom: 1.5rem;
-}
-h5{
-    color:#0B1C30;
-    font-weight: bold;
 
-}
-.geo{
-    color: #444652;
-    font-size: .8rem;
-    border-bottom: 1px solid #E5EEFF;
-    p{
-        margin-left: .5rem;
-    }
-}
-.datos-usuario{
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
-    font-size: .8rem;
-}
-.iniciales{
-    display: flex;
-    border-radius: 50%;
-    background-color: #003594;
-    color:white;
-    width: 2rem;
-    height: 2rem;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    margin-right: .5rem;
-}
-.datos-usuario p{
-    margin: 0 !important;
-}
-.usuario p:first-child{
-    color: #0B1C30;
-    font-weight: bold;
-}
-.star{
-    color: #F5A623;
-    margin-right: .4rem;
-}
-.footer-card{
-    margin:.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.footer-card h5{
-    color:#003594;
-}
-.footer-card a,.perfil{
-    color:#003594;
-    background-color: white;
-    border: 2px solid #003594;
-}
 /******/
 /*Lista de usuarios*/
 .users {
@@ -145,55 +53,6 @@ h5{
   }
 }
 
-.card-user {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cont {
-  display: flex;
-  align-items: center;
-
-  .iniciales {
-    display: flex;
-    background: #003594;
-    color: white;
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    min-width: 3rem;
-    justify-content: center;
-    align-items: center;
-    margin-right: 1rem;
-    font-weight: 600;
-  }
-
-  .user {
-    h3 {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: bold;
-    }
-
-    p {
-      margin: .25rem 0 0;
-      color: #6b7280;
-      font-size: .9rem;
-    }
-    
-  }
-  
-}
-.derecha{
-    display: flex;
-    align-items: center;
-}
-.derecha i{
-    color:#FE6B00;
-    font-size: 1.5rem;
-    margin:0 1rem;
-  }
   .conten p{
     margin-bottom: 1.5rem;
   }

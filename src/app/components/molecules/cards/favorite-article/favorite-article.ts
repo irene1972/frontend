@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Icon } from '../../../atoms/icon/icon';
 import { Button } from '../../../atoms/button/button';
 
@@ -16,4 +16,10 @@ export class FavoriteArticle {
   @Input() estrellas!:string;
   @Input() valoraciones!:string;
   @Input() texto_boton!:string;
+  @Input() articleId!:number;
+  @Output() clicar = new EventEmitter<number>();
+
+  onClick():void {
+  this.clicar.emit(this.articleId);
+}
 }
