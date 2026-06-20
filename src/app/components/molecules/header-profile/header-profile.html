@@ -1,7 +1,7 @@
 <div class="header">
-    <atom-icon variant="profile-primary-square" [text_icon]="text_icon()" size="1rem"></atom-icon>
+    <atom-icon variant="profile-primary-square" [text_icon]="initials()" size="1rem"></atom-icon>
     <div class="profile">
-        <p class="text-profile">{{text_profile()}}</p>
+        <p class="text-profile">{{username()}}</p>
         <div class="stars">
             <atom-icon variant="star" size="1rem"></atom-icon>
             <p>{{rating_average()}} <span>({{rating_total()}})</span> </p>
