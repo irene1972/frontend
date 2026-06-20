@@ -30,6 +30,11 @@
                 <div class="text-danger">El campo debe tener al menos 3 carácteres</div>
                 }
             </div>
+            <div class="formulario__campo">
+                    <label for="imagen" class="formulario__label">Imagen</label>
+                    <input class="form-control" type="file" #fileInput formControlName="imagen" id="imagen"
+                        (change)="onFileSelected($event)">
+                </div>
             <div class="form-group">
                 <label class="label-descripcion" for="descripcion">Descripcion</label>
                 <input type="text" id="descripcion" class="form-control" formControlName="descripcion">
