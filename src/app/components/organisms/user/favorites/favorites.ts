@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { IArticle } from '../../../../interfaces/i-article';
 import { IUsuario } from '../../../../interfaces/i-usuario';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { FavoriteUser } from '../../../molecules/cards/favorite-user/favorite-user';
 
 @Component({
   selector: 'app-favorites',
-  imports: [RouterLink],
+  imports: [RouterLink,FavoriteUser],
   templateUrl: './favorites.html',
   styleUrl: './favorites.css',
 })
@@ -15,10 +16,15 @@ export class Favorites {
   users:IUsuario[]=[];
   user!:IUsuario;
 
+  constructor(private router: Router) {}
+
   ngOnInit(){
     const usuarioString = localStorage.getItem('usuarioBuy&Sell');
     if (usuarioString) {
       this.user = JSON.parse(usuarioString);
     }
+  }
+  irADetalle(id:number):void{
+    this.router.navigate(['/detalle',id]);
   }
 }

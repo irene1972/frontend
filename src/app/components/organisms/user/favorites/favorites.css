@@ -4,7 +4,7 @@ section{
 h1{
     color:#0B1C30;
     font-weight: bold;
-    font-size: 2.5rem;
+    font-size: 2rem;
 
 }
 a{
@@ -198,3 +198,6 @@ h5{
     margin-bottom: 1.5rem;
   }
 /*******/
+.users div{
+  margin-bottom: 1rem;
+}

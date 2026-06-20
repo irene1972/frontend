@@ -130,50 +130,27 @@
 
     <!--@for (user of users; track user.id) {-->
     <div class="users">
-      <a [routerLink]="">
-        <div class="card">
-          <div class="card-user">
-            <div class="card-body cont">
-              <div class="iniciales">IO</div>
-              <div class="user">
-                <h3 class="card-title">irene O.</h3>
-                <p><i class="bi bi-star-fill star"></i>4.8 . 124 valoraciones</p>
-              </div>
-            </div>
-            <div class="label">
-              <div class="derecha">
-                <a class="btn btn-primary perfil">Ver perfil</a>
-                <i class="bi bi-heart-fill"></i>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </a>
-
-    </div>
-
-    <div class="users">
-      <a [routerLink]="">
-        <div class="card">
-          <div class="card-user">
-            <div class="card-body cont">
-              <div class="iniciales">IO</div>
-              <div class="user">
-                <h3 class="card-title">irene O.</h3>
-                <p><i class="bi bi-star-fill star"></i>4.8 . 124 valoraciones</p>
-              </div>
-            </div>
-            <div class="label">
-              <div class="derecha">
-                <a class="btn btn-primary perfil">Ver perfil</a>
-                <i class="bi bi-heart-fill heart2"></i>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </a>
+      <div>
+        <app-favorite-user 
+        iniciales="IO" 
+        nombre="Irene O." 
+        estrellas="4.8" 
+        valoraciones="124" 
+        texto_boton="Ver detalle" 
+        [userId]="2" 
+        (clicar)="irADetalle($event)" 
+        ></app-favorite-user>
+      </div>
+      <div>
+        <app-favorite-user 
+        iniciales="IO" 
+        nombre="Irene O." 
+        estrellas="4.8" 
+        valoraciones="124" 
+        texto_boton="Ver detalle"
+        ></app-favorite-user>
+      </div>
+        
 
     </div>
     <!--}-->
