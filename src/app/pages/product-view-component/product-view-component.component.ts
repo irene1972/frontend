@@ -1,14 +1,15 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { Button } from "../../components/atoms/button/button";
 import { ArticlesService } from '../../services/articles-service';
 import { IArticle } from '../../interfaces/i-article';
 import { Router } from '@angular/router';
 import { Badge } from "../../components/atoms/badge/badge";
 import { TimeAgoPipe } from '../../shared/pipes/time-ago-pipe';
+import { Breadcrum } from "../../components/molecules/breadcrum/breadcrum";
 
 @Component({
   selector: 'app-product-view-component',
-  imports: [Button, TimeAgoPipe, Badge],
+  imports: [Button, TimeAgoPipe, Badge, Breadcrum],
   templateUrl: './product-view-component.component.html',
   styleUrl: './product-view-component.component.css',
 })
@@ -31,6 +32,12 @@ export class ProductViewComponentComponent {
       this.router.navigate(['/**'])
     }
   }
+
+  protected breadcrumbItems = computed(() => [
+  { label: 'Inicio', route: '/' },
+  { label: this.product()?.categorias_id?.toString(), route: '/categoria/' + this.product()?.categorias_id },
+  { label: this.product()?.titulo }
+]);
 
   onContactar(event: MouseEvent) {
     this.router.navigate(['/profile'])
