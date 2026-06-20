@@ -36,6 +36,7 @@ import { EditCategory } from './components/organisms/admin/categories/edit-categ
 import { IncidentsComponentComponent } from './components/organisms/moderator/incidents-component/incidents-component.component';
 import { HistoricModeratorComponentComponent } from './components/organisms/moderator/historic-moderator-component/historic-moderator-component.component';
 import { ModeratorComponent } from './pages/moderator/moderator.component';
+import { IncidentReportDetailComponent } from './components/organisms/moderator/incident-report-detail-component/incident-report-detail-component';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -72,6 +73,7 @@ export const routes: Routes = [
                     { path: 'main', component: ModeratorPanelComponentComponent },
                     { path: 'incidents', component: IncidentsComponentComponent },
                     { path: 'incident/:articuloId', component: IncidentViewComponentComponent},
+                    { path: 'incident/:articuloId/:reporteId', component: IncidentReportDetailComponent},
                     { path: 'historic', component: HistoricModeratorComponentComponent}
                 ]
             }

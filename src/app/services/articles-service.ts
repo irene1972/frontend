@@ -25,4 +25,8 @@ export class ArticlesService {
   getArticleById(id: number): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl + id);
   }
+
+  updateArticle(id: number, article: any): Observable<any> {
+    return this.httpClient.put<any>(this.baseUrl + id, article);
+  }
 }
