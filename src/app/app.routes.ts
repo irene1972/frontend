@@ -71,7 +71,7 @@ export const routes: Routes = [
                     { path: '', pathMatch: 'full', redirectTo: 'main' },
                     { path: 'main', component: ModeratorPanelComponentComponent },
                     { path: 'incidents', component: IncidentsComponentComponent },
-                    { path: 'incident/:incidentId', component: IncidentViewComponentComponent},
+                    { path: 'incident/:articuloId', component: IncidentViewComponentComponent},
                     { path: 'historic', component: HistoricModeratorComponentComponent}
                 ]
             }
