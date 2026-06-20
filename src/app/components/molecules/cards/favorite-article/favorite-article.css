@@ -1,0 +1,97 @@
+/*Posicionamiento corazón*/
+.card {
+  position: relative;
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  color:#FE6B00;
+}
+
+.favorite-btn i {
+  font-size: 1.2rem;
+}
+/*css articulo*/
+.card{
+    flex: 0 0 31%;
+}
+.contenedor p:first-child{
+    color: #444652;
+    margin-bottom: 1.5rem;
+}
+h5{
+    color:#0B1C30;
+    font-weight: bold;
+
+}
+.flex{
+    display: flex;
+}
+.geo{
+    color: #444652;
+    font-size: .8rem;
+    border-bottom: 1px solid #E5EEFF;
+    p{
+        margin-left: .5rem;
+    }
+}
+.datos-usuario{
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    font-size: .8rem;
+}
+.iniciales{
+    display: flex;
+    border-radius: 50%;
+    background-color: #003594;
+    color:white;
+    width: 2rem;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-right: .5rem;
+}
+.datos-usuario p{
+    margin: 0 !important;
+}
+.usuario p:first-child{
+    color: #0B1C30;
+    font-weight: bold;
+}
+.star{
+    color: #F5A623;
+    margin-right: .4rem;
+}
+.footer-card{
+    margin:.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer-card h5{
+    color:#003594;
+}
+.profile{
+    margin-right: .5rem;
+}

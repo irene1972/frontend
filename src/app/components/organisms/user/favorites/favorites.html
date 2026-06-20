@@ -19,31 +19,15 @@
 
     <div class="contenedor">
       <!--@for (article of articles; track article.id) {-->
-      <div class="card" style="width: 18rem;">
-        <img src="/imgs/technology.jpg" class="card-img-top" alt="">
-        <button class="favorite-btn">
-          <i class="bi bi-heart-fill"></i>
-        </button>
-        <div class="card-body">
-          <h5 class="card-title">NVIDIA RTX 4070 Ti Super 16GB GDDR6X</h5>
-          <div class="flex geo">
-            <i class="bi bi-geo-alt"></i>
-            <p class=" texto-icono">León</p>
-          </div>
-          <div class="datos-usuario">
-            <div class="iniciales">MR</div>
-            <div class="usuario">
-              <p>Marta R.</p>
-              <p><i class="bi bi-star-fill star"></i>4.8 . 124 valoraciones</p>
-            </div>
-          </div>
-          <div class="footer-card">
-            <h5>689 €</h5>
-            <a class="btn btn-primary">Ver detalle</a>
-          </div>
-
-        </div>
-      </div>
+      <app-favorite-article
+        texto_articulo="NVIDIA RTX 4070 Ti Super 16GB GDDR6X" 
+        ubicacion="León" 
+        iniciales="MR" 
+        nombre="Marta R." 
+        estrellas="4.8" 
+        valoraciones="124" 
+        texto_boton="Ver detalle" 
+      ></app-favorite-article>
       <div class="card" style="width: 18rem;">
         <img src="/imgs/technology.jpg" class="card-img-top" alt="">
         <button class="favorite-btn">

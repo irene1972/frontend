@@ -3,10 +3,11 @@ import { IArticle } from '../../../../interfaces/i-article';
 import { IUsuario } from '../../../../interfaces/i-usuario';
 import { Router, RouterLink } from '@angular/router';
 import { FavoriteUser } from '../../../molecules/cards/favorite-user/favorite-user';
+import { FavoriteArticle } from '../../../molecules/cards/favorite-article/favorite-article';
 
 @Component({
   selector: 'app-favorites',
-  imports: [RouterLink,FavoriteUser],
+  imports: [RouterLink,FavoriteUser,FavoriteArticle],
   templateUrl: './favorites.html',
   styleUrl: './favorites.css',
 })
