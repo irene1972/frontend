@@ -2,11 +2,11 @@
     <div class="header">
         <div class="navegador">
             <a [routerLink]="['/moderator/panel/main']">
-                <div class="atras">
-                    <</div>
+                <div class="atras"><</div>
             </a>
             <div class="alante">></div>
         </div>
+
         <div class="ruta">
             <p class="panel">Panel</p>
             <div>></div>
@@ -17,37 +17,35 @@
     <div class="heading">
         <div>
             <h1>Reportes</h1>
-            <p class="descripcion">{{reportes.length}} · Artículos reportados pendientes de revisión</p>
+            <p class="descripcion">
+                {{ reportesAgrupados.length }} · Artículos reportados pendientes de revisión
+            </p>
         </div>
     </div>
 
     <div class="lista-reportes">
-        @for (reporte of reportes; track reporte.id) {
-          <article class="reporte-card" (click)="abrirReporte(reporte)">
-            <div class="reporte-icono">
-              <i class="bi bi-flag"></i>
-            </div>
-        
-            <div class="reporte-info">
-              <div class="reporte-top">
-                <h2>{{ reporte.motivo }}</h2>
+        @for (grupo of reportesAgrupados; track grupo.articuloId) {
+            <article class="reporte-card" (click)="abrirReporte(grupo)">
+                <div class="reporte-icono">
+                    <i class="bi bi-flag"></i>
+                </div>
 
-                <span 
-                  class="tag"
-                  [class.tag-pendiente]="reporte.estado?.toLowerCase() === 'pendiente'"
-                  [class.tag-revisado]="reporte.estado?.toLowerCase() === 'revisado'"
-                >
-                  {{ reporte.estado?.toLowerCase() === 'revisado' ? 'EN REVISIÓN' : 'PENDIENTE' }}
-                </span>
-              </div>
-          
-              <p>{{ reporte.descripcion }}</p>
-            </div>
-        
-            <i class="bi bi-chevron-right flecha"></i>
-          </article>
+                <div class="reporte-info">
+                    <div class="reporte-top">
+                        <h2>{{ grupo.articulo?.titulo }}</h2>
+
+                        <span class="tag" [class.tag-pendiente]="grupo.estadoGeneral === 'Pendiente'" [class.tag-revisado]="grupo.estadoGeneral === 'En revisión'">
+                            {{ grupo.estadoGeneral }}
+                        </span>
+                    </div>
+
+                    <p>{{ grupo.totalReportes }} reporte{{ grupo.totalReportes > 1 ? 's' : '' }}</p>
+                </div>
+
+                <i class="bi bi-chevron-right flecha"></i>
+            </article>
         } @empty {
-          <p>No hay reportes pendientes</p>
+            <p>No hay reportes pendientes</p>
         }
     </div>
 </section>

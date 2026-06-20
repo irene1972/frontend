@@ -13,4 +13,8 @@ export class ArticlesService {
      getArticlesByUser(user_id:number):Observable<any>{
       return this.httpClient.get<any>(this.baseUrl+`usuario/${user_id}/publicados`);
     }
+
+    getArticleById(id:number): Observable<any> {
+      return this.httpClient.get<any>(this.baseUrl + id);
+    }
 }

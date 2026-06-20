@@ -121,6 +121,7 @@ p.descripcion {
     font-weight: 700;
     padding: .25rem .5rem;
     border-radius: 6px;
+    text-transform: uppercase;
 }
 
 .tag-pendiente {

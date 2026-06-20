@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { ReportsService } from '../../../../services/reports-service';
+import { ArticlesService } from '../../../../services/articles-service';
 
 @Component({
   selector: 'app-incidents-component',
@@ -10,9 +11,10 @@ import { ReportsService } from '../../../../services/reports-service';
 })
 export class IncidentsComponentComponent {
   reportsService = inject(ReportsService);
+  articlesService = inject(ArticlesService);
   router = inject(Router);
 
-  reportes: any[] = [];
+  reportesAgrupados: any[] = [];
 
   constructor(private cd: ChangeDetectorRef){}
 
@@ -22,12 +24,21 @@ export class IncidentsComponentComponent {
 
   cargarReportes() {
     this.reportsService.getAllReports().subscribe({
-      next: (data) => {
-        this.reportes = data.filter((reporte: any) => {
-          const estado = reporte.estado?.toLowerCase();
-          return estado === 'pendiente' || estado === 'revisado';
+      next: (reportes) => {
+        this.reportesAgrupados = this.agruparPorArticulo(reportes);
+      
+        this.reportesAgrupados.forEach((grupo: any) => {
+          this.articlesService.getArticleById(grupo.articuloId).subscribe({
+            next: (articulo) => {
+              grupo.articulo = articulo;
+              this.cd.detectChanges();
+            },
+            error: (error) => {
+              console.error('Error cargando artículo:', error);
+            }
+          });
         });
-        
+      
         this.cd.detectChanges();
       },
       error: (error) => {
@@ -36,26 +47,46 @@ export class IncidentsComponentComponent {
     });
   }
 
-  abrirReporte(reporte: any) {
-    const estado = reporte.estado?.toLowerCase();
+  agruparPorArticulo(reportes: any[]): any[] {
+    const grupos: any = {};
 
-    if (estado === 'pendiente') {
-      const reporteActualizado = {
-        ...reporte,
-        estado: 'Revisado'
-      };
+    reportes.forEach((reporte) => {
+      const articuloId = reporte.articulos_id;
 
-      this.reportsService.updateReport(reporte.id, reporteActualizado).subscribe({
-        next: () => {
-          this.router.navigate(['/moderator/panel/incident', reporte.id]);
-        },
-        error: (error) => {
-          console.error('Error actualizando reporte:', error);
-        }
+      if (!grupos[articuloId]) {
+        grupos[articuloId] = {
+          articuloId,
+          totalReportes: 0,
+          reportes: [],
+          estadoGeneral: 'Pendiente'
+        };
+      }
+
+      grupos[articuloId].reportes.push(reporte);
+      grupos[articuloId].totalReportes++;
+    });
+
+    return Object.values(grupos)
+      .filter((grupo: any) =>
+        grupo.reportes.some((reporte: any) => {
+          const estado = reporte.estado?.toLowerCase();
+          return estado === 'pendiente' || estado === 'revisado';
+        })
+      )
+      .map((grupo: any) => {
+        const tieneRevisado = grupo.reportes.some((reporte: any) =>
+          reporte.estado?.toLowerCase() === 'revisado'
+        );
+
+        return {
+          ...grupo,
+          estadoGeneral: tieneRevisado ? 'En revisión' : 'Pendiente'
+        };
       });
-    } else {
-      this.router.navigate(['/moderator/panel/incident', reporte.id]);
-    }
+  }
+
+  abrirReporte(grupo: any) {
+    this.router.navigate(['/moderator/panel/incident', grupo.articuloId]);
   }
 
 }
