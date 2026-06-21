@@ -1,0 +1,108 @@
+section{
+    margin:3rem 2rem;
+}
+h1{
+    color:#0B1C30;
+    font-weight: bold;
+    font-size: 2rem;
+}
+/* Header */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .navegador {
+        display: flex;
+    }
+
+    .atras,
+    .alante {
+        display: flex;
+        border: 1px solid #dbe1ea;
+        border-radius: 10px;
+        width: 2rem;
+        height: 2rem;
+        margin-right: .5rem;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        background: #fff;
+    }
+
+    .alante {
+        color: #9ca3af;
+        background-color: #f8f9ff;
+    }
+
+    .ruta {
+        display: flex;
+        align-items: center;
+        border-left: 1px solid #dbe1ea;
+        margin-left: 1rem;
+        padding-left: 1rem;
+        font-weight: bold;
+
+        p {
+            margin: 0;
+        }
+
+        div {
+            margin: 0 .5rem;
+            color: #9ca3af;
+        }
+
+        .panel {
+            color: #003594;
+        }
+    }
+}
+.contenedor{
+    margin:2rem 0 0 4rem;
+}
+img{
+    margin:0rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 5px;
+}
+.fotos{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+}
+h5{
+    font-size: 1rem;
+    font-weight: bold;
+}
+.card{
+    margin:1rem 0;
+}
+label{
+    margin: .5rem 0 .2rem 0;
+    font-size: .9rem;
+    font-weight: bold;
+}
+.precio-ubicacion{
+    display: flex;
+    gap:1rem;
+}
+.precio-ubicacion .form-group{
+    flex: 0 0 50%;
+}
+.ubicacion input{
+    width: 95%;
+}
+.guardar{
+    background-color: #003594;
+    font-weight: bold;
+}
+.boton-guardar{
+    display: flex;
+    justify-content: flex-end;
+}

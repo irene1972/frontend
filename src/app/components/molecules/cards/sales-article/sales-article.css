@@ -18,6 +18,7 @@ a {
 }
 
 .cont {
+    cursor: pointer;
     display: flex;
     align-items: center;
 
