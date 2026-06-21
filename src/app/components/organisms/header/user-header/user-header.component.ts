@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { UserMenuDrawerComponent } from './user-menu-drawer/user-menu-drawer.component';
+import { Icon } from '../../../atoms/icon/icon';
 
 @Component({
   selector: 'app-user-header',
-  imports: [RouterLink, UserMenuDrawerComponent],
+  imports: [RouterLink, UserMenuDrawerComponent, Icon],
   templateUrl: './user-header.component.html',
   styleUrl: './user-header.component.css',
 })
