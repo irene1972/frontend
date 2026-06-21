@@ -1,1 +1,24 @@
-<p>sales works!</p>
+<section>
+
+  <div>
+    <h1>Mis ventas</h1>
+  </div>
+  <div class="tabs">
+    <a [class.active]="activeTab === 'En venta'" (click)="activeTab = 'En venta'">
+      Artículos
+    </a>
+
+    <a class="usuarios-a" [class.active]="activeTab === 'Vendidos'" (click)="activeTab = 'Vendidos'">
+      Usuarios
+    </a>
+  </div>
+  @if (activeTab === 'En venta') {
+    <div class="contenedor">
+        <app-sales-article></app-sales-article>
+        <app-sales-article></app-sales-article>
+    </div>
+  }
+  @if (activeTab === 'Vendidos') {
+    <p>hola que tal2</p>
+  }
+  </section>

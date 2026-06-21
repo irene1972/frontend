@@ -1,0 +1,33 @@
+section{
+    margin:3rem 2rem;
+}
+h1{
+    color:#0B1C30;
+    font-weight: bold;
+    font-size: 2rem;
+
+}
+.tabs{
+    display: inline-block;
+    background-color:#E5EEFF;
+    border-radius: 5px;
+    padding: .8rem .8rem;
+}
+a{
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+.tabs a{
+    color:#444652;
+    font-weight: bold;
+}
+.usuarios-a{
+    margin-left: 2rem;
+}
+a.active {
+  background-color: #003594;
+  color:white !important;
+  padding: .5rem .6rem;
+  border-radius: 5px;
+}

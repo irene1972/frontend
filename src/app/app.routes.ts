@@ -38,6 +38,7 @@ import { Favorites } from './components/organisms/user/favorites/favorites';
 import { IncidentsComponentComponent } from './components/organisms/moderator/incidents-component/incidents-component.component';
 import { HistoricModeratorComponentComponent } from './components/organisms/moderator/historic-moderator-component/historic-moderator-component.component';
 import { ModeratorComponent } from './pages/moderator/moderator.component';
+import { Sales } from './components/organisms/user/sales/sales';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -68,7 +69,7 @@ export const routes: Routes = [
                     },
                     {
                         path: 'sales',
-                        component: Favorites
+                        component: Sales
                     }
                 ]
              },

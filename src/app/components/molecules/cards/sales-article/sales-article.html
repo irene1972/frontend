@@ -1,0 +1,47 @@
+<a [routerLink]="['/user/panel/article/',2]">
+    <div class="card">
+        <div class="card-sales">
+            <div class="card-body cont">
+                <img class="article" src="/imgs/technology.jpg" alt="">
+                <div class="user">
+                    <h3 class="card-title">{{titulo}}</h3>
+                    @if(estado_articulo==='Publicado'){
+                    <p class="card-subtitle mb-2 text-muted">Publicado hace {{publicado}} días</p>
+                    }@else if(estado_articulo==='En_revision'){
+                    <p class="card-subtitle mb-2 text-muted">Pendiente de moderación</p>
+                    }@else if(estado_articulo==='Vendido'){
+                    <p class="card-subtitle mb-2 text-muted">Vendido a {{vendido.nombre}} Hace {{vendido.tiempo}}</p>
+                    }
+
+                </div>
+            </div>
+            <div class="acciones">
+                <div class="precio-label">
+                    <div>
+                        <h5 class="precio">{{precio}} €</h5>
+                    </div>
+
+                    <div class="label" [ngClass]="estado_articulo === 'Publicado' ? 'publicado' : 
+                            estado_articulo === 'En_revision' ? 'revision' : 
+                            estado_articulo === 'Vendido' ? 'vendido' : 'generico'
+                            ">
+                        @if(estado_articulo === 'Publicado'){
+                            ACTIVO
+                        }@else if(estado_articulo === 'En_revision'){
+                            EN REVISIÓN
+                        }
+                        @else if(estado_articulo === 'Vendido'){
+                            VENDIDO
+                        }
+                        @else{
+                            {{estado_articulo}}
+                        }
+                    </div>
+                </div>
+                <div class="editar"><a>Editar</a></div>
+                <div><a>Pausar</a></div>
+                <div class="eliminar"><a>Eliminar</a></div>
+            </div>
+        </div>
+    </div>
+</a>
