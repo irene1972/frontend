@@ -39,7 +39,7 @@ import { STYLES } from './icon.styles';
 export class Icon{
   /* Public inputs */
   public variant   = input<IconVariant>('error-403');
-  public size      = input<string>('48px');
+  public size      = input<string>('28px');
   public text_icon = input<string>('');
 
   /* Component Configuration*/

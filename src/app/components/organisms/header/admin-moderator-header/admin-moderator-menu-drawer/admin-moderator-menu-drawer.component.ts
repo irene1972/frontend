@@ -8,18 +8,15 @@ import { RouterLink } from "@angular/router";
   styleUrl: './admin-moderator-menu-drawer.component.css',
 })
 export class AdminModeratorMenuDrawerComponent {
-  userInitials = 'AU';
-  adminName = 'Admin User'
+  user: any = {};
 
   @Output() closeMenu = new EventEmitter<void>();
 
-  ngOnInit(){
+  ngOnInit() {
     const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    
     if (usuarioString) {
-      const usuario = JSON.parse(usuarioString);
-      this.userInitials=usuario.iniciales;
-      this.adminName=usuario.username;
-
+      this.user = JSON.parse(usuarioString);
     }
   }
 

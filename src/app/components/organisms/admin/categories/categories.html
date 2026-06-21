@@ -32,12 +32,16 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="icono-categoria">
-                            <i class="bi bi-tag"></i>
+                            @if (categoria.icono) {
+                                <img [src]="categoria.icono" [alt]="categoria.nombre">
+                            }@else {
+                                <i class="bi bi-tag"></i>
+                            }
                         </div>
                     
                         <div class="info-categoria">
                             <h2 class="card-title">{{categoria.nombre}}</h2>
-                            <h6 class="card-subtitle mb-2 text-muted">{{categoria.total_articulos}}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Nº de artículos: {{categoria.total_articulos}}</h6>
                         </div>
                     
                         <div class="acciones">
@@ -53,9 +57,9 @@
                         </div>
                     </div>
                 </div>
-            }
-            }@else{
+            }@empty{
                 <p>No hay datos</p>
+            }
             }
     </div>
 </section>

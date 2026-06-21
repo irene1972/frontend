@@ -14,7 +14,7 @@ type IconStylesMap = Record<IconVariant, HtmlElements>;
 
 /** Component Style*/
 const STYLE_SHAPE_CIRCLE = `d-flex align-items-center justify-content-center rounded-circle`;
-const STYLE_SHAPE_SQUARE = `d-flex align-items-center justify-content-center rounded-5`;
+const STYLE_SHAPE_SQUARE = `d-flex align-items-center justify-content-center rounded-2`;
 
 export const STYLES: IconStylesMap= {
     'error-403': {

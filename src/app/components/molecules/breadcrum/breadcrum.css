@@ -1,0 +1,25 @@
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.breadcrumb-link {
+  color: var(--secondary-cta);
+  text-decoration: none;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: var(--text-outline);
+}
+
+.breadcrumb-current {
+  color: var(--text-outline);
+  font-weight: 500;
+}

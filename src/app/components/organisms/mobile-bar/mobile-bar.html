@@ -1,3 +1,4 @@
+@if (showComponent()) {
 <nav class="bottom-nav">
   <atom-link-icon variant="home"    [link]="['/home']" text="INICIO" size="28px"></atom-link-icon>
   <atom-link-icon variant="search"  [link]="['/buscar']" text="BUSCAR" size="28px"></atom-link-icon>
@@ -5,3 +6,4 @@
   <atom-link-icon variant="message" [link]="['/messages']" text="MENSAJES" size="28px"></atom-link-icon>
   <atom-link-icon variant="profile" [link]="['/profile']" text="PERFIL" size="28px"></atom-link-icon>
 </nav>
+}

@@ -8,26 +8,24 @@ import { RouterLink } from "@angular/router";
   styleUrl: './moderator-menu-drawer.component.css',
 })
 export class ModeratorMenuDrawerComponent {
-  userInitials = 'MU';
-  moderatorName = 'Moderator User'
+  user: any = {};
 
   @Output() closeMenu = new EventEmitter<void>();
 
-  ngOnInit(){
+  ngOnInit() {
     const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    
     if (usuarioString) {
-      const usuario = JSON.parse(usuarioString);
-      this.userInitials=usuario.iniciales;
-      this.moderatorName=usuario.username;
-
+      this.user = JSON.parse(usuarioString);
     }
   }
 
   close(): void {
     this.closeMenu.emit();
   }
+
   logout(): void {
     localStorage.removeItem('usuarioBuy&Sell');
-    window.location.href='/login';
+    window.location.href = '/login';
   }
 }

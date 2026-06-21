@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  flex: 1;
+}
+
+.moderator{
+    display: flex;
+    flex: 1;
+    width: 100%;
+    background: #F8F9FF;
+}
+
+.sidebar{
+    width: 250px;
+    min-width: 250px;
+    background-color: white;
+    border:1px solid rgb(189, 187, 187);
+}
+
+.usuarios {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+}
+
+.sidebar app-moderator-sidebar {
+    display: block;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+  .moderator {
+    display: block;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}

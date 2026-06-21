@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { AdminSidebar } from '../../components/organisms/admin-sidebar/admin-sidebar';
 import { RouterOutlet } from '@angular/router';
+import { Sidebar } from "../../components/organisms/sidebar/sidebar";
+import { SidebarVariant } from "../../components/organisms/sidebar/sidebar.config";
 
 @Component({
   selector: 'app-admin',
-  imports: [AdminSidebar,RouterOutlet],
+  imports: [RouterOutlet, Sidebar],
   templateUrl: './admin.html',
   styleUrl: './admin.css',
 })

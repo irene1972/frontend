@@ -243,6 +243,11 @@ p.descripcion {
         align-items: center;
         justify-content: center;
         font-size: 1.25rem;
+        img {
+            width: 1.4rem;
+            height: 1.4rem;
+            object-fit: contain;
+        }
     }
 
     .info-categoria {
