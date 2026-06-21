@@ -21,9 +21,10 @@
             <div class="card-body">
                 <h5 class="card-title">Fotografías</h5>
                 <div class="fotos">
-                    <img src="/imgs/technology.jpg" class="card-img-top" alt="...">
-
-                    <img src="/imgs/technology.jpg" class="card-img-top" alt="...">
+                    @for(foto of fotos;track foto.id){
+                        <img src="{{foto.url_foto}}" class="card-img-top" alt="...">
+                    }
+                    
                 </div>
             </div>
 
@@ -48,8 +49,13 @@
 
                     <div class="form-group">
                         <label for="categoria">Categoría</label>
-                        <select id="categoria" class="form-control" formControlName="categoria"></select>
-                        @if(descripcion?.touched && descripcion?.hasError('required')){
+                        <select id="categoria" class="form-control" formControlName="categoria">
+                            @for(categoria of categorias;track categoria.id){
+                                <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+                            }
+                            
+                        </select>
+                        @if(categoria?.touched && categoria?.hasError('required')){
                         <div class="text-danger">El campo es requerido</div>
                         }
                     </div>

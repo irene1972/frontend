@@ -75,6 +75,7 @@ img{
     flex-direction: row;
     gap: 1rem;
     padding: 1rem;
+    flex-wrap: wrap;
 }
 h5{
     font-size: 1rem;
