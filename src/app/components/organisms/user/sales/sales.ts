@@ -52,7 +52,6 @@ export class Sales {
     console.log('Eliminar: '+id);
   }
   pausar(id:number):void{
-    console.log('padre -> pausar...');
     console.log('Pausar: '+id);
   }
 }

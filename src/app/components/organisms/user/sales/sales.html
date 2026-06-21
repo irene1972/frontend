@@ -5,11 +5,11 @@
   </div>
   <div class="tabs">
     <a [class.active]="activeTab === 'En venta'" (click)="activeTab = 'En venta'">
-      Artículos
+      En venta
     </a>
 
     <a class="usuarios-a" [class.active]="activeTab === 'Vendidos'" (click)="activeTab = 'Vendidos'">
-      Usuarios
+      Vendidos
     </a>
   </div>
   @if (activeTab === 'En venta') {
@@ -43,6 +43,33 @@
     </div>
   }
   @if (activeTab === 'Vendidos') {
-    <p>hola que tal2</p>
+     <div class="contenedor">
+        <div>
+            <app-sales-article
+            titulo="NVIDIA RTX 4080" 
+            [publicado]="tiempo" 
+            estado_articulo="Vendido" 
+            precio="850" 
+            [vendido]="vendido" 
+            [articleId]="2" 
+            (clicarEditar)="irADetalleArticulo($event)" 
+            (clicarEliminar)="eliminar($event)"
+        ></app-sales-article>
+        </div>
+        <div>
+            <app-sales-article
+            titulo="NVIDIA RTX 4080" 
+            [publicado]="tiempo" 
+            estado_articulo="Vendido" 
+            precio="850" 
+            [vendido]="vendido" 
+            [articleId]="2" 
+            (clicarEditar)="irADetalleArticulo($event)" 
+            (clicarEliminar)="eliminar($event)" 
+            (clicarPausar)="pausar($event)" 
+        ></app-sales-article>
+        </div>
+        
+    </div>
   }
   </section>

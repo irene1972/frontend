@@ -23,10 +23,7 @@ export class SalesArticle {
     this.clicarEditar.emit(this.articleId);
   }
   pausar(): void {
-    console.log('hijo -> pausar');
-    console.log('articleId:', this.articleId);
     this.clicarPausar.emit(this.articleId);
-    console.log('EMITIDO PAUSAR');
   }
   eliminar(): void {
     this.clicarEliminar.emit(this.articleId);
