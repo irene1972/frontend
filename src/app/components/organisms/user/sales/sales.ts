@@ -10,5 +10,6 @@ import { SalesArticle } from '../../../molecules/cards/sales-article/sales-artic
   styleUrl: './sales.css',
 })
 export class Sales {
+  vendido:any={nombre:'Carlos M.',tiempo:'1 semana'};
   activeTab: 'En venta' | 'Vendidos' = 'En venta';
 }

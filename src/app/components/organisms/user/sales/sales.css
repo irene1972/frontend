@@ -31,3 +31,6 @@ a.active {
   padding: .5rem .6rem;
   border-radius: 5px;
 }
+.contenedor div{
+    margin: 1rem 0;
+}

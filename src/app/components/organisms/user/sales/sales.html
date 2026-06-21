@@ -14,8 +14,25 @@
   </div>
   @if (activeTab === 'En venta') {
     <div class="contenedor">
-        <app-sales-article></app-sales-article>
-        <app-sales-article></app-sales-article>
+        <div>
+            <app-sales-article
+            titulo="NVIDIA RTX 4080" 
+            publicado="5" 
+            estado_articulo="Vendido" 
+            precio="850" 
+            [vendido]="vendido"
+        ></app-sales-article>
+        </div>
+        <div>
+            <app-sales-article
+            titulo="NVIDIA RTX 4080" 
+            publicado="5" 
+            estado_articulo="Publicado" 
+            precio="850" 
+            [vendido]="vendido"
+        ></app-sales-article>
+        </div>
+        
     </div>
   }
   @if (activeTab === 'Vendidos') {

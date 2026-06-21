@@ -5,14 +5,10 @@ a {
 }
 
 /* Lista usuarios */
-.users {
-    margin-bottom: 1rem;
-
-    .card {
-        border: 1px solid #dbe1ea;
+.card {
+        border: 1px solid #E5EEFF;
         border-radius: 10px;
     }
-}
 
 .card-sales {
     display: flex;
@@ -54,7 +50,6 @@ a {
 }
 
 /* Labels */
-.acciones {}
 
 .label {
     border-radius: 5px;
@@ -102,6 +97,11 @@ p.card-subtitle {
 
 .eliminar {
     color: #DC2626;
+}
+.pausar{
+    border-left: 1px solid #CBD2DC;
+    border-right: 1px solid #CBD2DC;
+    padding: 0 .5rem;
 }
 
 .precio-label {
