@@ -132,12 +132,6 @@
     grid-template-columns: 1fr;
   }
 
-  .management-card {
-    min-height: 72px;
-    border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.15);
-  }
-
   .card-icon {
     display: flex;
     width: 42px;
