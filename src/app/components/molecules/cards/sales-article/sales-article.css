@@ -1,6 +1,7 @@
 a {
     cursor: pointer;
     text-decoration: none;
+    color:#0B1C30;
 
 }
 
@@ -90,15 +91,19 @@ p.card-subtitle {
     font-size: .9rem;
     font-weight: bold;
 }
-
-.editar {
+button{
+    border:none;
+    background-color: white;
+    font-weight: bold;
+}
+.editar button {
     color: #003594;
 }
 
-.eliminar {
+.eliminar button {
     color: #DC2626;
 }
-.pausar{
+.pausar button{
     border-left: 1px solid #CBD2DC;
     border-right: 1px solid #CBD2DC;
     padding: 0 .5rem;

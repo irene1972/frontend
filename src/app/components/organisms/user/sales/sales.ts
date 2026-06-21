@@ -1,6 +1,6 @@
 import { NgStyle } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { SalesArticle } from '../../../molecules/cards/sales-article/sales-article';
 
 @Component({
@@ -12,14 +12,13 @@ import { SalesArticle } from '../../../molecules/cards/sales-article/sales-artic
 export class Sales {
   vendido: any = { nombre: 'Carlos M.', tiempo: '1 semana' };
   activeTab: 'En venta' | 'Vendidos' = 'En venta';
-  fecha: Date = new Date('2025-01-01');
+  fecha_publicacion: Date = new Date('2025-01-01');
   tiempo: string='';
 
-  constructor(private cd: ChangeDetectorRef){}
+  constructor(private cd: ChangeDetectorRef,private router: Router){}
 
   ngOnInit() {
-    this.tiempo=this.tiempoTranscurrido(this.fecha);
-    console.log(this.tiempo,'ireneee');
+    this.tiempo=this.tiempoTranscurrido(this.fecha_publicacion);
     this.cd.detectChanges();
   }
 
@@ -44,5 +43,16 @@ export class Sales {
   if (minutos > 0) return `${minutos} ${minutos === 1 ? 'minuto' : 'minutos'}`;
 
   return `${segundos} ${segundos === 1 ? 'segundo' : 'segundos'}`;
+  }
+
+  irADetalleArticulo(id:number):void{
+    this.router.navigate(['/articulo/detalle',id]);
+  }
+  eliminar(id:number):void{
+    console.log('Eliminar: '+id);
+  }
+  pausar(id:number):void{
+    console.log('padre -> pausar...');
+    console.log('Pausar: '+id);
   }
 }
