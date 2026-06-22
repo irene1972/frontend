@@ -23,6 +23,8 @@
                 <div class="fotos">
                     @for(foto of fotos;track foto.id){
                         <img src="{{foto.url_foto}}" class="card-img-top" alt="...">
+                    }@empty{
+                        <p>No hay fotos</p>
                     }
                     
                 </div>

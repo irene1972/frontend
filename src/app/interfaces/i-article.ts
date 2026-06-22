@@ -17,4 +17,5 @@ export interface IArticle {
     created_at?:string;
     comprador_nombre?:string;
     comprador_apellidos?:string;
+    url_foto?:string;
 }

@@ -15,6 +15,7 @@ export class SalesArticle {
   @Input() precio!: string;
   @Input() vendido!: string | undefined;
   @Input() articleId!: number;
+  @Input() url_foto!: string;
   @Output() clicarEditar = new EventEmitter<number>();
   @Output() clicarEliminar = new EventEmitter<number>();
   @Output() clicarPausar = new EventEmitter<number>();

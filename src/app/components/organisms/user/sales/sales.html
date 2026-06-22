@@ -21,9 +21,10 @@
             [titulo]="articulo.titulo" 
             [publicado]="tiempoTranscurrido(articulo.created_at)" 
             [estado_articulo]="articulo.estado_articulo_id" 
-            precio="850" 
+            [precio]="articulo.precio" 
             [vendido]="articulo.comprador_nombre + ' ' + articulo.comprador_apellidos?.[0] + '.'" 
-            [articleId]="2" 
+            [articleId]="articulo.id" 
+            [url_foto]="articulo.url_foto ?? 'imgs/no-photo.jpg'" 
             (clicarEditar)="irADetalleArticulo($event)" 
             (clicarEliminar)="eliminar($event)"
         ></app-sales-article>

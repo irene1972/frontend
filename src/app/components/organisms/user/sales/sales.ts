@@ -1,6 +1,5 @@
-import { NgStyle } from '@angular/common';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { SalesArticle } from '../../../molecules/cards/sales-article/sales-article';
 import { IArticle } from '../../../../interfaces/i-article';
 import { ArticlesService } from '../../../../services/articles-service';
@@ -12,6 +11,7 @@ import { ArticlesService } from '../../../../services/articles-service';
   styleUrl: './sales.css',
 })
 export class Sales {
+  /* TODO: Eliminar la propiedad vendido */
   vendido: any = { nombre: 'Carlos M.', tiempo: '1 semana' };
   activeTab: 'En venta' | 'Vendidos' = 'En venta';
   articlesService = inject(ArticlesService);
