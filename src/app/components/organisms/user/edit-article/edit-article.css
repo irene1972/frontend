@@ -114,3 +114,10 @@ label{
 .label-provincia{
     color:white;
 }
+/* Mobile */
+@media (max-width: 768px) {
+    .header{
+        display: none;
+    }
+    
+}

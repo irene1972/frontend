@@ -143,4 +143,12 @@ button{
 .generico {
     background-color: #EFF4FF;
     color: gray;
+    text-transform: uppercase;
+}
+/* Mobile */
+@media (max-width: 768px) {
+    .editar,.pausar,.eliminar{
+        display: none;
+    }
+    
 }
