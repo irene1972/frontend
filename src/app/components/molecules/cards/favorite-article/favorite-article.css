@@ -99,3 +99,9 @@ h5{
 img{
     max-height: 187.05px;
 }
+/* Mobile */
+@media (max-width: 768px) {
+    atom-button{
+        display: none;
+    }
+}

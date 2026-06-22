@@ -39,7 +39,7 @@
   }
   @if (activeTab === 'Vendidos') {
      <div class="contenedor">
-        @if(articulos){
+        
            @for(articulo of articulos_filtrados; track articulo.id){
         <div>
             <app-sales-article
@@ -57,7 +57,7 @@
       }@empty{
         <p>No hay datos</p>
       }
-        }
+        
         
     </div>
   }
