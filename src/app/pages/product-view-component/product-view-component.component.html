@@ -1,6 +1,11 @@
 <app-home-bar></app-home-bar>
 <div class="container mt-2">
-<app-breadcrum [items]="breadcrumbItems()"></app-breadcrum>
+@if (isOwner()) {
+  <!-- Breadcrumb propietario -->
+  <app-breadcrum [items]="breadcrumbItemsOwner()"></app-breadcrum>
+} @else {
+  <app-breadcrum [items]="breadcrumbItems()"></app-breadcrum>
+}
 <div class="product-layout">
     <!-- Galería de imágenes -->
     <div class="images">
@@ -44,15 +49,26 @@
             <p class="product-precio__num">{{product()?.precio}} €</p>
         </div>
 
-        @if (vendedorData()) {
+        @if (!isOwner()) {
             <molecule-user-rating-card [user]="vendedorData()"></molecule-user-rating-card>
         }
 
-        <div class="d-flex flex-column gap-2">
-            <atom-button config_type="secondary" icon="chat-left" label="Contactar con el vendedor" (click)="onContactar($event)"></atom-button>
-            <atom-button config_type="primary" label="Comprar ahora" (click)="onComprar($event)"></atom-button>
-            <atom-button config_type="link" icon="flag" label="Informar de un problema con este producto" (click)="onInformar($event)"></atom-button>
-        </div>
+        @if (isOwner()) {
+            <div class="d-flex flex-column gap-2">
+                <atom-button config_type="secondary" label="Editar artículo" (click)="onEditar($event)"></atom-button>
+                <atom-button config_type="outline" label="Marcar como vendido" (click)="onMarcarComoVendido($event)"></atom-button>
+                <atom-button config_type="outline" label="Pausar artículo" (click)="onPausarArticulo($event)"></atom-button>
+                <atom-button config_type="delete" icon="flag" iconPosition="left" label="Eliminar artículo" class="deleteArt" (click)="onEliminarArticulo($event)"></atom-button>
+            </div>
+        } @else {
+            <div class="d-flex flex-column gap-2">
+                <atom-button config_type="secondary" icon="chat-left" label="Contactar con el vendedor" (click)="onContactar($event)"></atom-button>
+                <atom-button config_type="primary" label="Comprar ahora" (click)="onComprar($event)"></atom-button>
+                <atom-button config_type="link" icon="flag" label="Informar de un problema con este producto" (click)="onInformar($event)"></atom-button>
+            </div>
+        }
+
+        
 
     </div> 
 </div>

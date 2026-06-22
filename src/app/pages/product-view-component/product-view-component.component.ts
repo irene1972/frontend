@@ -49,6 +49,7 @@ export class ProductViewComponentComponent {
     this.loadProduct();
   }
 
+  //carga de producto y datos
   async loadProduct() {
     const id = this.productID();
     if(!id) return;
@@ -91,15 +92,33 @@ export class ProductViewComponentComponent {
     }
   }
 
+  // isOwner
+  isOwner = computed(() => {
+    const raw = localStorage.getItem('usuarioBuy&Sell');
+    if(!raw) return false;
+    const user = JSON.parse(raw);
+    return user.id === this.product()?.usuarios_id;
+  });
+
+  // breadcrumb items
+
   protected breadcrumbItems = computed(() => [
   { label: 'Inicio', route: '/' },
-  { label: this.product()?.categorias_id?.toString(), route: '/categoria/' + this.product()?.categorias_id },
+  { label: 'Productos'},
   { label: this.product()?.titulo }
-]);
+  ]);
+
+  breadcrumbItemsOwner = computed(() => [
+  { label: 'Inicio', route: '/' },
+  { label: 'Mis ventas', route: '/profile' },
+  { label: this.product()?.titulo }
+  ]);
 
   selectFoto(foto: IArticlePhoto) {
     this.selectedPhoto.set(foto);
   }
+
+  // Eventos compra
 
   onContactar(event: MouseEvent) {
     this.router.navigate(['/profile'])
@@ -109,5 +128,20 @@ export class ProductViewComponentComponent {
   }
   onInformar(event: MouseEvent) {
     this.router.navigate(['/home'])
+  }
+
+  // eventos propietario
+
+  onEditar(event: MouseEvent) {
+    this.router.navigate(['/product/edit', this.productID()])
+  }
+  onMarcarComoVendido(event: MouseEvent) {
+    //servicio para marcar como vendido
+  }
+  onPausarArticulo(event: MouseEvent) {
+    //servicio para pausar articulo
+  }
+  onEliminarArticulo(event: MouseEvent) {
+    //servicio para eliminar articulo
   }
 }
