@@ -17,14 +17,16 @@
         <atom-badge variant={{product()?.estado_articulo_id}}></atom-badge>
         <h1 class="fw-bold fs-4">{{product()?.titulo}}</h1>
         <div class="d-flex flex-row">
-            <atom-badge variant={{product()?.estado_conservacion_id}}></atom-badge> <p class="product-fecha">{{product()!.updated_at | timeAgo }}</p>
+            <atom-badge variant={{product()?.estado_conservacion_id}}></atom-badge> <p class="product-fecha">{{product()?.updated_at ?? '' | timeAgo }}</p>
         </div>
         <div class="product-precio">
             <p class="product-precio__label">PRECIO</p>
             <p class="product-precio__num">{{product()?.precio}} €</p>
         </div>
-        <p>User Molecule?</p>
-        <div class="d-flex flex-column gap-2">
+        @if (vendedorData()) {
+            <molecule-user-rating-card [user]="vendedorData()"></molecule-user-rating-card>
+        }
+        <div class="d-flex flex-column gap-2 mt-2">
             <atom-button config_type="secondary" icon="chat-left" label="Contactar con el vendedor" (click)="onContactar($event)"></atom-button>
             <atom-button config_type="primary" label="Comprar ahora" (click)="onComprar($event)"></atom-button>
             <atom-button config_type="link" icon="flag" label="Informar de un problema con este producto" (click)="onInformar($event)"></atom-button>

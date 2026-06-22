@@ -19,7 +19,6 @@ export class Badge {
   );
 
   protected cssVariant = computed(() => {
-  console.log('variant:', this.variant());
   return this.variant()
     .toLowerCase()
     .replace(/\s+/g, '-')
