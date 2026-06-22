@@ -1,10 +1,8 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { BreadcrumbItem } from './breadcrum.types';
 
-export interface BreadcrumbItem {
-  label: string;
-  route?: string;
-}
+
 
 @Component({
   selector: 'app-breadcrum',
