@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ArticlesService } from '../../../../services/articles-service';
 import { IArticle } from '../../../../interfaces/i-article';
 import { CategoriesService } from '../../../../services/categories-service';
@@ -15,8 +15,7 @@ import { IPhoto } from '../../../../interfaces/i-photo';
   styleUrl: './edit-article.css',
 })
 export class EditArticle {
-  /* TODO: Hacer que salgan solo las fotos del artículo ahora mismo vienen las fotos de todos los artículos */
-  /* TODO: boton guardar */
+  /* TODO: volver atrás */
   miForm: FormGroup;
   mensaje: string = '';
   tipo: boolean = false;
@@ -28,7 +27,7 @@ export class EditArticle {
   fotos: IPhoto[] = [];
   id!: string;
 
-  constructor(private cd: ChangeDetectorRef, private route: ActivatedRoute) {
+  constructor(private cd: ChangeDetectorRef, private route: ActivatedRoute, private router: Router) {
     this.miForm = new FormGroup({
       titulo: new FormControl('', [
         Validators.required,
@@ -134,11 +133,27 @@ export class EditArticle {
     this.articlesService.updateArticleAndCP(Number(this.id), this.miForm.value).subscribe({
       next: (data) => {
         console.log('Actualizado correctamente');
+        this.router.navigate(['/user/panel/sales']);
       },
       error: (error) => {
         console.error('Error cargando artículo:', error);
       }
     });
 
+  }
+  hideProvincia() {
+    this.miForm.patchValue({
+      provincia: ''
+    });
+    this.cd.detectChanges();
+  }
+
+  putProvincia() {
+    if (this.miForm.value.ubicacion === this.articulo.cp) {
+      this.miForm.patchValue({
+        provincia: this.articulo.provincia?.nombre
+      });
+      this.cd.detectChanges();
+    }
   }
 }
