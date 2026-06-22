@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { IArticle } from '../interfaces/i-article';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,7 @@ export class ArticlesService {
     return this.httpClient.get<any>(this.baseUrl + id);
   }
 
+
   updateArticleAndCP(id:number,body:any):Observable<any>{
     return this.httpClient.put(this.baseUrl + `${id}/cp`,body,{})
   }
@@ -38,3 +40,6 @@ export class ArticlesService {
     return this.httpClient.delete(this.baseUrl + `${id}`, {});
   }
 }
+
+
+

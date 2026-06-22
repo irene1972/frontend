@@ -1,0 +1,26 @@
+
+@if (user()) {
+  <div class="user-rating-card">
+
+    <atom-icon
+      variant="profile-primary-square"
+      [text_icon]="user()!.iniciales"
+      size="20px"
+    />
+
+    <div class="user-rating-card__info">
+      <span class="user-rating-card__name">{{ user()!.username }}</span>
+
+      <div class="user-rating-card__rating">
+        <atom-icon
+          [variant]="hasRating() ? 'star' : 'star-inactived'"
+          size="12px"
+        />
+        <span class="user-rating-card__rating-label">{{ ratingLabel() }}</span>
+      </div>
+    </div>
+
+    <i class="bi bi-chevron-right user-rating-card__chevron"></i>
+
+  </div>
+}

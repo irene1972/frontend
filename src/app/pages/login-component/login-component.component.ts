@@ -54,22 +54,24 @@ export class LoginComponentComponent {
         this.user.id=data.usuario.id;
         this.user.iniciales=(data.usuario.nombre[0]+data.usuario.apellidos[0]).toUpperCase();
 
+        localStorage.setItem('token', data.token);
+        
         localStorage.setItem(
           'usuarioBuy&Sell',
           JSON.stringify(this.user)
         );
 
-        if (this.user.rol === 'Administrador') {
-          window.location.href='/admin';
+       if (this.user.rol === 'Administrador') {
+        window.location.href='/admin';
           /*this.router.navigate(['/admin']);*/
-        } else if (this.user.rol === 'Moderador') {
-          window.location.href='/moderator';
+      } else if (this.user.rol === 'Moderador') {
+       window.location.href='/moderator';
           /*this.router.navigate(['/moderator']);*/
-        } else {
-          window.location.href='/home';
+     } else {
+        window.location.href='/home';
           /*this.router.navigate(['/home']);*/
-        }
-      },
+      } 
+      }, 
 
       error: (err) => {
         console.error(err);
