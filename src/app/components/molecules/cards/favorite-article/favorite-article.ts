@@ -21,10 +21,6 @@ export class FavoriteArticle {
   @Input() url_foto!:string | undefined;
   @Output() clicar = new EventEmitter<number>();
 
-  ngOnInit(){
-    console.log(this.url_foto);
-  }
-
   onClick():void {
   this.clicar.emit(this.articleId);
 }

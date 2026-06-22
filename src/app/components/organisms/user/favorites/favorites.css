@@ -37,9 +37,11 @@ a.active {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    align-items: stretch;
 }
 app-favorite-article{
   flex: 0 0 31%;
+  display: flex;
 }
 
 /******/

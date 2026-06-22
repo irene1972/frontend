@@ -30,7 +30,7 @@
         texto_boton="Ver detalle" 
         [articleId]="favorito.id" 
         [precio]="favorito.precio"
-        [url_foto]="favorito.url_foto"
+        [url_foto]="(favorito.url_foto)?favorito.url_foto:'/imgs/no-photo.jpg'"
         (clicar)="irADetalleArticulo($event)" 
       ></app-favorite-article>
       
