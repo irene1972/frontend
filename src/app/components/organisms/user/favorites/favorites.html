@@ -20,7 +20,7 @@
     <div class="contenedor">
       @for (favorito of favoritos; track favorito.id) {
       <app-favorite-article
-        texto_articulo="NVIDIA RTX 4070 Ti Super 16GB GDDR6X" 
+        [texto_articulo]="favorito.titulo" 
         ubicacion="León" 
         iniciales="MR" 
         nombre="Marta R." 
@@ -31,6 +31,8 @@
         (clicar)="irADetalleArticulo($event)" 
       ></app-favorite-article>
       
+      }@empty{
+        <p>No hay productos</p>
       }
     </div>
   </div>
