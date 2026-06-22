@@ -33,4 +33,8 @@ export class ArticlesService {
   updateArticleAndCP(id:number,body:any):Observable<any>{
     return this.httpClient.put(this.baseUrl + `${id}/cp`,body,{})
   }
+
+  deleteArticle(id: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + `${id}`, {});
+  }
 }

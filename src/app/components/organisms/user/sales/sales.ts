@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SalesArticle } from '../../../molecules/cards/sales-article/sales-article';
 import { IArticle } from '../../../../interfaces/i-article';
 import { ArticlesService } from '../../../../services/articles-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sales',
@@ -12,6 +13,7 @@ import { ArticlesService } from '../../../../services/articles-service';
 })
 export class Sales {
   /* TODO: Eliminar la propiedad vendido */
+  /* TODO. Probar el eliminar cuando arreglen el endpoint */
   vendido: any = { nombre: 'Carlos M.', tiempo: '1 semana' };
   activeTab: 'En venta' | 'Vendidos' = 'En venta';
   articlesService = inject(ArticlesService);
@@ -68,12 +70,35 @@ export class Sales {
     }
   }
 
-  irADetalleArticulo(id: number): void {
-    this.router.navigate(['/articulo/detalle', id]);
+  editar(id: number): void {
+    this.router.navigate(['/user/panel/article/edit', id]);
   }
-  eliminar(id: number): void {
-    console.log('Eliminar: ' + id);
-  }
+  
+  eliminar(id: number) {
+      Swal.fire({
+        title: '¿Estás seguro de eliminar el artículo?',
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+        confirmButtonColor: '#ff0000',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.articlesService.deleteArticle(id).subscribe((data) => {
+            console.log(data);
+  
+            if (data.error) {
+              Swal.fire('Ha habido un error', '', 'info');
+            } else {
+              Swal.fire('Eliminado!', '', 'success');
+              window.location.reload();
+              
+  
+            }
+          });
+        }
+      });
+    }
   pausar(id: number): void {
     console.log('Pausar: ' + id);
   }
