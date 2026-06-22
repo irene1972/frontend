@@ -1,44 +1,69 @@
+<app-home-bar></app-home-bar>
 <div class="container mt-2">
 <app-breadcrum [items]="breadcrumbItems()"></app-breadcrum>
-<div class="d-flex flex-row">
+<div class="product-layout">
+    <!-- Galería de imágenes -->
     <div class="images">
         <div class="image-main">
-            <img src="" alt="">
-            <p>img</p>
+            @if (selectedPhoto()) {
+                <img [src]="selectedPhoto()!.url_foto" alt="Foto principal del producto">
+            } @else {
+                <div class="image-placeholder">
+                    <i class="bi bi-image"></i>
+                </div>
+            }
+            <div class="image-main__like">
+                <atom-button-icon variant="like" size="18px" />
+            </div>
         </div>
         <div class="image-secondary">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
+            @for (foto of fotos(); track foto.id) {
+                <div
+                    class="image-thumb"
+                    [class.image-thumb--active]="selectedPhoto()?.id === foto.id"
+                    (click)="selectFoto(foto)"
+                >
+                    <img [src]="foto.url_foto" [alt]="'Foto ' + foto.id">
+                </div>
+            }
         </div>
     </div>
-    <div class="product-info flex-column">
+
+    <!-- Info Producto -->
+    <div class="product-info d-flex flex-column gap-3">
         <atom-badge variant={{product()?.estado_articulo_id}}></atom-badge>
-        <h1 class="fw-bold fs-4">{{product()?.titulo}}</h1>
-        <div class="d-flex flex-row">
-            <atom-badge variant={{product()?.estado_conservacion_id}}></atom-badge> <p class="product-fecha">{{product()?.updated_at ?? '' | timeAgo }}</p>
+
+        <h1 class="fw-bold fs-4 mb-0">{{product()?.titulo}}</h1>
+
+        <div class="d-flex flex-row align-items-center">
+            <atom-badge variant={{product()?.estado_conservacion_id}}></atom-badge> <p class="product-fecha mb-0">{{product()?.updated_at ?? '' | timeAgo }}</p>
         </div>
+
         <div class="product-precio">
             <p class="product-precio__label">PRECIO</p>
             <p class="product-precio__num">{{product()?.precio}} €</p>
         </div>
+
         @if (vendedorData()) {
             <molecule-user-rating-card [user]="vendedorData()"></molecule-user-rating-card>
         }
-        <div class="d-flex flex-column gap-2 mt-2">
+
+        <div class="d-flex flex-column gap-2">
             <atom-button config_type="secondary" icon="chat-left" label="Contactar con el vendedor" (click)="onContactar($event)"></atom-button>
             <atom-button config_type="primary" label="Comprar ahora" (click)="onComprar($event)"></atom-button>
             <atom-button config_type="link" icon="flag" label="Informar de un problema con este producto" (click)="onInformar($event)"></atom-button>
         </div>
+
     </div> 
 </div>
-<hr>
-<div class="flex especificaciones">
-    <h3 class="fw-bold p-2">Especificaciones</h3>
-    <div class="container flex-row descripcion mb-5">
-        <h5 class="fw-bold fs-5 mt-2">Descripción del vendedor</h5>
-        <p>{{product()?.descripcion}}</p>
+
+ <hr>
+
+    <div class="especificaciones">
+        <h3 class="fw-bold p-2">Especificaciones</h3>
+        <div class="container descripcion mb-5">
+            <h5 class="fw-bold fs-5 mt-2">Descripción del vendedor</h5>
+            <p>{{product()?.descripcion}}</p>
+        </div>
     </div>
-</div>
 </div>

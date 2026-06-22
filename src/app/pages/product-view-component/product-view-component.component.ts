@@ -11,23 +11,38 @@ import { lastValueFrom } from 'rxjs';
 import { UsersService } from '../../services/users-service';
 import { UserRatingCardData } from '../../components/molecules/user-rating-card/user-rating-card.config';
 import { UserRatingCard } from "../../components/molecules/user-rating-card/user-rating-card";
+import { ArticlePhotoService } from '../../services/article-photo-service';
+import { IArticlePhoto } from '../../interfaces/i-article-photo.interface';
+import { ButtonIcon } from '../../components/atoms/button-icon/button-icon';
+import { HomeBar } from "../../components/organisms/home-bar/home-bar";
 
 @Component({
   selector: 'app-product-view-component',
-  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard],
+  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, ButtonIcon, HomeBar],
   templateUrl: './product-view-component.component.html',
   styleUrl: './product-view-component.component.css',
 })
 export class ProductViewComponentComponent {
+  //Input
   productID = input<string>();
-
+  
+  //Servicios
   articleService = inject(ArticlesService);
   ratingsService = inject(RatingsService);
   userService = inject(UsersService);
+  articlePhotoService = inject(ArticlePhotoService);
+
+  //Datos Vendedor
   vendedorData = signal<UserRatingCardData | null>(null);
-  
-  product = signal<IArticle | null>(null);
   ratingData: any[] = [];
+
+  //Fotos
+  fotos = signal<IArticlePhoto[]>([]);
+  selectedPhoto = signal<IArticlePhoto | null>(null);
+  
+  //producto
+  product = signal<IArticle | null>(null);
+  
   private router = inject(Router);
 
   ngOnInit() { 
@@ -38,17 +53,23 @@ export class ProductViewComponentComponent {
     const id = this.productID();
     if(!id) return;
     try {
-      this.product.set(await this.articleService.getArticleById(id))
+      this.product.set(await lastValueFrom(this.articleService.getArticleById(Number(id))));
 
       const sellerId = this.product()?.usuarios_id;
       if(!sellerId) return;
 
-      // Seller data
+      // Seller data e imgs 
 
-      const [seller, sellerRatings] = await Promise.all([
+      const [seller, sellerRatings, fotos] = await Promise.all([
         lastValueFrom(this.userService.getUserById((  sellerId).toString() )),
-        lastValueFrom(this.ratingsService.getRatingsByUser(sellerId))
+        lastValueFrom(this.ratingsService.getRatingsByUser(sellerId)),
+        lastValueFrom(this.articlePhotoService.getFotosByArticuloId(Number(id)))
       ]) 
+
+      //fotos
+      this.fotos.set(fotos);
+      const principal = fotos.find(f => f.principal === 1) ?? fotos[0] ?? null;
+      this.selectedPhoto.set(principal);
       
       // Iniciales desde nombre + apellidos
       const iniciales = `${seller.nombre.charAt(0)}${seller.apellidos.charAt(0)}`.toUpperCase();
@@ -61,6 +82,8 @@ export class ProductViewComponentComponent {
       });
 
       console.log(this.vendedorData());
+      console.log(this.fotos());
+      
       
       
     } catch (error) {
@@ -73,6 +96,10 @@ export class ProductViewComponentComponent {
   { label: this.product()?.categorias_id?.toString(), route: '/categoria/' + this.product()?.categorias_id },
   { label: this.product()?.titulo }
 ]);
+
+  selectFoto(foto: IArticlePhoto) {
+    this.selectedPhoto.set(foto);
+  }
 
   onContactar(event: MouseEvent) {
     this.router.navigate(['/profile'])

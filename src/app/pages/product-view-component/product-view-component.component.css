@@ -1,31 +1,176 @@
-.product-fecha{
+.product-fecha {
     color: var(--text-outline);
     margin-left: 5px;
 }
 
-.product-precio{
+.product-precio {
     font-family: 'IBM Plex Mono', monospace;
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
 
-.product-precio__label{
+.product-precio__label {
     font-size: 14px;
     margin-bottom: 0;
 }
 
-.product-precio__num{
+.product-precio__num {
     font-size: 32px;
     font-weight: bold;
     color: var(--primary-cta);
     font-family: 'Inter', sans-serif;
 }
 
-.descripcion{
+.descripcion {
     background-color: var(--surface-low);
     border: 1px solid var(--outline-var);
     border-radius: 10px;
     margin: 5px;
     padding: 10px;
+}
+
+.product-info atom-button {
+    display: block;
+    width: 100%;
+}
+
+.product-info atom-button .app-btn {
+    width: 100%;
+}
+
+/*Layout principal*/
+.product-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+/*Galería*/
+.images {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 0 0 55%;
+}
+
+.image-main {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--surface-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--outline-var);
+    font-size: 48px;
+}
+
+/* Like button */
+.image-main__like {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+/* Miniaturas */
+.image-secondary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.image-thumb {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--surface-container);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+}
+
+.image-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-thumb--active {
+    border-color: var(--primary-cta);
+}
+
+/*Info producto*/
+.product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/*Especificaciones*/
+.especificaciones {
+    margin-top: 8px;
+}
+
+/* RESPONSIVE MÓVIL (≤ 768px) */
+@media (max-width: 768px) {
+
+    .product-layout {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Galería ocupa todo el ancho */
+    .images {
+        flex: none;
+        width: 100%;
+    }
+
+    .image-main {
+        border-radius: 8px;
+    }
+
+    /* Miniaturas en fila horizontal scrollable */
+    .image-secondary {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .image-secondary::-webkit-scrollbar {
+        display: none; 
+    }
+
+    .image-thumb {
+        flex: 0 0 72px;
+        height: 72px;
+        aspect-ratio: unset;
+        border-radius: 6px;
+    }
+
+    /* Info producto ocupa todo el ancho */
+    .product-info {
+        width: 100%;
+    }
+
+    .product-precio__num {
+        font-size: 24px;
+    }
 }
