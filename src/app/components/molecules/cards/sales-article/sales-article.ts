@@ -10,10 +10,10 @@ import { RouterLink } from '@angular/router';
 })
 export class SalesArticle {
   @Input() titulo!: string;
-  @Input() publicado!: string;
+  @Input() publicado!: string | undefined;
   @Input() estado_articulo!: string;
   @Input() precio!: string;
-  @Input() vendido!: any;
+  @Input() vendido!: string | undefined;
   @Input() articleId!: number;
   @Output() clicarEditar = new EventEmitter<number>();
   @Output() clicarEliminar = new EventEmitter<number>();

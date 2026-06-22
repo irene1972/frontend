@@ -14,4 +14,7 @@ export interface IArticle {
     estado_articulo_id:string;
     provincia?:Provincia;
     cp?:string;
+    created_at?:string;
+    comprador_nombre?:string;
+    comprador_apellidos?:string;
 }

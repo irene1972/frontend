@@ -10,8 +10,10 @@
                     }@else if(estado_articulo==='En_revision'){
                     <p class="card-subtitle mb-2 text-muted">Pendiente de moderación</p>
                     }@else if(estado_articulo==='Vendido'){
-                    <p class="card-subtitle mb-2 text-muted">Vendido a {{vendido.nombre}} Hace {{vendido.tiempo}}
+                    <p class="card-subtitle mb-2 text-muted">Vendido a {{vendido?vendido:'(nombre)'}} Hace {{publicado}}
                     </p>
+                    }@else{
+                        <p class="card-subtitle mb-2 text-muted">Publicado hace {{publicado}}</p>
                     }
 
                 </div>

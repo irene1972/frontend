@@ -14,31 +14,25 @@
   </div>
   @if (activeTab === 'En venta') {
     <div class="contenedor">
+      @if(articulos){
+           @for(articulo of articulos; track articulo.id){
         <div>
             <app-sales-article
-            titulo="NVIDIA RTX 4080" 
-            [publicado]="tiempo" 
-            estado_articulo="Vendido" 
+            [titulo]="articulo.titulo" 
+            [publicado]="tiempoTranscurrido(articulo.created_at)" 
+            [estado_articulo]="articulo.estado_articulo_id" 
             precio="850" 
-            [vendido]="vendido" 
+            [vendido]="articulo.comprador_nombre + ' ' + articulo.comprador_apellidos?.[0] + '.'" 
             [articleId]="2" 
             (clicarEditar)="irADetalleArticulo($event)" 
             (clicarEliminar)="eliminar($event)"
         ></app-sales-article>
         </div>
-        <div>
-            <app-sales-article
-            titulo="NVIDIA RTX 4080" 
-            [publicado]="tiempo" 
-            estado_articulo="Vendido" 
-            precio="850" 
-            [vendido]="vendido" 
-            [articleId]="2" 
-            (clicarEditar)="irADetalleArticulo($event)" 
-            (clicarEliminar)="eliminar($event)" 
-            (clicarPausar)="pausar($event)" 
-        ></app-sales-article>
-        </div>
+      }@empty{
+        <p>No hay datos</p>
+      }
+        }
+     
         
     </div>
   }
@@ -47,7 +41,7 @@
         <div>
             <app-sales-article
             titulo="NVIDIA RTX 4080" 
-            [publicado]="tiempo" 
+            [publicado]="tiempoTranscurrido('2025-01-01')" 
             estado_articulo="Vendido" 
             precio="850" 
             [vendido]="vendido" 
@@ -59,7 +53,7 @@
         <div>
             <app-sales-article
             titulo="NVIDIA RTX 4080" 
-            [publicado]="tiempo" 
+            [publicado]="tiempoTranscurrido('2025-01-01')" 
             estado_articulo="Vendido" 
             precio="850" 
             [vendido]="vendido" 
