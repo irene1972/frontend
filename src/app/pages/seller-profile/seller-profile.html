@@ -1,0 +1,19 @@
+
+
+<div class="user">
+    @if(role()==='user'){
+        <div class="sidebar">
+            <organism-sidebar role="user" />
+        </div>
+    }
+    
+    <div class="d-flex flex-column flex-grow-1 p-4 gap-4">
+        <molecule-breadcrum [items]="breadcrumbItems()"></molecule-breadcrum>
+        <molecule-user-contact name="Carlos" last_name="Martinez"/>
+        <div class="d-flex flex-row justify-content-between gap-3">
+            <molecule-status-card class="d-flex flex-grow-1" text="PUBLICADOS"/>
+            <molecule-status-card class="d-flex flex-grow-1" text="VENDIDOS"/>
+            <molecule-status-card class="d-flex flex-grow-1" text="VALORACIÓN"/>
+        </div>
+    </div>
+</div>
