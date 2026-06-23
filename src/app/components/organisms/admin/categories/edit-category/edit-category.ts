@@ -29,7 +29,8 @@ export class EditCategory {
       descripcion: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
-      ])
+      ]),
+      imagen: new FormControl('', []),
     }, []);
   }
 
