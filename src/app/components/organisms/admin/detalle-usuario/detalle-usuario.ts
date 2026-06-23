@@ -12,7 +12,7 @@ import { Breadcrum } from '../../../molecules/breadcrum/breadcrum';
 
 @Component({
   selector: 'app-detalle-usuario',
-  imports: [ReactiveFormsModule, DatePipe, RouterLink, Breadcrum],
+  imports: [ReactiveFormsModule, DatePipe, Breadcrum],
   templateUrl: './detalle-usuario.html',
   styleUrl: './detalle-usuario.css',
 })

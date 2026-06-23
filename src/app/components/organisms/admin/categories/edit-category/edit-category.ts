@@ -1,13 +1,13 @@
 import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { ICategory } from '../../../../../interfaces/i-category';
 import { CategoriesService } from '../../../../../services/categories-service';
 import { Breadcrum } from '../../../../molecules/breadcrum/breadcrum';
 
 @Component({
   selector: 'app-edit-category',
-  imports: [RouterLink,ReactiveFormsModule, Breadcrum],
+  imports: [ReactiveFormsModule, Breadcrum],
   templateUrl: './edit-category.html',
   styleUrl: './edit-category.css',
 })

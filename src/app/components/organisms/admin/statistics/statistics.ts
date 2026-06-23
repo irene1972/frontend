@@ -7,7 +7,7 @@ import { Breadcrum } from '../../../molecules/breadcrum/breadcrum';
 
 @Component({
   selector: 'app-statistics',
-  imports: [RouterLink, Breadcrum],
+  imports: [Breadcrum],
   templateUrl: './statistics.html',
   styleUrl: './statistics.css',
 })
