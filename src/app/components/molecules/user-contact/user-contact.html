@@ -2,14 +2,14 @@
     <div id="user" >
         <atom-icon variant="profile-primary-circle" text_icon="CM" />
         <div id="user-content">
-            <h2 class="m-0 p-0">  Carlos M.</h2>
-            <p id="user-info" class="m-0 p-0"> Vendedor · Miembro desde 2026 </p>
+            <h2 class="m-0 p-0">{{name()}} {{last_name()[0]}}</h2>
+            <p id="user-info" class="m-0 p-0"> Vendedor · Miembro desde {{year()}} </p>
             <atom-badge class="pt-1 pb-1 m-0" variant="Verificado" icon="shield-check" />
-            <a id="user-report" class="d-flex flex-row justify-content-center align-items-start gap-1" [routerLink]="['/user/report']">
+            <a id="user-report" class="d-flex flex-row justify-content-center align-items-start gap-1" [routerLink]="routeReport()">
                 <i class="bi bi-flag-fill color-red"></i>
                 <p>Reportar usuario</p>
             </a>
         </div>
     </div>
-    <atom-button id="contact" config_type="secondary" label="Contactar" (click)="contactUser()"/>
+    <atom-button id="contact" config_type="secondary" label="Contactar" [routerLink]="routeContact()"/>
 </div>
