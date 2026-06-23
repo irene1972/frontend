@@ -36,6 +36,7 @@ import { EditCategory } from './components/organisms/admin/categories/edit-categ
 import { IncidentsComponentComponent } from './components/organisms/moderator/incidents-component/incidents-component.component';
 import { HistoricModeratorComponentComponent } from './components/organisms/moderator/historic-moderator-component/historic-moderator-component.component';
 import { ModeratorComponent } from './pages/moderator/moderator.component';
+import { SellerProfile } from './pages/seller-profile/seller-profile';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -44,6 +45,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponentComponent },
     { path: 'register', component: RegisterComponentComponent },
     { path: 'product/:productID', component: ProductViewComponentComponent },
+    { path: 'sellers/:userID', component: SellerProfile },
 
     // // Rutas Home: Usuario Normal. 
     {
@@ -62,6 +64,7 @@ export const routes: Routes = [
             // Ruta Mensajeria
             { path: 'messages', component: MessagesComponentComponent },
             { path: 'messages/:chatID', component: ChatComponentComponent },
+            { path: 'sellers/:userID', component: SellerProfile },
         ]
     },
 
