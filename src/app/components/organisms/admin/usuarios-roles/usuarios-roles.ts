@@ -1,13 +1,14 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { Buscador } from '../../../molecules/buscador/buscador';
 import { RouterLink } from '@angular/router';
 import { UsersService } from '../../../../services/users-service';
 import { IUsuario } from '../../../../interfaces/i-usuario';
 import { NgStyle } from '@angular/common';
+import { Breadcrum } from "../../../molecules/breadcrum/breadcrum";
 
 @Component({
   selector: 'app-usuarios-roles',
-  imports: [Buscador,RouterLink,NgStyle],
+  imports: [Buscador, RouterLink, NgStyle, Breadcrum],
   templateUrl: './usuarios-roles.html',
   styleUrl: './usuarios-roles.css',
 })
@@ -85,6 +86,11 @@ export class UsuariosRoles {
     });
 
   }
+
+  protected breadcrumbItems = computed(() => [
+    { label: 'Panel', route: '/admin/panel/' },
+    { label: 'Usuarios', route: 'users'}
+  ]);
 
 
 
