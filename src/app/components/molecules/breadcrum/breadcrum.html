@@ -1,10 +1,19 @@
-<nav class="breadcrumb-nav">
-    @for (item of items(); track item.label; let last = $last) {
-        @if (!last) {
-            <a [routerLink]="item.route" class="breadcrumb-link">{{ item.label }}</a>
-            <span class="breadcrumb-separator">›</span>
-        } @else {
-            <span class="breadcrumb-current">{{item.label}}</span>
+<div class="container">
+    <div class="navigator">
+            <a [routerLink]="[previous()]">
+                <div class="atras"> < </div>
+            </a>
+            <div class="alante"> > </div>
+    </div>
+    <nav class="breadcrumb">
+        @for (item of items(); track item.label; let last = $last) {
+            @if (!last) {
+                <a [routerLink]="item.route" class="breadcrumb-link">{{ item.label }}</a>
+                <span class="breadcrumb-separator">></span>
+            } @else {
+                <span class="breadcrumb-current">{{item.label}}</span>
+            }
         }
-    }
-</nav>
+    </nav>
+</div>
+    
