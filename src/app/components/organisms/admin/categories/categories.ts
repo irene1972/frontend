@@ -1,12 +1,13 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CategoriesService } from '../../../../services/categories-service';
 import { ICategory } from '../../../../interfaces/i-category';
 import Swal from 'sweetalert2';
+import { Breadcrum } from "../../../molecules/breadcrum/breadcrum";
 
 @Component({
   selector: 'app-categories',
-  imports: [RouterLink],
+  imports: [RouterLink, Breadcrum],
   templateUrl: './categories.html',
   styleUrl: './categories.css',
 })
@@ -56,4 +57,8 @@ export class Categories {
       }
     });
   }
+  protected breadcrumbItems = computed(() => [
+    { label: 'Panel', route: '/admin/panel/' },
+    { label: 'Categorías', route: 'categories'}
+  ]);
 }

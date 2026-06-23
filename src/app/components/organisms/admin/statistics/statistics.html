@@ -1,19 +1,6 @@
 <section class="estadisticas">
-    <div class="header">
-        <div class="navegador">
-            <a [routerLink]="['/admin/panel/categories']">
-                <div class="atras"><</div></a>
-            <div class="alante">></div>
-            
-        </div>
-        <div class="ruta">
-            <p class="panel">Panel</p>
-            <div>></div>
-            <p>Estadísticas</p>
-            
-            
-        </div>
-    </div>
+    
+    <molecule-breadcrum [items]="breadcrumbItems()" />
 
     <h1>Estadísticas</h1>
     <p>Métricas globales de la plataforma</p>

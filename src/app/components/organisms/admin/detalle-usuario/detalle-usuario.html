@@ -1,22 +1,6 @@
 <section class="usuarios">
-    <div class="header">
-        <div class="navegador">
-            <a [routerLink]="['/admin/panel/users']">
-                <div class="atras"><</div></a>
-            <div class="alante">></div>
-            
-        </div>
-        <div class="ruta">
-            <p class="panel">Panel</p>
-            <div>></div>
-            <p class="panel">Usuarios</p>
-            <div>></div>
-            @if(usuario){
-                <p>{{usuario.nombre}} {{usuario.apellidos[0]}}.</p>
-            }
-            
-        </div>
-    </div>
+    
+    <molecule-breadcrum [items]="breadcrumbItems()" />
 
     <h1>Detalle usuario</h1>
     <div class="card">

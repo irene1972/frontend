@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IUsuario } from '../../../../interfaces/i-usuario';
 import { UsersService } from '../../../../services/users-service';
@@ -8,10 +8,11 @@ import { RatingsService } from '../../../../services/ratings-service';
 import Swal from 'sweetalert2';
 import { OrdersService } from '../../../../services/orders-service';
 import { ArticlesService } from '../../../../services/articles-service';
+import { Breadcrum } from '../../../molecules/breadcrum/breadcrum';
 
 @Component({
   selector: 'app-detalle-usuario',
-  imports: [ReactiveFormsModule, DatePipe, RouterLink],
+  imports: [ReactiveFormsModule, DatePipe, RouterLink, Breadcrum],
   templateUrl: './detalle-usuario.html',
   styleUrl: './detalle-usuario.css',
 })
@@ -161,4 +162,10 @@ export class DetalleUsuario {
     });
   }
 
+   protected breadcrumbItems = () => [
+    { label: 'Panel', route: '/admin/panel/' },
+    { label: 'Usuarios', route: '/admin/panel/users'},
+    { label: `${this.usuario.nombre} ${this.usuario.apellidos[0]}.`, route: String(this.usuario.id)}
+    ];
 }
+

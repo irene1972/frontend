@@ -1,13 +1,14 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ICategory } from '../../../../../interfaces/i-category';
 import { CategoriesService } from '../../../../../services/categories-service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Breadcrum } from '../../../../molecules/breadcrum/breadcrum';
 
 @Component({
   selector: 'app-create-category',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, Breadcrum],
   templateUrl: './create-category.html',
   styleUrl: './create-category.css',
 })
@@ -85,4 +86,10 @@ export class CreateCategory {
       console.log(this.imagenFile);
     }
   }
+
+  protected breadcrumbItems = () => [
+    { label: 'Panel', route: '/admin/panel/' },
+    { label: 'Categorías', route: '/admin/panel/categories'},
+    { label: 'Nueva categoría', route: '/admin/panel/categories/create'}
+  ];
 }

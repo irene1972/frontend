@@ -52,7 +52,6 @@ a {
   }
 
 .breadcrumb-link {
-  padding-right: .5rem;
   color: var(--secondary-cta);
   text-decoration: none;
 }
@@ -62,11 +61,12 @@ a {
 }
 
 .breadcrumb-separator {
+  padding: 0 .5rem 0 .5rem;
   color: var(--text-outline);
 }
 
 .breadcrumb-current {
-  padding-left: .5rem;
+  
   color: var(--text-primary);
   font-weight: bold;
 }
@@ -74,7 +74,7 @@ a {
 
 /* Mobile */
 @media (max-width: 768px) {
-  .breadcrumb-bar {
+  .container {
       display: none;
   }
 

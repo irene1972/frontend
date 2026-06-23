@@ -134,9 +134,7 @@ a {
       margin: 0 0 .25rem;
     }
   }
-  molecule-breadcrum {
-    display:none
-  }
+
 
   .buscador {
     margin: .75rem 0;

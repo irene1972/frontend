@@ -91,7 +91,4 @@ export class UsuariosRoles {
     { label: 'Panel', route: '/admin/panel/' },
     { label: 'Usuarios', route: 'users'}
   ]);
-
-
-
 }
