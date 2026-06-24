@@ -12,14 +12,14 @@
             <div>></div>
             <p class="panel">Reportes</p>
             <div>></div>
-            <p>Detalle del reporte</p>
+            <p>Artículo reportado</p>
         </div>
     </div>
 
-    <h1>Detalle del reporte</h1>
+    <h1>Artículo reportado</h1>
 
     <div class="tags-resumen tags-desktop">
-        <span class="tag tag-revision">EN REVISIÓN</span>
+        <span class="tag" [class.tag-pendiente]="getEstadoArticuloReportado() === 'Pendiente'" [class.tag-revision]="getEstadoArticuloReportado() === 'En revisión'"> {{ getEstadoArticuloReportado() }}</span>
         <span class="tag tag-reportes">{{ reportesArticulo.length }} reporte{{ reportesArticulo.length !== 1 ? 's' : '' }}</span>
     </div>
 
@@ -36,19 +36,16 @@
 
                 <div class="info-articulo">
                     <div class="tags-resumen tags-mobile">
-                        <span class="tag tag-revision">EN REVISIÓN</span>
+                        <span class="tag" [class.tag-pendiente]="getEstadoArticuloReportado() === 'Pendiente'" [class.tag-revision]="getEstadoArticuloReportado() === 'En revisión'"> {{ getEstadoArticuloReportado() }}</span>
                         <span class="tag tag-reportes">{{ reportesArticulo.length }} reporte{{ reportesArticulo.length !== 1 ? 's' : '' }}</span>
                     </div>
 
                     <div class="titulo-precio">
-                        <h2>{{ articulo?.titulo }}</h2>
-                        <strong>{{ articulo?.precio }} €</strong>
+                        <h2><i class="bi bi-box"></i> {{ articulo?.titulo }}</h2>
+                        <strong><i class="bi bi-tag-fill"></i> {{ articulo?.precio }} €</strong>
                     </div>
 
-                    <p>
-                        <i class="bi bi-person"></i>
-                        Vendedor: {{ vendedor?.username || vendedor?.nombre || 'Usuario' }}
-                    </p>
+                    <p><i class="bi bi-person"></i>Vendedor: {{ vendedor?.username || vendedor?.nombre || 'Usuario' }}</p>
                 </div>
             </article>
 
@@ -57,10 +54,7 @@
 
                 <div class="lista-motivos">
                     @for (reporte of reportesArticulo; track reporte.id) {
-                        <article
-                            class="motivo-item"
-                            [routerLink]="['/moderator/panel/incident', articuloId, reporte.id]"
-                        >
+                        <article class="motivo-item" [class.motivo-cerrado]="reporteCerrado(reporte)" (click)="abrirReporte(reporte)">
                             <div class="motivo-texto">
                                 <h3>{{ reporte.motivo }}</h3>
                                 <p>{{ reporte.descripcion }}</p>

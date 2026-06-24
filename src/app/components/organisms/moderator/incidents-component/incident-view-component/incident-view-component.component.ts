@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReportsService } from '../../../../../services/reports-service';
 import { ArticlesService } from '../../../../../services/articles-service';
@@ -15,6 +15,7 @@ import { UsersService } from '../../../../../services/users-service';
 })
 export class IncidentViewComponentComponent {
   route = inject(ActivatedRoute);
+  router = inject(Router);
   reportsService = inject(ReportsService);
   articlesService = inject(ArticlesService);
   articlePhotosService = inject(ArticlePhotosService);
@@ -111,6 +112,45 @@ export class IncidentViewComponentComponent {
     if (estadoNormalizado === 'descartado') return 'Descartado';
 
     return estado;
+  }
+
+  getEstadoArticuloReportado(): string {
+    const tieneRevisado = this.reportesArticulo.some((reporte: any) =>
+      reporte.estado?.toLowerCase() === 'revisado'
+    );
+  
+    return tieneRevisado ? 'En revisión' : 'Pendiente';
+  }
+  
+  reporteCerrado(reporte: any): boolean {
+    const estado = reporte.estado?.toLowerCase();
+    return estado === 'aceptado' || estado === 'descartado';
+  }
+  
+  abrirReporte(reporte: any) {
+    if (this.reporteCerrado(reporte)) {
+      return;
+    }
+  
+    const estado = reporte.estado?.toLowerCase();
+  
+    if (estado === 'pendiente') {
+      const reporteActualizado = {
+        ...reporte,
+        estado: 'Revisado'
+      };
+    
+      this.reportsService.updateReport(reporte.id, reporteActualizado).subscribe({
+        next: () => {
+          this.router.navigate(['/moderator/panel/incident', this.articuloId, reporte.id]);
+        },
+        error: (error) => {
+          console.error('Error actualizando reporte:', error);
+        }
+      });
+    } else {
+      this.router.navigate(['/moderator/panel/incident', this.articuloId, reporte.id]);
+    }
   }
 
   quedanReportesAbiertos(): boolean {

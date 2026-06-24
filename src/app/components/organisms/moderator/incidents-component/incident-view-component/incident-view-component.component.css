@@ -89,10 +89,14 @@ a {
     text-transform: uppercase;
 }
 
-.tag-pendiente,
-.tag-revision {
+.tag-pendiente {
     background: #fef3c7;
     color: #92400e;
+}
+
+.tag-revision {
+    background: #dbeafe;
+    color: #003594;
 }
 
 .tag-reportes {
@@ -178,7 +182,8 @@ a {
 
 .titulo-precio {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: .5rem;
     flex-wrap: wrap;
 }
@@ -254,6 +259,19 @@ a {
     display: flex;
     align-items: center;
     gap: .75rem;
+}
+
+.motivo-cerrado {
+    cursor: default;
+    opacity: .75;
+}
+
+.motivo-cerrado:hover {
+    background: #fff;
+}
+
+.motivo-cerrado .motivo-flecha {
+    display: none;
 }
 
 .motivo-flecha {
@@ -366,7 +384,7 @@ a {
     .titulo-precio {
         width: 100%;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
     }
 
     .info-articulo h2 {

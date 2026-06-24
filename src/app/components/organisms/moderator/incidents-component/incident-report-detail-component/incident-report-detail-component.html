@@ -1,1 +1,90 @@
-<p>incident-report-detail-component works!</p>
+<section class="detalle-reporte-individual">
+    <div class="header">
+        <div class="navegador">
+            <a [routerLink]="['/moderator/panel/incident', articuloId]">
+                <div class="atras"><</div>
+            </a>
+            <div class="alante">></div>
+        </div>
+
+        <div class="ruta">
+            <p class="panel">Panel</p>
+            <div>></div>
+            <p class="panel">Reportes</p>
+            <div>></div>
+            <p class="panel">Artículo reportado</p>
+            <div>></div>
+            <p>Detalle del reporte</p>
+        </div>
+    </div>
+
+    <h1>Detalle del reporte</h1>
+
+    <div class="detalle-grid">
+        <div class="contenido-principal">
+            <article class="card info-card">
+                <h2>Información del reporte</h2>
+
+                <div class="info-lista">
+                    <div class="info-item">
+                        <i class="bi bi-box-seam"></i>
+                        <div>
+                            <p>Producto reportado</p>
+                            <h3>{{ articulo?.titulo }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="bi bi-person"></i>
+                        <div>
+                            <p>Usuario reportante</p>
+                            <h3>{{ usuarioReportante?.username || 'Usuario' }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="bi bi-person-exclamation"></i>
+                        <div>
+                            <p>Usuario reportado</p>
+                            <h3>{{ usuarioReportado?.username || 'Usuario' }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card motivo-card">
+                <h2>Motivo del reporte</h2>
+
+                <div class="motivo-bloque">
+                    <div class="motivo-titulo">
+                        <i class="bi bi-flag"></i>
+                        <h3>{{ reporte?.motivo }}</h3>
+                    </div>
+
+                    <p>{{ reporte?.descripcion }}</p>
+                </div>
+            </article>
+        </div>
+
+        <aside class="card acciones-card">
+            <h2>Acciones del moderador</h2>
+
+            <label for="nota">NOTA INTERNA</label>
+            <textarea
+                id="nota"
+                placeholder="Añade una nota sobre la decisión..."
+                [(ngModel)]="nota"
+            ></textarea>
+
+            <div class="acciones">
+                <button class="btn-descartar" (click)="descartarReporte()">
+                    Descartar reporte
+                </button>
+
+                <button class="btn-aceptar" (click)="aceptarReporte()">
+                    Aceptar reporte
+                </button>
+            </div>
+        </aside>
+    </div>
+</section>
