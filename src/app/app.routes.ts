@@ -41,6 +41,7 @@ import { HistoricModeratorComponentComponent } from './components/organisms/mode
 import { ModeratorComponent } from './pages/moderator/moderator.component';
 import { Sales } from './components/organisms/user/sales/sales';
 import { EditArticle } from './components/organisms/user/edit-article/edit-article';
+import { WriteReview } from './components/organisms/user/write-review/write-review';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -76,6 +77,10 @@ export const routes: Routes = [
                     {
                         path: 'my-purchases',
                         component: UserMyPurchasesComponentComponent
+                    },
+                    {
+                        path: 'my-purchases/write-review/:id',
+                        component: WriteReview
                     },
                     {
                         path: 'article/edit/:id',

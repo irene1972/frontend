@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { IUserPurchase, PurchaseStatus } from '../../interfaces/i-purchase';
 import { OrdersService } from '../../services/orders-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-my-purchases-component',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './user-my-purchases-component.component.html',
   styleUrl: './user-my-purchases-component.component.css',
 })
