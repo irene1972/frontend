@@ -3,17 +3,19 @@
         <img [src]="img()" alt="">
         <atom-badge [variant]="state()" class="article-badge desktop"/>
         @if(like()){
-            <atom-button-icon variant="like" size="1rem" class="article-like"/>
+            <atom-button-icon variant="like" size="1rem" class="article-like" (buttonIonClick)="selectArticle($event)"/>
         }
     </div>
     <atom-badge [variant]="state()" class="article-badge mobile"/>
     @if(variant() === 'minimal'){
     <p class="price">{{price()}} €</p>
     <h2 >{{name()}}</h2>
+    @if(location()) {
     <div class="article-location">
-        <i class="bi bi-geo-alt"></i>
-        <p>{{location()}}</p>
-    </div>
+            <i class="bi bi-geo-alt"></i>
+            <p>{{location()}}</p>
+        </div>
+    }
     }
     @else if (variant() === 'normal') {
     <h2 >{{name()}}</h2>
@@ -40,7 +42,10 @@
             <p class="price">{{price()}} €</p>
         </div>
         <div class="flex-grow-1"></div>
-        <atom-button class="p-4" config_type="outline" label="Ver detalle"></atom-button>
+        <a href="" >
+
+        </a>
+        <atom-button class="p-4" config_type="outline" label="Ver detalle" (click)="navArticleDetail()"></atom-button>
     </div>
     }
     @else if (variant() === 'outstanding') {
@@ -48,7 +53,6 @@
     <p class="price">{{price()}} €</p>
     <atom-button class="btn-outstanding" label="Comprar ahora" icon="cart"/>
     }
-    
 </div>
 
 

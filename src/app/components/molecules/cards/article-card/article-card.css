@@ -6,6 +6,7 @@
     border-style: solid;
     box-shadow: 0 4px 15px var(--surface-container);
     overflow: hidden;
+    padding-bottom: 2rem;
 }
 
 .article-card .image {
