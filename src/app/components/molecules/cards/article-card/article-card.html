@@ -7,10 +7,62 @@
         }
     </div>
     <atom-badge [variant]="state()" class="article-badge mobile"/>
+    @if(variant() === 'minimal'){
     <p>{{price()}} €</p>
     <h2 >{{name()}}</h2>
     <div class="article-location">
         <i class="bi bi-geo-alt"></i>
         <p>{{location()}}</p>
     </div>
+    }
+    @else if (variant() === 'normal') {
+    <h2 >{{name()}}</h2>
+    <div class="article-location">
+        <i class="bi bi-geo-alt"></i>
+        <p>{{location()}}</p>
+    </div>
+    <div>vendedor</div>
+    <div>
+        <p>{{price()}} €</p>
+    </div>
+    
+    
+   
+    }
+    @else if (variant() === 'express') {
+
+    }
+    
 </div>
+
+
+<div class="card">
+        <img src="{{url_foto}}" class="card-img-top" alt="">
+        <button class="favorite-btn">
+          <i class="bi bi-heart-fill"></i>
+        </button>
+        <div class="card-body">
+          <h5 class="card-title">{{texto_articulo}}</h5>
+          <div class="flex geo">
+            <i class="bi bi-geo-alt"></i>
+            <p class=" texto-icono">{{ubicacion}}</p>
+          </div>
+          <div class="datos-usuario">
+            <atom-icon class="profile" variant="profile-primary-circle" text_icon="{{iniciales}}" size="1.5rem" />
+            <div class="usuario">
+              <p>{{nombre}}</p>
+              <p><atom-icon class="star" variant="star" size=".9rem" />{{estrellas}} . {{valoraciones}} valoraciones</p>
+            </div>
+          </div>
+          <div class="footer-card">
+            <h5>{{precio}} €</h5>
+            <atom-button 
+                    class="perfil" 
+                    label="{{texto_boton}}" 
+                    config_type="outline"
+                    (click)="onClick()" 
+                    ></atom-button>
+          </div>
+
+        </div>
+      </div>
