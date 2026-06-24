@@ -1,12 +1,11 @@
 import { Component, input } from '@angular/core';
 import { Icon } from "../../atoms/icon/icon";
 import { Badge } from "../../atoms/badge/badge";
-import { ɵEmptyOutletComponent } from "@angular/router";
 import { BadgeVariant } from '../../atoms/badge/badge.types';
 
 @Component({
   selector: 'molecule-user-card',
-  imports: [Icon, Badge, ɵEmptyOutletComponent],
+  imports: [Icon, Badge],
   templateUrl: './user-card.html',
   styleUrl: './user-card.css',
 })

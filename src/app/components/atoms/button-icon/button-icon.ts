@@ -30,12 +30,12 @@ import { STYLES } from './button-icon.styles';
 })
 export class ButtonIcon {
   /* Public inputs */
-  variant   = input<ButtonIconVariant>('like');
-  size      = input<string>('400px');
-  text_icon = input<string>('');
+  public variant   = input<ButtonIconVariant>('like');
+  public size      = input<string>('400px');
+  public text_icon = input<string>('');
 
   /* Public outputs */
-  clicked   = output<boolean>();
+  public buttonIonClick   = output<ButtonIconStates>();
   
   /* Component State*/
   private state = signal<ButtonIconStates>(ButtonIconStates.INACTIVED);
@@ -79,6 +79,6 @@ export class ButtonIcon {
   /** Methods */
   protected onClick(): void {
     this.state.update(state => (state === ButtonIconStates.ACTIVED) ? ButtonIconStates.INACTIVED:ButtonIconStates.ACTIVED );
-    console.log(this.state());
+    this.buttonIonClick.emit(this.state());
   }
 }
