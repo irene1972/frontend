@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { lastValueFrom, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { IArticle } from '../interfaces/i-article';
 import {
@@ -45,8 +45,8 @@ export class ArticlesService {
     return this.httpClient.get<any>(this.baseUrl + 'mas-vendidos');
   }
 
-  getArticleById(id: number): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + id);
+  getArticleById(id: number): Observable<IArticle> {
+    return this.httpClient.get<IArticle>(this.baseUrl + id);
   }
 
 
