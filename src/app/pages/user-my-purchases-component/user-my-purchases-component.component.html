@@ -1,0 +1,40 @@
+<section class="my-purchases">
+  <h1 class="my-purchases__title">Mis compras</h1>
+
+  @if (loading) {
+    <p class="my-purchases__message">Cargando compras...</p>
+  } @else if (mensaje) {
+    <p class="my-purchases__message">{{ mensaje }}</p>
+  } @else if (purchases.length === 0) {
+    <p class="my-purchases__message">Aún no tienes compras.</p>
+  } @else {
+    <ul class="my-purchases__list">
+      @for (purchase of purchases; track purchase.id) {
+        <li class="purchase-card">
+          <div class="purchase-card__image" aria-hidden="true">
+            @if (getPrincipalPhoto(purchase); as photoUrl) {
+              <img
+                class="purchase-card__img"
+                [src]="photoUrl"
+                [alt]="purchase.nombre_articulo"
+              />
+            } @else {
+              <i class="bi bi-image"></i>
+            }
+          </div>
+
+          <div class="purchase-card__info">
+            <h2 class="purchase-card__name">{{ purchase.nombre_articulo }}</h2>
+            <p class="purchase-card__detail">{{ getPurchaseDetail(purchase) }}</p>
+          </div>
+
+          <div class="purchase-card__meta">
+            <span [class]="'purchase-card__badge ' + getStatusClass(purchase.estado)">
+              {{ getStatusLabel(purchase.estado) }}
+            </span>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>

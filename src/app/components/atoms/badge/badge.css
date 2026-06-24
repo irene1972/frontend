@@ -85,3 +85,8 @@
     background-color: #D1FAE5; 
     color: #047857; 
 }
+
+.app-badge--rebajado{
+    background-color: #1a1a1a; 
+    color: var(--surface-card);  
+}
