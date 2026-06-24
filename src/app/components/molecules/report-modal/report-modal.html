@@ -1,1 +1,36 @@
-<p>report-modal works!</p>
+@if (isOpen()) {
+  <div class="report-modal__overlay" (click)="onOverlayClick($event)">
+    <div class="report-modal__card">
+
+      <h2 class="report-modal__title">¿Qué quieres reportar?</h2>
+      <p class="report-modal__subtitle">Elige una opción para continuar.</p>
+
+      <div class="report-modal__options">
+
+        <button class="report-modal__option" (click)="onReportArticle()">
+          <span class="report-modal__option-radio">
+            <i class="bi bi-record-circle"></i>
+          </span>
+          <div class="report-modal__option-text">
+            <span class="report-modal__option-title">Reportar artículo</span>
+            <span class="report-modal__option-desc">Contenido falso, prohibido o engañoso</span>
+          </div>
+        </button>
+
+        <button class="report-modal__option" (click)="onReportUser()">
+          <span class="report-modal__option-radio">
+            <i class="bi bi-record-circle"></i>
+          </span>
+          <div class="report-modal__option-text">
+            <span class="report-modal__option-title">Reportar usuario</span>
+            <span class="report-modal__option-desc">Comportamiento sospechoso o fraude</span>
+          </div>
+        </button>
+
+      </div>
+
+      <button class="report-modal__cancel" (click)="onCancel()">Cancelar</button>
+
+    </div>
+  </div>
+}

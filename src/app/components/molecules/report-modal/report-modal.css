@@ -1,0 +1,102 @@
+/* ── Overlay ── */
+.report-modal__overlay {
+  position:        fixed;
+  inset:           0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  z-index:         1000;
+  padding:         16px;
+}
+
+/* ── Card ── */
+.report-modal__card {
+  background-color: var(--surface-card);
+  border-radius:   16px;
+  padding:         32px 24px;
+  width:           100%;
+  max-width:       480px;
+  display:         flex;
+  flex-direction:  column;
+  gap:             16px;
+}
+
+/* ── Textos cabecera ── */
+.report-modal__title {
+  font-size:   20px;
+  font-weight: 700;
+  color:       var(--on-surface);
+  margin:      0;
+}
+
+.report-modal__subtitle {
+  font-size:  14px;
+  color:      var(--on-surface-variant);
+  margin:     0;
+}
+
+/* ── Opciones ── */
+.report-modal__options {
+  display:        flex;
+  flex-direction: column;
+  gap:            12px;
+}
+
+.report-modal__option {
+  display:          flex;
+  align-items:      center;
+  gap:              12px;
+  padding:          16px;
+  border-radius:    12px;
+  border:           2px solid var(--secondary-cta);
+  background-color: var(--surface-container);
+  cursor:           pointer;
+  text-align:       left;
+  transition:       background-color 0.15s ease;
+  width:            100%;
+}
+
+.report-modal__option:hover {
+  background-color: var(--surface-low);
+}
+
+.report-modal__option-radio {
+  font-size:  20px;
+  color:      var(--secondary-cta);
+  flex-shrink: 0;
+}
+
+.report-modal__option-text {
+  display:        flex;
+  flex-direction: column;
+  gap:            2px;
+}
+
+.report-modal__option-title {
+  font-size:   15px;
+  font-weight: 600;
+  color:       var(--on-surface);
+}
+
+.report-modal__option-desc {
+  font-size: 13px;
+  color:     var(--on-surface-variant);
+}
+
+/* ── Cancelar ── */
+.report-modal__cancel {
+  background:  none;
+  border:      none;
+  color:       var(--on-surface-variant);
+  font-size:   15px;
+  font-weight: 500;
+  cursor:      pointer;
+  padding:     8px;
+  align-self:  center;
+  transition:  color 0.15s ease;
+}
+
+.report-modal__cancel:hover {
+  color: var(--on-surface);
+}

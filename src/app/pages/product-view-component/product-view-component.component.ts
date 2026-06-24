@@ -15,10 +15,11 @@ import { ArticlePhotoService } from '../../services/article-photo-service';
 import { IArticlePhoto } from '../../interfaces/i-article-photo.interface';
 import { ButtonIcon } from '../../components/atoms/button-icon/button-icon';
 import { HomeBar } from "../../components/organisms/home-bar/home-bar";
+import { ReportModal } from "../../components/molecules/report-modal/report-modal";
 
 @Component({
   selector: 'app-product-view-component',
-  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, ButtonIcon, HomeBar],
+  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, ButtonIcon, HomeBar, ReportModal],
   templateUrl: './product-view-component.component.html',
   styleUrl: './product-view-component.component.css',
 })
@@ -118,6 +119,10 @@ export class ProductViewComponentComponent {
     this.selectedPhoto.set(foto);
   }
 
+  // Modal reporte
+
+  showReportModal = signal<boolean>(false);
+
   // Eventos compra
 
   onContactar(event: MouseEvent) {
@@ -127,7 +132,7 @@ export class ProductViewComponentComponent {
     this.router.navigate(['/product/checkout', this.productID()])
   }
   onInformar(event: MouseEvent) {
-    this.router.navigate(['/home'])
+    this.showReportModal.set(true);
   }
 
   // eventos propietario
