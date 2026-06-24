@@ -1,13 +1,14 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { Buscador } from '../../../molecules/buscador/buscador';
 import { RouterLink } from '@angular/router';
 import { UsersService } from '../../../../services/users-service';
 import { IUsuario } from '../../../../interfaces/i-usuario';
 import { NgStyle } from '@angular/common';
+import { Breadcrum } from "../../../molecules/breadcrum/breadcrum";
 
 @Component({
   selector: 'app-usuarios-roles',
-  imports: [Buscador,RouterLink,NgStyle],
+  imports: [Buscador, RouterLink, NgStyle, Breadcrum],
   templateUrl: './usuarios-roles.html',
   styleUrl: './usuarios-roles.css',
 })
@@ -40,8 +41,10 @@ export class UsuariosRoles {
 }
 
   ngOnInit(){
-    this.usersService.getAllUsers().subscribe((data) => {
-      if (data.error) {
+
+    this.usersService.getAllUsers().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
@@ -49,10 +52,16 @@ export class UsuariosRoles {
         this.usuarios = data;
         this.cd.detectChanges();
       }
+      },
+      error: (err) => {
+        console.error(err);
+        
+      }
     });
 
-    this.usersService.getCount().subscribe((data) => {
-      if (data.error) {
+    this.usersService.getCount().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
@@ -60,10 +69,16 @@ export class UsuariosRoles {
         this.usersCount = data.count;
         this.cd.detectChanges();
       }
+      },
+      error: (err) => {
+        console.error(err);
+        
+      }
     });
 
-    this.usersService.getCountRol().subscribe((data) => {
-      if (data.error) {
+    this.usersService.getCountRol().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
@@ -71,10 +86,16 @@ export class UsuariosRoles {
         this.usersCountRol = data.count;
         this.cd.detectChanges();
       }
+      },
+      error: (err) => {
+        console.error(err);
+        
+      }
     });
 
-    this.usersService.getCountBlocked().subscribe((data) => {
-      if (data.error) {
+    this.usersService.getCountBlocked().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
@@ -82,10 +103,17 @@ export class UsuariosRoles {
         this.usersCountBlocked = data.count;
         this.cd.detectChanges();
       }
+      },
+      error: (err) => {
+        console.error(err);
+        
+      }
     });
 
   }
 
-
-
+  protected breadcrumbItems = computed(() => [
+    { label: 'Panel', route: '/admin/panel/' },
+    { label: 'Usuarios', route: 'users'}
+  ]);
 }

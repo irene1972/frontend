@@ -16,14 +16,20 @@ export class HomeBar {
   constructor(private cd: ChangeDetectorRef){}
 
   ngOnInit() {
-    this.categoriesService.getAllCategories().subscribe((data) => {
-      if (data.error) {
+    this.categoriesService.getAllCategories().subscribe({
+      next: (data) => {
+        if (data.error) {
         console.log(data.error);
         return;
       } else {
         console.log(data);
         this.categorias = data;
         this.cd.detectChanges();
+      }
+      },
+      error: (err) => {
+        console.error(err);
+        
       }
     });
   }

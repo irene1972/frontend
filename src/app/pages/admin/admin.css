@@ -1,4 +1,11 @@
+:host{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
 .admin{
+    flex:1;
     display: flex;
     background: #F8F9FF;
 }
@@ -14,11 +21,6 @@
     flex: 1;
     min-width: 0;
     width: 100%;
-}
-
-.sidebar app-admin-sidebar {
-    display: block;
-    height: 100%;
 }
 
 @media (max-width: 768px) {

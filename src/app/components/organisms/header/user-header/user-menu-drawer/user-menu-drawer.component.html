@@ -17,7 +17,7 @@
         <div>
             <p class="drawer-user-name">{{userName}}</p>
             <a class="drawer-user-rating" [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
-                ★ {{userRating}} · Ver mi perfil
+                ★ {{(!userRating)?0:userRating}} · Ver mi perfil
             </a>
         </div>
     </div>

@@ -10,7 +10,7 @@
 - Block: botón de rojo completo para acciones principales (bloquear).
 */
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'link' | 'dashed' | 'activate' | 'retire' | 'block' ;
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'link' | 'dashed' | 'activate' | 'retire' | 'block' | 'delete';
 
 // === ESTADO DE CONFIGURACIÓN DEL BOTÓN === //
 export type ButtonConfigState = 'enabled' | 'disabled';

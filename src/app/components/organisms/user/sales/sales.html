@@ -1,0 +1,65 @@
+<section>
+
+  <div>
+    <h1>Mis ventas</h1>
+  </div>
+  <div class="tabs">
+    <a [class.active]="activeTab === 'En venta'" (click)="activeTab = 'En venta'">
+      En venta
+    </a>
+
+    <a class="usuarios-a" [class.active]="activeTab === 'Vendidos'" (click)="activeTab = 'Vendidos'">
+      Vendidos
+    </a>
+  </div>
+  @if (activeTab === 'En venta') {
+    <div class="contenedor">
+      @if(articulos){
+           @for(articulo of articulos; track articulo.id){
+        <div>
+            <app-sales-article
+            [titulo]="articulo.titulo" 
+            [publicado]="tiempoTranscurrido(articulo.created_at)" 
+            [estado_articulo]="articulo.estado_articulo_id" 
+            [precio]="articulo.precio" 
+            [vendido]="articulo.comprador_nombre + ' ' + articulo.comprador_apellidos?.[0] + '.'" 
+            [articleId]="articulo.id" 
+            [url_foto]="articulo.url_foto ?? 'imgs/no-photo.jpg'" 
+            (clicarEditar)="editar($event)" 
+            (clicarEliminar)="eliminar($event)"
+            (clicarPausar)="pausar($event)"
+        ></app-sales-article>
+        </div>
+      }@empty{
+        <p class="empty">No hay datos</p>
+      }
+        }
+     
+        
+    </div>
+  }
+  @if (activeTab === 'Vendidos') {
+     <div class="contenedor">
+        
+           @for(articulo of articulos_filtrados; track articulo.id){
+        <div>
+            <app-sales-article
+            [titulo]="articulo.titulo" 
+            [publicado]="tiempoTranscurrido(articulo.created_at)" 
+            [estado_articulo]="articulo.estado_articulo_id" 
+            [precio]="articulo.precio" 
+            [vendido]="articulo.comprador_nombre + ' ' + articulo.comprador_apellidos?.[0] + '.'" 
+            [articleId]="articulo.id" 
+            [url_foto]="articulo.url_foto ?? 'imgs/no-photo.jpg'" 
+            (clicarEditar)="editar($event)" 
+            (clicarEliminar)="eliminar($event)"
+        ></app-sales-article>
+        </div>
+      }@empty{
+        <p class="empty">No hay datos</p>
+      }
+        
+        
+    </div>
+  }
+  </section>

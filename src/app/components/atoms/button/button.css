@@ -40,6 +40,13 @@
     color: var(--price-link-primary);
     padding-inline: 8px;
 }
+
+.app-btn--delete {
+    background-color: transparent;
+    border: none;
+    color: var(--err);
+    padding-inline: 8px;
+}
 .app-btn--dashed {
     background-color: var(--surface-high);
     color: var(--price-link-primary);

@@ -1,0 +1,81 @@
+<section>
+
+  <div>
+    <h1>Mis favoritos</h1>
+  </div>
+  <div class="tabs">
+    <a [class.active]="activeTab === 'articulos'" (click)="activeTab = 'articulos'">
+      Artículos
+    </a>
+
+    <a [class.active]="activeTab === 'usuarios'" (click)="activeTab = 'usuarios'">
+      Usuarios
+    </a>
+  </div>
+
+  @if (activeTab === 'articulos') {
+  <div>
+    <p>{{favoritos.length}} artículos guardados</p>
+
+    <div class="contenedor">
+      
+      @for (favorito of favoritos; track favorito.id) {
+      <app-favorite-article
+        [texto_articulo]="favorito.titulo" 
+        [ubicacion]="(favorito.provincia.nombre)?favorito.provincia.nombre:''" 
+        [iniciales]="(favorito.nombre_vendedor)?favorito.nombre_vendedor[0]:'' + (favorito.apellidos_vendedor)?favorito.apellidos_vendedor?.[0]:''" 
+        [nombre]="favorito.nombre_vendedor + ' ' + favorito.apellidos_vendedor?.[0] + '.'" 
+        [estrellas]="(favorito.puntuacion)?favorito.puntuacion.slice(0,3):'0'" 
+        [valoraciones]="(favorito.cantidad_valoraciones)?favorito.cantidad_valoraciones:0" 
+        texto_boton="Ver detalle" 
+        [articleId]="favorito.id" 
+        [precio]="favorito.precio"
+        [url_foto]="(favorito.url_foto)?favorito.url_foto:'/imgs/no-photo.jpg'"
+        (clicar)="irADetalleArticulo($event)" 
+      ></app-favorite-article>
+      
+      }@empty{
+        <p>No hay productos favoritos</p>
+      }
+      
+    </div>
+  </div>
+  }
+
+  @if (activeTab === 'usuarios') {
+  <div class="conten">
+    <p>4 usuarios que sigues</p>
+
+    <!--@for (user of users; track user.id) {-->
+    <div class="users">
+      <div>
+        <app-favorite-user 
+        iniciales="IO" 
+        nombre="Irene O." 
+        estrellas="4.8" 
+        valoraciones="124" 
+        texto_boton="Ver detalle" 
+        [userId]="2" 
+        (clicar)="irADetalleUsuario($event)" 
+        ></app-favorite-user>
+      </div>
+      <div>
+        <app-favorite-user 
+        iniciales="IO" 
+        nombre="Irene O." 
+        estrellas="4.8" 
+        valoraciones="124" 
+        texto_boton="Ver detalle"
+        ></app-favorite-user>
+      </div>
+        
+
+    </div>
+    <!--}-->
+  </div>
+  }
+
+
+
+
+</section>

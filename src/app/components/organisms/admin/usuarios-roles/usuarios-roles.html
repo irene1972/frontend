@@ -1,17 +1,7 @@
 <section class="usuarios">
-        <div class="header">
-            <div class="navegador">
-                <a [routerLink]="['/admin/panel/main']"><div class="atras"><</div></a>
-                <div class="alante">></div>
-            </div>
-            <div class="ruta">
-                <p class="panel">Panel</p>
-                <div>></div>
-                <p>Usuarios</p>
-            </div>
-        </div>
-        
 
+        <molecule-breadcrum [items]="breadcrumbItems()" />
+    
         <h1>Usuarios</h1>
         <div class="buscador">
             <app-buscador (buscar)="textoBusqueda = $event" [placeholder]="placeholder"></app-buscador>

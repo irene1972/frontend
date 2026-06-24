@@ -15,6 +15,5 @@ export class ManagementCard {
   public link    = input<string>("home/")
   public title   = input<string>("title")
   public text    = input<string>("text")
-  public shadow  = input<boolean>(true)
-  public notify  = input<string>("1")
+  public notify  = input<string | null>(null)
 }

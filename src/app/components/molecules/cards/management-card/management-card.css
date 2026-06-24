@@ -8,6 +8,7 @@
   padding: 1rem;
   text-decoration: none;
   color: inherit;
+  box-shadow: none;
   
   h3 {
     margin: 0;
@@ -20,6 +21,12 @@
     color: #6b7280;
     font-size: 0.82rem;
   }
+
+  
+}
+
+#icon {
+    display:none;
 }
 
 .arrow {
@@ -27,8 +34,14 @@
   color: #6b7280;
 }
 
-.card-boxshadow {
+@media (max-width: 768px) {
+  .management-card {
     min-height: 72px;
     border-radius: 12px;
     box-shadow: 0 3px 8px rgba(15, 23, 42, 0.15);
+  }
+  #icon {
+    display:flex;
+}
+
 }

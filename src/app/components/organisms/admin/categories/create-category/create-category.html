@@ -1,20 +1,5 @@
 <section class="categorias">
-    <div class="header">
-        <div class="navegador">
-            <a [routerLink]="['/admin/panel/categories']">
-                <div class="atras">
-                    <</div>
-            </a>
-            <div class="alante">></div>
-        </div>
-        <div class="ruta">
-            <p class="panel">Panel</p>
-            <div>></div>
-            <p class="catego">Categorías</p>
-            <div>></div>
-            <p>Nueva categoría</p>
-        </div>
-    </div>
+    <molecule-breadcrum [items]="breadcrumbItems()" />
 
     <div class="heading">
         <h1>Nueva categoría</h1>

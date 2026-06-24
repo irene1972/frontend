@@ -6,7 +6,6 @@ import { UserFormComponentComponent } from './pages/user-form-component/user-for
 import { ProductViewComponentComponent } from './pages/product-view-component/product-view-component.component';
 import { ProductFormComponentComponent } from './pages/product-form-component/product-form-component.component';
 import { ProductCheckoutComponentComponent } from './pages/product-checkout-component/product-checkout-component.component';
-import { UserProfileComponentComponent } from './pages/user-profile-component/user-profile-component.component';
 import { FavoritesComponentComponent } from './pages/favorites-component/favorites-component.component';
 import { UserMyPurchasesComponentComponent } from './pages/user-my-purchases-component/user-my-purchases-component.component';
 import { MessagesComponentComponent } from './pages/messages-component/messages-component.component';
@@ -34,9 +33,14 @@ import { Settings } from './components/organisms/admin/settings/settings';
 import { DetalleUsuario } from './components/organisms/admin/detalle-usuario/detalle-usuario';
 import { CreateCategory } from './components/organisms/admin/categories/create-category/create-category';
 import { EditCategory } from './components/organisms/admin/categories/edit-category/edit-category';
+import { UserPanel } from './pages/user-panel/user-panel';
+import { Profile } from './components/organisms/user/profile/profile';
+import { Favorites } from './components/organisms/user/favorites/favorites';
 import { IncidentsComponentComponent } from './components/organisms/moderator/incidents-component/incidents-component.component';
 import { HistoricModeratorComponentComponent } from './components/organisms/moderator/historic-moderator-component/historic-moderator-component.component';
 import { ModeratorComponent } from './pages/moderator/moderator.component';
+import { Sales } from './components/organisms/user/sales/sales';
+import { EditArticle } from './components/organisms/user/edit-article/edit-article';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -46,7 +50,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponentComponent },
     { path: 'product/:productID', component: ProductViewComponentComponent },
 
-    // // Rutas Home: Usuario Normal. Falta implemetar el Guard y hacer sus hijos
+    // // Rutas Home: Usuario Normal. 
     {
         path: 'user', component: UserComponentComponent, canActivate: [authGuard], children: [
             { path: '', pathMatch: 'full', redirectTo: 'profile' },
@@ -54,17 +58,46 @@ export const routes: Routes = [
             { path: 'product/:productID', component: ProductViewComponentComponent },
             { path: 'product/edit/:productID', component: ProductFormComponentComponent },
             { path: 'product/checkout/:productID', component: ProductCheckoutComponentComponent },
-            { path: 'profile', component: UserProfileComponentComponent },
+            { path: 'panel', component: UserPanel,
+                children: [
+                    { path: '', pathMatch: 'full', redirectTo: 'profile' },
+                    {
+                        path: 'profile',
+                        component: Profile
+                    },
+                    {
+                        path: 'favorites',
+                        component: Favorites
+                    },
+                    {
+                        path: 'sales',
+                        component: Sales
+                    },
+                    {
+                        path: 'my-purchases',
+                        component: UserMyPurchasesComponentComponent
+                    },
+                    {
+                        path: 'article/edit/:id',
+                        component: EditArticle
+                    }
+                ]
+             },
+            /*{ path: 'profile/:userID', component: UserProfileComponentComponent }, */
+
             { path: 'edit-profile/:userID', component: UserFormComponentComponent },
             { path: 'favorites', component: FavoritesComponentComponent },
-            { path: 'my-purchases', component: UserMyPurchasesComponentComponent },
+            /*{ path: 'my-purchases', component: UserMyPurchasesComponentComponent },*/
+            //reportes
+            {path: 'report/:productID', component: ProductViewComponentComponent},
+            {path: 'report/:userID', component: ProductViewComponentComponent},
             // Ruta Mensajeria
             { path: 'messages', component: MessagesComponentComponent },
             { path: 'messages/:chatID', component: ChatComponentComponent },
         ]
     },
 
-    // // Rutas Moderator Panel: Usuario Moderador. Falta implemetar el Guard
+    // // Rutas Moderator Panel: Usuario Moderador.
 
     {
         path: 'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard], data: {roles: ['Moderador']}, children: [
@@ -80,7 +113,7 @@ export const routes: Routes = [
         ]
     },
 
-    // // Rutas Admin Panel: Usuario Administrador. Falta implemetar el Guard
+    // // Rutas Admin Panel: Usuario Administrador. 
 
     {
         path: 'admin', component: AdminComponentComponent, canActivate: [authGuard, roleGuard], data: {roles: ['Administrador']}, children: [

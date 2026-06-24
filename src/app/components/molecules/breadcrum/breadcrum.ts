@@ -1,18 +1,22 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BreadcrumbItem } from './breadcrum.types';
 
 
 
 @Component({
-  selector: 'app-breadcrum',
+  selector: 'molecule-breadcrum',
   imports: [RouterLink],
   templateUrl: './breadcrum.html',
   styleUrl: './breadcrum.css',
 })
 export class Breadcrum {
-  items = input<BreadcrumbItem[]>();
+  public items    = input<BreadcrumbItem[]>();
 
+  protected previous = computed(( )=> {
+    const items = this.items();
+    return items?.[items.length-2].route;
+  });
   // === Al componente padre ===
   
   /* protected breadcrumbItems = computed(() => [

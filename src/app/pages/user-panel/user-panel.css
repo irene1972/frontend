@@ -1,0 +1,43 @@
+.user{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #F8F9FF;
+}
+.panel{
+    flex:1;
+    display: flex;
+}
+.home-bar{
+    background-color: white;
+}
+.sidebar{
+    width: 250px;
+    /*flex-shrink: 0;*/
+    background-color: white;
+    border:1px solid rgb(189, 187, 187);
+}
+
+.profile {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+}
+
+.sidebar app-admin-sidebar {
+    display: block;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+  .user {
+    display: block;
+  }
+
+  .sidebar {
+    display: none;
+  }
+  .home-bar{
+    display: none;
+  }
+}

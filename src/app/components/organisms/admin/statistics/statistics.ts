@@ -1,12 +1,13 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { AfterViewInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Chart } from 'chart.js/auto';
 import { StatisticsService } from '../../../../services/statistics-service';
+import { Breadcrum } from '../../../molecules/breadcrum/breadcrum';
 
 @Component({
   selector: 'app-statistics',
-  imports: [RouterLink],
+  imports: [Breadcrum],
   templateUrl: './statistics.html',
   styleUrl: './statistics.css',
 })
@@ -73,4 +74,9 @@ export class Statistics {
       }
     });
   }
+
+  protected breadcrumbItems = computed(() => [
+    { label: 'Panel', route: '/admin/panel/' },
+    { label: 'Estadísticas', route: '/admin/panel/statistics'}
+  ]);
 }

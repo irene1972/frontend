@@ -1,16 +1,18 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { ChangeDetectorRef, Component, inject, input } from '@angular/core';
 import { StatisticsService } from '../../../../services/statistics-service';
+import { StatusCard } from "../../../molecules/cards/status-card/status-card";
+import { ManagementCard } from '../../../molecules/cards/management-card/management-card';
 
 @Component({
   selector: 'app-panel',
-  imports: [RouterLink],
+  imports: [StatusCard, ManagementCard],
   templateUrl: './panel.html',
   styleUrl: './panel.css',
 })
 export class Panel {
   statisticsService = inject(StatisticsService);
   estadisticas: any = {};
+  desktop = input<boolean>(false); 
 
   constructor(private cd: ChangeDetectorRef) {}
 

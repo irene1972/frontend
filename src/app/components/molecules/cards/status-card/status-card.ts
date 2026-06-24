@@ -9,7 +9,7 @@ import { StatusCardAlign } from './status-card.config';
 })
 export class StatusCard {
 /* Public inputs */
-  align   = input<StatusCardAlign>('center');
-  title      = input<string>('title');
-  text       = input<string>('text');
+  align   = input<StatusCardAlign>('right');
+  status  = input<string>('status');
+  text    = input<string>('text');
 }

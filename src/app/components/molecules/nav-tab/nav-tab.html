@@ -1,0 +1,14 @@
+
+<nav id="nav-tab">
+    @for (tab of tabs(); track $index) {
+        <a [routerLink]="currentRoute" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [queryParams]="{tab: tab.query_param}">
+            <div class="tab-text" >
+                <p>{{ tab.name }}</p>
+                @if(tab.notify !== '0'){
+                    <atom-icon variant="counter" [text_icon]="tab.notify" size="1.2rem"/>
+                }
+            </div>
+            <div class="tab-line"></div>   
+        </a> 
+    }
+</nav>

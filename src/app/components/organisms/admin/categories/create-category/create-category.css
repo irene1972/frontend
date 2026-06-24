@@ -15,61 +15,6 @@ a {
     }
 }
 
-/* Header */
-.header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-
-    .navegador {
-        display: flex;
-    }
-
-    .atras,
-    .alante {
-        display: flex;
-        border: 1px solid #dbe1ea;
-        border-radius: 10px;
-        width: 2rem;
-        height: 2rem;
-        margin-right: .5rem;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-        background: #fff;
-    }
-
-    .alante {
-        color: #9ca3af;
-        background-color: #f8f9ff;
-    }
-
-    .ruta {
-        display: flex;
-        align-items: center;
-        border-left: 1px solid #dbe1ea;
-        margin-left: 1rem;
-        padding-left: 1rem;
-        font-weight: bold;
-
-        p {
-            margin: 0;
-        }
-
-        div {
-            margin: 0 .5rem;
-            color: #9ca3af;
-        }
-
-        .panel {
-            color: #003594;
-        }
-        .catego{
-            color: #003594;
-        }
-    }
-}
-
 p.descripcion {
     color: gray;
 }
@@ -119,11 +64,4 @@ form{
             margin: 0 0 .25rem;
         }
     }
-
-    .header {
-        display: none;
-    }
-
-   
-
 }

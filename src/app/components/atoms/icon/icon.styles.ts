@@ -66,7 +66,7 @@ export const STYLES: IconStylesMap= {
     },
     graph: { 
         container: STYLE_SHAPE_SQUARE,
-        icon: 'bi bi-bar-chart-line-fill',                   
+        icon: 'bi bi-bar-chart-line',                   
     },
     tag: { 
         container: STYLE_SHAPE_SQUARE,
