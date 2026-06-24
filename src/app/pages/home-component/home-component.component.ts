@@ -58,7 +58,6 @@ export class HomeComponentComponent {
         this.mensaje = data.error;
         return;
       } else {
-        console.log(data);
         this.recents = data;
         this.cd.detectChanges();
       }

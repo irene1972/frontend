@@ -41,11 +41,13 @@ import { HistoricModeratorComponentComponent } from './components/organisms/mode
 import { ModeratorComponent } from './pages/moderator/moderator.component';
 import { Sales } from './components/organisms/user/sales/sales';
 import { EditArticle } from './components/organisms/user/edit-article/edit-article';
+import { ExploreComponent } from './pages/explore-component/explore-component';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: HomeComponentComponent },
     { path: 'home-hero', component: HomeHeroComponent },
+    { path: 'explore', component: ExploreComponent },
     { path: 'login', component: LoginComponentComponent },
     { path: 'register', component: RegisterComponentComponent },
     { path: 'product/:productID', component: ProductViewComponentComponent },
