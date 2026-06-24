@@ -9,7 +9,7 @@ import { IFavorite } from '../../../../interfaces/i-favorite';
 
 @Component({
   selector: 'app-favorites',
-  imports: [RouterLink,FavoriteUser,FavoriteArticle],
+  imports: [FavoriteUser,FavoriteArticle],
   templateUrl: './favorites.html',
   styleUrl: './favorites.css',
 })
