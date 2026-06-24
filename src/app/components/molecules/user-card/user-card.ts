@@ -13,8 +13,8 @@ import { BadgeVariant } from '../../atoms/badge/badge.types';
 export class UserCard {
   public name        = input<string>("Carlos");
   public last_name   = input<string>("Martínez");
-  public role        = input<BadgeVariant | null>("Usuario");
-  public arrow       = input<boolean>(true);
-  public shadow      = input<boolean>(true);
-  public transparent = input<boolean>(false);
+  public role        = input<BadgeVariant | null>();
+  public arrow       = input<boolean>(false);
+  public shadow      = input<boolean>(false);
+  public transparent = input<boolean>(true);
 }

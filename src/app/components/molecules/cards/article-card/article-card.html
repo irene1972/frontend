@@ -8,7 +8,7 @@
     </div>
     <atom-badge [variant]="state()" class="article-badge mobile"/>
     @if(variant() === 'minimal'){
-    <p>{{price()}} €</p>
+    <p class="price">{{price()}} €</p>
     <h2 >{{name()}}</h2>
     <div class="article-location">
         <i class="bi bi-geo-alt"></i>
@@ -21,14 +21,31 @@
         <i class="bi bi-geo-alt"></i>
         <p>{{location()}}</p>
     </div>
-    <div id="card-separator"></div>
-    <div>vendedor</div>
-    <div>
-        <p>{{price()}} €</p>
+    <div class="separator"></div>
+    <molecule-user-card [shadow]="false" [transparent]="true">
+        <div class="d-flex flex-row gap-2">
+            <atom-icon variant="star" size="1rem"></atom-icon>
+            <p>4.9 · 128 valoraciones</p>
+        </div>
+    </molecule-user-card>
+    <div class="detail d-flex flex-row align-items-center">
+        <div class="content">
+            <div class="d-flex flex-row gap-2">
+                <p> {{price()}} €</p> 
+                <atom-badge variant="rebaja"></atom-badge>
+            </div>
+            <p class="price">{{price()}} €</p>
+        </div>
+        <div class="flex-grow-1"></div>
+        <atom-button class="p-4" config_type="outline" label="Ver detalle"></atom-button>
+        
+
     </div>
     }
-    @else if (variant() === 'express') {
-
+    @else if (variant() === 'outstanding') {
+    <h2 >{{name()}}</h2>
+    <p class="price">{{price()}} €</p>
+    <atom-button class="btn-outstanding" label="Comprar ahora" icon="cart"/>
     }
     
 </div>

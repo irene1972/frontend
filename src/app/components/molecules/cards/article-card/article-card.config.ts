@@ -1,1 +1,1 @@
-export type ArticleCardVariant = 'minimal' | 'normal' | "express"
+export type ArticleCardVariant = 'minimal' | 'normal' | "outstanding"
