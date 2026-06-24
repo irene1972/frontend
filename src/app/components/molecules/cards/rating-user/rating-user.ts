@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Icon } from '../../../atoms/icon/icon';
+import { IRating } from '../../../../interfaces/i-rating';
 
 @Component({
   selector: 'app-rating-user',
@@ -8,5 +9,5 @@ import { Icon } from '../../../atoms/icon/icon';
   styleUrl: './rating-user.css',
 })
 export class RatingUser {
-
+  @Input() valoracion!:IRating;
 }

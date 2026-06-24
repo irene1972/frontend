@@ -7,7 +7,7 @@
     <div class="container">
         @for(valoracion of detalleValoraciones; track valoracion.id){
             <div class="rating-user">
-                <app-rating-user></app-rating-user>
+                <app-rating-user [valoracion]="valoracion"></app-rating-user>
             </div>
         }@empty{
             <p>No hay datos</p>
