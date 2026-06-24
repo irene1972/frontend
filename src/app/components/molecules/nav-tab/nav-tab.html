@@ -1,1 +1,7 @@
-<p>nav-tab works!</p>
+
+<nav class="nav-tab">
+    @for (tab of tabs(); track $index) {
+        <a [routerLink]="tab.route" (click)="activeTab($index)">{{ tab.label }}</a>
+    }
+    <div class="tab-line"></div>    
+</nav>
