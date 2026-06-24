@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { Sidebar } from '../../components/organisms/sidebar/sidebar';
 import { SidebarVariant } from '../../components/organisms/sidebar/sidebar.config';
 import { Breadcrum } from "../../components/molecules/breadcrum/breadcrum";
@@ -9,10 +9,11 @@ import { NavTabOptions } from '../../components/molecules/nav-tab/nav-tab.config
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
+import { ArticleCard } from "../../components/molecules/cards/article-card/article-card";
 
 @Component({
   selector: 'app-seller-profile',
-  imports: [ Sidebar, Breadcrum, UserContact, StatusCard, NavTab],
+  imports: [Sidebar, Breadcrum, UserContact, StatusCard, NavTab, ArticleCard],
   templateUrl: './seller-profile.html',
   styleUrl: './seller-profile.css',
 })
@@ -24,7 +25,7 @@ export class SellerProfile {
 
   private router = inject(Router);
   private actived_route = inject(ActivatedRoute);
-
+  protected articles = signal<number[]>([1,2,3,4,5,6,7,8,9]);
   
  
   //Servicios

@@ -11,7 +11,7 @@
     <div class="d-flex flex-column flex-grow-1 p-4 gap-4">
         <molecule-breadcrum [items]="breadcrumbItems()"></molecule-breadcrum>
         <molecule-user-contact name="Carlos" last_name="Martinez"/>
-        <div class="d-flex flex-row justify-content-between gap-3">
+        <div class="d-flex flex-row justify-content-between gap-4">
             <molecule-status-card class="d-flex flex-grow-1" text="PUBLICADOS"/>
             <molecule-status-card class="d-flex flex-grow-1" text="VENDIDOS"/>
             <molecule-status-card class="d-flex flex-grow-1" text="VALORACIÓN"/>
@@ -19,8 +19,12 @@
         <molecule-nav-tab [tabs]="sellerTabs()"/>
         @if(activeTab() === QUERYPARAM_ON_SELL)
         {
-            <div>
-                
+            <div class="row row-cols-1 row-cols-md-3 g-2 m-0">
+                @for (article of articles(); track article) {
+                <div class="col">
+                    <molecule-article-card [id]="article" />
+                </div>
+                }
             </div>
         } 
         @else if(activeTab() === QUERYPARAM_RATINGS)
