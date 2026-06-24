@@ -34,3 +34,6 @@ a.active {
 .contenedor div{
     margin: 1rem 0;
 }
+.empty{
+    margin-top: 1rem;
+}

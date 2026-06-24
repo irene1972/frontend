@@ -15,7 +15,7 @@
 
   @if (activeTab === 'articulos') {
   <div>
-    <p>6 artículos guardados</p>
+    <p>{{favoritos.length}} artículos guardados</p>
 
     <div class="contenedor">
       
@@ -35,7 +35,7 @@
       ></app-favorite-article>
       
       }@empty{
-        <p>No hay productos</p>
+        <p>No hay productos favoritos</p>
       }
       
     </div>
