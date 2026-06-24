@@ -14,12 +14,13 @@ import { Button } from "../../../atoms/button/button";
   styleUrl: './article-card.css',
 })
 export class ArticleCard {
-  public variant  = input<ArticleCardVariant>('outstanding')
-  public like     = input<boolean>(true);
-  public state    = input<BadgeCondition>('Como nuevo');
-  public img      = input<string>("https://placehold.co/400x200");
-  public price    = input<number>(5070);
-  public name     = input<string>("Article Name");
-  public location = input<string>("Madrid");
+  public variant   = input<ArticleCardVariant>('normal')
+  public like      = input<boolean>(true);
+  public state     = input<BadgeCondition>('Como nuevo');
+  public img       = input<string>("https://placehold.co/400x200");
+  public price_old = input<number>(770);
+  public price     = input<number>(650);
+  public name      = input<string>("Article Name");
+  public location  = input<string>("Madrid");
   
 }

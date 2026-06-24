@@ -15,7 +15,7 @@ export type BadgeEstado = 'Borrador' | 'Publicado' | 'En_revision' | 'Retirado' 
 
 export type BadgeRol = 'Usuario' | 'Moderador' | 'Administrador';
 
-export type BadgeVariant = BadgeCondition | BadgeEstado | BadgeRol | 'Bloqueado' | 'Verificado';
+export type BadgeVariant = BadgeCondition | BadgeEstado | BadgeRol | 'Bloqueado' | 'Verificado' | 'discount';
 
 
 export type BadgeIcon = 'shield-check' | 'lightning-charge' | 'chat' | 'none';
