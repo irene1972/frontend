@@ -10,29 +10,42 @@ import { RatingsService } from '../../../services/ratings-service';
 })
 export class UserSidebar {
   mensaje: string = '';
-    tipo: boolean = false;
-    user:any={};
-    ratingsService = inject(RatingsService);
-    ratings:any={};
+  tipo: boolean = false;
+  user: any = {};
+  ratingsService = inject(RatingsService);
+  ratings: any = {};
+  puntuacion_media = '';
 
-    constructor(private cd: ChangeDetectorRef) { }
+  constructor(private cd: ChangeDetectorRef) { }
 
-    ngOnInit(){
+  ngOnInit() {
     const usuarioString = localStorage.getItem('usuarioBuy&Sell');
     if (usuarioString) {
       this.user = JSON.parse(usuarioString);
-      
-      this.ratingsService.getRatingsByUser(this.user.id).subscribe((data) => {
-      if (data.error) {
-        this.mensaje = data.error;
-        return;
-      } else {
-        console.log(data);
-        this.ratings = data;
-        this.cd.detectChanges();
-      }
-    });
+
+      this.ratingsService.getRatingsByUser(this.user.id).subscribe({
+        next: (data) => {
+          if (data.error) {
+            this.mensaje = data.error;
+            return;
+          } else {
+            console.log(data);
+            this.ratings = data;
+            this.puntuacion_media = this.ratings.puntuacion_media.toFixed(1);
+            this.cd.detectChanges();
+          }
+        },
+        error: (err) => {
+          console.error(err);
+
+        }
+      });
+
 
     }
+  }
+  logout() {
+    localStorage.removeItem('usuarioBuy&Sell');
+    window.location.href = '/login';
   }
 }

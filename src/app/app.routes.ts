@@ -38,6 +38,8 @@ import { Favorites } from './components/organisms/user/favorites/favorites';
 import { IncidentsComponentComponent } from './components/organisms/moderator/incidents-component/incidents-component.component';
 import { HistoricModeratorComponentComponent } from './components/organisms/moderator/historic-moderator-component/historic-moderator-component.component';
 import { ModeratorComponent } from './pages/moderator/moderator.component';
+import { Sales } from './components/organisms/user/sales/sales';
+import { EditArticle } from './components/organisms/user/edit-article/edit-article';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -65,10 +67,19 @@ export const routes: Routes = [
                     {
                         path: 'favorites',
                         component: Favorites
+                    },
+                    {
+                        path: 'sales',
+                        component: Sales
+                    },
+                    {
+                        path: 'article/edit/:id',
+                        component: EditArticle
                     }
                 ]
              },
-            /*{ path: 'profile/:userID', component: UserProfileComponentComponent },*/
+            /*{ path: 'profile/:userID', component: UserProfileComponentComponent }, */
+
             { path: 'edit-profile/:userID', component: UserFormComponentComponent },
             { path: 'favorites', component: FavoritesComponentComponent },
             //reportes

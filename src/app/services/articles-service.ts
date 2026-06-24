@@ -12,6 +12,10 @@ export class ArticlesService {
   httpClient = inject(HttpClient);
 
   getArticlesByUser(user_id: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + `get-all/usuario/${user_id}`);
+  }
+
+  getCountArticlesByUser(user_id: number): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl + `usuario/${user_id}/publicados`);
   }
 
@@ -26,4 +30,16 @@ export class ArticlesService {
   getArticleById(id: number): Observable<any> {
     return this.httpClient.get<any>(this.baseUrl + id);
   }
+
+
+  updateArticleAndCP(id:number,body:any):Observable<any>{
+    return this.httpClient.put(this.baseUrl + `${id}/cp`,body,{})
+  }
+
+  deleteArticle(id: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + `${id}`, {});
+  }
 }
+
+
+

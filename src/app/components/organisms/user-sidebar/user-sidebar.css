@@ -56,7 +56,6 @@ i.bi-star-fill{
 }
 .nav-sidebar{
     margin: 1rem 0rem;
-    color:red;
 }
 a{
     display: flex;
@@ -72,4 +71,8 @@ a p{
 }
 .ajustes{
     padding-top: 1rem;
+}
+.cerrar-sesion{
+    cursor: pointer;
+    color: red;
 }

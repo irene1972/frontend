@@ -5,7 +5,7 @@
             <p class="text-admin">User</p>
             <div class="stars">
                 <i class="bi bi-star-fill"></i>
-                <p>{{ratings.puntuacion_media.toFixed(1)}} <span>({{ratings.total_valoraciones}})</span> </p>
+                <p>{{puntuacion_media}} <span>({{ratings.total_valoraciones}})</span> </p>
             </div>
 
         </div>
@@ -16,23 +16,23 @@
             <p>Mi perfil</p>
         </a>
         <a routerLinkActive="active">
-            <i class="bi bi-people"></i>
+            <i class="bi bi-bell"></i>
             <p>Notificaciones</p>
         </a>
-        <a routerLinkActive="active">
-            <i class="bi bi-grid-fill"></i>
+        <a [routerLink]="['/user/panel/sales']" routerLinkActive="active">
+            <i class="bi bi-receipt"></i>
             <p>Ventas</p>
         </a>
         <a routerLinkActive="active">
-            <i class="bi bi-bar-chart-fill"></i>
+            <i class="bi bi-handbag"></i>
             <p>Compras</p>
         </a>
         <a routerLinkActive="active">
-            <i class="bi bi-flag"></i>
+            <i class="bi bi-chat"></i>
             <p>Mensajes</p>
         </a>
         <a class="historial" [routerLink]="['/user/panel/favorites']" routerLinkActive="active">
-            <i class="bi bi-clock"></i>
+            <i class="bi bi-heart"></i>
             <p>Favoritos</p>
         </a>
         <a class="mis-valoraciones" routerLinkActive="active">
@@ -42,6 +42,9 @@
         <a class="ajustes"  routerLinkActive="active">
             <i class="bi bi-gear"></i>
             <p>Ajustes</p>
+        </a>
+        <a class="cerrar-sesion"  (click)="logout()">
+            <p>Cerrar sesión</p>
         </a>
     </nav>
 </div>

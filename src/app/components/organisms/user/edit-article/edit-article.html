@@ -1,0 +1,129 @@
+<section>
+    <div class="header">
+        <div class="navegador">
+            <a [routerLink]="['/user/panel/sales']">
+                <div class="atras">
+                    <</div>
+            </a>
+            <div class="alante">></div>
+        </div>
+        <div class="ruta">
+            <p class="panel">Inicio</p>
+            <div>></div>
+            <p class="panel">Mis ventas</p>
+            <div>></div>
+            <p>Editar artículo</p>
+        </div>
+    </div>
+    <div class="contenedor">
+        <h1>Editar artículo</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Fotografías</h5>
+                <div class="fotos">
+                    @for(foto of fotos;track foto.id){
+                        <img src="{{foto.url_foto}}" class="card-img-top" alt="...">
+                    }@empty{
+                        <p>No hay fotos</p>
+                    }
+                    
+                </div>
+            </div>
+
+
+        </div>
+        <div [class.text-danger]="tipo===false" [class.text-success]="tipo===true">{{mensaje}}</div>
+        <form [formGroup]="miForm" (ngSubmit)="loadData()">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Datos del artículo</h5>
+
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" id="titulo" class="form-control" formControlName="titulo">
+
+                        @if(titulo?.touched && titulo?.hasError('required')){
+                        <div class="text-danger">El campo es requerido</div>
+                        }@else if(titulo?.touched && titulo?.hasError('minlength')){
+                        <div class="text-danger">El campo debe tener al menos 3 carácteres</div>
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria">Categoría</label>
+                        <select id="categoria" class="form-control" formControlName="categoria">
+                            @for(categoria of categorias;track categoria.id){
+                                <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+                            }
+                            
+                        </select>
+                        @if(categoria?.touched && categoria?.hasError('required')){
+                        <div class="text-danger">El campo es requerido</div>
+                        }
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea id="descripcion" class="form-control" formControlName="descripcion"></textarea>
+                        @if(descripcion?.touched && descripcion?.hasError('required')){
+                        <div class="text-danger">El campo es requerido</div>
+                        }@else if(descripcion?.touched && descripcion?.hasError('minlength')){
+                        <div class="text-danger">El campo debe tener al menos 3 carácteres</div>
+                        }
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Precio y ubicación</h5>
+
+                    <div class="precio-ubicacion">
+                        <div class="form-group">
+                        <label for="precio">Precio (EUR)</label>
+                        <input type="number" id="precio" class="form-control" formControlName="precio">
+
+                        @if(precio?.touched && precio?.hasError('required')){
+                        <div class="text-danger">El campo es requerido</div>
+                        }
+                    </div>
+
+                    <div class="form-group ubicacion">
+                        <label for="ubicacion">Código postal</label>
+                        <input 
+                            type="string" 
+                            id="ubicacion" 
+                            class="form-control" 
+                            formControlName="ubicacion"
+                            (keydown)="hideProvincia()"
+                            (blur)="putProvincia()"
+                            >
+
+                        @if(ubicacion?.touched && ubicacion?.hasError('required')){
+                        <div class="text-danger">El campo es requerido</div>
+                        }
+                    </div>
+
+                    <div class="form-group ubicacion">
+                        <label class="label-provincia" for="provincia">Provincia</label>
+                        <input 
+                            type="string" 
+                            id="provincia" 
+                            class="form-control provincia" 
+                            formControlName="provincia"
+                            >
+                    </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="boton-guardar">
+                <button type="submit" class="btn btn-primary guardar">Guardar cambios</button>
+            </div>
+            
+        </form>
+
+    </div>
+</section>

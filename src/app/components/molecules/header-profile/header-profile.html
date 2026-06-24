@@ -3,8 +3,10 @@
     <div class="profile">
         <p class="text-profile">{{username()}}</p>
         <div class="stars">
-            <atom-icon variant="star" size="1rem"></atom-icon>
-            <p>{{rating_average()}} <span>({{rating_total()}})</span> </p>
+            @if(role() === "user") {
+                <atom-icon variant="star" size="1rem"></atom-icon>
+                <p>{{rating_average()}} <span>({{rating_total()}})</span> </p>
+            }
         </div>
     </div>
 </div>

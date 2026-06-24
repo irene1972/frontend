@@ -1,6 +1,6 @@
-<section class="admin-dashboard">
+<section>
 
-  <div class="dashboard-header">
+  <div>
     <h1>Mis favoritos</h1>
   </div>
   <div class="tabs">
@@ -15,55 +15,29 @@
 
   @if (activeTab === 'articulos') {
   <div>
-    <p>6 artículos guardados</p>
+    <p>{{favoritos.length}} artículos guardados</p>
 
     <div class="contenedor">
-      <!--@for (article of articles; track article.id) {-->
+      
+      @for (favorito of favoritos; track favorito.id) {
       <app-favorite-article
-        texto_articulo="NVIDIA RTX 4070 Ti Super 16GB GDDR6X" 
-        ubicacion="León" 
-        iniciales="MR" 
-        nombre="Marta R." 
-        estrellas="4.8" 
-        valoraciones="124" 
+        [texto_articulo]="favorito.titulo" 
+        [ubicacion]="(favorito.provincia.nombre)?favorito.provincia.nombre:''" 
+        [iniciales]="(favorito.nombre_vendedor)?favorito.nombre_vendedor[0]:'' + (favorito.apellidos_vendedor)?favorito.apellidos_vendedor?.[0]:''" 
+        [nombre]="favorito.nombre_vendedor + ' ' + favorito.apellidos_vendedor?.[0] + '.'" 
+        [estrellas]="(favorito.puntuacion)?favorito.puntuacion.slice(0,3):'0'" 
+        [valoraciones]="(favorito.cantidad_valoraciones)?favorito.cantidad_valoraciones:0" 
         texto_boton="Ver detalle" 
-        [articleId]="2" 
+        [articleId]="favorito.id" 
+        [precio]="favorito.precio"
+        [url_foto]="(favorito.url_foto)?favorito.url_foto:'/imgs/no-photo.jpg'"
         (clicar)="irADetalleArticulo($event)" 
       ></app-favorite-article>
-      <app-favorite-article
-        texto_articulo="NVIDIA RTX 4070 Ti Super 16GB GDDR6X" 
-        ubicacion="León" 
-        iniciales="MR" 
-        nombre="Marta R." 
-        estrellas="4.8" 
-        valoraciones="124" 
-        texto_boton="Ver detalle" 
-        [articleId]="2" 
-        (clicar)="irADetalleArticulo($event)" 
-      ></app-favorite-article>
-      <app-favorite-article
-        texto_articulo="NVIDIA RTX 4070 Ti Super 16GB GDDR6X" 
-        ubicacion="León" 
-        iniciales="MR" 
-        nombre="Marta R." 
-        estrellas="4.8" 
-        valoraciones="124" 
-        texto_boton="Ver detalle" 
-        [articleId]="2" 
-        (clicar)="irADetalleArticulo($event)" 
-      ></app-favorite-article>
-      <app-favorite-article
-        texto_articulo="NVIDIA RTX 4070 Ti Super 16GB GDDR6X" 
-        ubicacion="León" 
-        iniciales="MR" 
-        nombre="Marta R." 
-        estrellas="4.8" 
-        valoraciones="124" 
-        texto_boton="Ver detalle" 
-        [articleId]="2" 
-        (clicar)="irADetalleArticulo($event)" 
-      ></app-favorite-article>
-      <!--}-->
+      
+      }@empty{
+        <p>No hay productos favoritos</p>
+      }
+      
     </div>
   </div>
   }

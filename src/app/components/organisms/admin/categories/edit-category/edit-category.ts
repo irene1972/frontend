@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, computed, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ICategory } from '../../../../../interfaces/i-category';
 import { CategoriesService } from '../../../../../services/categories-service';
 import { Breadcrum } from '../../../../molecules/breadcrum/breadcrum';
@@ -15,7 +15,7 @@ export class EditCategory {
   miForm: FormGroup;
   mensaje: string = '';
   tipo: boolean = false;
-  id:string='';
+  id: string = '';
   categoria!: ICategory;
   categoriesService = inject(CategoriesService);
   imagenFile!: File | null;
@@ -29,7 +29,8 @@ export class EditCategory {
       descripcion: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
-      ])
+      ]),
+      imagen: new FormControl('', []),
     }, []);
   }
 
@@ -41,29 +42,35 @@ export class EditCategory {
     return this.miForm.get('descripcion');
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')!;
     console.log(this.id);
-    this.categoriesService.getCategoryById(Number(this.id)).subscribe((data) => {
-      console.log(data);
 
-      if (data.error) {
-        this.mensaje = data.error;
+    this.categoriesService.getCategoryById(Number(this.id)).subscribe({
+      next: (data) => {
+        console.log(data);
+        if (data.error) {
+          this.mensaje = data.error;
           return;
-      } else {
-        this.categoria = data;
-        console.log(this.categoria);
-        this.cd.detectChanges();
-        this.miForm.patchValue({
-          nombre: this.categoria?.nombre,
-          descripcion: this.categoria?.descripcion
-        });
-       
-        
+        } else {
+          this.categoria = data;
+          console.log(this.categoria);
+          this.cd.detectChanges();
+          this.miForm.patchValue({
+            nombre: this.categoria?.nombre,
+            descripcion: this.categoria?.descripcion
+          });
+
+
+        }
+      },
+      error: (err) => {
+        console.error(err);
+
       }
     });
   }
-  loadData(){
+  loadData() {
     if (!this.miForm.valid) {
       this.miForm.markAllAsTouched();
       return;
@@ -78,16 +85,26 @@ export class EditCategory {
     if (this.imagenFile) {
       formData.append('icono', this.imagenFile);
     }
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    } 
 
-    this.categoriesService.updateCategory(Number(this.id),formData).subscribe((data) => {
-      if (data.error) {
-        this.mensaje = data.error;
-        return;
-      } else {
-        this.mensaje=data.mensaje;
-        window.location.href='/admin/panel/categories';
-      }
-    });
+        this.categoriesService.updateCategory(Number(this.id),formData).subscribe({
+          next: (data) => {
+            if (data.error) {
+            this.mensaje = data.error;
+            return;
+          } else {
+            this.mensaje=data.mensaje;
+            window.location.href='/admin/panel/categories';
+          }
+          },
+          error: (err) => {
+            console.error(err);
+            
+          }
+        });
+        
   }
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -99,8 +116,8 @@ export class EditCategory {
   }
   protected breadcrumbItems = computed(() => [
     { label: 'Panel', route: '/admin/panel/' },
-    { label: 'Categorías', route: '/admin/panel/categories'},
-    { label: 'Editar', route: '/admin/panel/categories/edit'}
+    { label: 'Categorías', route: '/admin/panel/categories' },
+    { label: 'Editar', route: '/admin/panel/categories/edit' }
   ]);
 
 }

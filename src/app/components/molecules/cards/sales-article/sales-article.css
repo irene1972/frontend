@@ -1,0 +1,151 @@
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color:#0B1C30;
+
+}
+
+/* Lista usuarios */
+.card {
+        border: 1px solid #E5EEFF;
+        border-radius: 10px;
+    }
+
+.card-sales {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cont {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    .iniciales {
+        display: flex;
+        background: #003594;
+        color: white;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        min-width: 3rem;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1rem;
+        font-weight: 600;
+    }
+
+    .user {
+        h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        p {
+            margin: .25rem 0 0;
+            color: #6b7280;
+            font-size: .9rem;
+        }
+    }
+}
+
+/* Labels */
+
+.label {
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    padding: .3rem .45rem;
+    font-size: .7rem;
+    margin-right: 1rem;
+    margin: 0;
+}
+
+.label {
+    background: #fee2e2;
+    color: #b91c1c;
+    margin-top: .5rem;
+    font-size: .6rem;
+    font-weight: bold;
+}
+
+.article {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+}
+.card-title{
+    display: inline-block;
+    margin-bottom: .5rem !important;
+}
+p.card-subtitle {
+    margin: 0 !important;
+    font-size: .8rem !important;
+}
+
+.acciones {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 1rem;
+    color: #444652;
+    font-size: .9rem;
+    font-weight: bold;
+}
+button{
+    border:none;
+    background-color: white;
+    font-weight: bold;
+}
+.editar button {
+    color: #003594;
+}
+
+.eliminar button {
+    color: #DC2626;
+    border-left: 1px solid #CBD2DC;
+    padding-left: 1.2rem;
+}
+
+.precio-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.precio {
+    margin: 0;
+    color: #003594;
+    font-weight: bold;
+}
+
+.publicado {
+    background-color: #DDF3E1;
+    color: #1E7B34;
+}
+
+.revision {
+    background-color: #FFF3D6;
+    color: #9A6700;
+}
+
+.vendido {
+    background-color: #EFF4FF;
+    color: #747683;
+}
+
+.generico {
+    background-color: #EFF4FF;
+    color: gray;
+    text-transform: uppercase;
+}
+/* Mobile */
+@media (max-width: 768px) {
+    .editar,.pausar,.eliminar{
+        display: none;
+    }
+    
+}

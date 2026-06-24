@@ -41,8 +41,10 @@ export class UsuariosRoles {
 }
 
   ngOnInit(){
-    this.usersService.getAllUsers().subscribe((data) => {
-      if (data.error) {
+
+    this.usersService.getAllUsers().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
@@ -50,10 +52,16 @@ export class UsuariosRoles {
         this.usuarios = data;
         this.cd.detectChanges();
       }
+      },
+      error: (err) => {
+        console.error(err);
+        
+      }
     });
 
-    this.usersService.getCount().subscribe((data) => {
-      if (data.error) {
+    this.usersService.getCount().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
@@ -61,10 +69,16 @@ export class UsuariosRoles {
         this.usersCount = data.count;
         this.cd.detectChanges();
       }
+      },
+      error: (err) => {
+        console.error(err);
+        
+      }
     });
 
-    this.usersService.getCountRol().subscribe((data) => {
-      if (data.error) {
+    this.usersService.getCountRol().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
@@ -72,16 +86,27 @@ export class UsuariosRoles {
         this.usersCountRol = data.count;
         this.cd.detectChanges();
       }
+      },
+      error: (err) => {
+        console.error(err);
+        
+      }
     });
 
-    this.usersService.getCountBlocked().subscribe((data) => {
-      if (data.error) {
+    this.usersService.getCountBlocked().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
         console.log(data);
         this.usersCountBlocked = data.count;
         this.cd.detectChanges();
+      }
+      },
+      error: (err) => {
+        console.error(err);
+        
       }
     });
 
