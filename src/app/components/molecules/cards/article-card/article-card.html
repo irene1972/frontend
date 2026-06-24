@@ -1,19 +1,21 @@
 <div class="article-card">
-    <div class="article-img">
+    <div class="image">
         <img [src]="img()" alt="">
         <atom-badge [variant]="state()" class="article-badge desktop"/>
         @if(like()){
-            <atom-button-icon variant="like" size="1rem" class="article-like"/>
+            <atom-button-icon variant="like" size="1rem" class="article-like" (buttonIonClick)="selectArticle($event)"/>
         }
     </div>
     <atom-badge [variant]="state()" class="article-badge mobile"/>
     @if(variant() === 'minimal'){
-    <p>{{price()}} €</p>
+    <p class="price">{{price()}} €</p>
     <h2 >{{name()}}</h2>
+    @if(location()) {
     <div class="article-location">
-        <i class="bi bi-geo-alt"></i>
-        <p>{{location()}}</p>
-    </div>
+            <i class="bi bi-geo-alt"></i>
+            <p>{{location()}}</p>
+        </div>
+    }
     }
     @else if (variant() === 'normal') {
     <h2 >{{name()}}</h2>
@@ -21,16 +23,36 @@
         <i class="bi bi-geo-alt"></i>
         <p>{{location()}}</p>
     </div>
-    <div id="card-separator"></div>
-    <div>vendedor</div>
-    <div>
-        <p>{{price()}} €</p>
+    <div class="separator"></div>
+    <molecule-user-card [shadow]="false" [transparent]="true">
+        <div class="d-flex flex-row gap-2">
+            <atom-icon variant="star" size="1rem"></atom-icon>
+            <p>4.9 · 128 valoraciones</p>
+        </div>
+    </molecule-user-card>
+    <div class="detail d-flex flex-row align-items-center">
+        <div class="content">
+            <div class="d-flex flex-row gap-2">
+                @if(price_old()){
+                <p class="price_old"> {{price_old()}} €</p> 
+                <atom-badge variant="rebajado"></atom-badge>
+                }
+                
+            </div>
+            <p class="price">{{price()}} €</p>
+        </div>
+        <div class="flex-grow-1"></div>
+        <a href="" >
+
+        </a>
+        <atom-button class="p-4" config_type="outline" label="Ver detalle" (click)="navArticleDetail()"></atom-button>
     </div>
     }
-    @else if (variant() === 'express') {
-
+    @else if (variant() === 'outstanding') {
+    <h2 >{{name()}}</h2>
+    <p class="price">{{price()}} €</p>
+    <atom-button class="btn-outstanding" label="Comprar ahora" icon="cart"/>
     }
-    
 </div>
 
 

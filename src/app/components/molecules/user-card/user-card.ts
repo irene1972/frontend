@@ -1,20 +1,19 @@
 import { Component, input } from '@angular/core';
 import { Icon } from "../../atoms/icon/icon";
 import { Badge } from "../../atoms/badge/badge";
-import { ɵEmptyOutletComponent } from "@angular/router";
 import { BadgeVariant } from '../../atoms/badge/badge.types';
 
 @Component({
   selector: 'molecule-user-card',
-  imports: [Icon, Badge, ɵEmptyOutletComponent],
+  imports: [Icon, Badge],
   templateUrl: './user-card.html',
   styleUrl: './user-card.css',
 })
 export class UserCard {
   public name        = input<string>("Carlos");
   public last_name   = input<string>("Martínez");
-  public role        = input<BadgeVariant | null>("Usuario");
-  public arrow       = input<boolean>(true);
-  public shadow      = input<boolean>(true);
-  public transparent = input<boolean>(false);
+  public role        = input<BadgeVariant | null>();
+  public arrow       = input<boolean>(false);
+  public shadow      = input<boolean>(false);
+  public transparent = input<boolean>(true);
 }
