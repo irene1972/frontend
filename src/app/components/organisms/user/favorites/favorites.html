@@ -22,7 +22,7 @@
       @for (favorito of favoritos; track favorito.id) {
       <app-favorite-article
         [texto_articulo]="favorito.titulo" 
-        ubicacion="León" 
+        [ubicacion]="(favorito.provincia.nombre)?favorito.provincia.nombre:''" 
         [iniciales]="(favorito.nombre_vendedor)?favorito.nombre_vendedor[0]:'' + (favorito.apellidos_vendedor)?favorito.apellidos_vendedor?.[0]:''" 
         [nombre]="favorito.nombre_vendedor + ' ' + favorito.apellidos_vendedor?.[0] + '.'" 
         [estrellas]="(favorito.puntuacion)?favorito.puntuacion.slice(0,3):'0'" 

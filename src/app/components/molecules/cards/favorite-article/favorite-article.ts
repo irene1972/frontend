@@ -10,7 +10,7 @@ import { Button } from '../../../atoms/button/button';
 })
 export class FavoriteArticle {
   @Input() texto_articulo!:string;
-  @Input() ubicacion!:string;
+  @Input() ubicacion!:string | undefined;
   @Input() iniciales!:string | undefined;
   @Input() nombre!:string | undefined;
   @Input() estrellas!:string | undefined;

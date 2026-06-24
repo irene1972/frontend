@@ -15,4 +15,5 @@ export interface IFavorite {
     cantidad_valoraciones?:number;
     puntuacion?:string;
     url_foto?:string;
+    provincia?:any;
 }
