@@ -37,7 +37,7 @@ export class ArticlesService {
   }
 
   deleteArticle(id: number): Observable<any> {
-    return this.httpClient.put(this.baseUrl + `borrado-logico/${id}`, {});
+    return this.httpClient.delete(this.baseUrl + `${id}`, {});
   }
 }
 
