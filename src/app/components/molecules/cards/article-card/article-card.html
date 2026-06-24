@@ -1,0 +1,36 @@
+<div class="article-card">
+    <div class="article-img">
+        <img [src]="img()" alt="">
+        <atom-badge [variant]="state()" class="article-badge desktop"/>
+        @if(like()){
+            <atom-button-icon variant="like" size="1rem" class="article-like"/>
+        }
+    </div>
+    <atom-badge [variant]="state()" class="article-badge mobile"/>
+    @if(variant() === 'minimal'){
+    <p>{{price()}} €</p>
+    <h2 >{{name()}}</h2>
+    <div class="article-location">
+        <i class="bi bi-geo-alt"></i>
+        <p>{{location()}}</p>
+    </div>
+    }
+    @else if (variant() === 'normal') {
+    <h2 >{{name()}}</h2>
+    <div class="article-location">
+        <i class="bi bi-geo-alt"></i>
+        <p>{{location()}}</p>
+    </div>
+    <div id="card-separator"></div>
+    <div>vendedor</div>
+    <div>
+        <p>{{price()}} €</p>
+    </div>
+    }
+    @else if (variant() === 'express') {
+
+    }
+    
+</div>
+
+

@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, model, output, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { NavTabNotify, NavTabOptions } from './nav-tab.config';
+import { NavTabOptions } from './nav-tab.config';
 import { Icon } from '../../atoms/icon/icon';
 
 @Component({

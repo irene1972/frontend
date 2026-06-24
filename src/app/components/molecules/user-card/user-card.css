@@ -1,0 +1,33 @@
+.user-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-style: solid;
+    border-color: var(--surface-container);
+    border-width: 1px;
+    border-radius: 1rem;
+    box-shadow: none;
+    background-color: var(--surface-card);
+    
+}
+
+.user-card.background {
+    background-color: transparent;
+    border: none;
+}
+
+.user-card.boxshadow {
+    box-shadow: 0 3px 5px color-mix(in srgb, var(--text-secondary) 30%, transparent);
+}
+
+.user-name {
+    color: var(--text-primary);
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.user-arrow {
+    font-size: 2rem;
+     color: var(--text-tertiary);
+}
