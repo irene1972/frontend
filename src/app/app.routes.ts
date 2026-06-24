@@ -6,7 +6,6 @@ import { UserFormComponentComponent } from './pages/user-form-component/user-for
 import { ProductViewComponentComponent } from './pages/product-view-component/product-view-component.component';
 import { ProductFormComponentComponent } from './pages/product-form-component/product-form-component.component';
 import { ProductCheckoutComponentComponent } from './pages/product-checkout-component/product-checkout-component.component';
-import { UserProfileComponentComponent } from './pages/user-profile-component/user-profile-component.component';
 import { FavoritesComponentComponent } from './pages/favorites-component/favorites-component.component';
 import { MessagesComponentComponent } from './pages/messages-component/messages-component.component';
 import { ModeratorPanelComponentComponent } from './components/organisms/moderator/moderator-panel-component/moderator-panel-component.component';
@@ -33,9 +32,14 @@ import { Settings } from './components/organisms/admin/settings/settings';
 import { DetalleUsuario } from './components/organisms/admin/detalle-usuario/detalle-usuario';
 import { CreateCategory } from './components/organisms/admin/categories/create-category/create-category';
 import { EditCategory } from './components/organisms/admin/categories/edit-category/edit-category';
+import { UserPanel } from './pages/user-panel/user-panel';
+import { Profile } from './components/organisms/user/profile/profile';
+import { Favorites } from './components/organisms/user/favorites/favorites';
 import { IncidentsComponentComponent } from './components/organisms/moderator/incidents-component/incidents-component.component';
 import { HistoricModeratorComponentComponent } from './components/organisms/moderator/historic-moderator-component/historic-moderator-component.component';
 import { ModeratorComponent } from './pages/moderator/moderator.component';
+import { Sales } from './components/organisms/user/sales/sales';
+import { EditArticle } from './components/organisms/user/edit-article/edit-article';
 import { SellerProfile } from './pages/seller-profile/seller-profile';
 
 export const routes: Routes = [
@@ -55,7 +59,29 @@ export const routes: Routes = [
             { path: 'product/:productID', component: ProductViewComponentComponent },
             { path: 'product/edit/:productID', component: ProductFormComponentComponent },
             { path: 'product/checkout/:productID', component: ProductCheckoutComponentComponent },
-            { path: 'profile/:userID', component: UserProfileComponentComponent },
+            { path: 'panel', component: UserPanel,
+                children: [
+                    { path: '', pathMatch: 'full', redirectTo: 'profile' },
+                    {
+                        path: 'profile',
+                        component: Profile
+                    },
+                    {
+                        path: 'favorites',
+                        component: Favorites
+                    },
+                    {
+                        path: 'sales',
+                        component: Sales
+                    },
+                    {
+                        path: 'article/edit/:id',
+                        component: EditArticle
+                    }
+                ]
+             },
+            /*{ path: 'profile/:userID', component: UserProfileComponentComponent }, */
+
             { path: 'edit-profile/:userID', component: UserFormComponentComponent },
             { path: 'favorites', component: FavoritesComponentComponent },
             //reportes

@@ -51,9 +51,10 @@ export class HomeComponentComponent {
   }
 
   ngOnInit(){
-    
-    this.articlesService.getArticlesRecentlyUploaded().subscribe((data) => {
-      if (data.error) {
+
+    this.articlesService.getArticlesRecentlyUploaded().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
@@ -61,15 +62,27 @@ export class HomeComponentComponent {
         this.recents = data;
         this.cd.detectChanges();
       }
+      },
+      error: (err) => {
+        console.error(err);
+        
+      }
     });
-    this.articlesService.getArticlesBestSellers().subscribe((data) => {
-      if (data.error) {
+
+    this.articlesService.getArticlesBestSellers().subscribe({
+      next: (data) => {
+        if (data.error) {
         this.mensaje = data.error;
         return;
       } else {
         console.log(data.articulos);
         this.bestSellers = data.articulos;
         this.cd.detectChanges();
+      }
+      },
+      error: (err) => {
+        console.error(err);
+        
       }
     });
     

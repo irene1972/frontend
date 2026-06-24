@@ -89,7 +89,8 @@ button {
 }
 
 .recien img {
-    border-radius: 5px;
+    border-radius: 10px;
+    max-height: 100px;
 }
 
 .bi-geo-alt {

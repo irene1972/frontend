@@ -1,0 +1,65 @@
+section{
+    margin:3rem 2rem;
+}
+h1{
+    color:#0B1C30;
+    font-weight: bold;
+    font-size: 2rem;
+
+}
+a{
+    text-decoration: none;
+    color:#747683;
+    cursor: pointer;
+
+}
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgb(204, 201, 201);
+  max-width: 150px;
+}
+.flex{
+    display: flex;
+}
+tabs button{
+    color: #747683;
+
+}
+a.active {
+  color: #003594;
+  
+}
+
+.contenedor{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+app-favorite-article{
+  flex: 0 0 31%;
+  display: flex;
+}
+
+/******/
+/*Lista de usuarios*/
+.users {
+  margin-bottom: 1rem;
+
+  .card {
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+  }
+}
+
+  .conten p{
+    margin-bottom: 1.5rem;
+  }
+/*******/
+.users div{
+  margin-bottom: 1rem;
+}
+

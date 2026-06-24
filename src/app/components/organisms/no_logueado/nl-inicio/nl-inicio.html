@@ -7,7 +7,7 @@
         <div class="destac">
             @for (bestSeller of best_sellers.slice(0,4);track bestSeller.id) {
             <div class="card">
-                <img src="/imgs/technology.jpg" class="card-img-top" alt="{{bestSeller.titulo}}">
+                <img [src]="(bestSeller.url_foto)?bestSeller.url_foto:'/imgs/no-photo.jpg'" class="card-img-top" alt="{{bestSeller.titulo}}">
                 <div class="card-body">
                     <h5 class="card-title">{{bestSeller.precio}} €</h5>
                     <p class="card-text">{{bestSeller.titulo}}</p>
@@ -34,9 +34,9 @@
         <div class="recien">
             @for(recent of recents.slice(0,6);track recent.id){
             <div class="elemento">
-                <img src="/imgs/technology.jpg" alt="{{recent.titulo}}">
+                <img [src]="(recent.url_foto)?recent.url_foto:'/imgs/no-photo.jpg'" alt="{{recent.titulo}}">
                 <h6>{{recent.precio}} €</h6>
-                <p>{{recent.descripcion}}</p>
+                <p>{{recent.titulo}}</p>
             </div>
             }@empty{
                 <p>No hay datos</p>
