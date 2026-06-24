@@ -1,21 +1,23 @@
-import { Component, input, output, signal } from '@angular/core';
-import { NavTabPage } from './nav-tab.config';
-import { RouterLink } from '@angular/router';
+import { Component, computed, inject, input, model, output, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { NavTabNotify, NavTabOptions } from './nav-tab.config';
+import { Icon } from '../../atoms/icon/icon';
 
 @Component({
   selector: 'molecule-nav-tab',
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive, Icon],
   templateUrl: './nav-tab.html',
   styleUrl: './nav-tab.css',
 })
 export class NavTab {
-  public tabs = input<string[]>() 
+  public tabs = input<NavTabOptions[]>([])
   public click = output<number>();
+
+  private router = inject(Router);
 
   protected currentTab = signal<number>(0);
 
-  protected activeTab(index: number) {
-    this.click.emit(index)
-  
+  get currentRoute() {
+    return this.router.url.split('?')[0];
   }
 }
