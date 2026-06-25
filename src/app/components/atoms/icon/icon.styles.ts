@@ -90,6 +90,9 @@ export const STYLES: IconStylesMap= {
     profile: { 
         container: STYLE_SHAPE_CIRCLE                 
     },
+    'profile-square': { 
+        container: STYLE_SHAPE_CIRCLE                 
+    },
     'profile-primary-circle': { 
         container: STYLE_SHAPE_CIRCLE                  
     },
