@@ -36,12 +36,12 @@ export class ReportModal {
 
   onReportArticle() {
     this.closed.emit();
-    this.router.navigate(['/report/product', this.productId()]);
+    this.router.navigate(['/user/report/product', this.productId()]);
   }
 
   onReportUser() {
     this.closed.emit();
-    this.router.navigate(['/report/user', this.sellerId()]);
+    this.router.navigate(['/user/report/user', this.sellerId()]);
   }
 
   onCancel() {

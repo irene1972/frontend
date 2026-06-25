@@ -85,4 +85,4 @@
     </div>
 </div>
 
-<molecule-report-modal [isOpen]="showReportModal()" [productId]="productID()" [sellerId]="vendedorData()!.promedio.usuario_id" (closed)="showReportModal.set(false)"></molecule-report-modal>
+<molecule-report-modal [isOpen]="showReportModal()" [productId]="productID()" [sellerId]="product()?.usuarios_id" (closed)="showReportModal.set(false)"></molecule-report-modal>
