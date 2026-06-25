@@ -1,15 +1,22 @@
 .user-card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: start;
     border-style: solid;
     border-color: var(--surface-container);
     border-width: 1px;
     border-radius: 1rem;
     box-shadow: none;
     background-color: var(--surface-card);
-    
+}
+
+.user-card .content {
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .user-card.background {
@@ -21,13 +28,13 @@
     box-shadow: 0 3px 5px color-mix(in srgb, var(--text-secondary) 30%, transparent);
 }
 
-.user-name {
+.user-card .name {
     color: var(--text-primary);
     font-size: 2rem;
     font-weight: 500;
 }
 
-.user-arrow {
+.user-card .arrow {
     font-size: 2rem;
      color: var(--text-tertiary);
 }

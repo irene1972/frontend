@@ -1,14 +1,12 @@
 import { Component, input, output } from '@angular/core';
-import { Icon } from '../../atoms/icon/icon';
-import { Badge } from '../../atoms/badge/badge';
-import { Button } from '../../atoms/button/button';
-import { Router, RouterLink } from '@angular/router';
-import { IUsuario } from '../../../interfaces/i-usuario';
-import { UsersService } from '../../../services/users-service';
+import { Icon} from "../../../atoms/icon/icon";
+import { Badge } from "../../../atoms/badge/badge";
+import { Button } from "../../../atoms/button/button";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'molecule-user-contact',
-  imports: [RouterLink, Icon, Badge, Button, RouterLink],
+  imports: [Icon, Badge, Button, RouterLink],
   templateUrl: './user-contact.html',
   styleUrl: './user-contact.css',
 })

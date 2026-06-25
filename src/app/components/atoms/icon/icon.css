@@ -15,6 +15,7 @@
 .container--clock,
 .container--camera,
 .container--profile,
+.container--profile-square,
 .container--profile-primary-circle,
 .container--profile-primary-square {
     width:  calc(var(--size)*3);
@@ -61,7 +62,8 @@
 .container--tag,
 .container--clock,
 .container--camera,
-.container--profile {
+.container--profile,
+.container--profile-square{
     background-color: var(--surface-container);
 }
 
@@ -137,7 +139,8 @@
 }
 
 /*Icon Text*/
-.icontext--profile {
+.icontext--profile,
+.icontext--profile-square {
     line-height: 1;
     color:     var(--secondary-cta);
     font-size: var(--size);
