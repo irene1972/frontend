@@ -1,0 +1,16 @@
+/* ── Layout principal ── */
+
+.rating-layout__content {
+    display:   flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.rating-layout__reviewCard{
+    display: flex;
+    flex-direction: column;
+    max-width: 750px;
+    margin: 0 auto;
+    align-items: flex-start;
+}

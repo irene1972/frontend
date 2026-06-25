@@ -43,6 +43,7 @@ import { Sales } from './components/organisms/user/sales/sales';
 import { EditArticle } from './components/organisms/user/edit-article/edit-article';
 import { ProductReportPage } from './pages/reports/product-report-page/product-report-page';
 import { UserReportPage } from './pages/reports/user-report-page/user-report-page';
+import { ReviewView } from './pages/review-view/review-view';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -78,6 +79,10 @@ export const routes: Routes = [
                     {
                         path: 'my-purchases',
                         component: UserMyPurchasesComponentComponent
+                    },
+                    {
+                        path: 'my-purchases/my-reviews/:reviewID',
+                        component: ReviewView
                     },
                     {
                         path: 'article/edit/:id',
