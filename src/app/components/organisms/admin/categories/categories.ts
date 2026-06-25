@@ -4,7 +4,6 @@ import { CategoriesService } from '../../../../services/categories-service';
 import { ICategory } from '../../../../interfaces/i-category';
 import Swal from 'sweetalert2';
 import { Breadcrum } from '../../../molecules/breadcrum/breadcrum';
-import { BreadcrumbItem } from '../../../molecules/breadcrum/breadcrum.types';
 
 @Component({
   selector: 'app-categories',

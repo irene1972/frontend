@@ -18,5 +18,9 @@ export class OrdersService {
      getPurchasesByUser(user_id: number): Observable<IUserPurchase[]> {
       return this.httpClient.get<IUserPurchase[]>(this.baseUrl + `usuario/${user_id}`);
     }
+
+    getAllDataOrderById(id:number):Observable<any>{
+      return this.httpClient.get<any>(this.baseUrl+`${id}/todos-datos`);
+    }
     
 }

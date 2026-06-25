@@ -14,7 +14,7 @@ import { IFavorite } from '../../../../interfaces/i-favorite';
   styleUrl: './favorites.css',
 })
 export class Favorites {
-  /* TODO: pendiente de incluir la provincia en artículos favoritos */
+  /*TODO: servicio para US-08bis */
   activeTab: 'articulos' | 'usuarios' = 'articulos';
   articles:IArticle[]=[];
   users:IUsuario[]=[];

@@ -1,0 +1,50 @@
+.users {
+  margin-bottom: 1rem;
+
+  .card {
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+  }
+}
+
+.card-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cuerpo{
+    display: flex;
+}
+.cont {
+  display: flex;
+  flex-direction: column;
+
+  .user {
+    h3 {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  }
+  p{
+    margin: 1rem 0 0 1rem;
+    color:#374151;
+  }
+  
+}
+atom-icon{
+    margin-right: 1rem;
+}
+.estrellas{
+    display: flex;
+    gap:.3rem;
+}
+.estrellas i{
+    color: #FE6B00;
+    font-size: .8rem;
+}
+.derecha{
+    margin-right: 2rem;
+    color:#9CA3AF;
+    font-size: .9rem;
+}

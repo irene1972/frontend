@@ -42,6 +42,7 @@ import { ModeratorComponent } from './pages/moderator/moderator.component';
 import { Sales } from './components/organisms/user/sales/sales';
 import { EditArticle } from './components/organisms/user/edit-article/edit-article';
 import { ExploreComponent } from './pages/explore-component/explore-component';
+import { WriteReview } from './components/organisms/user/write-review/write-review';
 import { ProductReportPage } from './pages/reports/product-report-page/product-report-page';
 import { UserReportPage } from './pages/reports/user-report-page/user-report-page';
 
@@ -80,6 +81,10 @@ export const routes: Routes = [
                     {
                         path: 'my-purchases',
                         component: UserMyPurchasesComponentComponent
+                    },
+                    {
+                        path: 'my-purchases/write-review/:id',
+                        component: WriteReview
                     },
                     {
                         path: 'article/edit/:id',

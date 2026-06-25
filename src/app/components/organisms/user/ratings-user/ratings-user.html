@@ -1,0 +1,18 @@
+<section>
+
+    <div class="heading">
+        <h1>Mis valoraciones</h1>
+        <p>{{valoraciones.puntuacion_media.toFixed(1)}} . {{valoraciones.total_valoraciones}} valoraciones recibidas</p>
+
+        <div class="contain">
+            @for(valoracion of detalleValoraciones; track valoracion.id){
+            <div class="rating-user">
+                <app-rating-user [valoracion]="valoracion"></app-rating-user>
+            </div>
+            }@empty{
+            <p>No hay datos</p>
+            }
+
+        </div>
+    </div>
+</section>

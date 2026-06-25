@@ -1,0 +1,115 @@
+<section>
+    <div class="header">
+        <div class="navegador">
+            <a [routerLink]="['/user/panel/my-purchases']">
+                <div class="atras">
+                    <</div>
+            </a>
+            <div class="alante">></div>
+        </div>
+        <div class="ruta">
+            <p class="panel">Inicio</p>
+            <div>></div>
+            <p class="panel">Mis compras</p>
+            <div>></div>
+            <p>Escribir valoración</p>
+        </div>
+    </div>
+    <div class="contenedor">
+        <h1>Valorar</h1>
+        <div class="review-user">
+            <app-review-user [pedido]="pedido"></app-review-user>
+        </div>
+
+
+        <div class="card cont-estrellas">
+            <div class="card-body">
+                <h3>¿Cómo ha ido la transacción?</h3>
+                @switch (valor) {
+                @case (1) {
+                <div class="estrellas">
+                    <i (click)="pasarDato(1)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(2)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(3)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(4)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(5)" class="bi bi-star-fill"></i>
+                </div>
+                }
+                @case (2) {
+                <div class="estrellas">
+                    <i (click)="pasarDato(1)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(2)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(3)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(4)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(5)" class="bi bi-star-fill"></i>
+                </div>
+                }
+                @case (3) {
+                <div class="estrellas">
+                    <i (click)="pasarDato(1)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(2)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(3)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(4)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(5)" class="bi bi-star-fill"></i>
+                </div>
+                }
+                @case (4) {
+                <div class="estrellas">
+                    <i (click)="pasarDato(1)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(2)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(3)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(4)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(5)" class="bi bi-star-fill"></i>
+                </div>
+                }
+                @case (5) {
+                <div class="estrellas">
+                    <i (click)="pasarDato(1)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(2)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(3)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(4)" class="bi bi-star-fill naranja"></i>
+                    <i (click)="pasarDato(5)" class="bi bi-star-fill naranja"></i>
+                </div>
+                }
+                @default {
+                <div class="estrellas">
+                    <i (click)="pasarDato(1)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(2)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(3)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(4)" class="bi bi-star-fill"></i>
+                    <i (click)="pasarDato(5)" class="bi bi-star-fill"></i>
+                </div>
+                }
+                }
+
+                <p>Toca para puntuar</p>
+            </div>
+        </div>
+        <div [class.text-danger]="tipo===false" [class.text-success]="tipo===true">{{mensaje}}</div>
+        <div class="card cont-form">
+            <div class="card-body">
+
+                <form [formGroup]="miForm" (ngSubmit)="loadData()">
+                    <div class="form-group">
+                        <label for="comentario">TU COMENTARIO</label>
+                        <textarea id="" rows="8" class="form-control textarea" formControlName="comentario"
+                            placeholder="Cuenta tu experiencia con este vendedor: trato, estado del artículo, envío...">
+                ></textarea>
+
+                        @if(comentario?.touched && comentario?.hasError('required')){
+                        <div class="text-danger">El campo es requerido</div>
+                        }@else if(comentario?.touched && comentario?.hasError('minlength')){
+                        <div class="text-danger">El campo debe contener al menos tres carácteres</div>
+                        }
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Enviar valoración</button>
+
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>

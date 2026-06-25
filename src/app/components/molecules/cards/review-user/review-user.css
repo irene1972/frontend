@@ -1,0 +1,40 @@
+.users {
+  margin-bottom: 1rem;
+
+  .card {
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+  }
+}
+
+.card-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cuerpo{
+    display: flex;
+}
+.cont {
+  display: flex;
+  flex-direction: column;
+
+  .user {
+    h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+  p{
+    color:#6B7280;
+    font-size: 1rem;
+  }
+  
+}
+.user span{
+  text-transform: capitalize;  
+}
+atom-icon{
+    margin-right: 1rem;
+}
