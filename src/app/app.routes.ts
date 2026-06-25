@@ -10,7 +10,7 @@ import { FavoritesComponentComponent } from './pages/favorites-component/favorit
 import { UserMyPurchasesComponentComponent } from './pages/user-my-purchases-component/user-my-purchases-component.component';
 import { MessagesComponentComponent } from './pages/messages-component/messages-component.component';
 import { ModeratorPanelComponentComponent } from './components/organisms/moderator/moderator-panel-component/moderator-panel-component.component';
-import { IncidentViewComponentComponent } from './components/organisms/moderator/incident-view-component/incident-view-component.component';
+import { IncidentViewComponentComponent } from './components/organisms/moderator/incidents-component/incident-view-component/incident-view-component.component';
 import { UserComponentComponent } from './pages/user-component/user-component.component';
 import { ModeratorComponentComponent } from './pages/moderator-component/moderator-component.component';
 import { AdminComponentComponent } from './pages/admin-component/admin-component.component';
@@ -39,6 +39,7 @@ import { Favorites } from './components/organisms/user/favorites/favorites';
 import { IncidentsComponentComponent } from './components/organisms/moderator/incidents-component/incidents-component.component';
 import { HistoricModeratorComponentComponent } from './components/organisms/moderator/historic-moderator-component/historic-moderator-component.component';
 import { ModeratorComponent } from './pages/moderator/moderator.component';
+import { IncidentReportDetailComponent } from './components/organisms/moderator/incidents-component/incident-report-detail-component/incident-report-detail-component';
 import { Sales } from './components/organisms/user/sales/sales';
 import { EditArticle } from './components/organisms/user/edit-article/edit-article';
 import { ExploreComponent } from './pages/explore-component/explore-component';
@@ -116,6 +117,7 @@ export const routes: Routes = [
                     { path: 'main', component: ModeratorPanelComponentComponent },
                     { path: 'incidents', component: IncidentsComponentComponent },
                     { path: 'incident/:articuloId', component: IncidentViewComponentComponent},
+                    { path: 'incident/:articuloId/:reporteId', component: IncidentReportDetailComponent},
                     { path: 'historic', component: HistoricModeratorComponentComponent}
                 ]
             }
