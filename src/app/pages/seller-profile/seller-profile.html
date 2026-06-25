@@ -1,7 +1,7 @@
 
 
-<div class="user">
-    @if(role()==='user')
+<div class="seller-profile d-flex flex-row ">
+    @if(role() === 'user')
     {
         <div class="sidebar">
             <organism-sidebar role="user" />
@@ -10,11 +10,11 @@
     
     <div class="d-flex flex-column flex-grow-1 p-4 gap-4">
         <molecule-breadcrum [items]="breadcrumbItems()"></molecule-breadcrum>
-        <molecule-user-contact name="Carlos" last_name="Martinez"/>
+        <molecule-user-contact [name]="name()" [last_name]="last_name()"/>
         <div class="d-flex flex-row justify-content-between gap-4">
-            <molecule-status-card class="d-flex flex-grow-1" text="PUBLICADOS"/>
-            <molecule-status-card class="d-flex flex-grow-1" text="VENDIDOS"/>
-            <molecule-status-card class="d-flex flex-grow-1" text="VALORACIÓN"/>
+            <molecule-status-card class="d-flex flex-grow-1" text="PUBLICADOS" [status]="published()"/>
+            <molecule-status-card class="d-flex flex-grow-1" text="VENDIDOS" [status]="selled()"/>
+            <molecule-status-card class="d-flex flex-grow-1" text="VALORACIÓN" [status]="rating()"/>
         </div>
         <molecule-nav-tab [tabs]="sellerTabs()"/>
         @if(activeTab() === QUERYPARAM_ON_SELL)
@@ -29,7 +29,12 @@
         } 
         @else if(activeTab() === QUERYPARAM_RATINGS)
         {
-            <div>Valoraciones</div>
+            <div class="d-flex flex-column gap-2">
+                 <molecule-user-rating-comment [timestamp]="1782300000000">dsfdsfds</molecule-user-rating-comment>
+                 <molecule-user-rating-comment [timestamp]="1782300000000">dsfdsfds</molecule-user-rating-comment>
+                 <molecule-user-rating-comment [timestamp]="1782300000000">dsfdsfds</molecule-user-rating-comment>
+                 <molecule-user-rating-comment [timestamp]="1782300000000">dsfdsfds</molecule-user-rating-comment>
+            </div>
         }
     </div>
 </div>
