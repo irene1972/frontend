@@ -1,1 +1,13 @@
-<p>c403component works!</p>
+<app-home-bar></app-home-bar>
+<div class="error-layout">
+    <aside class="error-layout__sidebar">
+        <organism-sidebar></organism-sidebar>
+    </aside>
+
+    <main class="error-layout__content">
+        <h2 class="error-title">403</h2>
+        <h3 class="error-subtitle">Acceso denegado</h3>
+        <p class="error-text">No tienes permisos para acceder a esta página. Si crees que esto es un error, contacta con el soporte técnico.</p>
+        <atom-button config_type="secondary" label="Volver al inicio" (click)="gotoHome()"></atom-button>
+    </main>
+</div>

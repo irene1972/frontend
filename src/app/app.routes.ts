@@ -42,6 +42,8 @@ import { ModeratorComponent } from './pages/moderator/moderator.component';
 import { Sales } from './components/organisms/user/sales/sales';
 import { EditArticle } from './components/organisms/user/edit-article/edit-article';
 import { WriteReview } from './components/organisms/user/write-review/write-review';
+import { ProductReportPage } from './pages/reports/product-report-page/product-report-page';
+import { UserReportPage } from './pages/reports/user-report-page/user-report-page';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -94,8 +96,8 @@ export const routes: Routes = [
             { path: 'favorites', component: FavoritesComponentComponent },
             /*{ path: 'my-purchases', component: UserMyPurchasesComponentComponent },*/
             //reportes
-            {path: 'report/:productID', component: ProductViewComponentComponent},
-            {path: 'report/:userID', component: ProductViewComponentComponent},
+            {path: 'report/product/:productID', component: ProductReportPage},
+            {path: 'report/user/:userID', component: UserReportPage},
             // Ruta Mensajeria
             { path: 'messages', component: MessagesComponentComponent },
             { path: 'messages/:chatID', component: ChatComponentComponent },
@@ -175,7 +177,8 @@ export const routes: Routes = [
             }
         ]
     },
-    { path: '**', component: C404componentComponent },
+    //errors
     { path: '403error', component: C403componentComponent },
-    { path: '500error', component: C500componentComponent }
+    { path: '500error', component: C500componentComponent },
+    { path: '**', component: C404componentComponent }
 ];

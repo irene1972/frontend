@@ -1,0 +1,141 @@
+/* ── Layout principal ── */
+.report-layout {
+    display:   flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+.report-layout__sidebar {
+    width:      220px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--outline-var);
+}
+
+.report-layout__content {
+    flex: 1;
+    padding: 24px 40px;
+    min-width: 0;
+}
+
+/* ── Título ── */
+.report-title {
+    font-size:   28px;
+    font-weight: 700;
+    color:       var(--on-surface);
+    margin:      16px 0 24px;
+}
+
+/* ── Card del formulario ── */
+.report-card {
+    background-color: var(--surface-card);
+    border-radius:    16px;
+    border:           1px solid var(--outline-var);
+    padding:          28px;
+    max-width:        600px;
+}
+
+.report-card__question {
+    font-size:   18px;
+    font-weight: 600;
+    color:       var(--on-surface);
+    margin:      0 0 6px;
+}
+
+.report-card__hint {
+    font-size: 14px;
+    color:     var(--on-surface-variant);
+    margin:    0 0 20px;
+}
+
+/* ── Opciones radio ── */
+.report-options {
+    display:        flex;
+    flex-direction: column;
+    gap:            10px;
+    margin-bottom:  20px;
+}
+
+.report-option {
+    display:          flex;
+    align-items:      center;
+    gap:              12px;
+    padding:          14px 16px;
+    border-radius:    10px;
+    border:           2px solid var(--outline-var);
+    background-color: var(--surface-container);
+    cursor:           pointer;
+    transition:       border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.report-option:hover {
+    border-color: var(--secondary-cta);
+}
+
+.report-option--selected {
+    border-color:     var(--secondary-cta);
+    background-color: var(--surface-low);
+}
+
+.report-option__radio {
+    accent-color: var(--secondary-cta);
+    width:  18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.report-option__label {
+    font-size:   14px;
+    font-weight: 500;
+    color:       var(--on-surface);
+}
+
+/* ── Detalle ── */
+.report-detail {
+    display:        flex;
+    flex-direction: column;
+    gap:            6px;
+    margin-bottom:  20px;
+}
+
+.report-detail__label {
+    font-size:   14px;
+    font-weight: 500;
+    color:       var(--on-surface);
+}
+
+.report-detail__textarea {
+    width:            100%;
+    border-radius:    10px;
+    border:           1px solid var(--outline-var);
+    background-color: var(--surface-container);
+    padding:          12px;
+    font-size:        14px;
+    color:            var(--on-surface);
+    resize:           vertical;
+    font-family:      'Inter', sans-serif;
+    outline:          none;
+    transition:       border-color 0.15s ease;
+}
+
+.report-detail__textarea:focus {
+    border-color: var(--secondary-cta);
+}
+
+.report-detail__textarea::placeholder {
+    color: var(--text-outline);
+}
+
+/* ── Responsive móvil ── */
+@media (max-width: 768px) {
+    .report-layout {
+        flex-direction: column;
+    }
+
+    .report-layout__sidebar {
+        display: none;
+    }
+
+    .report-layout__content {
+        padding: 16px;
+    }
+}

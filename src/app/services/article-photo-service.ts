@@ -13,7 +13,7 @@ export class ArticlePhotoService {
   httpClient = inject(HttpClient);
 
   getFotosByArticuloId(articuloId: number): Observable<IArticlePhoto[]>{
-    return this.httpClient.get<IArticlePhoto[]>(this.baseUrl + `articulo/${articuloId}`)
+    return this.httpClient.get<IArticlePhoto[]>(this.baseUrl + `get-all-by-article/${articuloId}`)
   }
   
 }

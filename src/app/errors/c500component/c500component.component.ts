@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { HomeBar } from "../../components/organisms/home-bar/home-bar";
+import { Sidebar } from "../../components/organisms/sidebar/sidebar";
+import { Button } from '../../components/atoms/button/button';
 
 @Component({
   selector: 'app-c500component',
-  imports: [],
+  imports: [HomeBar, Sidebar, Button],
   templateUrl: './c500component.component.html',
   styleUrl: './c500component.component.css',
 })
 export class C500componentComponent {
-
+  router = inject(Router);
+  gotoHome() {
+    this.router.navigate(['/']);
+  }
 }

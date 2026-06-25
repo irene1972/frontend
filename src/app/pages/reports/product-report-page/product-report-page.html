@@ -1,0 +1,58 @@
+<app-home-bar></app-home-bar>
+
+<div class="report-layout">
+
+    <!-- Sidebar -->
+    <aside class="report-layout__sidebar">
+        <organism-sidebar></organism-sidebar>
+    </aside>
+
+    <!-- Contenido -->
+    <main class="report-layout__content">
+        <molecule-breadcrum [items]="breadcrumbItems()" />
+
+        <h2 class="report-title">Reportar artículo</h2>
+
+        <div class="report-card">
+            <p class="report-card__question">¿Por qué reportas este artículo?</p>
+            <p class="report-card__hint">Tu reporte es anónimo. El equipo de moderación lo revisará.</p>
+
+            <form [formGroup]="reportForm" (ngSubmit)="getDataForm()">
+
+                <!-- Opciones de motivo -->
+                <div class="report-options">
+                    @for (option of motivoOptions; track option.value) {
+                        <label
+                            class="report-option"
+                            [class.report-option--selected]="reportForm.get('motivo')?.value === option.value"
+                        >
+                            <input
+                                type="radio"
+                                formControlName="motivo"
+                                [value]="option.value"
+                                class="report-option__radio"
+                            >
+                            <span class="report-option__label">{{ option.label }}</span>
+                        </label>
+                    }
+                </div>
+
+                <!-- Detalle opcional -->
+                <div class="report-detail">
+                    <label class="report-detail__label">Detalle (opcional)</label>
+                    <textarea
+                        class="report-detail__textarea"
+                        formControlName="descripcion"
+                        placeholder="Cuéntanos más sobre el problema..."
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <atom-button label="Enviar reporte" config_type="secondary"></atom-button>
+
+            </form>
+        </div>
+    </main>
+</div>
+
+<atom-toast [variant]="toastVariant()" [message]="toastVariant() === 'success' ? 'Reporte enviado correctamente' : 'Debes seleccionar un motivo'" size="16px" [trigger]="showToast()"/>
