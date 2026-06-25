@@ -22,8 +22,10 @@ import { UserCardVariant } from './user-card.config';
  * <molecule-user-card name="Carlos" last_name="Martínez" />
  *
  * <!-- Como layout para una variante -->
- * <molecule-user-card [name]="user.name" [last_name]="user.lastName" [role]="'admin'">
- *   <molecule-user-rating [rating]="user.rating" />
+ * <molecule-user-card>
+ *   <div class="p-3 mb-2 bg-primary text-white">content</div>
+ *   <div action  class="p-3 mb-2 bg-primary text-white">content comment</div>
+ *   <div comment class="d-flex w-100 flex-row p-3 mb-2 bg-primary flex-grow-1 text-white">content actions</div>
  * </molecule-user-card>
  */
 @Component({
