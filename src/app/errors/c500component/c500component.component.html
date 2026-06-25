@@ -1,1 +1,13 @@
-<p>c500component works!</p>
+<app-home-bar></app-home-bar>
+<div class="error-layout">
+    <aside class="error-layout__sidebar">
+        <organism-sidebar></organism-sidebar>
+    </aside>
+
+    <main class="error-layout__content">
+        <h2 class="error-title">500</h2>
+        <h3 class="error-subtitle">Error interno del servidor</h3>
+        <p class="error-text">Algo ha ido mal en nuestro servidor. Por favor, inténtalo de nuevo más tarde.</p>
+        <atom-button config_type="secondary" label="Volver al inicio" (click)="gotoHome()"></atom-button>
+    </main>
+</div>

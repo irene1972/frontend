@@ -172,7 +172,8 @@ export const routes: Routes = [
             }
         ]
     },
-    { path: '**', component: C404componentComponent },
+    //errors
     { path: '403error', component: C403componentComponent },
-    { path: '500error', component: C500componentComponent }
+    { path: '500error', component: C500componentComponent },
+    { path: '**', component: C404componentComponent }
 ];
