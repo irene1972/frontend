@@ -1,8 +1,42 @@
-<section class="admin-dashboard">
+<section class="profile">
 
-  <div class="dashboard-header">
-    <h1>Perfil de usuario</h1>
+  <!-- Cabecera de perfil -->
+  <div class="profile-header">
+    <atom-icon variant="profile-primary-square" [text_icon]="iniciales" size="1.6rem"></atom-icon>
+    <div class="profile-header__info">
+      <h1 class="profile-name">{{ nombre }}</h1>
+      <div class="profile-meta">
+        <atom-icon variant="star" size="0.9rem"></atom-icon>
+        <span>{{ ratingAverage }} · {{ ratingTotal }} valoraciones · En Buy&amp;Sell desde {{ desde }}</span>
+      </div>
+    </div>
+    <a class="profile-edit" [routerLink]="['/user/edit-profile', userId]">Editar perfil</a>
   </div>
 
+  <!-- Estadísticas -->
+  <div class="profile-stats">
+    <molecule-status-card align="left" [status]="ventas.toString()" text="VENTAS"></molecule-status-card>
+    <molecule-status-card align="left" [status]="compras.toString()" text="COMPRAS"></molecule-status-card>
+    <molecule-status-card align="left" [status]="activos.toString()" text="ARTÍCULOS ACTIVOS"></molecule-status-card>
+    <molecule-status-card align="left" [status]="ratingAverage.toString()" text="VALORACIÓN"></molecule-status-card>
+  </div>
+
+  <!-- Mis artículos publicados (reutiliza la article-card de Irene) -->
+  <h2 class="section-title">Mis artículos publicados</h2>
+  <div class="contenedor">
+    @for (articulo of articulos; track articulo.id) {
+      <molecule-article-card
+        variant="minimal"
+        [like]="false"
+        [state]="condicion(articulo)"
+        [img]="articulo.url_foto ?? 'imgs/no-photo.jpg'"
+        [price]="precio(articulo)"
+        [name]="articulo.titulo"
+        [location]="ubicacion(articulo)"
+      ></molecule-article-card>
+    } @empty {
+      <p class="empty">Aún no tienes artículos publicados.</p>
+    }
+  </div>
 
 </section>
