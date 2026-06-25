@@ -2,8 +2,8 @@
   <div class="report-modal__overlay" (click)="onOverlayClick($event)">
     <div class="report-modal__card">
 
-      <h2 class="report-modal__title">¿Qué quieres reportar?</h2>
-      <p class="report-modal__subtitle">Elige una opción para continuar.</p>
+      <h2 class="report-modal__title">Reporte de producto</h2>
+      <p class="report-modal__subtitle">Vas a reportar este artículo, ¿quieres continuar?</p>
 
       <div class="report-modal__options">
 
@@ -17,7 +17,9 @@
           </div>
         </button>
 
-        <button class="report-modal__option" (click)="onReportUser()">
+        <!--
+        === Removed Report User Option ===
+         <button class="report-modal__option" (click)="onReportUser()">
           <span class="report-modal__option-radio">
             <i class="bi bi-record-circle"></i>
           </span>
@@ -26,6 +28,7 @@
             <span class="report-modal__option-desc">Comportamiento sospechoso o fraude</span>
           </div>
         </button>
+         -->
 
       </div>
 

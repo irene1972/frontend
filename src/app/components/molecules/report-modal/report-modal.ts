@@ -25,7 +25,10 @@ export class ReportModal {
   // Input
   isOpen = input<boolean>();
   productId = input<string>();
+  /*
+  === Input para reportar un usuario ===
   sellerId = input<number>();
+  */
 
   // Output
   closed = output<void>();
@@ -39,10 +42,13 @@ export class ReportModal {
     this.router.navigate(['/user/report/product', this.productId()]);
   }
 
+  /*
+  === Nav a report user page ===
   onReportUser() {
     this.closed.emit();
     this.router.navigate(['/user/report/user', this.sellerId()]);
-  }
+  } 
+  */
 
   onCancel() {
     this.closed.emit();
