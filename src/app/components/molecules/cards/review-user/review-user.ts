@@ -10,5 +10,17 @@ import { DatePipe } from '@angular/common';
   styleUrl: './review-user.css',
 })
 export class ReviewUser {
-  @Input() pedido!:IOrder;
+  @Input() pedido?: IOrder;
+
+  get iniciales(): string {
+    const nombre = this.pedido?.nombre?.[0] ?? '';
+    const apellido = this.pedido?.apellidos?.[0] ?? '';
+    return nombre + apellido;
+  }
+
+  get nombreMostrado(): string {
+    if (!this.pedido?.nombre) return '';
+    const apellido = this.pedido.apellidos?.[0] ?? '';
+    return `${this.pedido.nombre} ${apellido}.`;
+  }
 }

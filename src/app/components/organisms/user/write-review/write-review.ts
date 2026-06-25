@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ReviewUser } from '../../../molecules/cards/review-user/review-user';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OrdersService } from '../../../../services/orders-service';
 import { RatingsService } from '../../../../services/ratings-service';
@@ -20,6 +20,7 @@ export class WriteReview {
   pedido: any = {};
   ordersService = inject(OrdersService);
   ratingsService = inject(RatingsService);
+  private router = inject(Router);
 
   constructor(private cd: ChangeDetectorRef, private route: ActivatedRoute) {
     this.miForm = new FormGroup({
@@ -58,7 +59,6 @@ export class WriteReview {
       this.miForm.markAllAsTouched();
       return;
     }
-    console.log(this.miForm.value);
     if (this.valor === 0) {
       this.mensaje = 'Debe elegir un número de estrellitas';
       return;
@@ -74,12 +74,9 @@ export class WriteReview {
 
       this.ratingsService.insertRating(this.miForm.value).subscribe({
         next: (data) => {
-          console.log(data);
           if (data.mensaje === 'Valoración creada correctamente') {
             Swal.fire('Enviado!', '', 'success');
-            setTimeout(() => {
-              window.location.reload();
-            }, 1000);
+            this.router.navigate(['/user/panel/my-purchases']);
           }
         },
         error: (err) => {
@@ -90,16 +87,6 @@ export class WriteReview {
       });
 
     }
-
-
-    /*
-    {
-  "usuario_valorador_id": 3,
-  "articulos_id": 12,
-  "puntuacion": 4.5,
-  "mensaje": "Muy buen estado y trato excelente."
-}
-    */
   }
   pasarDato(valor: number) {
     this.valor = valor;
