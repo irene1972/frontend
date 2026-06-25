@@ -49,6 +49,10 @@ export class ArticlesService {
     return this.httpClient.get<IArticle>(this.baseUrl + id);
   }
 
+  updateArticle(id: number, article: any): Observable<any> {
+    return this.httpClient.put<any>(this.baseUrl + id, article);
+  }
+
 
   updateArticleAndCP(id:number,body:any):Observable<any>{
     return this.httpClient.put(this.baseUrl + `${id}/cp`,body,{})
@@ -58,6 +62,3 @@ export class ArticlesService {
     return this.httpClient.delete(this.baseUrl + `${id}`, {});
   }
 }
-
-
-
