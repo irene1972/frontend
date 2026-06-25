@@ -1,6 +1,6 @@
 <div class="user-card" [class.background]="transparent()" [class.boxshadow]="shadow()">
     <div class="content" [class.background]="transparent()" [class.boxshadow]="shadow()">
-        <atom-icon variant="profile-primary-circle" [text_icon]="`${name()[0]}${last_name()[0]}`" size="1rem" class="p-4" />
+        <atom-icon [variant]="variant()" [text_icon]="`${name()[0]}${last_name()[0]}`" size="1rem" class="p-4" />
         <div class="info">
             <h2 class="name"> {{`${name()} ${last_name()[0]}.`}}</h2>
             <ng-content />

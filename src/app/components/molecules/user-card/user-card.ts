@@ -1,8 +1,7 @@
 import { Component, input } from '@angular/core';
 import { Icon } from "../../atoms/icon/icon";
-import { Badge } from "../../atoms/badge/badge";
 import { BadgeVariant } from '../../atoms/badge/badge.types';
-import { UserCardVariant } from './user-card.config';
+import { IconVariant } from '../../atoms/icon/icon.config';
 
 /**
  * Molécula de layout base para tarjetas de usuario.
@@ -10,13 +9,13 @@ import { UserCardVariant } from './user-card.config';
  * Muestra el avatar con iniciales, nombre abreviado y acciones opcionales.
  * Actúa como contenedor estructural para variantes especializadas mediante ng-content.
  *
+ * @input variant     - Icono a mostrar
  * @input name        - Nombre del usuario (se muestra completo)
  * @input last_name   - Apellido del usuario (se muestra solo la inicial)
  * @input role        - Variante de badge para el rol. Si es null, no se renderiza
- * @input arrow       - Muestra un indicador de navegación al final de la tarjeta
  * @input shadow      - Activa la sombra de la tarjeta
  * @input transparent - Activa el fondo. Por defecto true (sin fondo)
- *
+ * 
  * @example
  * <!-- Uso básico -->
  * <molecule-user-card name="Carlos" last_name="Martínez" />
@@ -30,16 +29,15 @@ import { UserCardVariant } from './user-card.config';
  */
 @Component({
   selector: 'molecule-user-card',
-  imports: [Icon, Badge],
+  imports: [Icon],
   templateUrl: './user-card.html',
   styleUrl: './user-card.css',
 })
 export class UserCard {
-  public variant     = input<UserCardVariant>("circle");
+  public variant     = input<IconVariant>("profile-primary-circle");
   public name        = input<string>("Carlos");
   public last_name   = input<string>("Martínez");
   public role        = input<BadgeVariant | null>();
-  public arrow       = input<boolean>(false);
   public shadow      = input<boolean>(false);
   public transparent = input<boolean>(false);
 }
