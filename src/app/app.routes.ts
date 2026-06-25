@@ -7,6 +7,7 @@ import { ProductViewComponentComponent } from './pages/product-view-component/pr
 import { ProductFormComponentComponent } from './pages/product-form-component/product-form-component.component';
 import { ProductCheckoutComponentComponent } from './pages/product-checkout-component/product-checkout-component.component';
 import { FavoritesComponentComponent } from './pages/favorites-component/favorites-component.component';
+import { UserMyPurchasesComponentComponent } from './pages/user-my-purchases-component/user-my-purchases-component.component';
 import { MessagesComponentComponent } from './pages/messages-component/messages-component.component';
 import { ModeratorPanelComponentComponent } from './components/organisms/moderator/moderator-panel-component/moderator-panel-component.component';
 import { IncidentViewComponentComponent } from './components/organisms/moderator/incident-view-component/incident-view-component.component';
@@ -75,6 +76,10 @@ export const routes: Routes = [
                         component: Sales
                     },
                     {
+                        path: 'my-purchases',
+                        component: UserMyPurchasesComponentComponent
+                    },
+                    {
                         path: 'article/edit/:id',
                         component: EditArticle
                     }
@@ -84,6 +89,7 @@ export const routes: Routes = [
 
             { path: 'edit-profile/:userID', component: UserFormComponentComponent },
             { path: 'favorites', component: FavoritesComponentComponent },
+            /*{ path: 'my-purchases', component: UserMyPurchasesComponentComponent },*/
             //reportes
             {path: 'report/product/:productID', component: ProductReportPage},
             {path: 'report/user/:userID', component: UserReportPage},

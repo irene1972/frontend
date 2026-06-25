@@ -41,3 +41,6 @@
     display: none;
   }
 }
+.user {
+    min-height: calc(100vh - var(--header-height));
+}
