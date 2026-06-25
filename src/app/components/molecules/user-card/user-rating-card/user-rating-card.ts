@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { Icon } from '../../atoms/icon/icon';
+import { Icon } from '../../../atoms/icon/icon';
 import { UserRatingCardData } from './user-rating-card.config';
 
 /**
