@@ -15,7 +15,6 @@ import { IPhoto } from '../../../../interfaces/i-photo';
   styleUrl: './edit-article.css',
 })
 export class EditArticle {
-  /* TODO: volver atrás */
   miForm: FormGroup;
   mensaje: string = '';
   tipo: boolean = false;

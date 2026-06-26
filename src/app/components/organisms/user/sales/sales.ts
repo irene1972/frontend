@@ -12,8 +12,6 @@ import Swal from 'sweetalert2';
   styleUrl: './sales.css',
 })
 export class Sales {
-  /* TODO: Probar el eliminar cuando arreglen el endpoint */
-  /* TODO: ¿el botón PAUSAR? */
   vendido: any = { nombre: 'Carlos M.', tiempo: '1 semana' };
   activeTab: 'En venta' | 'Vendidos' = 'En venta';
   articlesService = inject(ArticlesService);

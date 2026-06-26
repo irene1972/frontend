@@ -1,0 +1,210 @@
+<div class="explore">
+  <app-home-bar></app-home-bar>
+
+  <section class="explore-search">
+    <h1 class="explore-search__title">Explorar artículos</h1>
+
+    <div class="explore-search__row">
+      <div class="explore-search__input-wrap">
+        <i class="bi bi-search explore-search__icon"></i>
+        <input
+          type="text"
+          class="explore-search__input"
+          [(ngModel)]="searchQuery"
+          placeholder="Buscar GPU, CPU, portátil..."
+        />
+      </div>
+      <atom-button
+        config_type="secondary"
+        label="Buscar"
+        class="explore-search__btn"
+        (click)="onSearch()"
+      />
+    </div>
+
+    <div class="explore-search__trends">
+      <span class="explore-search__trends-label">TENDENCIAS</span>
+      @for (trend of trends; track trend) {
+        <button type="button" class="trend-tag" (click)="applyTrend(trend)">{{ trend }}</button>
+      }
+    </div>
+  </section>
+
+  <div class="explore-body">
+    <aside class="filters">
+      <h2 class="filters__title">Filtros</h2>
+
+      <div class="filters__section">
+        <p class="filters__section-label">CATEGORÍAS</p>
+        @for (category of categories; track category.id) {
+          <label class="filters__checkbox">
+            <input type="checkbox" [(ngModel)]="category.checked" />
+            <span>{{ category.label }}</span>
+          </label>
+        }
+      </div>
+
+      <div class="filters__section">
+        <p class="filters__section-label">RANGO DE PRECIO</p>
+        <div class="filters__price-row">
+          <div class="filters__price-field">
+            <span class="filters__price-prefix">Mín</span>
+            <input type="number" [(ngModel)]="priceMin" />
+            <span class="filters__price-suffix">€</span>
+          </div>
+          <div class="filters__price-field">
+            <span class="filters__price-prefix">Máx</span>
+            <input type="number" [(ngModel)]="priceMax" />
+            <span class="filters__price-suffix">€</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="filters__section">
+        <p class="filters__section-label">ESTADO</p>
+        @for (condition of conditions; track condition.label) {
+          <label class="filters__checkbox">
+            <input type="checkbox" [(ngModel)]="condition.checked" />
+            <span>{{ condition.label }}</span>
+          </label>
+        }
+      </div>
+
+      <div class="filters__section">
+        <p class="filters__section-label">LOCALIZACIÓN</p>
+        <div class="filters__location">
+          <i class="bi bi-geo-alt"></i>
+          <input
+            type="text"
+            [(ngModel)]="locationFilter"
+            placeholder="Ciudad o código postal..."
+          />
+        </div>
+      </div>
+
+      <button type="button" class="filters__clear" (click)="clearFilters()">
+        LIMPIAR FILTROS
+      </button>
+    </aside>
+
+    <main class="results">
+      <div class="results__header">
+        <p class="results__count">
+          Mostrando <strong>{{ showingFrom }}–{{ showingTo }}</strong> de <strong>{{ totalResults }}</strong> artículos
+        </p>
+        <div class="results__sort">
+          <span>Ordenar por:</span>
+          <select [(ngModel)]="sortBy" (ngModelChange)="onSortChange()">
+            @for (option of sortOptions; track option.value) {
+              <option [value]="option.value">{{ option.label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      @if (loading) {
+        <p class="results__status">Cargando artículos...</p>
+      } @else if (errorMessage) {
+        <p class="results__status results__status--error">{{ errorMessage }}</p>
+      } @else if (!articles.length) {
+        <p class="results__status">No se encontraron artículos con los filtros actuales.</p>
+      }
+
+      <div class="results__grid">
+        @for (article of articles; track article.id) {
+          <article class="explore-card" [class.explore-card--sold]="article.sold">
+            <div class="explore-card__image">
+              <img [src]="article.imageUrl" [alt]="article.title" />
+              @if (article.sold) {
+                <div class="explore-card__sold-overlay">
+                  <span class="explore-card__sold-label">VENDIDO</span>
+                </div>
+              }
+              <atom-badge [variant]="article.condition" class="explore-card__badge explore-card__badge--desktop" />
+              <atom-button-icon variant="like" size="1rem" class="explore-card__like" />
+            </div>
+
+            <atom-badge [variant]="article.condition" class="explore-card__badge explore-card__badge--mobile" />
+
+            <h2 class="explore-card__title">{{ article.title }}</h2>
+
+            <div class="explore-card__location">
+              <i class="bi bi-geo-alt"></i>
+              <span>{{ article.location }}</span>
+            </div>
+
+            <div class="explore-card__separator"></div>
+
+            <div class="explore-card__seller">
+              <atom-icon
+                variant="profile-primary-circle"
+                [text_icon]="sellerInitials(article)"
+                size="1rem"
+              />
+              <div class="explore-card__seller-info">
+                <div class="explore-card__seller-row">
+                  <span class="explore-card__seller-name">{{ sellerDisplayName(article) }}</span>
+                  @if (article.sellerRole === 'pro') {
+                    <span class="explore-card__seller-badge explore-card__seller-badge--pro">VENDEDOR PRO</span>
+                  } @else if (article.sellerRole === 'new') {
+                    <span class="explore-card__seller-badge explore-card__seller-badge--new">VENDEDOR NUEVO</span>
+                  }
+                </div>
+                <div class="explore-card__rating">
+                  <atom-icon variant="star" size="0.85rem" />
+                  <span>{{ ratingLabel(article) }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="explore-card__footer">
+              <div class="explore-card__pricing">
+                @if (article.priceOld) {
+                  <div class="explore-card__discount-row">
+                    <span class="explore-card__price-old">{{ article.priceOld }} €</span>
+                    <span class="explore-card__rebajado">REBAJADO</span>
+                  </div>
+                }
+                <p class="explore-card__price">{{ article.price }} €</p>
+              </div>
+              <atom-button
+                config_type="outline"
+                label="Ver detalle"
+                class="explore-card__detail-btn"
+                (click)="goToDetail(article.id)"
+              />
+            </div>
+          </article>
+        }
+      </div>
+
+      @if (totalPages > 1 && !loading && !errorMessage) {
+        <nav class="pagination" aria-label="Paginación de artículos">
+          <button
+            type="button"
+            class="pagination__btn"
+            [disabled]="!canGoPrevious"
+            (click)="goToPreviousPage()"
+          >
+            <i class="bi bi-chevron-left"></i>
+            Anterior
+          </button>
+
+          <span class="pagination__info">
+            Página {{ currentPage }} de {{ totalPages }}
+          </span>
+
+          <button
+            type="button"
+            class="pagination__btn"
+            [disabled]="!canGoNext"
+            (click)="goToNextPage()"
+          >
+            Siguiente
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </nav>
+      }
+    </main>
+  </div>
+</div>

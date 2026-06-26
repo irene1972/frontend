@@ -1,0 +1,64 @@
+<!--<a [routerLink]="">-->
+<div class="card">
+    <div class="card-user">
+        <div class="card-body cont">
+            <div class="cuerpo">
+                <atom-icon class="profile" variant="profile-primary-circle"
+                    text_icon="{{valoracion.nombre[0]+valoracion.apellidos[0]}}" size="1.5rem" />
+                <div class="user">
+                    <h3 class="card-title">{{valoracion.nombre+' '+valoracion.apellidos[0]}}.</h3>
+                    <div class="estrellas">
+                        @switch (valoracion.puntuacion.toFixed(0)) {
+                        @case ('1') {
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        }
+                        @case ('2') {
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        }
+                        @case ('3') {
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        }
+                        @case ('4') {
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star"></i>
+                        }
+                        @case ('5') {
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        }
+                        @default {
+                        <p></p>
+                        }
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p>{{valoracion.mensaje}}</p>
+            </div>
+        </div>
+        <div class="derecha">
+            <p>hace {{valoracion.dias_transcurridos}} días</p>
+        </div>
+    </div>
+</div>
+<!--</a>-->

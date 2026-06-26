@@ -1,3 +1,5 @@
+import { IArticlePhoto } from './i-article-photo.interface';
+
 interface Provincia {
     codigo: number;
     nombre: number;
@@ -19,4 +21,5 @@ export interface IArticle {
     comprador_nombre?:string;
     comprador_apellidos?:string;
     url_foto?:string;
+    fotos?: IArticlePhoto[];
 }

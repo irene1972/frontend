@@ -10,6 +10,7 @@
   } @else {
     <ul class="my-purchases__list">
       @for (purchase of purchases; track purchase.id) {
+        <a [routerLink]="['/user/panel/my-purchases/write-review',purchase.id]">
         <li class="purchase-card">
           <div class="purchase-card__image" aria-hidden="true">
             @if (getPrincipalPhoto(purchase); as photoUrl) {
@@ -34,7 +35,9 @@
             </span>
           </div>
         </li>
+        </a>
       }
+
     </ul>
   }
 </section>

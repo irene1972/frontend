@@ -1,0 +1,15 @@
+<molecule-user-card variant="profile-primary-circle" [name]="name()" [last_name]="last_name()">
+    <div class="d-flex flex-row gap-1">
+        @for(star of this.rating_stars; track star) {
+            @if(star <= rating()){
+                <atom-icon variant="star" size="1rem"></atom-icon> 
+            } @else {
+                <atom-icon variant="star-inactived" size="1rem"></atom-icon>  
+            }
+        }
+    </div>
+    <div action  class="time">{{dateSince()}}</div>
+    <p comment class="comment">
+        <ng-content />
+    </p>
+</molecule-user-card>

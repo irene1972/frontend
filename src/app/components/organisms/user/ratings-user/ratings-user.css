@@ -1,0 +1,22 @@
+section{
+    margin:3rem 2rem;
+}
+h1{
+    color:#0B1C30;
+    font-weight: bold;
+    font-size: 2rem;
+
+}
+a{
+    text-decoration: none;
+    color:#747683;
+    cursor: pointer;
+
+}
+.heading p{
+    color: #6B7280;
+    margin-top: 1rem;
+}
+.rating-user{
+    margin-bottom: 1rem;
+}
