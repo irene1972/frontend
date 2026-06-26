@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { IArticle } from '../../../../interfaces/i-article';
 import { IUsuario } from '../../../../interfaces/i-usuario';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FavoriteUser } from '../../../molecules/cards/favorite-user/favorite-user';
 import { FavoriteArticle } from '../../../molecules/cards/favorite-article/favorite-article';
 import { FavoritesService } from '../../../../services/favorites-service';
@@ -14,7 +14,6 @@ import { IFavorite } from '../../../../interfaces/i-favorite';
   styleUrl: './favorites.css',
 })
 export class Favorites {
-  /*TODO: servicio para US-08bis */
   activeTab: 'articulos' | 'usuarios' = 'articulos';
   articles:IArticle[]=[];
   users:IUsuario[]=[];
