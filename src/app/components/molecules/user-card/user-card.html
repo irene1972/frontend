@@ -1,14 +1,11 @@
 <div class="user-card" [class.background]="transparent()" [class.boxshadow]="shadow()">
-    <div class="content" [class.background]="transparent()" [class.boxshadow]="shadow()">
-        <atom-icon [variant]="variant()" [text_icon]="`${name()[0]}${last_name()[0]}`" size="1rem" class="p-4" />
+    <div class="content">
+        <atom-icon [variant]="variant()" [text_icon]="`${name()[0]}${last_name()[0]}`" size="1.5rem" />
         <div class="info">
             <h2 class="name"> {{`${name()} ${last_name()[0]}.`}}</h2>
             <ng-content />
         </div>
-        <div class="d-flex flex-grow-1"></div>
-        <div class="actions d-flex flex-row align-items-center gap-3 pe-4">
-            <ng-content select="[action]" />
-        </div>
+        <ng-content select="[action]" />
     </div>
     <ng-content select="[comment]" />
 </div>

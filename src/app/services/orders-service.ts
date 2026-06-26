@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { IUserPurchase } from '../interfaces/i-purchase';
+import { IUserPurchase, IUserPurchaseSales } from '../interfaces/i-purchase';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,10 @@ export class OrdersService {
     
      getPurchasesByUser(user_id: number): Observable<IUserPurchase[]> {
       return this.httpClient.get<IUserPurchase[]>(this.baseUrl + `usuario/${user_id}`);
+    }
+
+    getSalesByUser(user_id: number): Observable<IUserPurchaseSales> {
+      return this.httpClient.get<IUserPurchaseSales>(this.baseUrl + `usuario/${user_id}/ventas`);
     }
 
     getAllDataOrderById(id:number):Observable<any>{

@@ -11,6 +11,7 @@ import { lastValueFrom } from 'rxjs';
 import { UsersService } from '../../services/users-service';
 import { UserRatingCardData } from '../../components/molecules/user-card/user-rating-card/user-rating-card.config';
 import { UserRatingCard } from "../../components/molecules/user-card/user-rating-card/user-rating-card";
+import { ArticlePhotoService } from '../../services/article-photo-service';
 import { IArticlePhoto } from '../../interfaces/i-article-photo.interface';
 import { ButtonIcon } from '../../components/atoms/button-icon/button-icon';
 import { HomeBar } from "../../components/organisms/home-bar/home-bar";
@@ -30,6 +31,7 @@ export class ProductViewComponentComponent {
   articleService = inject(ArticlesService);
   ratingsService = inject(RatingsService);
   userService = inject(UsersService);
+  articlePhotoService = inject(ArticlePhotoService);
 
   //Datos Vendedor
   vendedorData = signal<UserRatingCardData | null>(null);
@@ -53,21 +55,25 @@ export class ProductViewComponentComponent {
     const id = this.productID();
     if(!id) return;
     try {
-      const article = await lastValueFrom(this.articleService.getArticleById(Number(id)));
-      this.product.set(article);
+      this.product.set(await lastValueFrom(this.articleService.getArticleById(Number(id))));
 
-      const fotos = article.fotos ?? [];
+      const sellerId = this.product()?.usuarios_id;
+      if(!sellerId) return;
+
+      // Seller data e imgs 
+
+      const [seller, sellerRatings, fotos] = await Promise.all([
+        lastValueFrom(this.userService.getUserById((  sellerId).toString() )),
+        lastValueFrom(this.ratingsService.getAverageRatingsByUser(sellerId)),
+        lastValueFrom(this.articlePhotoService.getFotosByArticuloId(Number(id)))
+      ]) 
+
+      //fotos
       this.fotos.set(fotos);
       const principal = fotos.find((f) => f.principal === 1) ?? fotos[0] ?? null;
       this.selectedPhoto.set(principal);
 
-      const sellerId = article.usuarios_id;
-      if (!sellerId) return;
-
-      const [seller, sellerRatings] = await Promise.all([
-        lastValueFrom(this.userService.getUserById(sellerId.toString())),
-        lastValueFrom(this.ratingsService.getRatingsByUser(sellerId)),
-      ]);
+     
       const iniciales = `${seller.nombre.charAt(0)}${seller.apellidos.charAt(0)}`.toUpperCase();
       this.vendedorData.set({
         username:  seller.username,
