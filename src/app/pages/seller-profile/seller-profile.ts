@@ -28,19 +28,29 @@ export class SellerProfile {
   public readonly QUERYPARAM_ON_SELL: string = "on_sell"
   public readonly QUERYPARAM_RATINGS: string = "ratings"
   protected role = signal<SidebarVariant | null>(null);
- 
-  protected articles = signal<number[]>([1,2,3,4,5,6,7,8,9]);
   
- 
-  //Servicios
   user: any = {}
-  protected name      = signal<string>('0');
-  protected last_name = signal<string>('0');
-  protected published = signal<string>('0');
-  protected selled    = signal<string>('0');
-  protected rating    = signal<string>('0');
-  protected breadcrumb_name    = signal<string>('');
+  protected name       = signal<string>(' ');
+  protected last_name  = signal<string>(' ');
+  protected year       = signal<number>(0);
+  protected published  = signal<string>(' ');
+  protected selled     = signal<string>(' ');
+  protected rating_avg = signal<string>(' ');
+  protected ratings    = signal<any>(' ');
+  protected articles   = signal<any[]>([]);
+  
 
+  protected routeReport  = computed(() => [`/user/report/user/${this.userID()}`]);
+  protected routeContact = computed(() => [`/user/messages/${this.userID()}`]);
+  protected breadcrumb_name = computed(() => (`${this.name()} ${this.last_name()[0]}.`));
+  
+
+  protected datetimeToTimestamp(rating: any){
+    const datetime = new Date(rating.creada_en)
+    return datetime.getTime()
+  }
+  
+  //Services
   private router = inject(Router);
   private actived_route = inject(ActivatedRoute);
   private userService = inject(UsersService);
@@ -49,7 +59,6 @@ export class SellerProfile {
   private orderService = inject(OrdersService)
 
   ngOnInit() { 
-
     this.router.navigate([], {
         queryParams: { tab: this.QUERYPARAM_ON_SELL },
         queryParamsHandling: 'merge'  // conserva otros query params existentes
@@ -71,7 +80,7 @@ export class SellerProfile {
         } else {
           this.name.set(data.nombre);
           this.last_name.set(data.apellidos);
-          this.breadcrumb_name.set(`${this.name()} ${this.last_name()[0]}.`)
+          this.year.set(data.created_at.substring(0,4))
         }
       },
       error: (err) => {
@@ -80,12 +89,41 @@ export class SellerProfile {
       }
     });
 
+    this.ratingService.getAverageRatingsByUser(Number(this.userID())).subscribe({
+        next: (data) => {
+          if (data.error) {
+            return;
+          } else {
+            this.rating_avg.set(String(data.puntuacion_media ?? "0"));
+         }
+        },
+        error: (err) => {
+          console.error(err);
+          
+        }
+    });
+
     this.ratingService.getRatingsByUser(Number(this.userID())).subscribe({
         next: (data) => {
           if (data.error) {
             return;
           } else {
-            this.rating.set(String(data.puntuacion_media ?? "0"));
+            this.ratings.set(data);
+         }
+        },
+        error: (err) => {
+          console.error(err);
+          
+        }
+    });
+
+    this.articleService.getArticlesByUser(Number(this.userID())).subscribe({
+        next: (data) => {
+          if (data.error) {
+            return;
+          } else {
+            console.log(data)
+            this.articles.set(data)
          }
         },
         error: (err) => {
@@ -144,7 +182,7 @@ export class SellerProfile {
     return [selling, ratings]
   }
 
-  activeTab = toSignal(
+  protected activeTab = toSignal(
     this.actived_route.queryParamMap.pipe(
         map(params => params.get('tab'))
     )

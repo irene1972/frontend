@@ -10,11 +10,11 @@
     
     <div class="d-flex flex-column flex-grow-1 p-4 gap-4">
         <molecule-breadcrum [items]="breadcrumbItems()"></molecule-breadcrum>
-        <molecule-user-contact [name]="name()" [last_name]="last_name()"/>
+        <molecule-user-contact [name]="name()" [last_name]="last_name()" [routeReport]="routeReport()" [routeContact]="routeContact()" [year]="year()"/>
         <div class="d-flex flex-row justify-content-between gap-4">
             <molecule-status-card class="d-flex flex-grow-1" text="PUBLICADOS" [status]="published()"/>
             <molecule-status-card class="d-flex flex-grow-1" text="VENDIDOS" [status]="selled()"/>
-            <molecule-status-card class="d-flex flex-grow-1" text="VALORACIÓN" [status]="rating()"/>
+            <molecule-status-card class="d-flex flex-grow-1" text="VALORACIÓN" [status]="rating_avg()"/>
         </div>
         <molecule-nav-tab [tabs]="sellerTabs()"/>
         @if(activeTab() === QUERYPARAM_ON_SELL)
@@ -22,18 +22,21 @@
             <div class="row row-cols-1 row-cols-md-3 g-2 m-0">
                 @for (article of articles(); track article) {
                 <div class="col">
-                    <molecule-article-card [id]="article" />
+                    <molecule-article-card [id]="article.id" [img]="article.url_foto" [name]="article.titulo" 
+                    [state]="article.estado_articulo_id" [price]="article.precio" location="Madrid"/>
                 </div>
-                }
+            }
             </div>
         } 
         @else if(activeTab() === QUERYPARAM_RATINGS)
         {
             <div class="d-flex flex-column gap-2">
-                 <molecule-user-rating-comment [timestamp]="1782300000000">dsfdsfds</molecule-user-rating-comment>
-                 <molecule-user-rating-comment [timestamp]="1782300000000">dsfdsfds</molecule-user-rating-comment>
-                 <molecule-user-rating-comment [timestamp]="1782300000000">dsfdsfds</molecule-user-rating-comment>
-                 <molecule-user-rating-comment [timestamp]="1782300000000">dsfdsfds</molecule-user-rating-comment>
+                @for (rating of ratings(); track rating) {
+                <molecule-user-rating-comment [name]="rating.nombre" [last_name]="rating.apellidos" [rating]="rating.puntuacion"
+                 [timestamp]="datetimeToTimestamp(rating)">
+                    {{rating.mensaje}}
+                </molecule-user-rating-comment>
+                }
             </div>
         }
     </div>
