@@ -52,7 +52,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponentComponent },
     { path: 'register', component: RegisterComponentComponent },
     { path: 'product/:productID', component: ProductViewComponentComponent },
-    { path: 'sellers/:userID', component: SellerProfile },
 
     // // Rutas Home: Usuario Normal. 
     {
@@ -97,7 +96,7 @@ export const routes: Routes = [
             {path: 'report/user/:userID', component: UserReportPage},
             // Ruta Mensajeria
             { path: 'messages', component: MessagesComponentComponent },
-            { path: 'messages/:chatID', component: ChatComponentComponent },
+            { path: 'messages/:userID', component: ChatComponentComponent },
             { path: 'sellers/:userID', component: SellerProfile },
         ]
     },
