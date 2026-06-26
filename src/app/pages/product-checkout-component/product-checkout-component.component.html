@@ -95,7 +95,8 @@
 
       <atom-button
         config_type="secondary"
-        [label]="'Pagar ahora · ' + formatPrice(total()) + ' EUR'"
+        [config_state]="isSubmitting() ? 'disabled' : 'enabled'"
+        [label]="isSubmitting() ? 'Procesando pago...' : 'Pagar ahora · ' + formatPrice(total()) + ' EUR'"
         (click)="onPayNow($event)"
       />
     </aside>

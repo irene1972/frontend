@@ -1,8 +1,12 @@
 import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Button } from '../../components/atoms/button/button';
 import { IArticle } from '../../interfaces/i-article';
 import { CheckoutService } from '../../services/checkout-service';
+import { OrdersService } from '../../services/orders-service';
+import { UsersService } from '../../services/users-service';
 
 type DeliveryMethod = 'home' | 'pickup';
 
@@ -17,9 +21,12 @@ export class ProductCheckoutComponentComponent implements OnInit {
 
   private readonly router = inject(Router);
   private readonly checkoutService = inject(CheckoutService);
+  private readonly ordersService = inject(OrdersService);
+  private readonly usersService = inject(UsersService);
 
   product = signal<IArticle | null>(null);
   deliveryMethod = signal<DeliveryMethod>('home');
+  isSubmitting = signal(false);
 
   readonly shippingHome = 4.99;
   readonly shippingPickup = 2.99;
@@ -68,7 +75,66 @@ export class ProductCheckoutComponentComponent implements OnInit {
     });
   }
 
-  onPayNow(event: MouseEvent): void {
-    // Integración de pago pendiente
+  async onPayNow(event: MouseEvent): Promise<void> {
+    const article = this.product();
+    if (!article || this.isSubmitting()) return;
+
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (!usuarioString) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const user = JSON.parse(usuarioString);
+
+    if (user.id === article.usuarios_id) {
+      await Swal.fire('No puedes comprar tu propio artículo', '', 'error');
+      return;
+    }
+
+    this.isSubmitting.set(true);
+
+    try {
+      const direccionEnvio = await this.resolveShippingAddress(user.id);
+      if (!direccionEnvio) {
+        await Swal.fire(
+          'Dirección requerida',
+          'Actualiza tu dirección en el perfil para continuar con el envío a domicilio.',
+          'warning'
+        );
+        return;
+      }
+
+      const order = await lastValueFrom(
+        this.ordersService.createOrder({
+          comprador_id: user.id,
+          articulos_id: article.id,
+          estado: 'Pendiente',
+          direccion_envio: direccionEnvio,
+        })
+      );
+
+      this.checkoutService.clearCheckoutProduct();
+      await Swal.fire('¡Compra realizada!', order.mensaje, 'success');
+      this.router.navigate(['/user/panel/my-purchases']);
+    } catch {
+      await Swal.fire(
+        'Error',
+        'No se pudo completar la compra. Inténtalo de nuevo.',
+        'error'
+      );
+    } finally {
+      this.isSubmitting.set(false);
+    }
+  }
+
+  private async resolveShippingAddress(userId: number): Promise<string | null> {
+    if (this.deliveryMethod() === 'pickup') {
+      return 'Punto de recogida';
+    }
+
+    const user = await lastValueFrom(this.usersService.getUserById(userId.toString()));
+    const direccion = user?.direccion?.trim();
+    return direccion || null;
   }
 }
