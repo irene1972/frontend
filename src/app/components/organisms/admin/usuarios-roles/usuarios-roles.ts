@@ -5,6 +5,7 @@ import { UsersService } from '../../../../services/users-service';
 import { IUsuario } from '../../../../interfaces/i-usuario';
 import { NgStyle } from '@angular/common';
 import { Breadcrum } from "../../../molecules/breadcrum/breadcrum";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuarios-roles',
@@ -17,103 +18,141 @@ export class UsuariosRoles {
   tipo: boolean = false;
   usuarios: IUsuario[] = [];
   usersService = inject(UsersService);
-  iniciales:string='';
-  usersCount:number=0;
-  usersCountRol:number=0;
-  usersCountBlocked:number=0;
-  textoBusqueda:string='';
-  placeholder:string='Buscar usuario por nombre o correo...';
+  iniciales: string = '';
+  usersCount: number = 0;
+  usersCountRol: number = 0;
+  usersCountBlocked: number = 0;
+  textoBusqueda: string = '';
+  placeholder: string = 'Buscar usuario por nombre o correo...';
 
   constructor(private cd: ChangeDetectorRef) { }
 
   get usuariosFiltrados(): IUsuario[] {
-  if (!this.textoBusqueda.trim()) {
-    return this.usuarios;
+    if (!this.textoBusqueda.trim()) {
+      return this.usuarios;
+    }
+
+    const texto = this.textoBusqueda.toLowerCase();
+
+    return this.usuarios.filter(usuario =>
+      usuario.nombre?.toLowerCase().includes(texto) ||
+      usuario.apellidos?.toLowerCase().includes(texto) ||
+      usuario.email?.toLowerCase().includes(texto)
+    );
   }
 
-  const texto = this.textoBusqueda.toLowerCase();
-
-  return this.usuarios.filter(usuario =>
-    usuario.nombre?.toLowerCase().includes(texto) ||
-    usuario.apellidos?.toLowerCase().includes(texto) ||
-    usuario.email?.toLowerCase().includes(texto)
-  );
-}
-
-  ngOnInit(){
+  ngOnInit() {
 
     this.usersService.getAllUsers().subscribe({
       next: (data) => {
         if (data.error) {
-        this.mensaje = data.error;
-        return;
-      } else {
-        console.log(data);
-        this.usuarios = data;
-        this.cd.detectChanges();
-      }
+          this.mensaje = data.error;
+          return;
+        } else {
+          console.log(data);
+          this.usuarios = data;
+          this.cd.detectChanges();
+        }
       },
       error: (err) => {
         console.error(err);
-        
+
       }
     });
 
     this.usersService.getCount().subscribe({
       next: (data) => {
         if (data.error) {
-        this.mensaje = data.error;
-        return;
-      } else {
-        console.log(data);
-        this.usersCount = data.count;
-        this.cd.detectChanges();
-      }
+          this.mensaje = data.error;
+          return;
+        } else {
+          console.log(data);
+          this.usersCount = data.count;
+          this.cd.detectChanges();
+        }
       },
       error: (err) => {
         console.error(err);
-        
+
       }
     });
 
     this.usersService.getCountRol().subscribe({
       next: (data) => {
         if (data.error) {
-        this.mensaje = data.error;
-        return;
-      } else {
-        console.log(data);
-        this.usersCountRol = data.count;
-        this.cd.detectChanges();
-      }
+          this.mensaje = data.error;
+          return;
+        } else {
+          console.log(data);
+          this.usersCountRol = data.count;
+          this.cd.detectChanges();
+        }
       },
       error: (err) => {
         console.error(err);
-        
+
       }
     });
 
     this.usersService.getCountBlocked().subscribe({
       next: (data) => {
         if (data.error) {
-        this.mensaje = data.error;
-        return;
-      } else {
-        console.log(data);
-        this.usersCountBlocked = data.count;
-        this.cd.detectChanges();
-      }
+          this.mensaje = data.error;
+          return;
+        } else {
+          console.log(data);
+          this.usersCountBlocked = data.count;
+          this.cd.detectChanges();
+        }
       },
       error: (err) => {
         console.error(err);
-        
+
       }
     });
 
   }
 
+  borrar(user_id: number) {
+    console.log('irene', user_id);
+
+    /****************** */
+    Swal.fire({
+      title: '¿Estás seguro de eliminar el usuario?',
+      showDenyButton: false,
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      confirmButtonColor: '#ff0000',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.usersService.deleteUser(user_id).subscribe({
+          next: (data) => {
+            if (data.error) {
+              this.mensaje = data.error;
+              return;
+            } else {
+              console.log(data);
+              Swal.fire('Eliminado!', '', 'success');
+              setTimeout(() => {
+                window.location.reload();
+              },1000);
+            }
+          },
+          error: (err) => {
+            console.error(err);
+
+          }
+        });
+      }
+    });
+    /****************** */
+
+  }
+
   protected breadcrumbItems = computed(() => [
     { label: 'Panel', route: '/admin/panel/' },
-    { label: 'Usuarios', route: 'users'}
+    { label: 'Usuarios', route: 'users' }
   ]);
 }

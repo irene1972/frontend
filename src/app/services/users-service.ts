@@ -41,4 +41,8 @@ export class UsersService {
   updateRole(user_id:number,body:any,role:string):Observable<any>{
     return this.httpClient.patch(this.baseUrl + `${user_id}/rol/${role}`,body,{})
   }
+
+  deleteUser(id: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + `${id}`, {});
+  }
 }

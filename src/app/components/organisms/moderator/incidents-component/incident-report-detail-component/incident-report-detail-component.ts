@@ -101,9 +101,10 @@ export class IncidentReportDetailComponent {
   aceptarReporte() {
     const reporteActualizado = {
       ...this.reporte,
-      estado: 'Aceptado'
+      estado: 'Aceptado',
+      resultado_reporte: this.nota
     };
-
+  
     this.reportsService.updateReport(this.reporteId, reporteActualizado).subscribe({
       next: () => {
         this.router.navigate(['/moderator/panel/incident', this.articuloId]);
@@ -113,13 +114,14 @@ export class IncidentReportDetailComponent {
       }
     });
   }
-
+  
   descartarReporte() {
     const reporteActualizado = {
       ...this.reporte,
-      estado: 'Descartado'
+      estado: 'Descartado',
+      resultado_reporte: this.nota
     };
-
+  
     this.reportsService.updateReport(this.reporteId, reporteActualizado).subscribe({
       next: () => {
         this.router.navigate(['/moderator/panel/incident', this.articuloId]);

@@ -46,6 +46,7 @@ import { ExploreComponent } from './pages/explore-component/explore-component';
 import { WriteReview } from './components/organisms/user/write-review/write-review';
 import { ProductReportPage } from './pages/reports/product-report-page/product-report-page';
 import { UserReportPage } from './pages/reports/user-report-page/user-report-page';
+import { ProductPublished } from './pages/product-published/product-published';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -55,6 +56,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponentComponent },
     { path: 'register', component: RegisterComponentComponent },
     { path: 'product/:productID', component: ProductViewComponentComponent },
+    { path: 'product/published/:productID', component: ProductPublished },
 
     // // Rutas Home: Usuario Normal. 
     {
