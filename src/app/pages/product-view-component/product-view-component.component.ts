@@ -64,7 +64,7 @@ export class ProductViewComponentComponent {
 
       const [seller, sellerRatings, fotos] = await Promise.all([
         lastValueFrom(this.userService.getUserById((  sellerId).toString() )),
-        lastValueFrom(this.ratingsService.getRatingsByUser(sellerId)),
+        lastValueFrom(this.ratingsService.getAverageRatingsByUser(sellerId)),
         lastValueFrom(this.articlePhotoService.getFotosByArticuloId(Number(id)))
       ]) 
 

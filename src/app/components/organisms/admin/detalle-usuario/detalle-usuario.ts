@@ -48,7 +48,7 @@ export class DetalleUsuario {
           console.log(data);
           this.usuario = data;
 
-          this.ratingsService.getRatingsByUser(this.usuario.id).subscribe({
+          this.ratingsService.getAverageRatingsByUser(this.usuario.id).subscribe({
             next: (data) => {
               if (data.error) {
                 this.mensaje = data.error;
