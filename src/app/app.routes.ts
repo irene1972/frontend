@@ -92,6 +92,9 @@ export const routes: Routes = [
                     {
                         path: 'article/edit/:id',
                         component: EditArticle
+                    },
+                    {
+                        path: 'messages', component: MessagesComponentComponent
                     }
                 ]
              },
@@ -104,8 +107,8 @@ export const routes: Routes = [
             {path: 'report/product/:productID', component: ProductReportPage},
             {path: 'report/user/:userID', component: UserReportPage},
             // Ruta Mensajeria
-            { path: 'messages', component: MessagesComponentComponent },
-            { path: 'messages/:chatID', component: ChatComponentComponent },
+            // { path: 'messages', component: MessagesComponentComponent },
+            //{ path: 'messages/:userID', component: ChatComponentComponent },
         ]
     },
 
