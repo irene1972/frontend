@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    @for(usuario of usuariosFiltrados;track usuario.id){
+    @for(usuario of usuariosPaginados;track usuario.id){
     <div class="users">
         <div class="card">
             <div class="card-user">
@@ -68,5 +68,30 @@
     <p>No hay datos</p>
     }
 
+    @if(totalPaginas > 1){
+
+    <div class="paginacion">
+
+        <button (click)="cambiarPagina(paginaActual-1)" [disabled]="paginaActual===1">
+            ←
+        </button>
+
+        @for(pagina of paginas; track pagina){
+
+        <button (click)="cambiarPagina(pagina)" [class.activa]="pagina===paginaActual">
+
+            {{pagina}}
+
+        </button>
+
+        }
+
+        <button (click)="cambiarPagina(paginaActual+1)" [disabled]="paginaActual===totalPaginas">
+            →
+        </button>
+
+    </div>
+
+    }
 
 </section>
