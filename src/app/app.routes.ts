@@ -85,13 +85,12 @@ export const routes: Routes = [
                         component: UserMyPurchasesComponentComponent
                     },
                     {
-<<<<<<< HEAD
-                        path: 'my-purchases/my-reviews/:reviewID',
-                        component: ReviewView
-=======
                         path: 'my-purchases/write-review/:id',
                         component: WriteReview
->>>>>>> 0e3e87984c4e53db8e2ee60e5a1283436be17f4f
+                    },
+                    {
+                        path: 'my-purchases/my-reviews/:reviewID',
+                        component: ReviewView
                     },
                     {
                         path: 'article/edit/:id',
