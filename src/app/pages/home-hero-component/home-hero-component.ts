@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, NgZone } from '@angular/core';
 import { IArticle } from '../../interfaces/i-article';
 import { ArticlesService } from '../../services/articles-service';
 import { NLInicioHero } from '../../components/organisms/no_logueado/nl-inicio-hero/nl-inicio-hero';
@@ -22,7 +22,7 @@ export class HomeHeroComponent {
   recents: IArticle[] = [];
   articlesService = inject(ArticlesService);
 
-  constructor(private cd: ChangeDetectorRef){}
+  constructor(private cd: ChangeDetectorRef,private zone: NgZone){}
 
   get bestSellersFiltrados(): IArticle[] {
     if (!this.textoBusqueda.trim()) {
@@ -60,7 +60,7 @@ export class HomeHeroComponent {
       } else {
         console.log(data);
         this.recents = data;
-        this.cd.detectChanges();
+        this.cd.markForCheck();
       }
       },
       error: (err) => {
@@ -76,8 +76,8 @@ export class HomeHeroComponent {
         return;
       } else {
         console.log(data.articulos);
-        this.bestSellers = data.articulos;
-        this.cd.detectChanges();
+        this.bestSellers = data.articulos ?? [];
+        this.cd.markForCheck();
       }
       },
       error: (err) => {

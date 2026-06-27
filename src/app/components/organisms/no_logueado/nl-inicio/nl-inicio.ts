@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
 import { IArticle } from '../../../../interfaces/i-article';
 import { Router, RouterLink } from '@angular/router';
 
@@ -13,6 +13,8 @@ export class NLInicio {
 
   @Input() best_sellers:IArticle[] = [];
   @Input() recents:IArticle[] = [];
+
+  constructor(private cd: ChangeDetectorRef){}
 
   goToExplore(): void {
     this.router.navigate(['/explore']);

@@ -6,7 +6,7 @@
         </div>
         <div class="destac">
             @for (bestSeller of best_sellers.slice(0,4);track bestSeller.id) {
-
+                
             <div class="card">
                 <a [routerLink]="['/product',bestSeller.id]">
                     <img [src]="(bestSeller.url_foto)?bestSeller.url_foto:'/imgs/no-photo.jpg'" class="card-img-top"
