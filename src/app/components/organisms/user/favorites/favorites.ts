@@ -46,6 +46,6 @@ export class Favorites {
     this.router.navigate(['/usuario/detalle',id]);
   }
   irADetalleArticulo(id:number):void{
-    this.router.navigate(['/articulo/detalle',id]);
+    this.router.navigate(['/product',id]);
   }
 }

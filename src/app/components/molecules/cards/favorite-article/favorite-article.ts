@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Icon } from '../../../atoms/icon/icon';
 import { Button } from '../../../atoms/button/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-favorite-article',
-  imports: [Icon,Button],
+  imports: [Icon,Button,RouterLink],
   templateUrl: './favorite-article.html',
   styleUrl: './favorite-article.css',
 })
