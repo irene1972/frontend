@@ -3,10 +3,11 @@ import { Button } from "../../components/atoms/button/button";
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
+import { NavStep } from "../../components/organisms/navs/nav-step/nav-step";
 
 @Component({
   selector: 'app-product-form-component',
-  imports: [Button],
+  imports: [Button, NavStep],
   templateUrl: './product-form-component.component.html',
   styleUrl: './product-form-component.component.css',
 })
@@ -17,18 +18,15 @@ export class ProductFormComponentComponent {
   
    //Services
   private router = inject(Router);
-   private actived_route = inject(ActivatedRoute);
+  private actived_route = inject(ActivatedRoute);
 
   ngOnInit() { 
-    this.router.navigate([], {
-        queryParams: { tab: this.QUERYPARAM_DETAIL },
-        queryParamsHandling: 'merge'  // conserva otros query params existentes
-    })
+    
   }
 
 
   protected activeTab = toSignal(
     this.actived_route.queryParamMap.pipe(
-        map(params => params.get('tab'))
+        map(params => params.get('step'))
     ));
 }
