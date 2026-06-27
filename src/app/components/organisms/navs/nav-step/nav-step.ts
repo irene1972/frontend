@@ -9,6 +9,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './nav-step.css',
 })
 export class NavStep {
-  public steps      = input<NavStepOptions[]>([{name:"1",label:"DETALLES",query_param:"detail"}, {name:"2",label:"PRECIO",query_param:"price"}]);
+  public steps      = input<NavStepOptions[]>([{name:"1",label:"DETALLES",query_param:"detail"}, {name:"2",label:"PRECIO",query_param:"price"},{name:"3",label:"FOTOS",query_param:"photo"}]);
   public activeStep = input<string>('');
 }
