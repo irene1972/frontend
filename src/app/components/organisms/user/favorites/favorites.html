@@ -44,34 +44,21 @@
 
   @if (activeTab === 'usuarios') {
   <div class="conten">
-    <p>4 usuarios que sigues</p>
+    <p>{{usuarios.length}} usuarios que sigues</p>
 
-    <!--@for (user of users; track user.id) {-->
+    @for (usuario of usuarios; track usuario.id) {
     <div class="users">
       <div>
         <app-favorite-user 
-        iniciales="IO" 
-        nombre="Irene O." 
-        estrellas="4.8" 
-        valoraciones="124" 
         texto_boton="Ver detalle" 
-        [userId]="2" 
+        [usuario]="usuario" 
         (clicar)="irADetalleUsuario($event)" 
         ></app-favorite-user>
       </div>
-      <div>
-        <app-favorite-user 
-        iniciales="IO" 
-        nombre="Irene O." 
-        estrellas="4.8" 
-        valoraciones="124" 
-        texto_boton="Ver detalle"
-        ></app-favorite-user>
-      </div>
-        
-
     </div>
-    <!--}-->
+    }@empty{
+      <p>No hay usuarios favoritos</p>
+    }
   </div>
   }
 

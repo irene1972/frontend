@@ -13,4 +13,8 @@ export class FavoritesService {
    getAllFavoritesByUser(user_id:number):Observable<any>{
     return this.httpClient.get<any>(this.baseUrl+`get-all/usuario/${user_id}`);
   }
+
+  getAllFavoritesUsersByUser(user_id:number):Observable<any>{
+    return this.httpClient.get<any>(this.baseUrl+`get-all-favorite-users/usuario/${user_id}`);
+  }
 }

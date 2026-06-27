@@ -142,7 +142,6 @@ export class UsuariosRoles {
   }
 
   borrar(user_id: number) {
-    console.log('irene', user_id);
 
     Swal.fire({
       title: '¿Estás seguro de eliminar el usuario?',
