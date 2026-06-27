@@ -1,7 +1,9 @@
 
 <nav id="nav-tab">
     @for (tab of tabs(); track $index) {
-        <a [routerLink]="currentRoute" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [queryParams]="{tab: tab.query_param}">
+        <a [routerLink]="[]" routerLinkActive="active" 
+           [routerLinkActiveOptions]="{ exact: true }" 
+           [queryParams]="{tab: tab.query_param}">
             <div class="tab-text" >
                 <p>{{ tab.name }}</p>
                 @if(tab.notify !== '0'){
