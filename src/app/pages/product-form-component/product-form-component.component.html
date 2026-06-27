@@ -3,14 +3,31 @@
 
         <h2>Publicar nuevo artículo</h2>
         <p>Completa los detalles para que miles de usuarios encuentren tu equipo</p>
-        <organism-nav-step class="d-flex flex-grow-1 w-100"></organism-nav-step>
-        @if(activeTab() === QUERYPARAM_DETAIL) {
+        <organism-nav-step class="d-flex flex-grow-1 w-100 pb-4" [steps]="loadSteps()"></organism-nav-step>
+        @if(currentStep() === QUERYPARAM_NONE) {
             <div>ToDo: Organismo datos del artículo</div>
-        } @else if(activeTab() === QUERYPARAM_PRICE) {
+            <div class="d-flex flex-row flex-grow-1 w-100">
+                <atom-button class="ms-auto" config_type="secondary" label="Siguiente" icon="arrow-right" iconPosition="right" (clickButton)="nextStep()"/>
+            </div>
+        } @else if(currentStep() === QUERYPARAM_DETAIL) {
             <div>ToDo: Organismo precio y ubicación</div>
-        } @else if(activeTab() === QUERYPARAM_PICTURES) {
+            <div class="d-flex flex-row flex-grow-1 w-100">
+                <atom-button class="btn-back ml-auto" config_type="outline" label="Atrás" icon="arrow-left" iconPosition="left" (clickButton)="previousStep()"/>
+                <atom-button class="ms-auto" config_type="secondary" label="Siguiente" icon="arrow-right" iconPosition="right" (clickButton)="nextStep()"/>
+            </div>
+        } @else if(currentStep() === QUERYPARAM_PRICE) {
             <div>ToDo: Organismo para subir fotos de detalle del producto</div>
+            <div class="d-flex flex-row flex-grow-1 w-100">
+                <atom-button class="btn-back ml-auto" config_type="outline" label="Atrás" icon="arrow-left" iconPosition="left" (clickButton)="previousStep()"/>
+                <atom-button class="ms-auto" config_type="secondary" label="Siguiente" icon="arrow-right" iconPosition="right" (clickButton)="nextStep()"/>
+            </div>
+        } @else if(currentStep() === QUERYPARAM_PICTURES) {
+        <div class="d-flex flex-row flex-grow-1 w-100">
+            <atom-button class="btn-back ml-auto" config_type="outline" label="Atrás" icon="arrow-left" iconPosition="left" (clickButton)="previousStep()"/>
+            <atom-button class="ms-auto" config_type="secondary" label="Publicar artículo" icon="arrow-right" iconPosition="right" (clickButton)="nextStep()"/>
+        </div>
         }
-        <atom-button class="ms-auto" config_type="secondary" label="Publicar artículo" icon="arrow-right" iconPosition="right"/>
+       
+       
     </div>
 </div>
