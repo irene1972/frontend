@@ -18,6 +18,8 @@ export class RegisterComponentComponent {
 
   constructor(private cd: ChangeDetectorRef, private router: Router) {
     this.miForm = new FormGroup({
+      nombre: new FormControl('', [Validators.required, Validators.maxLength(45)]),
+      apellidos: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
@@ -34,6 +36,14 @@ export class RegisterComponentComponent {
         Validators.required
       ])
     }, []);
+  }
+
+  get nombre() {
+    return this.miForm.get('nombre');
+  }
+
+  get apellidos() {
+    return this.miForm.get('apellidos');
   }
 
   get email() {
@@ -70,9 +80,15 @@ export class RegisterComponentComponent {
     // completan despues en "editar perfil". La contrasena repetida no se envia: solo
     // sirve para validar en el cliente.
     const nuevoUsuario = {
+      nombre: this.miForm.value.nombre,
+      apellidos: this.miForm.value.apellidos,
       email: this.miForm.value.email,
       username: this.miForm.value.username,
-      password: this.miForm.value.password
+      password: this.miForm.value.password,
+      // Campos NOT NULL en BD sin default; vacios al alta, se completan en "editar perfil"
+      foto: '',
+      direccion: '',
+      zona_geografica: ''
     };
 
     this.usersService.registerUser(nuevoUsuario).subscribe({
