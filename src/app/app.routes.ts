@@ -45,13 +45,10 @@ import { ProductReportPage } from './pages/reports/product-report-page/product-r
 import { UserReportPage } from './pages/reports/user-report-page/user-report-page';
 import { SellerProfile } from './pages/seller-profile/seller-profile';
 import { ProductPublished } from './pages/product-published/product-published';
-<<<<<<< HEAD
 import { ReviewView } from './pages/review-view/review-view';
 import { MyReviews } from './pages/my-reviews/my-reviews';
-=======
 import { AdminModeratorProfileComponent } from './components/organisms/moderator/admin-moderator-profile/admin-moderator-profile.component';
 import { ReportsDetailComponent } from './components/organisms/admin/reports/reports-detail/reports-detail.component';
->>>>>>> feature/ajustes_mod_admin
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
