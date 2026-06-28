@@ -24,7 +24,7 @@ h2 {
 .recien {
     display: flex;
     gap: 1rem;
-    justify-content: space-between;
+    justify-content:flex-start;
     flex-wrap: wrap;
 }
 
