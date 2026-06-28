@@ -27,3 +27,9 @@ export interface IUserPurchase extends IPurchase {
   nombre_articulo: string;
   fotos?: IPurchasePhoto[];
 }
+
+export interface IUserPurchaseSales {
+  usuario_id: number;
+  total_ventas: number;
+  importe_total: number;
+}

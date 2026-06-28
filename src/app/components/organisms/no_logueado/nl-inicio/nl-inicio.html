@@ -2,12 +2,16 @@
     <div class="destacados">
         <div class="contenedor">
             <h2>Artículos destacados</h2>
-            <a [routerLink]="['#']">Ver todo -></a>
+            <a [routerLink]="['/explore']">Ver todo -></a>
         </div>
         <div class="destac">
             @for (bestSeller of best_sellers.slice(0,4);track bestSeller.id) {
+                
             <div class="card">
-                <img [src]="(bestSeller.url_foto)?bestSeller.url_foto:'/imgs/no-photo.jpg'" class="card-img-top" alt="{{bestSeller.titulo}}">
+                <a [routerLink]="['/product',bestSeller.id]">
+                    <img [src]="(bestSeller.url_foto)?bestSeller.url_foto:'/imgs/no-photo.jpg'" class="card-img-top"
+                        alt="{{bestSeller.titulo}}">
+                </a>
                 <div class="card-body">
                     <h5 class="card-title">{{bestSeller.precio}} €</h5>
                     <p class="card-text">{{bestSeller.titulo}}</p>
@@ -18,8 +22,9 @@
 
                 </div>
             </div>
+
             }@empty{
-                <p>No hay datos</p>
+            <p>No hay datos</p>
             }
 
 
@@ -29,17 +34,19 @@
     <div class="recientes">
         <div class="contenedor">
             <h2>Subido recientemente</h2>
-            <a>Ver todo -></a>
+            <a [routerLink]="['/explore']">Ver todo -></a>
         </div>
         <div class="recien">
             @for(recent of recents.slice(0,6);track recent.id){
             <div class="elemento">
-                <img [src]="(recent.url_foto)?recent.url_foto:'/imgs/no-photo.jpg'" alt="{{recent.titulo}}">
+                <a [routerLink]="['/product',recent.id]">
+                    <img [src]="(recent.url_foto)?recent.url_foto:'/imgs/no-photo.jpg'" alt="{{recent.titulo}}">
+                </a>
                 <h6>{{recent.precio}} €</h6>
                 <p>{{recent.titulo}}</p>
             </div>
             }@empty{
-                <p>No hay datos</p>
+            <p>No hay datos</p>
             }
 
 

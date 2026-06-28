@@ -31,12 +31,8 @@
                 <div class="reporte-info">
                     <div class="reporte-top">
                         <h2>{{ grupo.articulo?.titulo }}</h2>
-
-                        <span class="tag" [class.tag-pendiente]="grupo.estadoGeneral === 'Pendiente'" [class.tag-revisado]="grupo.estadoGeneral === 'En revisión'">
-                            {{ grupo.estadoGeneral }}
-                        </span>
+                        <span class="tag" [class.tag-pendiente]="grupo.estadoGeneral === 'Pendiente'" [class.tag-revisado]="grupo.estadoGeneral === 'En revisión'"> {{ grupo.estadoGeneral }}</span>
                     </div>
-
                     <p>{{ grupo.totalReportes }} reporte{{ grupo.totalReportes > 1 ? 's' : '' }}</p>
                 </div>
 

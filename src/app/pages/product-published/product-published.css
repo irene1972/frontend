@@ -1,0 +1,75 @@
+.cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1{
+    color: #0B1C30;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.descripcion{
+    color: #6B7280;
+    margin: 1rem 0 2rem 0;
+
+}
+.card{
+    width: 50%;
+    padding: 1rem 1rem;
+}
+.linea{
+    display: flex;
+    justify-content: space-between;
+}
+.claro{
+    color: #6B7280;
+    font-size: .9rem;
+
+}
+h5{
+    font-size: .9rem;
+    font-weight: bold;
+}
+.precio{
+    color: #0B1C30;
+
+}
+span{
+    color: #003594;
+    font-weight: bold;
+    font-size: .9rem;
+}
+.botones{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 2rem 0;
+}
+.botones button{
+    flex: 0 0 50%;
+}
+.botones button:first-child{
+    background: #003594;
+    border:1px solid #003594;
+    font-weight: bold;
+}
+.botones button:last-child{
+    color:#003594;
+    font-weight: bold;
+    border:none;
+    background-color: transparent;
+}
+i{
+    font-size: 10rem;
+    color: #16A34A;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .card,.botones{
+        width: 90%;
+    }
+    app-home-bar{
+        display: none;
+    }
+}

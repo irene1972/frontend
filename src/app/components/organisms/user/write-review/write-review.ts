@@ -36,7 +36,6 @@ export class WriteReview {
   }
 
   ngOnInit() {
-    /*TODO: ¿preguntar si hay que cargar datos de la valoración si ya existe? */
     const id = this.route.snapshot.paramMap.get('id')!;
     console.log(id);
 

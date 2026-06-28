@@ -7,15 +7,13 @@ a {
     padding: 2rem 2.5rem;
     background: #f8f9ff;
     color: #0f172a;
+    h1 {
+        margin: 1rem 0 .75rem;
+        font-size: 2rem;
+        font-weight: 700;
+    }
 }
 
-.detalle-reporte h1 {
-    margin: 1rem 0 .75rem;
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-/* Header */
 .header {
     display: flex;
     align-items: center;
@@ -52,15 +50,13 @@ a {
     margin-left: 1rem;
     padding-left: 1rem;
     font-weight: bold;
-}
-
-.ruta p {
-    margin: 0;
-}
-
-.ruta div {
-    margin: 0 .5rem;
-    color: #9ca3af;
+    p {
+        margin: 0;
+    }
+    div {
+        margin: 0 .5rem;
+        color: #9ca3af;
+    }
 }
 
 .ruta .panel {
@@ -99,6 +95,11 @@ a {
     color: #003594;
 }
 
+.tag-gestionado {
+    background: #dcfce7;
+    color: #15803d;
+}
+
 .tag-reportes {
     background: #fee2e2;
     color: #dc2626;
@@ -110,8 +111,8 @@ a {
 }
 
 .tag-descartado {
-    background: #e5e7eb;
-    color: #374151;
+    background: #fee2e2;
+    color: #dc2626;
 }
 
 /* Layout */
@@ -188,34 +189,30 @@ a {
     flex-wrap: wrap;
 }
 
-.info-articulo h2 {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 700;
+.info-articulo {
+    h2 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+    p {
+        margin: .35rem 0 0;
+        color: #6b7280;
+        i {
+            margin-right: .25rem;
+        }
+    }
 }
 
-.info-articulo p {
-    margin: .35rem 0 0;
-    color: #6b7280;
-}
-
-.info-articulo p i {
-    margin-right: .25rem;
-}
-
-.info-articulo strong {
-    font-weight: 700;
-}
 
 /* Motivos */
 .motivos-card {
     padding: 1.25rem;
-}
-
-.motivos-card h2 {
-    margin: 0 0 1rem;
-    font-size: 1.1rem;
-    font-weight: 700;
+    h2 {
+        margin: 0 0 1rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
 }
 
 .lista-motivos {
@@ -233,6 +230,16 @@ a {
     border-radius: 8px;
     padding: .85rem;
     cursor: pointer;
+    h3 {
+        margin: 0;
+        font-size: .95rem;
+        font-weight: 700;
+    }
+    p {
+        margin: .25rem 0 0;
+        color: #6b7280;
+        font-size: .85rem;
+    }
 }
 
 .motivo-item:hover {
@@ -241,18 +248,6 @@ a {
 
 .motivo-texto {
     flex: 1;
-}
-
-.motivo-item h3 {
-    margin: 0;
-    font-size: .95rem;
-    font-weight: 700;
-}
-
-.motivo-item p {
-    margin: .25rem 0 0;
-    color: #6b7280;
-    font-size: .85rem;
 }
 
 .motivo-estado {
@@ -330,7 +325,6 @@ a {
     cursor: not-allowed;
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     .detalle-reporte {
         padding: 1rem 1rem 6rem;

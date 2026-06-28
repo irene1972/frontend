@@ -70,11 +70,7 @@
             <h2>Acciones del moderador</h2>
 
             <label for="nota">NOTA INTERNA</label>
-            <textarea
-                id="nota"
-                placeholder="Añade una nota sobre la decisión..."
-                [(ngModel)]="nota"
-            ></textarea>
+            <textarea id="nota" placeholder="Añade una nota sobre la decisión..." [(ngModel)]="nota"></textarea>
 
             <div class="acciones">
                 <button class="btn-descartar" (click)="descartarReporte()">

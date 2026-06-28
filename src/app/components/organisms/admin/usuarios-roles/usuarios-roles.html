@@ -1,69 +1,97 @@
 <section class="usuarios">
 
-        <molecule-breadcrum [items]="breadcrumbItems()" />
-    
-        <h1>Usuarios</h1>
-        <div class="buscador">
-            <app-buscador (buscar)="textoBusqueda = $event" [placeholder]="placeholder"></app-buscador>
-        </div>
+    <molecule-breadcrum [items]="breadcrumbItems()" />
 
-        <div class="resumen">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">{{usersCount}}</h2>
-                    <h6 class="card-subtitle mb-2 text-muted">USUARIOS</h6>
+    <h1>Usuarios</h1>
+    <div class="buscador">
+        <app-buscador (buscar)="textoBusqueda = $event" [placeholder]="placeholder"></app-buscador>
+    </div>
 
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">{{usersCountRol}}</h2>
-                    <h6 class="card-subtitle mb-2 text-muted">MODERADORES</h6>
+    <div class="resumen">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{usersCount}}</h2>
+                <h6 class="card-subtitle mb-2 text-muted">USUARIOS</h6>
 
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">{{usersCountBlocked}}</h2>
-                    <h6 class="card-subtitle mb-2 text-muted">BLOQUEADOS</h6>
-
-                </div>
             </div>
         </div>
-        @for(usuario of usuariosFiltrados;track usuario.id){
-        <div class="users">
-            <a [routerLink]="['/admin/panel/user/',usuario.id]">
-                <div class="card">
-                    <div class="card-user">
-                        <div class="card-body cont">
-                            <div class="iniciales">{{usuario.nombre[0]+usuario.apellidos[0]}}</div>
-                            <div class="user">
-                                <h3 class="card-title">{{usuario.nombre}} {{usuario.apellidos[0]}}.</h3>
-                                <p class="card-subtitle mb-2 text-muted">{{usuario.email}}</p>
-                            </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{usersCountRol}}</h2>
+                <h6 class="card-subtitle mb-2 text-muted">MODERADORES</h6>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{usersCountBlocked}}</h2>
+                <h6 class="card-subtitle mb-2 text-muted">BLOQUEADOS</h6>
+
+            </div>
+        </div>
+    </div>
+    @for(usuario of usuariosPaginados;track usuario.id){
+    <div class="users">
+        <div class="card">
+            <div class="card-user">
+                <a [routerLink]="['/admin/panel/user/',usuario.id]">
+                    <div class="card-body cont">
+                        <div class="iniciales">{{usuario.nombre[0]+usuario.apellidos[0]}}</div>
+                        <div class="user">
+                            <h3 class="card-title">{{usuario.nombre}} {{usuario.apellidos[0]}}.</h3>
+                            <p class="card-subtitle mb-2 text-muted">{{usuario.email}}</p>
                         </div>
-                        <div class="label">
-                            <div class="label-rol" [ngStyle]="{
+                    </div>
+                </a>
+                <div class="acciones">
+                    <div class="label">
+                        <div class="label-rol" [ngStyle]="{
                             'background-color':
                             usuario.roles_id === 'Administrador' ? '#DCE9FF' :
                             usuario.roles_id === 'Moderador' ? '#DCE9FF' :
                             '#EFF1F5'
                         }">
-                                {{ usuario.roles_id.toUpperCase() }}
-                            </div>
-                            @if(usuario.bloqueado > 0){
-                            <div class="label-bloqueado">BLOQUEADO</div>
-                            }
-
+                            {{ usuario.roles_id.toUpperCase() }}
                         </div>
+                        @if(usuario.bloqueado > 0){
+                        <div class="label-bloqueado">BLOQUEADO</div>
+                        }
+
+                    </div>
+                    <div><button class="btn btn-primary eliminar" (click)="borrar(usuario.id)">Eliminar</button>
                     </div>
                 </div>
-            </a>
-
+            </div>
         </div>
-        }@empty{
-            <p>No hay datos</p>
+    </div>
+    }@empty{
+    <p>No hay datos</p>
+    }
+
+    @if(totalPaginas > 1){
+
+    <div class="paginacion">
+
+        <button (click)="cambiarPagina(paginaActual-1)" [disabled]="paginaActual===1">
+            ←
+        </button>
+
+        @for(pagina of paginas; track pagina){
+
+        <button (click)="cambiarPagina(pagina)" [class.activa]="pagina===paginaActual">
+
+            {{pagina}}
+
+        </button>
+
         }
 
+        <button (click)="cambiarPagina(paginaActual+1)" [disabled]="paginaActual===totalPaginas">
+            →
+        </button>
+
+    </div>
+
+    }
 
 </section>

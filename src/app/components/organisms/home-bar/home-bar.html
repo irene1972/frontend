@@ -6,7 +6,7 @@
         <p class="todo">TODO</p>
     </div>
     @if(categorias){
-    @for(categoria of categorias;track categoria.id){
+    @for(categoria of categorias.slice(0,8);track categoria.id){
     <div [routerLink]="['#']">
         <img src="{{categoria.icono}}"
             alt="icono categoría {{categoria.nombre}}">

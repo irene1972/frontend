@@ -88,6 +88,31 @@ p.descripcion {
     display: none;
 }
 
+/*Paginación*/
+.paginacion{
+    display:flex;
+    justify-content:center;
+    gap:.5rem;
+    margin-top:2rem;
+}
+
+.paginacion button{
+    padding:.5rem 1rem;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.paginacion button.activa{
+    background:#003594;
+    color:white;
+}
+
+.paginacion button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+/************/
 
 /* Mobile */
 @media (max-width: 768px) {

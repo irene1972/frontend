@@ -5,6 +5,7 @@ section {
     padding: 0 1rem;
     border-bottom: 1px solid rgb(202, 198, 198);
     margin-top: 0.3rem;
+    justify-content: space-between;
 }
 
 .img1 {
@@ -47,6 +48,7 @@ section div p {
         display: flex;
         flex-wrap: wrap;
         font-weight: 700;
+        justify-content:flex-start;
     }
 
     section div {
@@ -55,6 +57,7 @@ section div p {
         border: 1px solid #DCE9FF;
         border-radius: 20px;
         padding: 0.3rem 0.3rem;
+        
     }
 
     section div img {

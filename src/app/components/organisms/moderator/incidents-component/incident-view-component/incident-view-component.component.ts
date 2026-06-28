@@ -5,6 +5,7 @@ import { ReportsService } from '../../../../../services/reports-service';
 import { ArticlesService } from '../../../../../services/articles-service';
 import { ArticlePhotosService } from '../../../../../services/article-photos.service';
 import { UsersService } from '../../../../../services/users-service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -32,7 +33,6 @@ export class IncidentViewComponentComponent {
 
   ngOnInit() {
     this.articuloId = Number(this.route.snapshot.paramMap.get('articuloId'));
-
     this.cargarArticulo();
     this.cargarReportes();
     this.cargarFotoArticulo();
@@ -115,10 +115,19 @@ export class IncidentViewComponentComponent {
   }
 
   getEstadoArticuloReportado(): string {
+    if (this.reportesArticulo.length === 0) return 'Pendiente';
+
+    const todosGestionados = this.reportesArticulo.every((reporte: any) => {
+      const estado = reporte.estado?.toLowerCase();
+      return estado === 'aceptado' || estado === 'descartado';
+    });
+
+    if (todosGestionados) return 'Gestionado';
+
     const tieneRevisado = this.reportesArticulo.some((reporte: any) =>
       reporte.estado?.toLowerCase() === 'revisado'
     );
-  
+
     return tieneRevisado ? 'En revisión' : 'Pendiente';
   }
   
@@ -181,29 +190,57 @@ export class IncidentViewComponentComponent {
       ...this.articulo,
       estado_articulo_id: 'Publicado'
     };
-
+  
     this.articlesService.updateArticle(this.articuloId, articuloActualizado).subscribe({
       next: () => {
-        console.log('Artículo reactivado');
+        Swal.fire({
+          title: 'Artículo reactivado',
+          text: 'El artículo se ha reactivado correctamente.',
+          icon: 'success',
+          confirmButtonColor: '#003594'
+        }).then(() => {
+          this.router.navigate(['/moderator/panel/incidents']);
+        });
       },
       error: (error) => {
         console.error('Error reactivando artículo:', error);
+      
+        Swal.fire({
+          title: 'Error',
+          text: 'No se ha podido reactivar el artículo.',
+          icon: 'error',
+          confirmButtonColor: '#003594'
+        });
       }
     });
   }
-
+  
   retirarArticulo() {
     const articuloActualizado = {
       ...this.articulo,
       estado_articulo_id: 'Retirado'
     };
-
+  
     this.articlesService.updateArticle(this.articuloId, articuloActualizado).subscribe({
       next: () => {
-        console.log('Artículo retirado');
+        Swal.fire({
+          title: 'Artículo retirado',
+          text: 'El artículo se ha retirado correctamente.',
+          icon: 'success',
+          confirmButtonColor: '#003594'
+        }).then(() => {
+          this.router.navigate(['/moderator/panel/incidents']);
+        });
       },
       error: (error) => {
         console.error('Error retirando artículo:', error);
+      
+        Swal.fire({
+          title: 'Error',
+          text: 'No se ha podido retirar el artículo.',
+          icon: 'error',
+          confirmButtonColor: '#003594'
+        });
       }
     });
   }

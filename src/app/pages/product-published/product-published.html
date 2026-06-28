@@ -1,0 +1,28 @@
+<section>
+    <app-home-bar></app-home-bar>
+    <div class="cont">
+        <i class="bi bi-check"></i>
+        <h1>¡Artículo publicado!</h1>
+        <p class="descripcion">Tu artículo está visible en el catálogo. ¡Mucha suerte con la venta!</p>
+        <div class="card">
+            <div class="card-body">
+                <div class="linea">
+                    <p class="claro">Artículo</p>
+                    <h5>{{articulo.titulo}}</h5>
+                </div>
+                <div class="linea">
+                    <p class="claro">Estado</p>
+                    <h5>{{articulo.estado_articulo_id}}</h5>
+                </div>
+                <div class="linea">
+                    <p class="precio">Precio</p>
+                    <span>{{articulo.precio}} €</span>
+                </div>
+            </div>
+        </div>
+        <div class="botones">
+            <button  [routerLink]="['/product',articulo.id]" class="btn btn-primary">Ver mi anuncio</button>
+            <button [routerLink]="['/user/panel/sales']">Ir a mis ventas</button>
+        </div>
+    </div>
+</section>
