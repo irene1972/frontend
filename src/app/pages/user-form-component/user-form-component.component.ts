@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Icon } from '../../components/atoms/icon/icon';
+import { UsersService } from '../../services/users-service';
 
 @Component({
   selector: 'app-user-form-component',
@@ -12,6 +13,7 @@ import { Icon } from '../../components/atoms/icon/icon';
 export class UserFormComponentComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private cd = inject(ChangeDetectorRef);
+  private usersService = inject(UsersService);
 
   userID = '';
   iniciales = 'MG';
@@ -37,15 +39,31 @@ export class UserFormComponentComponent implements OnInit {
   ngOnInit(): void {
     this.userID = this.route.snapshot.params['userID'] ?? '';
 
-    // Precarga mock segun Figma. TODO: cablear users-service para datos reales del usuario.
-    this.miForm.patchValue({
-      username: 'manuelg',
-      email: 'manuelg@correo.com',
-      telefono: '+34 600 123 456',
-      ubicacion: 'Madrid',
-      biografia: 'Vendo tecnología que cuido. Trato cercano y envío rápido.',
-    });
-
+    // Precarga real desde el backend (GET /usuarios/:id).
+    // NOTA: la tabla usuarios no tiene columnas telefono ni biografia,
+    // por eso esos dos campos no se precargan (pendiente de equipo/backend).
+    if (this.userID) {
+      this.usersService.getUserById(this.userID).subscribe({
+        next: (usuario) => {
+          if (usuario) {
+            this.miForm.patchValue({
+              username: usuario.username ?? '',
+              email: usuario.email ?? '',
+              ubicacion: usuario['zona_geogr\u00e1fica'] ?? usuario.zona_geografica ?? '',
+            });
+            const ini = `${(usuario.nombre ?? '').charAt(0)}${(usuario.apellidos ?? '').charAt(0)}`.toUpperCase();
+            if (ini.trim()) this.iniciales = ini;
+          }
+          this.cd.detectChanges();
+        },
+        error: (err) => {
+          console.error(err);
+          this.tipo = false;
+          this.mensaje = 'No se han podido cargar los datos del perfil.';
+          this.cd.detectChanges();
+        }
+      });
+    }
     const u = localStorage.getItem('usuarioBuy&Sell');
     if (u) {
       const user = JSON.parse(u);
