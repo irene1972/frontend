@@ -71,7 +71,6 @@ export class ProductFormComponentComponent {
         break;
       default:
         this.currentStep.set(this.QUERYPARAM_NONE);
-        // código si no coincide ningún caso
         break;
     }
   }
@@ -81,7 +80,7 @@ export class ProductFormComponentComponent {
   addQuerypParamStep(value: string) {
     const currentSteps = this.actived_route.snapshot.queryParamMap.getAll('step');
     
-    // evita duplicados
+    // para evitar duplicados
     if (currentSteps.includes(value)) return;
 
     this.router.navigate([], {
