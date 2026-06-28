@@ -10,21 +10,21 @@
 .rating-layout__reviewCard{
     display: flex;
     flex-direction: column;
-    min-width: 750px;
+    width: 100%;
     max-width: 1000px;
     margin: 0 auto;
     align-items: flex-start;
 }
 
 .rating-card{
-    min-width: 750px;
+    width: 100%;
 }
 
 .transaccion {
     display:        flex;
     flex-direction: column;
     gap:            10px;
-    min-width: 750px;
+    width: 100%;
     max-width: 1000px;
     margin: 5px auto;
 }

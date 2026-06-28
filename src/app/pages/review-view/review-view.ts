@@ -36,20 +36,23 @@ export class ReviewView {
   //signals
   review = signal<IRating | null>(null);
   product = signal<IArticle | null>(null);
-  seller = signal<IUsuario | null>(null);
+  valorador = signal<IUsuario | null>(null);
   photos = signal<IArticlePhoto[] | null>(null);
 
   //breadcrumbs
   protected breadcrumbItems = computed(() => [
   { label: 'Inicio', route: '/' },
-  { label: 'Valoraciones' /*añadir ruta de valoracion*/},
+  { label: 'Valoraciones', route: '/user/panel/my-reviews'},
   { label: `Artículo: ${this.product()?.titulo}` }
   ]);
 
   // logged user
   loggeduser = computed(() => {
     const raw = localStorage.getItem('usuarioBuy&Sell');
-    if(!raw) return false;
+    if(!raw) {
+      this.router.navigate(['/403error']);
+      return false;
+    } 
     const loggedUser = JSON.parse(raw);
     return loggedUser;
   });
@@ -64,14 +67,20 @@ export class ReviewView {
 
     try {
       this.review.set(await lastValueFrom(this.ratingService.getRatingByID(Number(this.reviewID()))));
+      console.log(this.review());
+      
     } catch (error) {
       this.router.navigate(['/500error']);
     }
 
-    //Checkeo de que el usuario logueado sea el mismo que el que hizo la review
-    
-    if (this.review()?.usuario_valorador_id !== this.loggeduser()?.id) {
-      this.router.navigate(['/403error']); 
+    //info del valorador
+
+    try {
+      await this.loadValorador();
+      console.log(this.valorador());
+      
+    } catch (error) {
+      this.router.navigate(['/500error']);
     }
 
     //info del producto
@@ -81,14 +90,7 @@ export class ReviewView {
     } catch (error) {
       this.router.navigate(['/500error']);
     }
-
-    //info del vendedor
-
-    try {
-      await this.loadSeller();
-    } catch (error) {
-      this.router.navigate(['/500error']);
-    }
+ 
   }
 
   async loadProduct(){
@@ -101,7 +103,12 @@ export class ReviewView {
       this.router.navigate(['/500error']);
     }
   }
-  async loadSeller(){
-    this.seller.set(await lastValueFrom(this.userService.getUserById((this.product()!.usuarios_id).toString())))
+  async loadValorador(){
+    this.valorador.set(await lastValueFrom(this.userService.getUserById((this.review()!.usuario_valorador_id).toString())))
   }
+
+  reviewTimestamp = computed(() => {
+    const fecha = this.review()?.creada_en;
+    return fecha ? new Date(fecha).getTime() : 0;
+  });
 }

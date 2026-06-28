@@ -49,6 +49,7 @@ import { UserReportPage } from './pages/reports/user-report-page/user-report-pag
 import { SellerProfile } from './pages/seller-profile/seller-profile';
 import { ProductPublished } from './pages/product-published/product-published';
 import { ReviewView } from './pages/review-view/review-view';
+import { MyReviews } from './pages/my-reviews/my-reviews';
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -92,7 +93,11 @@ export const routes: Routes = [
                         component: WriteReview
                     },
                     {
-                        path: 'my-purchases/my-reviews/:reviewID',
+                        path: 'my-reviews',
+                        component: MyReviews
+                    },
+                    {
+                        path: 'my-reviews/:reviewID',
                         component: ReviewView
                     },
                     {
