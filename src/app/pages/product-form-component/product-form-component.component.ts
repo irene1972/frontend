@@ -11,6 +11,7 @@ import { NavStepOptions } from '../../components/organisms/navs/nav-step/nav-ste
   styleUrl: './product-form-component.component.css',
 })
 export class ProductFormComponentComponent {
+  // Query parameters
   public readonly QUERYPARAM_NONE:     string = ""
   public readonly QUERYPARAM_DETAIL:   string = "detail"
   public readonly QUERYPARAM_PRICE:    string = "price"
