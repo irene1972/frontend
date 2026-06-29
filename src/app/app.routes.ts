@@ -101,12 +101,15 @@ export const routes: Routes = [
                     {
                         path: 'article/edit/:id',
                         component: EditArticle
+                    },
+                    {
+                        path: 'edit-profile/:userID',
+                        component: UserFormComponentComponent
                     }
                 ]
              },
             /*{ path: 'profile/:userID', component: UserProfileComponentComponent }, */
 
-            { path: 'edit-profile/:userID', component: UserFormComponentComponent },
             { path: 'favorites', component: FavoritesComponentComponent },
             /*{ path: 'my-purchases', component: UserMyPurchasesComponentComponent },*/
             //reportes

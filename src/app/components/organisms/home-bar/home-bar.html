@@ -1,19 +1,14 @@
 <section>
-    <div [routerLink]="['#']">
-        <img class="img1"
-            src="https://res.cloudinary.com/djqduukxt/image/upload/v1781777075/categorias/iconos/lfagsflbnfy5uupwa3r8.png"
-            alt="icono todos">
+    <div [routerLink]="['/explore']" routerLinkActive="active" [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'exact', matrixParams: 'ignored', fragment: 'ignored' }">
+        <i class="bi bi-grid cat-icon" aria-hidden="true"></i>
         <p class="todo">TODO</p>
     </div>
     @if(categorias){
     @for(categoria of categorias.slice(0,8);track categoria.id){
-    <div [routerLink]="['#']">
-        <img src="{{categoria.icono}}"
-            alt="icono categoría {{categoria.nombre}}">
+    <div [routerLink]="['/explore']" [queryParams]="{ categoria: categoria.id }" routerLinkActive="active" [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'exact', matrixParams: 'ignored', fragment: 'ignored' }">
+        <i class="bi cat-icon {{ iconoCategoria(categoria.nombre) }}" aria-hidden="true"></i>
         <p>{{categoria.nombre}}</p>
     </div>
     }
     }
-
-
 </section>
