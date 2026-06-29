@@ -86,6 +86,13 @@
             </a>
         </div>          
     }
+    @if (showAdminBtn()) {
+        <div class="moderator-access">
+            <a [routerLink]="['/admin/panel/main']" class="btn-moderator-panel">
+                Panel de administrador
+            </a>
+        </div>
+    }
     <nav class="cerrar-sesion">
         <button type="button" (click)="logout()">
             <i class="bi bi-box-arrow-right"></i>

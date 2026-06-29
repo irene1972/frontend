@@ -42,7 +42,6 @@ import { EditArticle } from './components/organisms/user/edit-article/edit-artic
 import { ExploreComponent } from './pages/explore-component/explore-component';
 import { WriteReview } from './components/organisms/user/write-review/write-review';
 import { ProductReportPage } from './pages/reports/product-report-page/product-report-page';
-import { UserReportPage } from './pages/reports/user-report-page/user-report-page';
 import { SellerProfile } from './pages/seller-profile/seller-profile';
 import { ProductPublished } from './pages/product-published/product-published';
 import { ReviewView } from './pages/review-view/review-view';
@@ -102,17 +101,19 @@ export const routes: Routes = [
                     {
                         path: 'article/edit/:id',
                         component: EditArticle
+                    },
+                    {
+                        path: 'edit-profile/:userID',
+                        component: UserFormComponentComponent
                     }
                 ]
              },
             /*{ path: 'profile/:userID', component: UserProfileComponentComponent }, */
 
-            { path: 'edit-profile/:userID', component: UserFormComponentComponent },
             { path: 'favorites', component: FavoritesComponentComponent },
             /*{ path: 'my-purchases', component: UserMyPurchasesComponentComponent },*/
             //reportes
             {path: 'report/product/:productID', component: ProductReportPage},
-            {path: 'report/user/:userID', component: UserReportPage},
             // Ruta Mensajeria
             { path: 'messages', component: MessagesComponentComponent },
             { path: 'messages/:userID', component: ChatComponentComponent },
@@ -123,7 +124,7 @@ export const routes: Routes = [
     // // Rutas Moderator Panel: Usuario Moderador.
 
     {
-        path: 'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard], data: {roles: ['Moderador']}, children: [
+        path: 'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard], data: {roles: ['Moderador', 'Administrador']}, children: [
             { path: '', pathMatch: 'full', redirectTo: 'panel' },
             { path: 'panel', component: ModeratorComponent, children: [
                     { path: '', pathMatch: 'full', redirectTo: 'main' },

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HeaderProfile } from '../../molecules/header-profile/header-profile';
 import { SidebarVariant } from './sidebar.config';
@@ -25,6 +25,13 @@ export class Sidebar {
     localStorage.removeItem('usuarioBuy&Sell');
     window.location.href = '/login';
   }
+
+  showAdminBtn = computed(() => {
+    const raw = localStorage.getItem('usuarioBuy&Sell');
+    if (!raw) return false;
+    const user = JSON.parse(raw);
+    return user.rol === 'Administrador' && !window.location.href.includes('/admin/panel');
+  });
 }
 
 

@@ -1,0 +1,168 @@
+section {
+  margin: 3rem 2rem;
+}
+
+h1 {
+  color: #0B1C30;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+/* Header / breadcrumb (calcado de edit-article, con segmentos clicables) */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .navegador {
+    display: flex;
+  }
+
+  .atras,
+  .alante {
+    display: flex;
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+    width: 2rem;
+    height: 2rem;
+    margin-right: .5rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background: #fff;
+  }
+
+  .alante {
+    color: #9ca3af;
+    background-color: #f8f9ff;
+  }
+
+  .ruta {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #dbe1ea;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    font-weight: bold;
+
+    p,
+    a {
+      margin: 0;
+    }
+
+    div {
+      margin: 0 .5rem;
+      color: #9ca3af;
+    }
+
+    .panel {
+      color: #003594;
+    }
+    .panel:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.contenedor {
+  margin: 2rem 0 0 4rem;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card {
+  margin: 1rem 0;
+}
+
+label {
+  margin: .5rem 0 .2rem 0;
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+.guardar {
+  background-color: #003594;
+  font-weight: bold;
+}
+
+.boton-guardar {
+  display: flex;
+  justify-content: flex-end;
+    gap: .75rem;
+}
+
+/* Cambiar foto de perfil */
+.foto-perfil {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.foto-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.foto-info {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+/* Cambiar contraseña */
+.cambiar-pass {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pass-sub {
+  margin: 0;
+  color: #747683;
+  font-size: .85rem;
+}
+
+/* Boton estilo enlace (acciones: subir foto / cambiar contrasena) */
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #003594;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: left;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+/* Mobile (mismo parametro del equipo: ocultar header a 768px) */
+@media (max-width: 768px) {
+  .header {
+    display: none;
+  }
+}
+
+/* Nota bajo el correo (no editable) y boton cancelar */
+.email-nota {
+    display: block;
+    margin-top: .25rem;
+    color: #6c757d;
+    font-size: .8rem;
+}
+.cancelar {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}

@@ -2,28 +2,22 @@ section {
     background-color: white;
     display: flex;
     gap: 1rem;
-    padding: 0 1rem;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
     border-bottom: 1px solid rgb(202, 198, 198);
     margin-top: 0.3rem;
     justify-content: space-between;
 }
 
-.img1 {
-    width: 1.5rem;
-    height: 1.5rem;
-
-}
-
-img {
-    width: 1.5rem;
-    height: 1.5rem;
-}
+.img1 { width: 1.5rem; height: 1.5rem; }
+img { width: 1.5rem; height: 1.5rem; }
 
 section div {
     width: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
     cursor: pointer;
 }
 
@@ -36,7 +30,43 @@ section div p {
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #444652;
+}
 
+/* Chip de categoria desktop -- calcado de DS "Filtro categoria . Desktop" (693:1324) */
+/* Tile 44x44 r10: inactivo #EFF4FF icono azul; activo/hover #003594 icono blanco */
+section div .cat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background-color: #EFF4FF;
+    color: #003594;
+    font-size: 1.25rem;
+    line-height: 1;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+/* Activo: categoria seleccionada (routerLinkActive) */
+section div.active .cat-icon {
+    background-color: #003594;
+    color: #fff;
+}
+section div.active p {
+    color: #003594;
+    font-weight: 600;
+}
+
+/* Hover (desktop): azul oscuro por peticion (DS marca #E0E7FF + borde naranja) */
+@media (hover: hover) {
+    section div:hover .cat-icon {
+        background-color: #003594;
+        color: #fff;
+    }
+    section div:hover p {
+        color: #003594;
+    }
 }
 
 /* Mobile */
@@ -47,50 +77,40 @@ section div p {
         border: none;
         display: flex;
         flex-wrap: wrap;
+        justify-content: flex-start;
         font-weight: 700;
-        justify-content:flex-start;
+        gap: 1rem;
     }
-
     section div {
-        display: flex;
         flex-direction: row;
+        align-items: center;
+        gap: 0;
         border: 1px solid #DCE9FF;
         border-radius: 20px;
-        padding: 0.3rem 0.3rem;
-        
-    }
-
-    section div img {
-        height: 1rem;
-        width: 1rem;
-    }
-
-    section div p.todo {
-        color: white !important;
-    }
-
-    div {
+        padding: .5rem .8rem;
+        width: 100px;
         background-color: #DCE9FF;
-
-        p {
-            color: #444652 !important;
-
-        }
     }
-
-    div:first-child {
+    section div p {
+        color: #444652 !important;
+        padding-left: .3rem;
+    }
+    section div.active {
         background-color: #003594;
         border: 1px solid #003594;
     }
-    P{
-        padding-left: .3rem;
-        
+    section div.active p { color: white !important; }
+    /* En mobile el icono vuelve a inline pequeno, sin tile */
+    section div .cat-icon {
+        width: auto;
+        height: auto;
+        background: transparent;
+        border-radius: 0;
+        font-size: 1rem;
+        color: #444652;
     }
-    section div {
-    width: 100px;
-}
-section div{
-    padding: .5rem .8rem;
-}
-
+    section div.active .cat-icon {
+        color: white;
+        background: transparent;
+    }
 }
