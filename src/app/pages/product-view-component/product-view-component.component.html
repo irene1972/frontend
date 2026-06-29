@@ -19,7 +19,14 @@
                 </div>
             }
             <div class="image-main__like">
-                <atom-button-icon variant="like" size="18px" />
+                <button 
+                    type="button"
+                    class="btn-like btn rounded-circle border-0"
+                    [style.--size]="'18px'"
+                    (click)="toggleFav()"
+                >
+                    <i [class]="favoritoId() !== null ? 'bi bi-heart-fill icon--like actived' : 'bi bi-heart icon--like'"></i>
+                </button>
             </div>
         </div>
         <div class="image-secondary">
