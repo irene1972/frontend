@@ -65,12 +65,10 @@ export class EditArticle {
   }
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')!;
-    console.log(this.id);
 
     this.articlesService.getArticleById(Number(this.id)).subscribe({
       next: (data) => {
         this.articulo = data;
-        console.log(this.articulo);
 
         this.miForm.patchValue({
           titulo: this.articulo?.titulo,
@@ -85,7 +83,6 @@ export class EditArticle {
         this.photosService.getAllPhotosByArticle(this.articulo.id).subscribe({
           next: (data) => {
             this.fotos = data;
-            console.log(this.fotos);
 
             this.cd.detectChanges();
           },
@@ -104,7 +101,6 @@ export class EditArticle {
     this.categoriesService.getAllCategories().subscribe({
       next: (data) => {
         this.categorias = data;
-        console.log(this.categorias);
 
         this.cd.detectChanges();
       },
@@ -126,12 +122,8 @@ export class EditArticle {
     this.miForm.value.estado_conservacion_id = this.articulo.estado_conservacion_id;
     this.miForm.value.estado_articulo_id = this.articulo.estado_articulo_id;
 
-    console.log(this.miForm.value);
-    console.log(this.articulo);
-
     this.articlesService.updateArticleAndCP(Number(this.id), this.miForm.value).subscribe({
       next: (data) => {
-        console.log('Actualizado correctamente');
         this.router.navigate(['/user/panel/sales']);
       },
       error: (error) => {

@@ -33,8 +33,6 @@ export class Favorites {
       this.favoritesService.getAllFavoritesByUser(Number(this.user.id)).subscribe({
         next: (data) => {
           this.favoritos = data;
-         
-          console.log(this.favoritos);
 
           this.cd.detectChanges();
         },
@@ -46,8 +44,6 @@ export class Favorites {
       this.favoritesService.getAllFavoritesUsersByUser(Number(this.user.id)).subscribe({
         next: (data) => {
           this.usuarios = data;
-         
-          console.log(this.usuarios);
 
           this.cd.detectChanges();
         },

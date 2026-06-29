@@ -29,7 +29,6 @@ export class UserSidebar {
             this.mensaje = data.error;
             return;
           } else {
-            console.log(data);
             this.ratings = data;
             this.puntuacion_media = this.ratings.puntuacion_media.toFixed(1);
             this.cd.detectChanges();

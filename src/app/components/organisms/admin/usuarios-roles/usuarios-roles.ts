@@ -77,7 +77,6 @@ export class UsuariosRoles {
           this.mensaje = data.error;
           return;
         } else {
-          console.log(data);
           this.usuarios = data;
           this.cd.detectChanges();
         }
@@ -94,7 +93,6 @@ export class UsuariosRoles {
           this.mensaje = data.error;
           return;
         } else {
-          console.log(data);
           this.usersCount = data.count;
           this.cd.detectChanges();
         }
@@ -111,7 +109,6 @@ export class UsuariosRoles {
           this.mensaje = data.error;
           return;
         } else {
-          console.log(data);
           this.usersCountRol = data.count;
           this.cd.detectChanges();
         }
@@ -128,7 +125,6 @@ export class UsuariosRoles {
           this.mensaje = data.error;
           return;
         } else {
-          console.log(data);
           this.usersCountBlocked = data.count;
           this.cd.detectChanges();
         }
@@ -159,7 +155,6 @@ export class UsuariosRoles {
               this.mensaje = data.error;
               return;
             } else {
-              console.log(data);
               Swal.fire('Eliminado!', '', 'success');
               setTimeout(() => {
                 window.location.reload();
