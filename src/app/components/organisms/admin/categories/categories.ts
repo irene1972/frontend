@@ -52,7 +52,6 @@ export class Categories {
 
     this.categoriesService.getAllCategories().subscribe({
       next: (data) => {
-        console.log(data);
         this.categorias = data;
         this.cd.detectChanges();
       },

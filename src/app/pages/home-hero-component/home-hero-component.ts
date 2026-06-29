@@ -58,7 +58,6 @@ export class HomeHeroComponent {
         this.mensaje = data.error;
         return;
       } else {
-        console.log(data);
         this.recents = data;
         this.cd.markForCheck();
       }
@@ -75,7 +74,6 @@ export class HomeHeroComponent {
         this.mensaje = data.error;
         return;
       } else {
-        console.log(data.articulos);
         this.bestSellers = data.articulos ?? [];
         this.cd.markForCheck();
       }

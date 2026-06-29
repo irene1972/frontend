@@ -24,7 +24,6 @@ export class NLInicioHero {
         this.mensaje = data.error;
         return;
       } else {
-        console.log(data.articulos);
         this.bestSellers = data.articulos;
         this.cd.detectChanges();
       }

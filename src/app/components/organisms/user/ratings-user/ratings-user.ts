@@ -24,7 +24,6 @@ export class RatingsUser {
 
       this.ratingsService.getRatingsByUser(usuario.id).subscribe({
       next: (data) => {
-        console.log(data);
         this.valoraciones = data;
         this.cd.detectChanges();
       },
@@ -36,7 +35,6 @@ export class RatingsUser {
 
     this.ratingsService.getRatingsByUser(usuario.id).subscribe({
       next: (data) => {
-        console.log(data);
         this.detalleValoraciones = data;
         this.cd.detectChanges();
       },
