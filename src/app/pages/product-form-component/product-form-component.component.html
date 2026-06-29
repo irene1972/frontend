@@ -16,7 +16,7 @@
                 <atom-button class="ms-auto" config_type="secondary" label="Siguiente" icon="arrow-right" iconPosition="right" (clickButton)="nextStep()"/>
             </div>
         } @else if(currentStep() === QUERYPARAM_PRICE) {
-            <div>ToDo: Organismo para subir fotos de detalle del producto</div>
+            <organism-photo-uploader></organism-photo-uploader>
             <div class="d-flex flex-row flex-grow-1 w-100">
                 <atom-button class="btn-back ml-auto" config_type="outline" label="Atrás" icon="arrow-left" iconPosition="left" (clickButton)="previousStep()"/>
                 <atom-button class="ms-auto" config_type="secondary" label="Siguiente" icon="arrow-right" iconPosition="right" (clickButton)="nextStep()"/>

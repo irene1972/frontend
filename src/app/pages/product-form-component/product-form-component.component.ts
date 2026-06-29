@@ -3,10 +3,11 @@ import { Button } from "../../components/atoms/button/button";
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavStep } from "../../components/organisms/navs/nav-step/nav-step";
 import { NavStepOptions } from '../../components/organisms/navs/nav-step/nav-step.config';
+import { PhotoUploader } from "../../components/organisms/photo-uploader/photo-uploader";
 
 @Component({
   selector: 'app-product-form-component',
-  imports: [Button, NavStep],
+  imports: [Button, NavStep, PhotoUploader],
   templateUrl: './product-form-component.component.html',
   styleUrl: './product-form-component.component.css',
 })
