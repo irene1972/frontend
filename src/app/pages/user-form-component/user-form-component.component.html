@@ -124,12 +124,15 @@
               }
             </div>
 
-            <div class="boton-guardar">
-              <button type="submit" class="btn btn-primary guardar">Guardar contraseña</button>
-            </div>
           </div>
         }
       </div>
+
+      @if (mostrarCambioPass()) {
+        <div class="boton-guardar">
+          <button type="submit" class="btn btn-primary guardar">Guardar contraseña</button>
+        </div>
+      }
     </form>
 
   </div>
