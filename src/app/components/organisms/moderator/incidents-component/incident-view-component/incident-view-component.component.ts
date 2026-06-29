@@ -28,6 +28,7 @@ export class IncidentViewComponentComponent {
   vendedor: any = null;
   reportesArticulo: any[] = [];
   nota: string = '';
+  procesandoAccion:boolean=false;
 
   constructor(private cd: ChangeDetectorRef){}
 
@@ -186,6 +187,8 @@ export class IncidentViewComponentComponent {
   }
 
   reactivarArticulo() {
+    this.procesandoAccion = true;
+
     const articuloActualizado = {
       ...this.articulo,
       estado_articulo_id: 'Publicado'
@@ -193,6 +196,8 @@ export class IncidentViewComponentComponent {
   
     this.articlesService.updateArticle(this.articuloId, articuloActualizado).subscribe({
       next: () => {
+        this.procesandoAccion = false;
+        
         Swal.fire({
           title: 'Artículo reactivado',
           text: 'El artículo se ha reactivado correctamente.',
@@ -203,6 +208,8 @@ export class IncidentViewComponentComponent {
         });
       },
       error: (error) => {
+        this.procesandoAccion = false;
+
         console.error('Error reactivando artículo:', error);
       
         Swal.fire({
@@ -216,6 +223,8 @@ export class IncidentViewComponentComponent {
   }
   
   retirarArticulo() {
+    this.procesandoAccion = true;
+
     const articuloActualizado = {
       ...this.articulo,
       estado_articulo_id: 'Retirado'
@@ -223,6 +232,8 @@ export class IncidentViewComponentComponent {
   
     this.articlesService.updateArticle(this.articuloId, articuloActualizado).subscribe({
       next: () => {
+        this.procesandoAccion = false;
+
         Swal.fire({
           title: 'Artículo retirado',
           text: 'El artículo se ha retirado correctamente.',
@@ -233,6 +244,8 @@ export class IncidentViewComponentComponent {
         });
       },
       error: (error) => {
+        this.procesandoAccion = false;
+
         console.error('Error retirando artículo:', error);
       
         Swal.fire({
