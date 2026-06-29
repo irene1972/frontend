@@ -73,7 +73,7 @@
     <div class="paginacion">
 
         <button (click)="cambiarPagina(paginaActual-1)" [disabled]="paginaActual===1">
-            ←
+            <i class="bi bi-chevron-left"></i>
         </button>
 
         @for(pagina of paginas; track pagina){
@@ -87,7 +87,7 @@
         }
 
         <button (click)="cambiarPagina(paginaActual+1)" [disabled]="paginaActual===totalPaginas">
-            →
+            <i class="bi bi-chevron-right"></i>
         </button>
 
     </div>
