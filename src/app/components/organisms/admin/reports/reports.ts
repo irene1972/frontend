@@ -17,6 +17,9 @@ export class Reports {
 
   reportesAgrupados: any[] = [];
 
+  paginaActual = 1;
+  reportesPorPagina = 10;
+
   constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -80,14 +83,41 @@ export class Reports {
     return Object.values(grupos);
   }
 
+  get reportesPaginados() {
+    const inicio = (this.paginaActual - 1) * this.reportesPorPagina;
+    const fin = inicio + this.reportesPorPagina;
+
+    return this.reportesAgrupados.slice(inicio, fin);
+  }
+
+  get totalPaginas() {
+    return Math.ceil(this.reportesAgrupados.length / this.reportesPorPagina);
+  }
+
+  get paginas() {
+    return Array.from({ length: this.totalPaginas }, (_, index) => index + 1);
+  }
+
+  cambiarPagina(pagina: number) {
+    if (pagina < 1 || pagina > this.totalPaginas) return;
+
+    this.paginaActual = pagina;
+  }
+
+  paginaAnterior() {
+    this.cambiarPagina(this.paginaActual - 1);
+  }
+
+  paginaSiguiente() {
+    this.cambiarPagina(this.paginaActual + 1);
+  }
+
   getEstadoArticulo(estado: string): string {
     const estadoNormalizado = estado?.toLowerCase();
 
     if (estadoNormalizado === 'publicado') return 'Publicado';
     if (estadoNormalizado === 'retirado') return 'Retirado';
     if (estadoNormalizado === 'en_revision') return 'En revisión';
-    if (estadoNormalizado === 'borrador') return 'Borrador';
-    if (estadoNormalizado === 'reservado') return 'Reservado';
 
     return estado || 'Sin estado';
   }

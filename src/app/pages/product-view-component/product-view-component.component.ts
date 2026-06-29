@@ -13,13 +13,13 @@ import { UserRatingCardData } from '../../components/molecules/user-card/user-ra
 import { UserRatingCard } from "../../components/molecules/user-card/user-rating-card/user-rating-card";
 import { ArticlePhotoService } from '../../services/article-photo-service';
 import { IArticlePhoto } from '../../interfaces/i-article-photo.interface';
-import { ButtonIcon } from '../../components/atoms/button-icon/button-icon';
 import { HomeBar } from "../../components/organisms/home-bar/home-bar";
 import { ReportModal } from "../../components/molecules/report-modal/report-modal";
+import { FavoritesService } from '../../services/favorites-service';
 
 @Component({
   selector: 'app-product-view-component',
-  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, ButtonIcon, HomeBar, ReportModal],
+  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, HomeBar, ReportModal],
   templateUrl: './product-view-component.component.html',
   styleUrl: './product-view-component.component.css',
 })
@@ -32,6 +32,7 @@ export class ProductViewComponentComponent {
   ratingsService = inject(RatingsService);
   userService = inject(UsersService);
   articlePhotoService = inject(ArticlePhotoService);
+  favoritesService = inject(FavoritesService);
 
   //Datos Vendedor
   vendedorData = signal<UserRatingCardData | null>(null);
@@ -43,11 +44,15 @@ export class ProductViewComponentComponent {
   
   //producto
   product = signal<IArticle | null>(null);
+
+  //favorito
+  favoritoId = signal<number | null>(null);
   
   private router = inject(Router);
 
   ngOnInit() { 
     this.loadProduct();
+    this.checkFavorito();
   }
 
   //carga de producto y datos
@@ -67,6 +72,9 @@ export class ProductViewComponentComponent {
         lastValueFrom(this.ratingsService.getAverageRatingsByUser(sellerId)),
         lastValueFrom(this.articlePhotoService.getFotosByArticuloId(Number(id)))
       ]) 
+
+      //fav
+      await this.checkFavorito();
 
       //fotos
       this.fotos.set(fotos);
@@ -111,6 +119,44 @@ export class ProductViewComponentComponent {
   selectFoto(foto: IArticlePhoto) {
     this.selectedPhoto.set(foto);
   }
+
+  //favoritos
+  async checkFavorito(){
+    const raw = localStorage.getItem('usuarioBuy&Sell');
+    if (!raw) return;
+    const userId = JSON.parse(raw).id;
+
+    try {
+      const favs = await lastValueFrom(this.favoritesService.getAllFavoritesByUser(userId));     
+      const favorito = favs.find((fav: any) => fav.id === Number(this.productID()));
+      
+      this.favoritoId.set(favorito?.favoritos_id || null);
+      
+    } catch (error) {
+      this.router.navigate(['/500error']);
+    }
+  }
+
+  async toggleFav() {
+    const raw = localStorage.getItem('usuarioBuy&Sell');
+    if (!raw) return;
+    const userId = JSON.parse(raw).id;
+
+    try {
+      if (this.favoritoId() === null) {
+        const res = await lastValueFrom(
+          this.favoritesService.addFavorite(userId, Number(this.productID()))
+        );
+        this.favoritoId.set(res.id);
+      } else {
+        await lastValueFrom(this.favoritesService.deleteFavorite(this.favoritoId()!));
+        this.favoritoId.set(null);
+        
+      }
+    } catch (error: any) {
+      this.router.navigate(['/500error']);
+    }
+}
 
   // Modal reporte
 

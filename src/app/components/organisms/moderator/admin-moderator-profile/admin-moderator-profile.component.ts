@@ -142,31 +142,16 @@ export class AdminModeratorProfileComponent {
       error: (error) => {
         console.error('Error actualizando usuario:', error);
 
-        const detalles = error?.error?.detalles || [];
-        const mensajeBackend =
-          error?.error?.error ||
-          error?.error?.message ||
-          detalles?.[0] ||
-          '';
+        const campo = error?.error?.campo;
 
-        const mensajeLower = String(mensajeBackend).toLowerCase();
+        let mensaje = '';
 
-        let mensaje = 'No se ha podido actualizar el perfil.';
-
-        if (mensajeLower.includes('email')) {
-          mensaje = 'El correo electrónico ya existe o no es válido.';
-        } else if (mensajeLower.includes('username')) {
-          mensaje = 'El nombre de usuario ya existe o no es válido.';
-        } else if (
-          mensajeLower.includes('duplicate') ||
-          mensajeLower.includes('duplicado') ||
-          mensajeLower.includes('unique')
-        ) {
-          mensaje = 'El correo electrónico o el nombre de usuario ya existen.';
-        } else if (detalles.length > 0) {
-          mensaje = detalles.join(' ');
+        if (campo === 'username') {
+          mensaje = 'Ese nombre de usuario ya está en uso. Prueba con otro.';
+        } else {
+          mensaje = 'No se ha podido actualizar el perfil.';
         }
-
+      
         Swal.fire({
           title: 'Error',
           text: mensaje,
