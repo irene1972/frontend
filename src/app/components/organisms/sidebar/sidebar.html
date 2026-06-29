@@ -1,5 +1,11 @@
 <div class="sidebar">
-    <molecule-header-profile username="{{user.username}}" initials="{{user.iniciales}}" role="{{user.rol}}"></molecule-header-profile>
+    <molecule-header-profile 
+        username="{{user.username}}" 
+        initials="{{user.iniciales}}" 
+        role="{{user.rol}}" 
+        rating_average="{{ratings.puntuacion_media}}" 
+        rating_total="{{ratings.total_valoraciones}}"     
+        ></molecule-header-profile>
     @if(role() === 'user'){
         <nav class="nav-sidebar">
             <a [routerLink]="['/user/panel/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
