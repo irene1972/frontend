@@ -42,7 +42,6 @@ import { EditArticle } from './components/organisms/user/edit-article/edit-artic
 import { ExploreComponent } from './pages/explore-component/explore-component';
 import { WriteReview } from './components/organisms/user/write-review/write-review';
 import { ProductReportPage } from './pages/reports/product-report-page/product-report-page';
-import { UserReportPage } from './pages/reports/user-report-page/user-report-page';
 import { SellerProfile } from './pages/seller-profile/seller-profile';
 import { ProductPublished } from './pages/product-published/product-published';
 import { ReviewView } from './pages/review-view/review-view';
@@ -112,7 +111,6 @@ export const routes: Routes = [
             /*{ path: 'my-purchases', component: UserMyPurchasesComponentComponent },*/
             //reportes
             {path: 'report/product/:productID', component: ProductReportPage},
-            {path: 'report/user/:userID', component: UserReportPage},
             // Ruta Mensajeria
             { path: 'messages', component: MessagesComponentComponent },
             { path: 'messages/:userID', component: ChatComponentComponent },
