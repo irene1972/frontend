@@ -188,10 +188,11 @@ export class IncidentViewComponentComponent {
 
   reactivarArticulo() {
     this.procesandoAccion = true;
-
+    
     const articuloActualizado = {
       ...this.articulo,
-      estado_articulo_id: 'Publicado'
+      estado_articulo_id: 'Publicado',
+      nota:this.nota
     };
   
     this.articlesService.updateArticle(this.articuloId, articuloActualizado).subscribe({
@@ -220,14 +221,16 @@ export class IncidentViewComponentComponent {
         });
       }
     });
+    
   }
   
   retirarArticulo() {
     this.procesandoAccion = true;
-
+    
     const articuloActualizado = {
       ...this.articulo,
-      estado_articulo_id: 'Retirado'
+      estado_articulo_id: 'Retirado',
+      nota:this.nota
     };
   
     this.articlesService.updateArticle(this.articuloId, articuloActualizado).subscribe({
@@ -256,5 +259,6 @@ export class IncidentViewComponentComponent {
         });
       }
     });
+
   }
 }
