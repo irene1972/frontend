@@ -17,7 +17,13 @@
   <h1>Mi perfil</h1>
 
   <article class="card perfil-card">
-    <div class="initials">{{ user.iniciales }}</div>
+    <div class="profile-image">
+      @if (user.foto) {
+        <img [src]="user.foto" [alt]="user.username">
+      } @else {
+        <span>{{ user.iniciales }}</span>
+      }
+  </div>
 
     <div class="perfil-info">
       <h2>{{ user.nombre }} {{ user.apellidos }}</h2>
@@ -39,7 +45,7 @@
       <input type="text" [(ngModel)]="form.username" name="username" [disabled]="!editando">
 
       <label>Correo electrónico</label>
-      <input type="email" [(ngModel)]="form.email" name="email" [disabled]="!editando">
+      <input type="email" [(ngModel)]="form.email" name="email" disabled>
 
       <label>Contraseña actual</label>
       <input type="password" [(ngModel)]="form.password" name="password" disabled>
