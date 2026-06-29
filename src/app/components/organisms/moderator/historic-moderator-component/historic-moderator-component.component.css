@@ -56,11 +56,9 @@ a {
     margin-left: 1rem;
     padding-left: 1rem;
     font-weight: bold;
-
     p {
         margin: 0;
     }
-
     div {
         margin: 0 .5rem;
         color: #9ca3af;
@@ -110,13 +108,11 @@ a {
 
 .info {
     flex: 1;
-
     h2 {
         margin: 0;
         font-size: 1rem;
         font-weight: 700;
     }
-
     p {
         margin: .25rem 0 0;
         color: #6b7280;
@@ -126,7 +122,6 @@ a {
 
 .estado-fecha {
     text-align: right;
-
     p {
         margin: .35rem 0 0;
         color: #6b7280;
@@ -153,7 +148,6 @@ a {
     color: #dc2626;
 }
 
-/* Paginación */
 .paginacion {
     display: flex;
     justify-content: center;
@@ -193,7 +187,6 @@ a {
     cursor: not-allowed;
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     .historial {
         padding: 1rem 1rem 6rem;
@@ -239,12 +232,13 @@ a {
         display: none;
     }
 
-    .info h2 {
+    .info {
+        h2 {
         font-size: .95rem;
-    }
-
-    .info p {
-        font-size: .8rem;
+        }
+        p {
+            font-size: .8rem;
+        }
     }
 
     .paginacion {

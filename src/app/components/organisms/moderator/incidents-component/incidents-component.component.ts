@@ -16,7 +16,10 @@ export class IncidentsComponentComponent {
 
   reportesAgrupados: any[] = [];
 
-  constructor(private cd: ChangeDetectorRef){}
+  paginaActual = 1;
+  reportesPorPagina = 10;
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.cargarReportes();
@@ -26,7 +29,7 @@ export class IncidentsComponentComponent {
     this.reportsService.getAllReports().subscribe({
       next: (reportes) => {
         this.reportesAgrupados = this.agruparPorArticulo(reportes);
-      
+
         this.reportesAgrupados.forEach((grupo: any) => {
           this.articlesService.getArticleById(grupo.articuloId).subscribe({
             next: (articulo) => {
@@ -38,7 +41,7 @@ export class IncidentsComponentComponent {
             }
           });
         });
-      
+
         this.cd.detectChanges();
       },
       error: (error) => {
@@ -85,8 +88,36 @@ export class IncidentsComponentComponent {
       });
   }
 
+  get reportesPaginados() {
+    const inicio = (this.paginaActual - 1) * this.reportesPorPagina;
+    const fin = inicio + this.reportesPorPagina;
+
+    return this.reportesAgrupados.slice(inicio, fin);
+  }
+
+  get totalPaginas() {
+    return Math.ceil(this.reportesAgrupados.length / this.reportesPorPagina);
+  }
+
+  get paginas() {
+    return Array.from({ length: this.totalPaginas }, (_, index) => index + 1);
+  }
+
+  cambiarPagina(pagina: number) {
+    if (pagina < 1 || pagina > this.totalPaginas) return;
+
+    this.paginaActual = pagina;
+  }
+
+  paginaAnterior() {
+    this.cambiarPagina(this.paginaActual - 1);
+  }
+
+  paginaSiguiente() {
+    this.cambiarPagina(this.paginaActual + 1);
+  }
+
   abrirReporte(grupo: any) {
     this.router.navigate(['/moderator/panel/incident', grupo.articuloId]);
   }
-
 }

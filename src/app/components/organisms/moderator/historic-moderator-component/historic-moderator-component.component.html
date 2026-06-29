@@ -20,25 +20,17 @@
     <div class="lista-historial">
         @for (item of historialPaginado; track item.id) {
             <article class="historial-card">
-                <div
-                    class="icono"
-                    [class.icono-retirado]="item.estado?.toLowerCase() === 'aceptado'"
-                    [class.icono-reactivado]="item.estado?.toLowerCase() === 'descartado'"
-                >
+                <div class="icono" [class.icono-retirado]="item.estado?.toLowerCase() === 'aceptado'" [class.icono-reactivado]="item.estado?.toLowerCase() === 'descartado'">
                     <i class="bi bi-trash"></i>
                 </div>
 
                 <div class="info">
-                    <h2>{{ item.articulo?.titulo || 'Artículo sin título' }}</h2>
+                    <h2>{{ item.articulo?.titulo }}</h2>
                     <p>{{ getAccion(item) }} · {{ item.motivo }}</p>
                 </div>
 
                 <div class="estado-fecha">
-                    <span
-                        class="tag"
-                        [class.tag-retirado]="item.estado?.toLowerCase() === 'aceptado'"
-                        [class.tag-reactivado]="item.estado?.toLowerCase() === 'descartado'"
-                    >
+                    <span class="tag" [class.tag-retirado]="item.estado?.toLowerCase() === 'aceptado'" [class.tag-reactivado]="item.estado?.toLowerCase() === 'descartado'">
                         {{ getAccion(item) }}
                     </span>
                     <p>{{ getFecha(item.updated_at || item.created_at) }}</p>
@@ -51,32 +43,15 @@
 
     @if (totalPaginas > 1) {
         <div class="paginacion">
-            <button
-                type="button"
-                class="btn-pagina"
-                [disabled]="paginaActual === 1"
-                (click)="paginaAnterior()"
-            >
+            <button type="button" class="btn-pagina" [disabled]="paginaActual === 1" (click)="paginaAnterior()">
                 <i class="bi bi-chevron-left"></i>
             </button>
 
             @for (pagina of paginas; track pagina) {
-                <button
-                    type="button"
-                    class="btn-pagina"
-                    [class.activa]="paginaActual === pagina"
-                    (click)="cambiarPagina(pagina)"
-                >
-                    {{ pagina }}
-                </button>
+                <button type="button" class="btn-pagina" [class.activa]="paginaActual === pagina" (click)="cambiarPagina(pagina)">{{ pagina }}</button>
             }
 
-            <button
-                type="button"
-                class="btn-pagina"
-                [disabled]="paginaActual === totalPaginas"
-                (click)="paginaSiguiente()"
-            >
+            <button type="button" class="btn-pagina" [disabled]="paginaActual === totalPaginas" (click)="paginaSiguiente()">
                 <i class="bi bi-chevron-right"></i>
             </button>
         </div>
