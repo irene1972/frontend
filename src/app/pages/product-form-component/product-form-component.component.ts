@@ -1,32 +1,141 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Button } from "../../components/atoms/button/button";
-import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs';
 import { NavStep } from "../../components/organisms/navs/nav-step/nav-step";
+import { NavStepOptions } from '../../components/organisms/navs/nav-step/nav-step.config';
+import { PhotoUploader } from "../../components/organisms/photo-uploader/photo-uploader";
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { ArticlePhotosService } from '../../services/article-photos.service';
 
 @Component({
   selector: 'app-product-form-component',
-  imports: [Button, NavStep],
+  imports: [Button, NavStep, PhotoUploader],
   templateUrl: './product-form-component.component.html',
   styleUrl: './product-form-component.component.css',
 })
 export class ProductFormComponentComponent {
+  public readonly QUERYPARAM_NONE:     string = ""
   public readonly QUERYPARAM_DETAIL:   string = "detail"
   public readonly QUERYPARAM_PRICE:    string = "price"
   public readonly QUERYPARAM_PICTURES: string = "pictures"
-  
+
+  protected photos = signal<(File|null)[]>([]);
+
    //Services
   private router = inject(Router);
   private actived_route = inject(ActivatedRoute);
+  private article_photos = inject(ArticlePhotosService)
 
-  ngOnInit() { 
-    
+  protected loadSteps(){
+      const detail:   NavStepOptions = {name:"1", label:"DETALLE", query_param:this.QUERYPARAM_DETAIL};
+      const price:    NavStepOptions = {name:"2", label:"PRECIO",  query_param:this.QUERYPARAM_PRICE};
+      const pictures: NavStepOptions = {name:"3", label:"FOTOS",   query_param:this.QUERYPARAM_PICTURES};
+      return [detail, price, pictures];
+  }
+
+  protected steps = toSignal(
+    this.actived_route.queryParamMap.pipe(
+        map(params => params.getAll('step'))
+    ),
+    { initialValue:[] }
+  );
+
+  protected currentStep = computed(() => {
+    if (this.steps().includes(this.QUERYPARAM_PICTURES)) return 3;
+    if (this.steps().includes(this.QUERYPARAM_PRICE)) return 2;
+    return 1;
+  });
+
+
+  onPhotos(photos: (File | null)[] ) {
+    this.photos.set(photos);
+  }
+
+  private sendPhotos() {
+    for(let photo of this.photos()) {
+      if(photo){
+        this.article_photos.postPhotoByArticleId(photo,1,2).subscribe({
+          next: (data) => {
+            if (data.error) {
+              return;
+            } else {
+              console.log(data)
+          }
+          },
+          error: (err) => {
+            console.error(err);
+            
+          }
+        });
+      }
+     
+    }
+  }
+
+  protected nextStep() {
+    const last = this.steps().at(-1);
+    console.log(last)
+    switch (last) {
+      case this.QUERYPARAM_DETAIL:
+        this.addQueryParamStep(this.QUERYPARAM_PRICE)
+        break;
+      case this.QUERYPARAM_PRICE:
+        this.addQueryParamStep(this.QUERYPARAM_PICTURES)
+        this.sendPhotos();
+        break;
+      case this.QUERYPARAM_PICTURES:
+        this.router.navigate(['/product/published/']);
+        break;
+      default:
+        this.addQueryParamStep(this.QUERYPARAM_DETAIL)
+       
+        break;
+    }
+  }
+
+  protected previousStep(){
+    const last = this.steps().at(-1);
+    switch (last) {
+      case this.QUERYPARAM_PICTURES:
+        this.removeQueryParamStep(this.QUERYPARAM_PICTURES)
+        break;
+      case this.QUERYPARAM_PRICE:
+        this.removeQueryParamStep(this.QUERYPARAM_PRICE)
+        break;
+      case this.QUERYPARAM_DETAIL:
+        this.removeQueryParamStep(this.QUERYPARAM_DETAIL)
+        break;
+      default:
+        break;
+    }
   }
 
 
-  protected activeTab = toSignal(
-    this.actived_route.queryParamMap.pipe(
-        map(params => params.get('step'))
-    ));
+  // Añadir un query param nuevo
+  addQueryParamStep(value: string) {
+    const currentSteps = this.actived_route.snapshot.queryParamMap.getAll('step');
+    
+    // para evitar duplicados
+    if (currentSteps.includes(value)) return;
+
+    this.router.navigate([], {
+      queryParams: { step: [...currentSteps, value] },
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  removeQueryParamStep(value: string) {
+    const currentSteps = this.actived_route.snapshot.queryParamMap.getAll('step');
+    
+    // elimina el valor del array
+    const newSteps = currentSteps.filter(step => step !== value);
+
+    this.router.navigate([], {
+      queryParams: { step: newSteps },
+      queryParamsHandling: 'merge'
+  });
+   }
+
+
 }

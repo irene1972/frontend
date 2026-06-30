@@ -18,7 +18,7 @@ export class Button {
   shadow = input<boolean>(false);
 
   //Outputs 
-  @Output() click: EventEmitter<MouseEvent> = new EventEmitter();
+  @Output() clickButton: EventEmitter<MouseEvent> = new EventEmitter();
 
   //Clases computadas
   protected classes = computed(() => 
@@ -32,6 +32,6 @@ export class Button {
   // Funciones
   onClick(event: MouseEvent) {
     if(this.config_state() === 'disabled') return;
-    this.click.emit(event);
+    this.clickButton.emit(event);
   }
 }
