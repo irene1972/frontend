@@ -6,48 +6,16 @@
   </div>
 
   <div class="stats-grid">
-    <article class="stat-card">
-      <h2>{{pendientes}}</h2>
-      <p>PENDIENTES</p>
-    </article>
-
-    <article class="stat-card">
-      <h2>{{resueltos}}</h2>
-      <p>RESUELTOS</p>
-    </article>
-
-    <article class="stat-card">
-      <h2>{{abiertosHoy}}</h2>
-      <p>HOY</p>
-    </article>
+    <molecule-status-card [status]="pendientes.toString()" text="PENDIENTES"/>
+    <molecule-status-card [status]="resueltos.toString()" text="RESUELTOS"/>
+    <molecule-status-card [status]="abiertosHoy.toString()" text="ABIERTOS HOY"/>
   </div>
 
   <h2 class="section-title">Accesos</h2>
 
   <div class="management-grid">
-
-    <a class="management-card" [routerLink]="['/moderator/panel/incidents']">
-      <div class="card-icon">
-        <i class="bi bi-flag"></i>
-      </div>
-      <div class="card-text">
-        <h3>Reportes pendientes</h3>
-        <p>{{pendientes}} · Artículos reportados por revisar</p>
-      </div>
-      <i class="bi bi-chevron-right arrow"></i>
-    </a>
-
-    <a class="management-card" [routerLink]="['/moderator/panel/historic']">
-      <div class="card-icon">
-        <i class="bi bi-clock"></i>
-      </div>
-      <div class="card-text">
-        <h3>Historial de moderación</h3>
-        <p>Acciones que ya has realizado</p>
-      </div>
-      <i class="bi bi-chevron-right arrow"></i>
-    </a>
-
+    <molecule-management-card icon="flag" title="Reportes pendientes" text="{{pendientes}} · Artículos reportados por revisar" link='/moderator/panel/incidents' />
+    <molecule-management-card icon="clock" title="Historial de moderación" text="Acciones que ya has realizado" link='/moderator/panel/historic' />
   </div>
 
 </section>

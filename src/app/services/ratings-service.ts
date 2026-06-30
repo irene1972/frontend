@@ -11,14 +11,18 @@ export class RatingsService {
   httpClient = inject(HttpClient);
 
   getRatingsByUser(user_id:number): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + `usuario/${user_id}/promedio`);
+    return this.httpClient.get<any>(this.baseUrl + `usuario/get-all/${user_id}`);
   }
 
-  getDetailRatingsByUser(user_id:number): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + `usuario/get-all/${user_id}`);
+  getAverageRatingsByUser(user_id:number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + `usuario/${user_id}/promedio`);
   }
 
   insertRating(body: any): Observable<any> {
     return this.httpClient.post(this.baseUrl, body, {});
+  }
+
+  getRatingByID(rating_id:number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + `${rating_id}`);
   }
 }

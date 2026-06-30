@@ -44,17 +44,14 @@ export class EditCategory {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id')!;
-    console.log(this.id);
 
     this.categoriesService.getCategoryById(Number(this.id)).subscribe({
       next: (data) => {
-        console.log(data);
         if (data.error) {
           this.mensaje = data.error;
           return;
         } else {
           this.categoria = data;
-          console.log(this.categoria);
           this.cd.detectChanges();
           this.miForm.patchValue({
             nombre: this.categoria?.nombre,
@@ -75,7 +72,7 @@ export class EditCategory {
       this.miForm.markAllAsTouched();
       return;
     }
-    console.log(this.miForm.value);
+    
 
     const formData = new FormData();
 
@@ -111,7 +108,7 @@ export class EditCategory {
 
     if (input.files && input.files.length > 0) {
       this.imagenFile = input.files[0];
-      console.log(this.imagenFile);
+      
     }
   }
   protected breadcrumbItems = computed(() => [

@@ -1,8 +1,14 @@
 <div class="sidebar">
-    <molecule-header-profile username="{{user.username}}" initials="{{user.iniciales}}"></molecule-header-profile>
+    <molecule-header-profile 
+        username="{{user.username}}" 
+        initials="{{user.iniciales}}" 
+        role="{{user.rol}}" 
+        rating_average="{{ratings.puntuacion_media}}" 
+        rating_total="{{ratings.total_valoraciones}}"     
+        ></molecule-header-profile>
     @if(role() === 'user'){
         <nav class="nav-sidebar">
-            <a [routerLink]="['/user/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a [routerLink]="['/user/panel/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 <i class="bi bi-person"></i>
                 <p>Mi Perfil</p>
             </a>
@@ -10,23 +16,23 @@
                 <i class="bi bi-bell"></i>
                 <p>Notificaciones</p>
             </a>
-            <a [routerLink]="['/user/categories']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <i class="bi bi-grid-fill"></i>
-                <p>Ventas</p>
+            <a [routerLink]="['/user/panel/sales']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <i class="bi bi-box"></i>
+                <p>Productos</p>
             </a>
-            <a [routerLink]="['/user/statistics']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <i class="bi bi-bag"></i>
+            <a [routerLink]="['/user/panel/my-purchases']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <i class="bi bi-handbag"></i>
                 <p>Compras</p>
             </a>
-            <a [routerLink]="['/user/messages']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a [routerLink]="['/user/panel/messages']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 <i class="bi bi-chat"></i>
                 <p>Mensajes</p>
             </a>
-            <a [routerLink]="['/user/favorites']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a [routerLink]="['/user/panel/favorites']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 <i class="bi bi-heart"></i>
                 <p>Favoritos</p>
             </a>
-            <a [routerLink]="['/user/ratings']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a [routerLink]="['/user/panel/my-reviews']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 <i class="bi bi-star"></i>
                 <p>Mis Valoraciones</p>
             </a>
@@ -36,7 +42,7 @@
     @else if(role() ==='moderator'){
         <nav class="nav-sidebar">
             <a [routerLink]="['/moderator/panel/main']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-kanban"></i>
                 <p>Panel</p>
             </a>
             <a [routerLink]="['/moderator/panel/incidents']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
@@ -47,12 +53,16 @@
                 <i class="bi bi-clock"></i>
                 <p>Historial</p>
             </a>
+            <a [routerLink]="['/moderator/panel/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <i class="bi bi-person"></i>
+                <p>Mi perfil</p>
+            </a>
         </nav>
     }
     @else if(role() ==='admin'){
         <nav class="nav-sidebar">
             <a [routerLink]="['/admin/panel/main']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-kanban"></i>
                 <p>Panel</p>
             </a>
             <a [routerLink]="['/admin/panel/users']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
@@ -69,13 +79,25 @@
             </a>
             <a [routerLink]="['/admin/panel/reports']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 <i class="bi bi-flag"></i>
-                <p>Reportes pendientes</p>
+                <p>Reportes</p>
             </a>
-            <a [routerLink]="['/admin/panel/historic']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <i class="bi bi-clock"></i>
-                <p>Historial</p>
-            </a>
+            <a [routerLink]="['/admin/panel/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <i class="bi bi-person"></i>
+                <p>Mi perfil</p>
+            </a>  
         </nav>
+        <div class="moderator-access">
+            <a [routerLink]="['/moderator/panel/main']" class="btn-moderator-panel">
+                Panel del moderador
+            </a>
+        </div>          
+    }
+    @if (showAdminBtn()) {
+        <div class="moderator-access">
+            <a [routerLink]="['/admin/panel/main']" class="btn-moderator-panel">
+                Panel de administrador
+            </a>
+        </div>
     }
     <nav class="cerrar-sesion">
         <button type="button" (click)="logout()">
@@ -83,12 +105,4 @@
             <p>Cerrar sesión</p>
         </button>
     </nav>
-
-   
-   
-
-   
-
-    
-
 </div>

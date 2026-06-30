@@ -56,12 +56,18 @@ i.bi-star-fill{
 }
 .nav-sidebar{
     margin: 1rem 0rem;
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
 }
 a{
     display: flex;
     color:black;
     text-decoration: none;
-    padding-bottom: 1rem;
+    align-items: center;
+    padding: .6rem .5rem;
+    border-radius: 8px;
+    transition: background-color .15s ease, color .15s ease;
 }
 a p{
     padding-left: .5rem;
@@ -70,7 +76,7 @@ a p{
     border-bottom: 1px solid rgb(189, 187, 187);
 }
 .ajustes{
-    padding-top: 1rem;
+    margin-top: .5rem;
 }
 .cerrar-sesion{
     cursor: pointer;

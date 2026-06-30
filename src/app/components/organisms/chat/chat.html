@@ -1,0 +1,37 @@
+<section class="chat-panel">
+
+    <!-- Header -->
+    <div class="chat-panel__header">
+        <div class="chat-panel__avatar">{{ conversacion().iniciales }}</div>
+        <span class="chat-panel__header-name">{{ conversacion().nombre }}</span>
+        <button class="chat-panel__menu-btn" (click)="cerrarChat()">
+            <i class="bi bi-box-arrow-left"></i>
+        </button>
+    </div>
+
+    <!-- Mensajes -->
+    <div class="chat-panel__messages" #messagesContainer>
+        @for (msg of mensajes(); track msg.id) {
+            <div
+                class="message"
+                [class.message--sent]="msg.emisor_id === loggedUserId()"
+                [class.message--received]="msg.emisor_id !== loggedUserId()"
+            >
+                <span class="message__bubble">{{ msg.mensaje }}</span>
+            </div>
+        }
+    </div>
+
+    <!-- Input -->
+    <div class="chat-panel__input-bar">
+        <input
+            class="chat-panel__input"
+            type="text"
+            placeholder="Escribe un mensaje..."
+            [(ngModel)]="nuevoMensaje"
+            (keydown.enter)="enviarMensaje()"
+        />
+        <atom-button config_type="secondary" (click)="enviarMensaje()" label="Enviar" rounded="full"></atom-button>
+    </div>
+
+</section>

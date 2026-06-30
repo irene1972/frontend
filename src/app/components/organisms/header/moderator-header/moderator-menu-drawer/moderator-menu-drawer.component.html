@@ -11,13 +11,13 @@
     </div>
 
     <div class="drawer-user">
-        <a class="drawer-avatar" [routerLink]="['/user/profile']" (click)="close()">
+        <a class="drawer-avatar" [routerLink]="['/moderator/panel/profile']" (click)="close()">
             {{user.iniciales}}
         </a>
 
         <div>
             <p class="drawer-user-name">{{user.username}}</p>
-            <a class="drawer-user-profile" [routerLink]="['/user/profile']" (click)="close()">
+            <a class="drawer-user-profile" [routerLink]="['/moderator/panel/profile']" (click)="close()">
                 {{user.rol}}
             </a>
         </div>
@@ -43,11 +43,20 @@
     </section>
 
     <section class="drawer-section">
-        <a [routerLink]="['/user/profile']" (click)="close()">
+        <a [routerLink]="['/moderator/panel/profile']" (click)="close()">
             Mi perfil
             <i class="bi bi-chevron-right"></i>
         </a>
     </section>
+
+    @if (isAdmin()) {
+        <section class="drawer-section">
+            <a [routerLink]="['/admin/panel/main']" (click)="close()">
+                Volver al panel de administrador
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </section>
+    }
 
     <section class="drawer-section">
         <button class="logout-button" type="button" (click)="logout()">

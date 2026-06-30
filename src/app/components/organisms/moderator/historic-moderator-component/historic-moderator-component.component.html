@@ -1,1 +1,59 @@
-<p>historic-moderator-component works!</p>
+<section class="historial">
+    <div class="header">
+        <div class="navegador">
+            <a [routerLink]="['/moderator/panel/main']">
+                <div class="atras"><</div>
+            </a>
+            <div class="alante">></div>
+        </div>
+
+        <div class="ruta">
+            <p class="panel">Panel</p>
+            <div>></div>
+            <p>Historial de reportes</p>
+        </div>
+    </div>
+
+    <h1>Historial</h1>
+    <p class="descripcion">Acciones de moderación realizadas</p>
+
+    <div class="lista-historial">
+        @for (item of historialPaginado; track item.id) {
+            <article class="historial-card">
+                <div class="icono" [class.icono-retirado]="item.estado?.toLowerCase() === 'aceptado'" [class.icono-reactivado]="item.estado?.toLowerCase() === 'descartado'">
+                    <i class="bi bi-trash"></i>
+                </div>
+
+                <div class="info">
+                    <h2>{{ item.articulo?.titulo }}</h2>
+                    <p>{{ getAccion(item) }} · {{ item.motivo }}</p>
+                </div>
+
+                <div class="estado-fecha">
+                    <span class="tag" [class.tag-retirado]="item.estado?.toLowerCase() === 'aceptado'" [class.tag-reactivado]="item.estado?.toLowerCase() === 'descartado'">
+                        {{ getAccion(item) }}
+                    </span>
+                    <p>{{ getFecha(item.updated_at || item.created_at) }}</p>
+                </div>
+            </article>
+        } @empty {
+            <p>No hay acciones de moderación realizadas</p>
+        }
+    </div>
+
+    @if (totalPaginas > 1) {
+        <div class="paginacion">
+            <button type="button" class="btn-pagina" [disabled]="paginaActual === 1" (click)="paginaAnterior()">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+
+            @for (pagina of paginas; track pagina) {
+                <button type="button" class="btn-pagina" [class.activa]="paginaActual === pagina" (click)="cambiarPagina(pagina)">{{ pagina }}</button>
+            }
+
+            <button type="button" class="btn-pagina" [disabled]="paginaActual === totalPaginas" (click)="paginaSiguiente()">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    }
+</section>

@@ -1,0 +1,46 @@
+<section class="admin-reportes-detalle">
+  <div class="header">
+    <div class="navegador">
+      <a [routerLink]="['/admin/panel/reports']">
+        <div class="atras"><</div>
+      </a>
+
+      <div class="alante">></div>
+    </div>
+
+    <div class="ruta">
+      <p class="panel">Panel</p>
+      <div>></div>
+      <p class="panel">Reportes</p>
+      <div>></div>
+      <p>Reportes {{ articulo?.titulo }}</p>
+    </div>
+  </div>
+
+  <h1>Reportes {{ articulo?.titulo }}</h1>
+
+  <p class="descripcion">
+    {{ reportesArticulo.length }} reporte{{ reportesArticulo.length !== 1 ? 's' : '' }} registrados para este artículo
+  </p>
+
+  <div class="lista-reportes">
+    @for (reporte of reportesArticulo; track reporte.id) {
+      <article class="reporte-card">
+        <div class="info-reporte">
+          <h2>{{ reporte.motivo }}</h2>
+          <p>Descripción: {{ reporte.descripcion }}</p>
+          <p>Respuesta del moderador: {{ reporte.resultado_reporte || 'Sin comentarios' }}</p>
+        </div>
+
+        <div class="estado-fecha">
+          <span class="tag" [class.tag-pendiente]="reporte.estado?.toLowerCase() === 'pendiente'" [class.tag-revision]="reporte.estado?.toLowerCase() === 'revisado'" [class.tag-aceptado]="reporte.estado?.toLowerCase() === 'aceptado'" [class.tag-descartado]="reporte.estado?.toLowerCase() === 'descartado'">
+            {{ getEstadoFront(reporte.estado) }}
+          </span>
+          <p>{{ getFecha(reporte.updated_at || reporte.created_at) }}</p>
+        </div>
+      </article>
+    } @empty {
+      <p>No hay reportes registrados para este artículo.</p>
+    }
+  </div>
+</section>

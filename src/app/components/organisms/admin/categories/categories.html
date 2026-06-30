@@ -1,5 +1,5 @@
 <section class="categorias">
-    
+
     <molecule-breadcrum [items]="breadcrumbItems()" />
 
     <div class="heading">
@@ -8,46 +8,77 @@
             <p class="descripcion">Gestiona el catálogo de categorías</p>
         </div>
         <div>
-            <button class="btn btn-secondary nueva" [routerLink]="['/admin/panel/categories/create']">+ Crear nueva categoría</button>
+            <button class="btn btn-secondary nueva" [routerLink]="['/admin/panel/categories/create']">+ Crear nueva
+                categoría</button>
         </div>
     </div>
-        
-    
+
+
 
     <div class="cat">
         @if(categorias){
-            @for(categoria of categorias;track categoria.id){
-                <div class="card">
-                    <div class="card-body">
-                        <div class="icono-categoria">
-                            @if (categoria.icono) {
-                                <img [src]="categoria.icono" [alt]="categoria.nombre">
-                            }@else {
-                                <i class="bi bi-tag"></i>
-                            }
-                        </div>
-                    
-                        <div class="info-categoria">
-                            <h2 class="card-title">{{categoria.nombre}}</h2>
-                            <h6 class="card-subtitle mb-2 text-muted">Nº de artículos: {{categoria.total_articulos}}</h6>
-                        </div>
-                    
-                        <div class="acciones">
-                            <a [routerLink]="['/admin/panel/categories/edit/', categoria.id]">
-                                <span class="texto-accion">Editar</span>
-                                <i class="bi bi-pencil"></i>
-                            </a>
-                        
-                            <a class="borrar" (click)="borrar(categoria.id)">
-                                <span class="texto-accion">Borrar</span>
-                                <i class="bi bi-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+        @for(categoria of categoriasPaginadas;track categoria.id){
+        <div class="card">
+            <div class="card-body">
+                <div class="icono-categoria">
+                    @if (categoria.icono) {
+                    <img [src]="categoria.icono" [alt]="categoria.nombre">
+                    }@else {
+                    <i class="bi bi-tag"></i>
+                    }
                 </div>
-            }@empty{
-                <p>No hay datos</p>
+
+                <div class="info-categoria">
+                    <h2 class="card-title">{{categoria.nombre}}</h2>
+                    <h6 class="card-subtitle mb-2 text-muted">Nº de artículos: {{categoria.total_articulos}}</h6>
+                </div>
+
+                <div class="acciones">
+                    <a [routerLink]="['/admin/panel/categories/edit/', categoria.id]">
+                        <span class="texto-accion">Editar</span>
+                        <i class="bi bi-pencil"></i>
+                    </a>
+
+                    <a class="borrar" (click)="borrar(categoria.id)">
+                        <span class="texto-accion">Borrar</span>
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        }@empty{
+        <p>No hay datos</p>
+        }
+        }@else{
+        <p>No hay datos</p>
+        }
+        
+    </div>
+    <div>
+        @if(totalPaginas > 1){
+
+        <div class="paginacion">
+
+            <button (click)="cambiarPagina(paginaActual-1)" [disabled]="paginaActual===1">
+                ←
+            </button>
+
+            @for(pagina of paginas; track pagina){
+
+            <button (click)="cambiarPagina(pagina)" [class.activa]="pagina===paginaActual">
+
+                {{pagina}}
+
+            </button>
+
             }
-            }
+
+            <button (click)="cambiarPagina(paginaActual+1)" [disabled]="paginaActual===totalPaginas">
+                →
+            </button>
+
+        </div>
+
+        }
     </div>
 </section>

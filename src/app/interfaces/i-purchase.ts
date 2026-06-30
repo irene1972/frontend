@@ -39,3 +39,8 @@ export interface ICreateOrderResponse {
   id: number;
   mensaje: string;
 }
+export interface IUserPurchaseSales {
+  usuario_id: number;
+  total_ventas: number;
+  importe_total: number;
+}

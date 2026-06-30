@@ -11,13 +11,13 @@
     </div>
 
     <div class="drawer-user">
-        <a class="drawer-avatar" [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
+        <a class="drawer-avatar" [routerLink]="['/admin/main/profile']" (click)="closeMenuOnly()">
             {{user.iniciales}}
         </a>
 
         <div>
             <p class="drawer-user-name">{{user.username}}</p>
-            <a class="drawer-user-profile" [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
+            <a class="drawer-user-profile" [routerLink]="['/admin/main/profile']" (click)="closeMenuOnly()">
                 {{user.rol}}
             </a>
         </div>
@@ -45,14 +45,26 @@
             Estadísticas
             <i class="bi bi-chevron-right"></i>
         </a>
+
+        <a [routerLink]="['/admin/panel/reports']" (click)="closeMenuOnly()">
+            Reportes
+            <i class="bi bi-chevron-right"></i>
+        </a>        
     </section>
 
     <section class="drawer-section">
-        <a [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
+        <a [routerLink]="['/admin/panel/profile']" (click)="closeMenuOnly()">
             Mi perfil
             <i class="bi bi-chevron-right"></i>
         </a>
     </section>
+
+    <section class="drawer-section">
+        <a [routerLink]="['/moderator/panel/main']" (click)="closeMenuOnly()">
+            Acceso al panel del moderador
+            <i class="bi bi-chevron-right"></i>
+        </a>
+    </section>    
 
     <section class="drawer-section">
         <button class="logout-button" type="button" (click)="logout()">

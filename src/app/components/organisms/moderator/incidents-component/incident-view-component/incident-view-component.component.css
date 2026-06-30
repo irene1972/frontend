@@ -1,0 +1,446 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.detalle-reporte {
+    padding: 2rem 2.5rem;
+    background: #f8f9ff;
+    color: #0f172a;
+    h1 {
+        margin: 1rem 0 .75rem;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.navegador {
+    display: flex;
+}
+
+.atras,
+.alante {
+    display: flex;
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+    width: 2rem;
+    height: 2rem;
+    margin-right: .5rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background: #fff;
+}
+
+.alante {
+    color: #9ca3af;
+    background-color: #f8f9ff;
+}
+
+.ruta {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #dbe1ea;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    font-weight: bold;
+    p {
+        margin: 0;
+    }
+    div {
+        margin: 0 .5rem;
+        color: #9ca3af;
+    }
+}
+
+.ruta .panel {
+    color: #003594;
+}
+
+/* Tags */
+.tags-resumen {
+    display: flex;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.tags-mobile {
+    display: none;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 6px;
+    padding: .25rem .5rem;
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.tag-pendiente {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.tag-revision {
+    background: #dbeafe;
+    color: #003594;
+}
+
+.tag-gestionado {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.tag-reportes {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.tag-aceptado {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.tag-descartado {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* Layout */
+.detalle-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.contenido-principal {
+    width: 66.66%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.acciones-card {
+    width: 33.33%;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+}
+
+/* Card artículo */
+.articulo-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 0;
+    overflow: hidden;
+    min-height: 9rem;
+}
+
+.imagen-articulo {
+    width: 13rem;
+    min-width: 13rem;
+    height: 7rem;
+    margin: 1.25rem;
+    border-radius: 8px;
+    background: #e5edf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #9ca3af;
+    font-size: 2rem;
+}
+
+.imagen-articulo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.info-articulo {
+    flex: 1;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.titulo-precio {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+.info-articulo {
+    h2 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+    p {
+        margin: .35rem 0 0;
+        color: #6b7280;
+        i {
+            margin-right: .25rem;
+        }
+    }
+}
+
+
+/* Motivos */
+.motivos-card {
+    padding: 1.25rem;
+    h2 {
+        margin: 0 0 1rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+}
+
+.lista-motivos {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.motivo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: .85rem;
+    cursor: pointer;
+    h3 {
+        margin: 0;
+        font-size: .95rem;
+        font-weight: 700;
+    }
+    p {
+        margin: .25rem 0 0;
+        color: #6b7280;
+        font-size: .85rem;
+    }
+}
+
+.motivo-item:hover {
+    background: #f8f9ff;
+}
+
+.motivo-texto {
+    flex: 1;
+}
+
+.motivo-estado {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.motivo-cerrado {
+    cursor: default;
+    opacity: .75;
+}
+
+.motivo-cerrado:hover {
+    background: #fff;
+}
+
+.motivo-cerrado .motivo-flecha {
+    display: none;
+}
+
+.motivo-flecha {
+    color: #6b7280;
+}
+
+/* Acciones */
+.acciones-card {
+    padding: 1rem;
+}
+
+.acciones-card label {
+    display: block;
+    margin-bottom: .5rem;
+    font-size: .75rem;
+    font-weight: 700;
+    color: #6b7280;
+}
+
+.acciones-card textarea {
+    width: 100%;
+    min-height: 8rem;
+    resize: none;
+    border: 1px solid #dbe1ea;
+    border-radius: 8px;
+    padding: .75rem;
+}
+
+.acciones {
+    display: flex;
+    gap: .75rem;
+    margin-top: .75rem;
+}
+
+.acciones button {
+    flex: 1;
+    border-radius: 8px;
+    padding: .75rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-reactivar {
+    background: #16a34a;
+    color: #fff;
+}
+
+.btn-retirar {
+    background: #dc2626;
+    color: #fff;
+}
+
+.acciones button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+/*Spinner*/
+.spinner,.spinner2 {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+/*********/
+
+@media (max-width: 768px) {
+    .detalle-reporte {
+        padding: 1rem 1rem 6rem;
+        background: #f8f9ff;
+    }
+
+    .detalle-reporte h1,
+    .header,
+    .tags-desktop {
+        display: none;
+    }
+
+    .detalle-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .contenido-principal,
+    .acciones-card {
+        width: 100%;
+    }
+
+    .articulo-card {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        overflow: hidden;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+    }
+
+    .imagen-articulo {
+        width: 100%;
+        min-width: 0;
+        height: 10rem;
+    }
+
+    .info-articulo {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .tags-mobile {
+        display: flex;
+        margin-bottom: .75rem;
+    }
+
+    .titulo-precio {
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .info-articulo h2 {
+        font-size: 1.1rem;
+    }
+
+    .motivos-card,
+    .acciones-card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+    }
+
+    .motivos-card {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .motivo-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .motivo-estado .tag {
+        display: inline-flex;
+    }
+
+    .motivo-estado {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        margin-left: auto;
+    }
+
+    .acciones {
+        position: static;
+        background: transparent;
+        padding-top: .75rem;
+    }
+}

@@ -7,15 +7,13 @@ a {
     padding: 2rem 2.5rem;
     background: #f8f9ff;
     color: #0f172a;
-
     h1 {
         margin: 1rem 0 .5rem 0;
         font-size: 2rem;
         font-weight: 700;
-    }    
+    }
 }
 
-/* Header */
 .header {
     display: flex;
     align-items: center;
@@ -51,16 +49,13 @@ a {
         margin-left: 1rem;
         padding-left: 1rem;
         font-weight: bold;
-
         p {
             margin: 0;
         }
-
         div {
             margin: 0 .5rem;
             color: #9ca3af;
         }
-
         .panel {
             color: #003594;
         }
@@ -71,7 +66,6 @@ p.descripcion {
     color: gray;
 }
 
-/* Lista de reportes */
 .lista-reportes {
     display: flex;
     flex-direction: column;
@@ -103,17 +97,15 @@ p.descripcion {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-}
-
-.reporte-top h2 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.reporte-info p {
-    margin: .25rem 0 0;
-    color: #6b7280;
+    h2 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+    p {
+        margin: .25rem 0 0;
+        color: #6b7280;
+    }
 }
 
 .tag {
@@ -138,12 +130,49 @@ p.descripcion {
     color: #6b7280;
 }
 
-/* Mobile */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    margin-top: 1.5rem;
+}
+
+.btn-pagina {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    padding: 0 .75rem;
+    border: 1px solid #dbe1ea;
+    border-radius: 8px;
+    background: #fff;
+    color: #0f172a;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-pagina:hover {
+    background: #eef4ff;
+    color: #003594;
+}
+
+.btn-pagina.activa {
+    background: #003594;
+    color: #fff;
+    border-color: #003594;
+}
+
+.btn-pagina:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
     .reportes {
         padding: 1.25rem 1rem 6rem;
         background: #f8f9ff;
-
         h1 {
             font-size: 1.6rem;
             margin: 0 0 .25rem;
@@ -192,14 +221,24 @@ p.descripcion {
         justify-content: flex-start;
         gap: .5rem;
         flex-wrap: wrap;
+        h2 {
+            width: 100%;
+            font-size: 1rem;
+        }
+        p {
+            font-size: .85rem;
+        }
     }
 
-    .reporte-top h2 {
-        width: 100%;
-        font-size: 1rem;
+    .paginacion {
+        margin-top: 1rem;
+        gap: .35rem;
     }
 
-    .reporte-info p {
+    .btn-pagina {
+        min-width: 2rem;
+        height: 2rem;
+        padding: 0 .6rem;
         font-size: .85rem;
     }
 }

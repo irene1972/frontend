@@ -1,1 +1,29 @@
-<p>product-form-component works!</p>
+<div class="new-article d-flex flex-column justify-content-center align-items-center p-3">
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+
+        <h2>Publicar nuevo artículo</h2>
+        <p>Completa los detalles para que miles de usuarios encuentren tu equipo</p>
+        <organism-nav-step class="d-flex flex-grow-1 w-100 pb-4" [steps]="loadSteps()"></organism-nav-step>
+        <div [hidden]="currentStep() !== 1">
+            <div>ToDo: Organismo datos del artículo</div>
+        </div>
+
+        <div [hidden]="currentStep() !== 2">
+            <div>ToDo: Organismo precio y ubicación</div>
+        </div>
+
+        <div [hidden]="currentStep() !== 3">
+            <organism-photo-uploader (photoFiles)="onPhotos($event)"></organism-photo-uploader>
+        </div>
+
+       <!-- Botones de navegación -->
+        <div class="d-flex flex-row flex-grow-1 w-100">
+            <atom-button [hidden]="currentStep() === 1" class="btn-back ml-auto" config_type="outline" 
+            label="Atrás" icon="arrow-left" iconPosition="left" (clickButton)="previousStep()"/>
+            <atom-button [hidden]="currentStep() === 3" class="ms-auto" config_type="secondary" 
+            label="Siguiente" icon="arrow-right" iconPosition="right" (clickButton)="nextStep()"/>
+            <atom-button [hidden]="currentStep() !== 3" class="ms-auto" config_type="secondary" 
+            label="Publicar artículo" icon="arrow-right" iconPosition="right" />
+        </div>
+    </div>
+</div>

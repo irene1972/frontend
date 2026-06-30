@@ -13,5 +13,5 @@ export class HeaderProfile {
   public initials    = input<string>("AA")
   public rating_average = input<string>("")
   public rating_total   = input<string>("")
-  public role = input<string>("Admin")
+  public role = input<string>("")
 }

@@ -49,7 +49,6 @@ export class CreateCategory {
       this.miForm.markAllAsTouched();
       return;
     }
-    console.log(this.miForm.value);
 
     const formData = new FormData();
 
@@ -62,7 +61,6 @@ export class CreateCategory {
 
     this.categoriesService.insertCategory(formData).subscribe({
       next: (data) => {
-        console.log(data);
 
         if (data.error) {
           Swal.fire('Ha habido un error', '', 'info');
@@ -83,7 +81,6 @@ export class CreateCategory {
 
     if (input.files && input.files.length > 0) {
       this.imagenFile = input.files[0];
-      console.log(this.imagenFile);
     }
   }
 

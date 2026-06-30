@@ -6,14 +6,11 @@
         <p class="todo">TODO</p>
     </div>
     @if(categorias){
-    @for(categoria of categorias;track categoria.id){
-    <div [routerLink]="['#']">
-        <img src="{{categoria.icono}}"
-            alt="icono categoría {{categoria.nombre}}">
+    @for(categoria of categorias.slice(0,8);track categoria.id){
+    <div [routerLink]="['/explore']" [queryParams]="{ categoria: categoria.id }" routerLinkActive="active" [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'exact', matrixParams: 'ignored', fragment: 'ignored' }">
+        <i class="bi cat-icon {{ iconoCategoria(categoria.nombre) }}" aria-hidden="true"></i>
         <p>{{categoria.nombre}}</p>
     </div>
     }
     }
-
-
 </section>

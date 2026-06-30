@@ -37,7 +37,6 @@ export class DetalleUsuario {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id')!;
-    console.log(id);
 
     this.usersService.getUserById(id).subscribe({
       next: (data) => {
@@ -45,16 +44,14 @@ export class DetalleUsuario {
           this.mensaje = data.error;
           return;
         } else {
-          console.log(data);
           this.usuario = data;
 
-          this.ratingsService.getRatingsByUser(this.usuario.id).subscribe({
+          this.ratingsService.getAverageRatingsByUser(this.usuario.id).subscribe({
             next: (data) => {
               if (data.error) {
                 this.mensaje = data.error;
                 return;
               } else {
-                console.log(data);
                 this.ratings = data;
                 this.cd.detectChanges();
               }
@@ -71,7 +68,6 @@ export class DetalleUsuario {
                 this.mensaje = data.error;
                 return;
               } else {
-                console.log(data);
                 this.sales = data;
                 this.cd.detectChanges();
               }
@@ -88,7 +84,6 @@ export class DetalleUsuario {
                 this.mensaje = data.error;
                 return;
               } else {
-                console.log(data);
                 this.articles = data;
                 this.cd.detectChanges();
               }
@@ -119,7 +114,7 @@ export class DetalleUsuario {
       this.miForm.markAllAsTouched();
       return;
     }
-    console.log(this.miForm.value);
+    
     Swal.fire({
       title: "¿Está seguro de que quiere cambiar el rol?",
       icon: "info",
@@ -141,7 +136,6 @@ export class DetalleUsuario {
               this.mensaje = data.error;
               return;
             } else {
-              console.log(data);
               window.location.reload();
             }
           },
@@ -182,7 +176,6 @@ export class DetalleUsuario {
             this.mensaje = data.error;
             return;
           } else {
-            console.log(data);
             window.location.reload();
           }
           },

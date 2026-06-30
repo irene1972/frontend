@@ -43,7 +43,6 @@ export class LoginComponentComponent {
       this.miForm.markAllAsTouched();
       return;
     }
-    console.log(this.miForm.value);
     
     this.loginService.loginUser(this.miForm.value).subscribe({
       next: (data) => {

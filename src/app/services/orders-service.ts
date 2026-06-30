@@ -6,6 +6,7 @@ import {
   ICreateOrderRequest,
   ICreateOrderResponse,
   IUserPurchase,
+  IUserPurchaseSales
 } from '../interfaces/i-purchase';
 
 @Injectable({
@@ -30,4 +31,9 @@ export class OrdersService {
   createOrder(body: ICreateOrderRequest): Observable<ICreateOrderResponse> {
     return this.httpClient.post<ICreateOrderResponse>(this.baseUrl, body);
   }
+
+  getSalesByUser(user_id: number): Observable<IUserPurchaseSales> {
+    return this.httpClient.get<IUserPurchaseSales>(this.baseUrl + `usuario/${user_id}/ventas`);
+  }
+
 }

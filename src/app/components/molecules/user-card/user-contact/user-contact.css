@@ -1,69 +1,48 @@
-#user-report {
+.report {
+    display: flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    gap:1rem;
     text-decoration: none;
     outline: none;
     color: var(--err);
+    padding-top:1rem;
 }
 
-#user-card {
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-    padding: 20px;
-    border-radius: 2rem;
-    border-width: 1px;
-    border-style: solid;
-    background-color: var(--surface-card);
-    border-color: var(--surface-container);
 
-    h2 {
-        font-weight: 600;
-        color: var(--text-primary);
-    }
-}
-
-#user-info {
+.year {
     color: var(--text-tertiary);
 }
 
-#user {
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+
+molecule-user-card {
+    --card-direction: row;
+    --card-justify: flex-start;
+    --card-align: center;
+    --card-gap: 1.5rem;
 }
 
-#user-content {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    padding: 0 20px 0 20px;
+.contact {
+    margin-left:auto;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-    #user-card {
-        display:flex;
-        flex-direction: column;
-        background-color: #ffffff;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.20);
+    molecule-user-card {
+        --card-direction: column;
+        --card-justify: center;
+        --card-align: center;
+        --card-text-align: center;
+        --card-gap: 1rem;
     }
 
-    #user {
-        display:flex;
-        flex-direction: column;
+    .contact {
+        flex:1;
+        width:100%;
+        margin:0;
+    }
+
+    .report {
         justify-content: center;
-        align-items: center;
-    }
-
-    #user-content {
-        align-items: center;
-    }
-
-    #contact {
-        display: flex;
-        width: 100%;
     }
 }

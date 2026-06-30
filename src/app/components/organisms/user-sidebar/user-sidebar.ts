@@ -23,13 +23,12 @@ export class UserSidebar {
     if (usuarioString) {
       this.user = JSON.parse(usuarioString);
 
-      this.ratingsService.getRatingsByUser(this.user.id).subscribe({
+      this.ratingsService.getAverageRatingsByUser(this.user.id).subscribe({
         next: (data) => {
           if (data.error) {
             this.mensaje = data.error;
             return;
           } else {
-            console.log(data);
             this.ratings = data;
             this.puntuacion_media = this.ratings.puntuacion_media.toFixed(1);
             this.cd.detectChanges();

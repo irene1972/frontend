@@ -2,20 +2,22 @@
         <div class="card">
           <div class="card-user">
             <div class="card-body cont">
-              <atom-icon class="profile" variant="profile" text_icon="{{iniciales}}" size="1.5rem" />
+              <atom-icon class="profile" variant="profile" text_icon="{{usuario.nombre[0]+usuario.apellidos[0]}}" size="1.5rem" />
               <div class="user">
-                <h3 class="card-title">{{nombre}}</h3>
-                <p><atom-icon class="star" variant="star" size=".9rem" />{{estrellas}} . {{valoraciones}} valoraciones</p>
+                <h3 class="card-title">{{usuario.nombre + ' ' + usuario.apellidos[0]}}.</h3>
+                <p><atom-icon class="star" variant="star" size=".9rem" />{{(usuario.valoracion)?usuario.valoracion.slice(0,3):'0'}} . {{(usuario.cantidad)?usuario.cantidad:0}} valoraciones</p>
               </div>
             </div>
             <div class="label">
               <div class="derecha">
+                <!--
                 <atom-button 
                     class="perfil" 
                     label="{{texto_boton}}" 
                     config_type="outline"
                     (click)="onClick()" 
                     ></atom-button>
+                -->
                 <atom-icon class="heart" variant="heart" size="1.6rem" />
               </div>
 
