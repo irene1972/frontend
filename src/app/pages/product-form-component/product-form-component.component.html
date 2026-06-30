@@ -1,28 +1,110 @@
 <div class="new-article d-flex flex-column justify-content-center align-items-center p-3">
-    <div class="container d-flex flex-column justify-content-center align-items-center">
-
-        <h2>Publicar nuevo artículo</h2>
+    <div class="container d-flex flex-column justify-content-center align-items-center gap-3">
+        <h2 class="page-title">Publicar nuevo artículo</h2>
         <p>Completa los detalles para que miles de usuarios encuentren tu equipo</p>
         <organism-nav-step class="d-flex flex-grow-1 w-100 pb-4" [steps]="loadSteps()"></organism-nav-step>
-        <div [hidden]="currentStep() >= 2">
-            <div>ToDo: Organismo datos del artículo</div>
-        </div>
+        <div [class.my-hidden]="currentStep() !== 2" class="my-card" >
+            <h2 class="fs-1 fw-bold mb-2">1 · Datos del artículo</h2>
+            <!-- Título -->
+            <div class="mb-4">
+                <label for="titulo" class="form-label fw-semibold text-secondary">Título del artículo</label>
+                <input
+                type="text"
+                id="titulo"
+                class="form-control"
+                placeholder="Ej.: Portátil Lenovo IdeaPad 3"
+                />
+            </div>
 
-        <div [hidden]="currentStep() !== 3">
-            <div>ToDo: Organismo precio y ubicación</div>
-        </div>
+            <!-- Categoría -->
+            <div class="mb-4">
+                <label for="categoria" class="form-label fw-semibold text-secondary">Categoría</label>
+                <div class="input-group">
+                <span class="input-group-text bg-white">
+                    <i class="bi bi-person"></i>
+                </span>
+                <select id="categoria" class="form-select">
+                    <option selected disabled>Selecciona una categoría</option>
+                    <option value="portatiles">Portátiles</option>
+                    <option value="moviles">Móviles</option>
+                    <option value="tablets">Tablets</option>
+                </select>
+                </div>
+            </div>
 
-        <div [hidden]="currentStep() !== 4">
+            <!-- Estado de conservación -->
+            <div class="mb-4">
+                <label class="form-label fw-semibold text-secondary">Estado de conservación</label>
+                <div class="btn-group w-100" role="group" aria-label="Estado de conservación">
+                <input type="radio" class="btn-check" name="estado" id="estado-nuevo" autocomplete="off" checked>
+                <label class="btn btn-outline-success" for="estado-nuevo">NUEVO</label>
+
+                <input type="radio" class="btn-check" name="estado" id="estado-comoNuevo" autocomplete="off">
+                <label class="btn btn-outline-primary" for="estado-comoNuevo">COMO NUEVO</label>
+
+                <input type="radio" class="btn-check" name="estado" id="estado-buenEstado" autocomplete="off">
+                <label class="btn btn-outline-warning" for="estado-buenEstado">BUEN ESTADO</label>
+
+                <input type="radio" class="btn-check" name="estado" id="estado-aceptable" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="estado-aceptable">ACEPTABLE</label>
+                </div>
+            </div>
+
+            <!-- Descripción -->
+            <div>
+                <label for="descripcion" class="form-label fw-semibold text-secondary">Descripción</label>
+                <textarea
+                id="descripcion"
+                class="form-control"
+                rows="4"
+                placeholder="Describe el estado y las características..."
+                ></textarea>
+            </div>
+        </div>
+       
+
+   
+        <div [class.my-hidden]="currentStep() !== 3" class="my-card" >
+                <h2 class="fs-1 fw-bold mb-4">2 · Precio y ubicación</h2>
+
+                <!-- Precio de venta -->
+                <div class="mb-4">
+                    <label for="precio" class="form-label fw-semibold text-secondary">Precio de venta (€)</label>
+                    <div class="input-group">
+                    <span class="input-group-text bg-white">€</span>
+                    <input
+                        type="number"
+                        id="precio"
+                        class="form-control"
+                        placeholder="0"
+                    />
+                    </div>
+                </div>
+
+                <!-- Ubicación -->
+                <div>
+                    <label for="ubicacion" class="form-label fw-semibold text-secondary">Ubicación (ciudad)</label>
+                    <input
+                    type="text"
+                    id="ubicacion"
+                    class="form-control"
+                    placeholder="Ej.: Madrid"
+                    />
+                </div>
+            </div>
+    
+
+        <div [class.my-hidden]="currentStep() !== 4">
             <organism-photo-uploader (photoFiles)="onPhotos($event)"></organism-photo-uploader>
         </div>
 
        <!-- Botones de navegación -->
         <div class="d-flex flex-row flex-grow-1 w-100">
-            <atom-button [hidden]="currentStep() <= 1" class="btn-back ml-auto" config_type="outline" 
+            <atom-button [class.my-hidden]="currentStep() <= 1" class="btn-back ml-auto" config_type="outline" 
             label="Atrás" icon="arrow-left" iconPosition="left" (clickButton)="previousStep()"/>
-            <atom-button [hidden]="currentStep() >= 4 " class="ms-auto" config_type="secondary" 
+            <atom-button [class.my-hidden]="currentStep() >= 4 " class="ms-auto" config_type="secondary" 
             label="Siguiente" icon="arrow-right" iconPosition="right" (clickButton)="nextStep()"/>
-            <atom-button [hidden]="currentStep() !== 4" class="ms-auto" config_type="secondary" 
+            <atom-button [class.my-hidden]="currentStep() !== 4" class="ms-auto" config_type="secondary" 
             label="Publicar artículo" icon="arrow-right" iconPosition="right" />
         </div>
     </div>
