@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { IUserPurchase, PurchaseStatus } from '../../interfaces/i-purchase';
 import { OrdersService } from '../../services/orders-service';
 import { RouterLink } from '@angular/router';
+import { canSendMessages } from '../../components/organisms/chat/chat.config';
 
 @Component({
   selector: 'app-user-my-purchases-component',
@@ -76,6 +77,10 @@ export class UserMyPurchasesComponentComponent {
       Completado: 'purchase-card__badge--delivered',
     };
     return classes[estado];
+  }
+
+  canMessage(estado: PurchaseStatus): boolean {
+    return canSendMessages(estado);
   }
 
   private getStatusVerb(estado: PurchaseStatus): string {

@@ -3,11 +3,20 @@
     <!-- Header -->
     <div class="chat-panel__header">
         <div class="chat-panel__avatar">{{ conversacion().iniciales }}</div>
-        <span class="chat-panel__header-name">{{ conversacion().nombre }}</span>
+        <div class="chat-panel__header-info">
+            <span class="chat-panel__header-name">{{ conversacion().nombre }}</span>
+            <span class="chat-panel__header-subtitle">{{ conversacion().articuloTitulo }}</span>
+        </div>
         <button class="chat-panel__menu-btn" (click)="cerrarChat()">
             <i class="bi bi-box-arrow-left"></i>
         </button>
     </div>
+
+    @if (!canSend()) {
+        <p class="chat-panel__notice">
+            Este pedido ya no admite nuevos mensajes.
+        </p>
+    }
 
     <!-- Mensajes -->
     <div class="chat-panel__messages" #messagesContainer>
@@ -29,9 +38,16 @@
             type="text"
             placeholder="Escribe un mensaje..."
             [(ngModel)]="nuevoMensaje"
+            [disabled]="!canSend() || sending"
             (keydown.enter)="enviarMensaje()"
         />
-        <atom-button config_type="secondary" (click)="enviarMensaje()" label="Enviar" rounded="full"></atom-button>
+        <atom-button
+            config_type="secondary"
+            (click)="enviarMensaje()"
+            label="Enviar"
+            rounded="full"
+            [config_state]="!canSend() || sending ? 'disabled' : 'enabled'"
+        ></atom-button>
     </div>
 
 </section>

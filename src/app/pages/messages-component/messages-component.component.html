@@ -4,27 +4,44 @@
     <aside class="conversations-list">
         <h2 class="conversations-list__title">Mensajes</h2>
 
-        @for (conv of conversaciones(); track conv.id) {
-            <div
-                class="conversation-item"
-                [class.conversation-item--active]="selectedConversacion()?.id === conv.id"
-                (click)="selectConversacion(conv)"
-            >
-                <div class="conversation-item__avatar">{{ conv.iniciales }}</div>
-                <div class="conversation-item__info">
-                    <span class="conversation-item__name">{{ conv.nombre }}</span>
-                    <span class="conversation-item__preview">{{ conv.ultimoMensaje }}</span>
+        @if (loading()) {
+            <p class="conversations-list__status">Cargando conversaciones...</p>
+        } @else if (error()) {
+            <p class="conversations-list__status">{{ error() }}</p>
+        } @else if (conversaciones().length === 0) {
+            <p class="conversations-list__status">Aún no tienes conversaciones. Realiza una compra para chatear con el vendedor.</p>
+        } @else {
+            @for (conv of conversaciones(); track conv.id) {
+                <div
+                    class="conversation-item"
+                    [class.conversation-item--active]="selectedConversacion()?.id === conv.id"
+                    (click)="selectConversacion(conv)"
+                >
+                    <div class="conversation-item__avatar">{{ conv.iniciales }}</div>
+                    <div class="conversation-item__info">
+                        <span class="conversation-item__name">{{ conv.nombre }}</span>
+                        <span class="conversation-item__preview">{{ conv.ultimoMensaje }}</span>
+                    </div>
+                    <div class="conversation-item__meta">
+                        @if (conv.no_leidos > 0) {
+                            <span class="conversation-item__badge">{{ conv.no_leidos }}</span>
+                        }
+                        <span class="conversation-item__time">{{ conv.hora }}</span>
+                    </div>
                 </div>
-                <span class="conversation-item__time">{{ conv.hora }}</span>
-            </div>
+            }
         }
     </aside>
 
     <!-- Chat activo -->
     <div class="container-chat">
         @if (selectedConversacion()) {
-        <app-chat [conversacion]="selectedConversacion()!" [mensajes]="mensajesActivos()" (closed)="selectedConversacion.set(null)">
-        </app-chat>
+            <app-chat
+                [conversacion]="selectedConversacion()!"
+                [mensajes]="mensajesActivos()"
+                (closed)="selectedConversacion.set(null)"
+                (mensajeEnviado)="onMensajeEnviado($event)"
+            ></app-chat>
         } @else {
             <section class="chat-empty">
                 <i class="bi bi-chat-dots chat-empty__icon"></i>

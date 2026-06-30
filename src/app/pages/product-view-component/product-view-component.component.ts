@@ -17,6 +17,7 @@ import { HomeBar } from "../../components/organisms/home-bar/home-bar";
 import { ReportModal } from "../../components/molecules/report-modal/report-modal";
 import { CheckoutService } from '../../services/checkout-service';
 import { FavoritesService } from '../../services/favorites-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-view-component',
@@ -167,7 +168,11 @@ export class ProductViewComponentComponent {
   // Eventos compra
 
   onContactar(event: MouseEvent) {
-    this.router.navigate(['/profile'])
+    void Swal.fire({
+      title: 'Mensajes',
+      text: 'Compra el artículo para chatear con el vendedor.',
+      icon: 'info',
+    });
   }
   onComprar(event: MouseEvent) {
     const article = this.product();

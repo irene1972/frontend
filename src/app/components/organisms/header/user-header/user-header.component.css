@@ -67,6 +67,25 @@
     align-items: center;
     gap: 0.4rem;
     white-space: nowrap;
+    position: relative;
+}
+
+.header-link--messages {
+    position: relative;
+}
+
+.header-link__badge {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background-color: #fe6b00;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon-button {

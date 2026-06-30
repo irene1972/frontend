@@ -29,9 +29,12 @@
                 <span>Favoritos</span>
             </a>
         
-            <a class="header-link" [routerLink]="['/user/panel/messages']">
+            <a class="header-link header-link--messages" [routerLink]="['/user/panel/messages']">
                 <i class="bi bi-chat"></i>
                 <span>Mensajes</span>
+                @if (unreadTotal() > 0) {
+                    <span class="header-link__badge">{{ unreadTotal() }}</span>
+                }
             </a>
         
             <a class="btn upload-button" [routerLink]="['/user/new-product']">
