@@ -43,8 +43,9 @@ export class ProductFormComponentComponent {
   );
 
   protected currentStep = computed(() => {
-    if (this.steps().includes(this.QUERYPARAM_PICTURES)) return 3;
-    if (this.steps().includes(this.QUERYPARAM_PRICE)) return 2;
+    if (this.steps().includes(this.QUERYPARAM_PICTURES)) return 4;
+    if (this.steps().includes(this.QUERYPARAM_PRICE)) return 3;
+    if (this.steps().includes(this.QUERYPARAM_DETAIL)) return 2;
     return 1;
   });
 
