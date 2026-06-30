@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { Button } from "../../components/atoms/button/button";
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavStep } from "../../components/organisms/navs/nav-step/nav-step";
@@ -8,59 +8,58 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { ArticlePhotosService } from '../../services/article-photos.service';
 import { FormGroup, Validators, ReactiveFormsModule, FormControl, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { DetailForm } from '../../components/organisms/detail-form/detail-form';
+import { PriceForm } from '../../components/organisms/price-form/price-form';
+
 
 @Component({
   selector: 'app-product-form-component',
-  imports: [Button, NavStep, PhotoUploader, ReactiveFormsModule],
+  imports: [Button, NavStep, PhotoUploader, DetailForm, PriceForm, ReactiveFormsModule],
   templateUrl: './product-form-component.component.html',
   styleUrl: './product-form-component.component.css',
 })
 export class ProductFormComponentComponent {
+
   // Query parameters
   public readonly QUERYPARAM_NONE:     string = ""
   public readonly QUERYPARAM_DETAIL:   string = "detail"
   public readonly QUERYPARAM_PRICE:    string = "price"
   public readonly QUERYPARAM_PICTURES: string = "pictures"
 
+  // Estado de validez de cada paso (actualizado vía output de los hijos)
+  protected detailValid = signal(false);
+  protected priceValid  = signal(false);
+  protected photosValid = signal(false);
+  protected detailShowErrors = signal(0);
+  protected priceShowErrors  = signal(0);
+
+
   protected photos = signal<(File|null)[]>([]);
+
+  
 
    //Services
   private router = inject(Router);
   private actived_route = inject(ActivatedRoute);
   private article_photos = inject(ArticlePhotosService)
 
-  // Step 1: Datos del artículo
-  dataForm = new FormGroup({
-    titulo: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    categoria: new FormControl('', Validators.required),
-    estado: new FormControl('nuevo', Validators.required),
-    descripcion: new FormControl('', [Validators.required, Validators.minLength(10)]),
+  
+
+  // Pasos desde la URL
+  protected steps = toSignal(
+    this.actived_route.queryParamMap.pipe(
+        map(params => params.getAll('step'))
+    ),
+    { initialValue:[] }
+  );
+
+  // currentStep derivado de la URL: 1 = ninguno, 2 = detail, 3 = price, 4 = pictures
+  protected currentStep = computed(() => {
+    if (this.steps().includes(this.QUERYPARAM_PICTURES)) return 4;
+    if (this.steps().includes(this.QUERYPARAM_PRICE))    return 3;
+    if (this.steps().includes(this.QUERYPARAM_DETAIL))   return 2;
+    return 1;
   });
-
-  // Step 2: Precio y ubicación
-  priceForm = new FormGroup({
-    precio: new FormControl<number | null>(null, [Validators.required, Validators.min(1)]),
-    ubicacion: new FormControl('', Validators.required),
-  });
-
-  // Step 3: Fotos
-  photoForm = new FormGroup({
-    files: new FormControl<File[]>([], [Validators.required, this.minPhotosValidator(4)]),
-  });
-
-  // Validador custom: exige un mínimo de fotos
-  private minPhotosValidator(min: number): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const files = (control.value ?? []) as File[];
-      return files.length >= min ? null : { minPhotos: { required: min, actual: files.length } };
-    };
-  }
-
-  dataFormStatus = toSignal(this.dataForm.statusChanges, { initialValue: this.dataForm.status });
-  priceFormStatus = toSignal(this.priceForm.statusChanges, { initialValue: this.priceForm.status });
-  photosFormStatus = toSignal(this.photoForm.statusChanges, { initialValue: this.photoForm.status });
-
-
 
   protected loadSteps(){
       const detail:   NavStepOptions = {name:"1", label:"Detalle", query_param:this.QUERYPARAM_DETAIL};
@@ -69,23 +68,9 @@ export class ProductFormComponentComponent {
       return [detail, price, pictures];
   }
 
-  protected steps = toSignal(
-    this.actived_route.queryParamMap.pipe(
-        map(params => params.getAll('step'))
-    ),
-    { initialValue:[] }
-  );
-
-  protected currentStep = computed(() => {
-    if (this.steps().includes(this.QUERYPARAM_PICTURES)) return 4;
-    if (this.steps().includes(this.QUERYPARAM_PRICE)) return 3;
-    if (this.steps().includes(this.QUERYPARAM_DETAIL)) return 2;
-    return 1;
-  });
-
-
   onPhotos(photos: (File | null)[] ) {
     this.photos.set(photos);
+    this.photosValid.set(photos.filter(p => p !== null).length >= 4);
   }
 
   private sendPhotos() {
@@ -108,8 +93,25 @@ export class ProductFormComponentComponent {
      
     }
   }
+  protected isAllValid(): boolean {
+    return this.detailValid() && this.priceValid() && this.photosValid();
+  }
+
+  protected isCurrentStepInvalid(): boolean {
+    if (this.currentStep() === 2) return !this.detailValid();
+    if (this.currentStep() === 3) return !this.priceValid();
+    if (this.currentStep() === 4) return !this.photosValid();
+    return false;
+  }
 
   protected nextStep() {
+    // Bloquea el avance si el paso actual no es válido
+    if (this.isCurrentStepInvalid()) {
+      if (this.currentStep() === 2) this.detailShowErrors.update(n => n + 1);
+      if (this.currentStep() === 3) this.priceShowErrors.update(n => n + 1);
+      return;
+    }
+
     const last = this.steps().at(-1);
     console.log(last)
     switch (last) {
@@ -118,7 +120,6 @@ export class ProductFormComponentComponent {
         break;
       case this.QUERYPARAM_PRICE:
         this.addQueryParamStep(this.QUERYPARAM_PICTURES)
-        this.sendPhotos();
         break;
       case this.QUERYPARAM_PICTURES:
         this.router.navigate(['/product/published/']);
@@ -172,19 +173,4 @@ export class ProductFormComponentComponent {
       queryParamsHandling: 'merge'
   });
    }
-
-  isCurrentStepInvalid(): boolean {
-    
-    const status =
-      this.currentStep() === 2 ? this.dataFormStatus() :
-      this.currentStep() === 3 ? this.priceFormStatus() :
-      this.currentStep() === 4 ? this.photosFormStatus() :
-      'VALID';
-
-    console.log(this.currentStep())
-    console.log(status)
-    return status === 'INVALID';
-  }
-
-
 }
