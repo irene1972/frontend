@@ -26,7 +26,7 @@ export class UserMenuDrawerComponent {
       this.userInitials=usuario.iniciales;
       this.userName=usuario.username;
 
-      this.ratingsService.getRatingsByUser(usuario.id).subscribe((data) => {
+      this.ratingsService.getAverageRatingsByUser(usuario.id).subscribe((data) => {
       if (data.error) {
         console.log(data.error);
         return;

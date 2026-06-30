@@ -1,4 +1,7 @@
 .stat-card {
+  flex:1;
+  display: flex;
+  flex-direction: column;
   background: #ffffff;
   border: 1px solid #dbe1ea;
   border-radius: 10px;
@@ -6,6 +9,8 @@
   h2 {
     margin: 0;
     font-size: 1.75rem;
+    color: var(--stat-card-number, #0b1c30);
+    transition: color .15s ease;
     font-weight: 700;
   }
   p {

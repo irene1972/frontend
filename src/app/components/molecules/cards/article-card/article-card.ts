@@ -63,6 +63,7 @@ export class ArticleCard {
   public name      = input<string>("Article Name");
   public location  = input<string>("Madrid, Centro");
   public route     = input<string>("");
+  public estadoArticulo = input<string>('Publicado');
 
   private router = inject(Router);
 

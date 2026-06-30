@@ -22,7 +22,7 @@
     </div>
 
     <div class="lista-reportes">
-        @for (grupo of reportesAgrupados; track grupo.articuloId) {
+        @for (grupo of reportesPaginados; track grupo.articuloId) {
             <article class="reporte-card" (click)="abrirReporte(grupo)">
                 <div class="reporte-icono">
                     <i class="bi bi-flag"></i>
@@ -31,7 +31,9 @@
                 <div class="reporte-info">
                     <div class="reporte-top">
                         <h2>{{ grupo.articulo?.titulo }}</h2>
-                        <span class="tag" [class.tag-pendiente]="grupo.estadoGeneral === 'Pendiente'" [class.tag-revisado]="grupo.estadoGeneral === 'En revisión'"> {{ grupo.estadoGeneral }}</span>
+                        <span class="tag" [class.tag-pendiente]="grupo.estadoGeneral === 'Pendiente'" [class.tag-revisado]="grupo.estadoGeneral === 'En revisión'">
+                            {{ grupo.estadoGeneral }}
+                        </span>
                     </div>
                     <p>{{ grupo.totalReportes }} reporte{{ grupo.totalReportes > 1 ? 's' : '' }}</p>
                 </div>
@@ -42,4 +44,20 @@
             <p>No hay reportes pendientes</p>
         }
     </div>
+
+    @if (totalPaginas > 1) {
+        <div class="paginacion">
+            <button type="button" class="btn-pagina" [disabled]="paginaActual === 1" (click)="paginaAnterior()">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+
+            @for (pagina of paginas; track pagina) {
+                <button type="button" class="btn-pagina" [class.activa]="paginaActual === pagina" (click)="cambiarPagina(pagina)">{{ pagina }}</button>
+            }
+
+            <button type="button" class="btn-pagina" [disabled]="paginaActual === totalPaginas" (click)="paginaSiguiente()">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    }
 </section>

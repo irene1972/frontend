@@ -38,6 +38,10 @@ export class UsersService {
     return this.httpClient.patch(this.baseUrl + `${user_id}/bloqueado/${bloqueo}`,body,{})
   }
 
+  updateUser(user_id: number, body: any): Observable<any> {
+    return this.httpClient.put<any>(this.baseUrl + `${user_id}`, body);
+  }
+
   updateRole(user_id:number,body:any,role:string):Observable<any>{
     return this.httpClient.patch(this.baseUrl + `${user_id}/rol/${role}`,body,{})
   }

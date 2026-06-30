@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="botones">
-            <button class="btn btn-primary">Ver mi anuncio</button>
-            <button class="">Ir a mis ventas</button>
+            <button  [routerLink]="['/product',articulo.id]" class="btn btn-primary">Ver mi anuncio</button>
+            <button [routerLink]="['/user/panel/sales']">Ir a mis productos</button>
         </div>
     </div>
 </section>

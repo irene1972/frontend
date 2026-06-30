@@ -2,7 +2,8 @@
     <div class="header">
         <div class="navegador">
             <a [routerLink]="['/moderator/panel/incidents']">
-                <div class="atras"><</div>
+                <div class="atras">
+                    <</div>
             </a>
             <div class="alante">></div>
         </div>
@@ -19,8 +20,12 @@
     <h1>Artículo reportado</h1>
 
     <div class="tags-resumen tags-desktop">
-        <span class="tag" [class.tag-pendiente]="getEstadoArticuloReportado() === 'Pendiente'" [class.tag-revision]="getEstadoArticuloReportado() === 'En revisión'" [class.tag-gestionado]="getEstadoArticuloReportado() === 'Gestionado'"> {{ getEstadoArticuloReportado() }}</span>
-        <span class="tag tag-reportes">{{ reportesArticulo.length }} reporte{{ reportesArticulo.length !== 1 ? 's' : '' }}</span>
+        <span class="tag" [class.tag-pendiente]="getEstadoArticuloReportado() === 'Pendiente'"
+            [class.tag-revision]="getEstadoArticuloReportado() === 'En revisión'"
+            [class.tag-gestionado]="getEstadoArticuloReportado() === 'Gestionado'"> {{ getEstadoArticuloReportado()
+            }}</span>
+        <span class="tag tag-reportes">{{ reportesArticulo.length }} reporte{{ reportesArticulo.length !== 1 ? 's' : ''
+            }}</span>
     </div>
 
     <div class="detalle-grid">
@@ -28,16 +33,19 @@
             <article class="card articulo-card">
                 <div class="imagen-articulo">
                     @if (fotoArticulo?.url_foto) {
-                        <img [src]="fotoArticulo.url_foto" [alt]="articulo?.titulo">
+                    <img [src]="fotoArticulo.url_foto" [alt]="articulo?.titulo">
                     } @else {
-                        <i class="bi bi-image"></i>
+                    <i class="bi bi-image"></i>
                     }
                 </div>
 
                 <div class="info-articulo">
                     <div class="tags-resumen tags-mobile">
-                        <span class="tag" [class.tag-pendiente]="getEstadoArticuloReportado() === 'Pendiente'" [class.tag-revision]="getEstadoArticuloReportado() === 'En revisión'"> {{ getEstadoArticuloReportado() }}</span>
-                        <span class="tag tag-reportes">{{ reportesArticulo.length }} reporte{{ reportesArticulo.length !== 1 ? 's' : '' }}</span>
+                        <span class="tag" [class.tag-pendiente]="getEstadoArticuloReportado() === 'Pendiente'"
+                            [class.tag-revision]="getEstadoArticuloReportado() === 'En revisión'"> {{
+                            getEstadoArticuloReportado() }}</span>
+                        <span class="tag tag-reportes">{{ reportesArticulo.length }} reporte{{ reportesArticulo.length
+                            !== 1 ? 's' : '' }}</span>
                     </div>
 
                     <div class="titulo-precio">
@@ -45,7 +53,8 @@
                         <strong><i class="bi bi-tag-fill"></i> {{ articulo?.precio }} €</strong>
                     </div>
 
-                    <p><i class="bi bi-person"></i>Vendedor: {{ vendedor?.username || vendedor?.nombre || 'Usuario' }}</p>
+                    <p><i class="bi bi-person"></i>Vendedor: {{ vendedor?.username || vendedor?.nombre || 'Usuario' }}
+                    </p>
                 </div>
             </article>
 
@@ -54,19 +63,24 @@
 
                 <div class="lista-motivos">
                     @for (reporte of reportesArticulo; track reporte.id) {
-                        <article class="motivo-item" [class.motivo-cerrado]="reporteCerrado(reporte)" (click)="abrirReporte(reporte)">
-                            <div class="motivo-texto">
-                                <h3>{{ reporte.motivo }}</h3>
-                                <p>{{ reporte.descripcion }}</p>
-                            </div>
+                    <article class="motivo-item" [class.motivo-cerrado]="reporteCerrado(reporte)"
+                        (click)="abrirReporte(reporte)">
+                        <div class="motivo-texto">
+                            <h3>{{ reporte.motivo }}</h3>
+                            <p>{{ reporte.descripcion }}</p>
+                        </div>
 
-                            <div class="motivo-estado">
-                                <span class="tag" [class.tag-pendiente]="reporte.estado?.toLowerCase() === 'pendiente'" [class.tag-revision]="reporte.estado?.toLowerCase() === 'revisado'" [class.tag-aceptado]="reporte.estado?.toLowerCase() === 'aceptado'" [class.tag-descartado]="reporte.estado?.toLowerCase() === 'descartado'"> {{ getEstadoFront(reporte.estado) }}</span>
-                                <i class="bi bi-chevron-right motivo-flecha"></i>
-                            </div>
-                        </article>
+                        <div class="motivo-estado">
+                            <span class="tag" [class.tag-pendiente]="reporte.estado?.toLowerCase() === 'pendiente'"
+                                [class.tag-revision]="reporte.estado?.toLowerCase() === 'revisado'"
+                                [class.tag-aceptado]="reporte.estado?.toLowerCase() === 'aceptado'"
+                                [class.tag-descartado]="reporte.estado?.toLowerCase() === 'descartado'"> {{
+                                getEstadoFront(reporte.estado) }}</span>
+                            <i class="bi bi-chevron-right motivo-flecha"></i>
+                        </div>
+                    </article>
                     } @empty {
-                        <p>No hay reportes para este artículo.</p>
+                    <p>No hay reportes para este artículo.</p>
                     }
                 </div>
             </article>
@@ -74,11 +88,26 @@
 
         <aside class="card acciones-card">
             <label for="nota">NOTA PARA EL USUARIO</label>
-            <textarea id="nota" placeholder="Explica al usuario el motivo de la decisión..." [(ngModel)]="nota"></textarea>
+            <textarea id="nota" placeholder="Explica al usuario el motivo de la decisión..."
+                [(ngModel)]="nota"></textarea>
 
             <div class="acciones">
-                <button class="btn-reactivar" [disabled]="!puedeReactivar()" (click)="reactivarArticulo()">Reactivar</button>
-                <button class="btn-retirar" [disabled]="!puedeRetirar()" (click)="retirarArticulo()">Retirar</button>
+                <button class="btn-reactivar" [disabled]="!puedeReactivar()" (click)="reactivarArticulo()">
+                    @if
+                    (procesandoAccion) {
+                    <span class="spinner"></span>
+                    Procesando...
+                    } @else {
+                    Reactivar
+                    }</button>
+                <button class="btn-retirar" [disabled]="!puedeRetirar()" (click)="retirarArticulo()">
+                    @if
+                    (procesandoAccion) {
+                    <span class="spinner2"></span>
+                    Procesando...
+                    } @else {
+                    Retirar
+                    }</button>
             </div>
         </aside>
     </div>

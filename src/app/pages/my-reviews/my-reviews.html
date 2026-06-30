@@ -1,0 +1,20 @@
+<main class="content">
+    <div class="section-titles">
+        <h2>Mis valoraciones</h2>
+        <p> {{profileUser()?.puntuacion_media || 0}} | {{reviews().length || 0 }} valoraciones recibidas.</p>
+    </div>
+    <div class="reviews-list">
+        @if (reviews() !== null && reviews().length > 0) {
+            @for (val of reviews(); track val.id) {
+                
+                <a [routerLink]="['/user/panel/my-reviews', val.id]" class="link-review">
+                    <molecule-user-rating-comment [timestamp]="val.creada_en" class="user-card" name="{{val.usuario_valorador.nombre}}" last_name="{{val.usuario_valorador.apellidos}}">
+                        <p>{{val.mensaje}}</p>
+                    </molecule-user-rating-comment>
+                </a>
+            }   
+        } @else {
+            <p>No hay valoraciones por el momento.</p>
+        }
+    </div>
+</main>

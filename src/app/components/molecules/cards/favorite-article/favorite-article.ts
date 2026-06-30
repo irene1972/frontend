@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Icon } from '../../../atoms/icon/icon';
 import { Button } from '../../../atoms/button/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-favorite-article',
-  imports: [Icon,Button],
+  imports: [Icon,Button,RouterLink],
   templateUrl: './favorite-article.html',
   styleUrl: './favorite-article.css',
 })
@@ -20,11 +21,6 @@ export class FavoriteArticle {
   @Input() precio!:string | undefined;
   @Input() url_foto!:string | undefined;
   @Output() clicar = new EventEmitter<number>();
-
-  ngOnInit(){
-    console.log('irene');
-    console.log(this.iniciales);
-  }
 
   onClick():void {
   this.clicar.emit(this.articleId);

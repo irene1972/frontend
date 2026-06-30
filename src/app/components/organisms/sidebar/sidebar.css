@@ -37,6 +37,27 @@ molecule-header-profile {
     color: #003594;
 }
 
+.moderator-access {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgb(189, 187, 187);
+}
+
+.btn-moderator-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: .9rem 1rem;
+    background: #003594;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: .9rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.35;
+}
+
 .cerrar-sesion {
     padding-top: 1rem;
 }

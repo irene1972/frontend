@@ -1,1 +1,16 @@
-<p>product-form-component works!</p>
+<div class="new-article d-flex flex-column justify-content-center align-items-center p-5">
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+
+        <h2>Publicar nuevo artículo</h2>
+        <p>Completa los detalles para que miles de usuarios encuentren tu equipo</p>
+        <organism-nav-step class="d-flex flex-grow-1 w-100"></organism-nav-step>
+        @if(activeTab() === QUERYPARAM_DETAIL) {
+            <div>ToDo: Organismo datos del artículo</div>
+        } @else if(activeTab() === QUERYPARAM_PRICE) {
+            <div>ToDo: Organismo precio y ubicación</div>
+        } @else if(activeTab() === QUERYPARAM_PICTURES) {
+            <div>ToDo: Organismo para subir fotos de detalle del producto</div>
+        }
+        <atom-button class="ms-auto" config_type="secondary" label="Publicar artículo" icon="arrow-right" iconPosition="right"/>
+    </div>
+</div>

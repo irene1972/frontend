@@ -25,6 +25,10 @@ export class UsuariosRoles {
   textoBusqueda: string = '';
   placeholder: string = 'Buscar usuario por nombre o correo...';
 
+  /*paginación */
+  paginaActual = 1;
+  elementosPorPagina = 10;
+
   constructor(private cd: ChangeDetectorRef) { }
 
   get usuariosFiltrados(): IUsuario[] {
@@ -41,6 +45,30 @@ export class UsuariosRoles {
     );
   }
 
+  /*Paginación */
+  get usuariosPaginados(): IUsuario[] {
+    const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+    const fin = inicio + this.elementosPorPagina;
+
+    return this.usuariosFiltrados.slice(inicio, fin);
+  }
+
+  get totalPaginas(): number {
+    return Math.ceil(
+      this.usuariosFiltrados.length / this.elementosPorPagina
+    );
+  }
+
+  get paginas(): number[] {
+    const paginas: number[] = [];
+
+    for (let i = 1; i <= this.totalPaginas; i++) {
+      paginas.push(i);
+    }
+
+    return paginas;
+  }
+  /************ */
   ngOnInit() {
 
     this.usersService.getAllUsers().subscribe({
@@ -49,7 +77,6 @@ export class UsuariosRoles {
           this.mensaje = data.error;
           return;
         } else {
-          console.log(data);
           this.usuarios = data;
           this.cd.detectChanges();
         }
@@ -66,7 +93,6 @@ export class UsuariosRoles {
           this.mensaje = data.error;
           return;
         } else {
-          console.log(data);
           this.usersCount = data.count;
           this.cd.detectChanges();
         }
@@ -83,7 +109,6 @@ export class UsuariosRoles {
           this.mensaje = data.error;
           return;
         } else {
-          console.log(data);
           this.usersCountRol = data.count;
           this.cd.detectChanges();
         }
@@ -100,7 +125,6 @@ export class UsuariosRoles {
           this.mensaje = data.error;
           return;
         } else {
-          console.log(data);
           this.usersCountBlocked = data.count;
           this.cd.detectChanges();
         }
@@ -114,9 +138,7 @@ export class UsuariosRoles {
   }
 
   borrar(user_id: number) {
-    console.log('irene', user_id);
 
-    /****************** */
     Swal.fire({
       title: '¿Estás seguro de eliminar el usuario?',
       showDenyButton: false,
@@ -133,11 +155,10 @@ export class UsuariosRoles {
               this.mensaje = data.error;
               return;
             } else {
-              console.log(data);
               Swal.fire('Eliminado!', '', 'success');
               setTimeout(() => {
                 window.location.reload();
-              },1000);
+              }, 1000);
             }
           },
           error: (err) => {
@@ -147,9 +168,12 @@ export class UsuariosRoles {
         });
       }
     });
-    /****************** */
-
   }
+  /*Paginación */
+  cambiarPagina(pagina: number) {
+    this.paginaActual = pagina;
+  }
+  /********* */
 
   protected breadcrumbItems = computed(() => [
     { label: 'Panel', route: '/admin/panel/' },

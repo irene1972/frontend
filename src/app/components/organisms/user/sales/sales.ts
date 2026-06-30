@@ -33,7 +33,6 @@ export class Sales {
           this.articulos_filtrados=this.articulos.filter(
             (a) => a.estado_articulo_id === 'Vendido'
           );
-          console.log(this.articulos);
 
           this.cd.detectChanges();
         },
@@ -87,7 +86,6 @@ export class Sales {
       }).then((result) => {
         if (result.isConfirmed) {
           this.articlesService.deleteArticle(id).subscribe((data) => {
-            console.log(data);
   
             if (data.error) {
               Swal.fire('Ha habido un error', '', 'info');
@@ -102,6 +100,5 @@ export class Sales {
       });
     }
   pausar(id: number): void {
-    console.log('Pausar: ' + id);
   }
 }

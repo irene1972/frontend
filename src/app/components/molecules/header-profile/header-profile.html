@@ -3,9 +3,13 @@
     <div class="profile">
         <p class="text-profile">{{username()}}</p>
         <div class="stars">
-            @if(role() === "user") {
+            @if(role() === "Usuario") {
                 <atom-icon variant="star" size="1rem"></atom-icon>
                 <p>{{rating_average()}} <span>({{rating_total()}})</span> </p>
+            } @else {
+                <div class="rol">
+                    <p>{{ role() }}</p>
+                </div>
             }
         </div>
     </div>

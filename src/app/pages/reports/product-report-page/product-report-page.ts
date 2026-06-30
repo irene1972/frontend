@@ -55,7 +55,7 @@ export class ProductReportPage {
     });
   }
 
-  getDataForm(){
+  async getDataForm(){
 
     // Usuario Logeado
     const userId = this.getLoggedUserId();
@@ -70,23 +70,27 @@ export class ProductReportPage {
       estado: 'Pendiente',
     }
 
-    console.log(payload);
+    try {
+      await lastValueFrom(this.reportService.postReport(payload));
 
-    this.reportService.postReport(payload).subscribe({
-      next: () => {
-        this.toastVariant.set('success');
-        this.showToast.set(false);
-        setTimeout(() => this.showToast.set(true), 10);
-        setTimeout(() => this.router.navigate(['/home']), 3500);
-      },
-      error: (error) => {
-        console.log(error);
-        
-        this.toastVariant.set('error');
-        this.showToast.set(false);
-        setTimeout(() => this.showToast.set(true), 10);
+      const articulo = this.reportedProduct();
+      if(articulo){
+        await lastValueFrom(this.articleService.updateArticle(articulo.id, {
+          ...articulo,
+          estado_articulo_id: 'En_revision'
+        }));
       }
-    }) 
+
+      this.toastVariant.set('success');
+      this.showToast.set(false);
+      setTimeout(() => this.showToast.set(true), 10)
+      setTimeout(() => this.router.navigate(['/home']), 3500);
+
+    } catch (error) {
+      this.toastVariant.set('error');
+      this.showToast.set(false);
+      setTimeout(() => this.showToast.set(true), 10);
+    } 
   }
 
   async loadProduct(){

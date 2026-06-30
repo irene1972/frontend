@@ -1,0 +1,85 @@
+<section class="perfil-moderador">
+  <div class="header">
+    <div class="navegador">
+      <a [routerLink]="rutaPanel">
+        <div class="atras"><</div>
+      </a>
+      <div class="alante">></div>
+    </div>
+
+    <div class="ruta">
+      <p class="panel">Panel</p>
+      <div>></div>
+      <p>Mi perfil</p>
+    </div>
+  </div>
+
+  <h1>Mi perfil</h1>
+
+  <article class="card perfil-card">
+    <div class="profile-image">
+      @if (user.foto) {
+        <img [src]="user.foto" [alt]="user.username">
+      } @else {
+        <span>{{ user.iniciales }}</span>
+      }
+  </div>
+
+    <div class="perfil-info">
+      <h2>{{ user.nombre }} {{ user.apellidos }}</h2>
+      <p>{{ user.roles_id }}</p>
+    </div>
+  </article>
+
+  <article class="card form-card">
+    <h2>Datos personales</h2>
+
+    <form>
+      <label>Nombre</label>
+      <input type="text" [(ngModel)]="form.nombre" name="nombre" [disabled]="!editando">
+
+      <label>Apellidos</label>
+      <input type="text" [(ngModel)]="form.apellidos" name="apellidos" [disabled]="!editando">
+
+      <label>Nombre de usuario</label>
+      <input type="text" [(ngModel)]="form.username" name="username" [disabled]="!editando">
+
+      <label>Correo electrónico</label>
+      <input type="email" [(ngModel)]="form.email" name="email" disabled>
+
+      <label>Contraseña actual</label>
+      <input type="password" [(ngModel)]="form.password" name="password" disabled>
+
+      @if (editando) {
+        <label>Nueva contraseña</label>
+        <input
+          type="password"
+          [(ngModel)]="nuevaPassword"
+          name="nuevaPassword"
+          placeholder="Dejar vacío para no cambiar"
+        >
+      }
+
+      <label>Foto</label>
+      <input type="text" [(ngModel)]="form.foto" name="foto" [disabled]="!editando">
+
+      <label>Dirección</label>
+      <input type="text" [(ngModel)]="form.direccion" name="direccion" [disabled]="!editando">
+
+      <label>Zona geográfica</label>
+      <input type="text" [(ngModel)]="form.zona_geografica" name="zona_geografica" [disabled]="!editando">
+
+      <label>Código postal</label>
+      <input type="text" [(ngModel)]="form.cp" name="cp" [disabled]="!editando">
+    </form>
+
+    <div class="acciones">
+      @if (!editando) {
+        <button class="btn-editar" type="button" (click)="activarEdicion()">Editar perfil</button>
+      } @else {
+        <button class="btn-cancelar" type="button" (click)="cancelarEdicion()">Cancelar</button>
+        <button class="btn-guardar" type="button" (click)="guardarCambios()">Guardar cambios</button>
+      }
+    </div>
+  </article>
+</section>

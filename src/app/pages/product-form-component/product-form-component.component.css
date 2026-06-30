@@ -1,0 +1,30 @@
+.new-article {
+    h2{
+        color: var(--text-primary);
+        font-size: 3rem;
+        font-weight: 600;
+    }
+
+    p{
+        color: var(--text-seondary);
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
+
+/* Mobile */
+@media(max-width: 768px) {
+    .new-article{
+        h2{
+           display: none;
+        }
+
+        p{
+          display:none;
+        }
+        atom-button {
+            display:none
+        }
+    }
+
+}

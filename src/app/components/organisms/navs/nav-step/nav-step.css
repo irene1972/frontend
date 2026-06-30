@@ -1,0 +1,78 @@
+:host{
+    --step-box-height:   4rem;
+    --step-label-height: calc(var(--step-box-height)*1.2);
+    --nav-step-height:   calc(var(--step-label-height)*2);
+}
+
+.nav-step {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: var(--nav-step-height);
+
+    .container {
+        width: 100%;
+        flex:1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+   
+        .separator {
+            flex: 1;
+            height: 1px;
+            background-color: var(--surface-high);
+        }
+
+        div {
+            position:relative;
+            text-decoration: none;
+    
+            .name {
+                width: var(--step-box-height);
+                height: var(--step-box-height);;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-tertiary);
+                font-size: 1.2rem;
+                font-weight: 600;
+                border: 2px solid var(--text-tertiary);
+                border-radius: 1rem;
+                background-color: var(--surface-container);
+                margin:0;
+            }
+
+            .label {
+                position:absolute;
+                top:var(--step-label-height);
+                left: 50%;
+                transform: translateX(-50%);  /* centra horizontalmente */
+        
+                &.first{
+                    left: 0%;
+                    transform: translateX(0%);  /* centra horizontalmente */
+                }
+                &.last {
+                    left: 100%;
+                    transform: translateX(-100%);  /* centra horizontalmente */
+                }
+
+                font-size: 1.5rem;
+                color: var(--text-tertiary);
+            }
+
+            &.active {
+                .name {
+                    color: var(--surface-card);
+                    border: none;
+                    background-color: var(--secondary-cta);
+                }
+
+                .label {
+                    color: var(--secondary-cta);
+                }
+            }
+        }
+    }
+}

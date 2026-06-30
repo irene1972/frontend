@@ -2,24 +2,28 @@
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
-                <img [src]="(bestSellers[0].url_foto)?bestSellers[0].url_foto:'/imgs/no-photo.jpg'" class="img-fluid rounded-start" alt="">
+                <a [routerLink]="['/product',bestSellers[0].id]">
+                    <img [src]="(bestSellers[0].url_foto)?bestSellers[0].url_foto:'/imgs/no-photo.jpg'"
+                        class="img-fluid rounded-start" alt="">
+                </a>
             </div>
             <div class="col-md-8 derecha">
                 <div class="card-body">
                     <div class="flex">
                         <div class="fondo-azul-oscuro">DESTACADO</div>
                         @if(bestSellers[0]?.estado_conservacion_id==='Buen estado'){
-                            <div class="fondo-azul-claro">COMO NUEVO</div>
-                    }
+                        <div class="fondo-azul-claro">COMO NUEVO</div>
+                        }
                     </div>
                     <h5 class="card-title">{{bestSellers[0]?.titulo}}</h5>
                     <p class="card-text">{{bestSellers[0]?.provincia?.nombre}}. Vendedor verificado</p>
                     <span>849 €</span>
                     <div class="flex links">
-                        <button [routerLink]="['/login']" type="button" class="btn btn-warning">Comprar ahora</button>
-                        <a [routerLink]="['#']" class="link">Ver detalle</a>
+                        <button [routerLink]="[(user.id)?`/product/${bestSellers[0].id}`:'/login']" type="button" class="btn btn-warning">Comprar ahora</button>
+                        <a [routerLink]="[(user.id)?`/product/${bestSellers[0].id}`:'/login']" class="link">Ver detalle</a>
+                        
                     </div>
-                    
+
                 </div>
             </div>
         </div>
