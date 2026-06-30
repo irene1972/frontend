@@ -10,13 +10,21 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class NLInicio {
   private router = inject(Router);
+  user:any={};
 
   @Input() best_sellers:IArticle[] = [];
   @Input() recents:IArticle[] = [];
 
   constructor(private cd: ChangeDetectorRef){}
 
+  ngOnInit(){
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (usuarioString) {
+      this.user = JSON.parse(usuarioString);
+    }
+  }
+
   goToExplore(): void {
-    this.router.navigate(['/explore']);
+    this.router.navigate([(this.user.id)?`/explore`:'/login']);
   }
 }

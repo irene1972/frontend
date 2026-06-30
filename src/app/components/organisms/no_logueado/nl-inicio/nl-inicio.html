@@ -2,7 +2,7 @@
     <div class="destacados">
         <div class="contenedor">
             <h2>Artículos destacados</h2>
-            <a [routerLink]="['/explore']">Ver todo -></a>
+            <a [routerLink]="[(user.id)?`/explore`:'/login']">Ver todo -></a>
         </div>
         <div class="destac">
             @for (bestSeller of best_sellers.slice(0,4);track bestSeller.id) {
@@ -34,7 +34,7 @@
     <div class="recientes">
         <div class="contenedor">
             <h2>Subido recientemente</h2>
-            <a [routerLink]="['/explore']">Ver todo -></a>
+            <a [routerLink]="[(user.id)?`/explore`:'/login']">Ver todo -></a>
         </div>
         <div class="recien">
             @for(recent of recents.slice(0,6);track recent.id){

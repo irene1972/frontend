@@ -11,12 +11,7 @@ import { IFavoriteUser } from '../../../../interfaces/i-favorite-user';
   styleUrl: './favorite-user.css',
 })
 export class FavoriteUser {
-  /*
-  @Input() iniciales:string='US';
-  @Input() nombre:string='User';
-  @Input() estrellas:string='0';
-  @Input() valoraciones:string='0';
-  */
+ 
   @Input() texto_boton:string='Ver detalle';
   @Input() usuario!:IFavoriteUser;
   @Output() clicar = new EventEmitter<number>();

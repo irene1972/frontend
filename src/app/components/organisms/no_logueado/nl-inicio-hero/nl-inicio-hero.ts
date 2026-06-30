@@ -14,10 +14,16 @@ export class NLInicioHero {
   tipo: boolean = false;
   bestSellers:IArticle[] = [];
   articlesService = inject(ArticlesService);
+  user:any={};
 
   constructor(private cd: ChangeDetectorRef){}
 
   ngOnInit() {
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (usuarioString) {
+      this.user = JSON.parse(usuarioString);
+    }
+
     this.articlesService.getArticlesBestSellers().subscribe({
       next: (data) => {
         if (data.error) {
