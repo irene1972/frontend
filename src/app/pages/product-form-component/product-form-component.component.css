@@ -31,7 +31,9 @@
     display: none;
 }
 
-
+.btn-mobile {
+    display:none
+}
 /* Mobile */
 @media(max-width: 768px) {
     .my-hidden{
@@ -40,16 +42,20 @@
     .card {
         display:flex;
     }
+
     .new-article{
-        .page-title{
-           display: none;
+        .page-title {
+            text-align:center;
+        }
+        p{
+          text-align:center;
         }
 
-        p{
-          display:none;
+        .btn-desktop {
+            display:none;
         }
-        atom-button {
-            display:none
+        .btn-mobile {
+            display:flex;
         }
     }
 

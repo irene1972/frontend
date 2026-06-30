@@ -2,71 +2,89 @@
     <div class="container d-flex flex-column justify-content-center align-items-center gap-3">
         <h2 class="page-title">Publicar nuevo artículo</h2>
         <p>Completa los detalles para que miles de usuarios encuentren tu equipo</p>
-        <organism-nav-step class="d-flex flex-grow-1 w-100 pb-4" [steps]="loadSteps()"></organism-nav-step>
+        <organism-nav-step class="organism-nav-step d-flex flex-grow-1 w-100" [steps]="loadSteps()"></organism-nav-step>
         <div [class.my-hidden]="currentStep() !== 2" class="my-card" >
             <h2 class="fs-1 fw-bold mb-2">1 · Datos del artículo</h2>
-            <!-- Título -->
-            <div class="mb-4">
-                <label for="titulo" class="form-label fw-semibold text-secondary">Título del artículo</label>
-                <input
-                type="text"
-                id="titulo"
-                class="form-control"
-                placeholder="Ej.: Portátil Lenovo IdeaPad 3"
-                />
-            </div>
-
-            <!-- Categoría -->
-            <div class="mb-4">
-                <label for="categoria" class="form-label fw-semibold text-secondary">Categoría</label>
-                <div class="input-group">
-                <span class="input-group-text bg-white">
-                    <i class="bi bi-person"></i>
-                </span>
-                <select id="categoria" class="form-select">
-                    <option selected disabled>Selecciona una categoría</option>
-                    <option value="portatiles">Portátiles</option>
-                    <option value="moviles">Móviles</option>
-                    <option value="tablets">Tablets</option>
-                </select>
+            <form [formGroup]="dataForm">
+                <!-- Título -->
+                <div class="mb-4">
+                    <label for="titulo" class="form-label fw-semibold text-secondary">Título del artículo</label>
+                    <input
+                    type="text"
+                    id="titulo"
+                    class="form-control"
+                    formControlName="titulo"
+                    [class.is-invalid]="dataForm.get('titulo')?.invalid && dataForm.get('titulo')?.touched"
+                    placeholder="Ej.: Portátil Lenovo IdeaPad 3"
+                    />
+                    @if (dataForm.get('titulo')?.invalid && dataForm.get('titulo')?.touched) {
+                        <div class="invalid-feedback d-block">El título es obligatorio (mínimo 3 caracteres).</div>
+                    }
                 </div>
-            </div>
 
-            <!-- Estado de conservación -->
-            <div class="mb-4">
-                <label class="form-label fw-semibold text-secondary">Estado de conservación</label>
-                <div class="btn-group w-100" role="group" aria-label="Estado de conservación">
-                <input type="radio" class="btn-check" name="estado" id="estado-nuevo" autocomplete="off" checked>
-                <label class="btn btn-outline-success" for="estado-nuevo">NUEVO</label>
-
-                <input type="radio" class="btn-check" name="estado" id="estado-comoNuevo" autocomplete="off">
-                <label class="btn btn-outline-primary" for="estado-comoNuevo">COMO NUEVO</label>
-
-                <input type="radio" class="btn-check" name="estado" id="estado-buenEstado" autocomplete="off">
-                <label class="btn btn-outline-warning" for="estado-buenEstado">BUEN ESTADO</label>
-
-                <input type="radio" class="btn-check" name="estado" id="estado-aceptable" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="estado-aceptable">ACEPTABLE</label>
+                <!-- Categoría -->
+                <div class="mb-4">
+                    <label for="categoria" class="form-label fw-semibold text-secondary">Categoría</label>
+                    <div class="input-group">
+                    <span class="input-group-text bg-white">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <select 
+                        id="categoria" 
+                        class="form-select"
+                        formControlName="categoria"
+                        [class.is-invalid]="dataForm.get('categoria')?.invalid && dataForm.get('categoria')?.touched">
+                        <option selected disabled>Selecciona una categoría</option>
+                        <option value="portatiles">Portátiles</option>
+                        <option value="moviles">Móviles</option>
+                        <option value="tablets">Tablets</option>
+                    </select>
+                    </div>
+                    @if (dataForm.get('categoria')?.invalid && dataForm.get('categoria')?.touched) {
+                        <div class="invalid-feedback d-block">Selecciona una categoría.</div>
+                    }
                 </div>
-            </div>
 
-            <!-- Descripción -->
-            <div>
-                <label for="descripcion" class="form-label fw-semibold text-secondary">Descripción</label>
-                <textarea
-                id="descripcion"
-                class="form-control"
-                rows="4"
-                placeholder="Describe el estado y las características..."
-                ></textarea>
-            </div>
+                <!-- Estado de conservación -->
+                  <div class="mb-4">
+                    <label class="form-label fw-semibold text-secondary">Estado de conservación</label>
+                    <div class="btn-group w-100" role="group" aria-label="Estado de conservación">
+                        <input type="radio" class="btn-check" formControlName="estado" value="nuevo" id="estado-nuevo">
+                        <label class="btn btn-outline-success" for="estado-nuevo">NUEVO</label>
+
+                        <input type="radio" class="btn-check" formControlName="estado" value="comoNuevo" id="estado-comoNuevo">
+                        <label class="btn btn-outline-primary" for="estado-comoNuevo">COMO NUEVO</label>
+
+                        <input type="radio" class="btn-check" formControlName="estado" value="buenEstado" id="estado-buenEstado">
+                        <label class="btn btn-outline-warning" for="estado-buenEstado">BUEN ESTADO</label>
+
+                        <input type="radio" class="btn-check" formControlName="estado" value="aceptable" id="estado-aceptable">
+                        <label class="btn btn-outline-secondary" for="estado-aceptable">ACEPTABLE</label>
+                    </div>
+                </div>
+
+                <!-- Descripción -->
+                <div>
+                    <label for="descripcion" class="form-label fw-semibold text-secondary">Descripción</label>
+                    <textarea
+                    id="descripcion"
+                    class="form-control"
+                    rows="4"
+                    formControlName="descripcion"
+                    [class.is-invalid]="dataForm.get('descripcion')?.invalid && dataForm.get('descripcion')?.touched"
+                    placeholder="Describe el estado y las características..."
+                    ></textarea>
+                    @if (dataForm.get('descripcion')?.invalid && dataForm.get('descripcion')?.touched) {
+                        <div class="invalid-feedback d-block">La descripción es obligatoria (mínimo 10 caracteres).</div>
+                    }
+                </div>
+            </form>
         </div>
-       
 
    
         <div [class.my-hidden]="currentStep() !== 3" class="my-card" >
-                <h2 class="fs-1 fw-bold mb-4">2 · Precio y ubicación</h2>
-
+            <h2 class="fs-1 fw-bold mb-4">2 · Precio y ubicación</h2>
+            <form [formGroup]="priceForm">
                 <!-- Precio de venta -->
                 <div class="mb-4">
                     <label for="precio" class="form-label fw-semibold text-secondary">Precio de venta (€)</label>
@@ -76,36 +94,63 @@
                         type="number"
                         id="precio"
                         class="form-control"
+                        formControlName="precio"
+                        [class.is-invalid]="priceForm.get('precio')?.invalid && priceForm.get('precio')?.touched"
                         placeholder="0"
                     />
                     </div>
+                    @if (priceForm.get('precio')?.invalid && priceForm.get('precio')?.touched) {
+                        <div class="invalid-feedback d-block">Introduce un precio válido (mínimo 1€).</div>
+                    }
                 </div>
 
                 <!-- Ubicación -->
                 <div>
                     <label for="ubicacion" class="form-label fw-semibold text-secondary">Ubicación (ciudad)</label>
                     <input
-                    type="text"
-                    id="ubicacion"
-                    class="form-control"
-                    placeholder="Ej.: Madrid"
+                        type="text"
+                        id="ubicacion"
+                        class="form-control"
+                        formControlName="ubicacion"
+                        [class.is-invalid]="priceForm.get('ubicacion')?.invalid && priceForm.get('ubicacion')?.touched"
+                        placeholder="Ej.: Madrid"
                     />
+                    @if (priceForm.get('ubicacion')?.invalid && priceForm.get('ubicacion')?.touched) {
+                        <div class="invalid-feedback d-block">Indica una ciudad.</div>
+                    }
                 </div>
-            </div>
+            </form>
+        </div>
     
 
-        <div [class.my-hidden]="currentStep() !== 4">
+        <div [class.my-hidden]="currentStep() !== 4" class="my-card">
             <organism-photo-uploader (photoFiles)="onPhotos($event)"></organism-photo-uploader>
+            @if (photoForm.get('files')?.invalid && photoForm.get('files')?.touched) {
+                <div class="invalid-feedback d-block mt-2">Sube al menos una foto del artículo.</div>
+            }
         </div>
 
        <!-- Botones de navegación -->
         <div class="d-flex flex-row flex-grow-1 w-100">
-            <atom-button [class.my-hidden]="currentStep() <= 1" class="btn-back ml-auto" config_type="outline" 
+            <atom-button [class.my-hidden]="currentStep() <= 1" class="btn-desktop ml-auto" config_type="outline" 
             label="Atrás" icon="arrow-left" iconPosition="left" (clickButton)="previousStep()"/>
-            <atom-button [class.my-hidden]="currentStep() >= 4 " class="ms-auto" config_type="secondary" 
-            label="Siguiente" icon="arrow-right" iconPosition="right" (clickButton)="nextStep()"/>
-            <atom-button [class.my-hidden]="currentStep() !== 4" class="ms-auto" config_type="secondary" 
+            <atom-button
+            [class.my-hidden]="currentStep() >= 4"
+            [config_state]="isCurrentStepInvalid() ? 'disabled' : 'enabled'"
+            class="btn-desktop ms-auto"
+            config_type="secondary"
+            label="Siguiente"
+            icon="arrow-right"
+            iconPosition="right"
+            (clickButton)="nextStep()"/>
+           
+            <atom-button [class.my-hidden]="currentStep() !== 4" class="btn-desktop ms-auto" config_type="secondary" 
             label="Publicar artículo" icon="arrow-right" iconPosition="right" />
+        </div>
+
+        <div class="d-flex flex-row flex-grow-1 w-100 justify-content-between">
+            <atom-button class="btn-mobile" config_type="outline" label="Borrador" (clickButton)="previousStep()"/>
+            <atom-button class="btn-mobile" config_type="primary" label="Publicar artículo" (clickButton)="nextStep()"/>
         </div>
     </div>
 </div>
