@@ -165,4 +165,13 @@ label {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
+    color: #fff;
+}
+.cancelar:hover {
+    color: #fff;
+}
+
+/* Campos desplegables del cambio de contraseña */
+.pass-campos {
+    border-top: 1px solid #e5e7eb;
 }

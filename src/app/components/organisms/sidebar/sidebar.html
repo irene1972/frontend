@@ -1,8 +1,14 @@
 <div class="sidebar">
-    <molecule-header-profile username="{{user.username}}" initials="{{user.iniciales}}" role="{{user.rol}}"></molecule-header-profile>
+    <molecule-header-profile 
+        username="{{user.username}}" 
+        initials="{{user.iniciales}}" 
+        role="{{user.rol}}" 
+        rating_average="{{ratings.puntuacion_media}}" 
+        rating_total="{{ratings.total_valoraciones}}"     
+        ></molecule-header-profile>
     @if(role() === 'user'){
         <nav class="nav-sidebar">
-            <a [routerLink]="['/user/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a [routerLink]="['/user/panel/profile']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 <i class="bi bi-person"></i>
                 <p>Mi Perfil</p>
             </a>
@@ -10,23 +16,23 @@
                 <i class="bi bi-bell"></i>
                 <p>Notificaciones</p>
             </a>
-            <a [routerLink]="['/user/categories']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <i class="bi bi-grid-fill"></i>
-                <p>Ventas</p>
+            <a [routerLink]="['/user/panel/sales']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <i class="bi bi-box"></i>
+                <p>Productos</p>
             </a>
-            <a [routerLink]="['/user/statistics']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                <i class="bi bi-bag"></i>
+            <a [routerLink]="['/user/panel/my-purchases']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <i class="bi bi-handbag"></i>
                 <p>Compras</p>
             </a>
             <a [routerLink]="['/user/messages']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 <i class="bi bi-chat"></i>
                 <p>Mensajes</p>
             </a>
-            <a [routerLink]="['/user/favorites']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a [routerLink]="['/user/panel/favorites']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 <i class="bi bi-heart"></i>
                 <p>Favoritos</p>
             </a>
-            <a [routerLink]="['/user/ratings']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a [routerLink]="['/user/panel/my-reviews']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 <i class="bi bi-star"></i>
                 <p>Mis Valoraciones</p>
             </a>

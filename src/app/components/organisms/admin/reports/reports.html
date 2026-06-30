@@ -18,7 +18,7 @@
   <p class="descripcion">{{ reportesAgrupados.length }} · Artículos con reportes registrados</p>
 
   <div class="lista-reportes">
-    @for (grupo of reportesAgrupados; track grupo.articuloId) {
+    @for (grupo of reportesPaginados; track grupo.articuloId) {
       <a class="reporte-card" [routerLink]="['/admin/panel/reports', grupo.articuloId]">
         <div class="info-reporte">
           <h2>{{ grupo.articulo?.titulo || 'Artículo sin título' }}</h2>
@@ -26,8 +26,14 @@
         </div>
 
         <div class="estado-reporte">
-          <span class="tag-articulo" [class.tag-publicado]="grupo.articulo?.estado_articulo_id?.toLowerCase() === 'publicado'" [class.tag-retirado]="grupo.articulo?.estado_articulo_id?.toLowerCase() === 'retirado'" [class.tag-revision]="grupo.articulo?.estado_articulo_id?.toLowerCase() === 'en_revision'"> {{ getEstadoArticulo(grupo.articulo?.estado_articulo_id) }}</span>
-          <span class="tag-reportes">{{ grupo.totalReportes }} reporte{{ grupo.totalReportes !== 1 ? 's' : '' }}</span>
+          <span class="tag-articulo" [class.tag-publicado]="grupo.articulo?.estado_articulo_id?.toLowerCase() === 'publicado'" [class.tag-retirado]="grupo.articulo?.estado_articulo_id?.toLowerCase() === 'retirado'" [class.tag-revision]="grupo.articulo?.estado_articulo_id?.toLowerCase() === 'en_revision'">
+            {{ getEstadoArticulo(grupo.articulo?.estado_articulo_id) }}
+          </span>
+
+          <span class="tag-reportes">
+            {{ grupo.totalReportes }} reporte{{ grupo.totalReportes !== 1 ? 's' : '' }}
+          </span>
+
           <i class="bi bi-chevron-right"></i>
         </div>
       </a>
@@ -35,4 +41,20 @@
       <p>No hay reportes registrados.</p>
     }
   </div>
+
+  @if (totalPaginas > 1) {
+    <div class="paginacion">
+      <button type="button" class="btn-pagina" [disabled]="paginaActual === 1" (click)="paginaAnterior()">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+
+      @for (pagina of paginas; track pagina) {
+        <button type="button" class="btn-pagina" [class.activa]="paginaActual === pagina" (click)="cambiarPagina(pagina)">{{ pagina }}</button>
+      }
+
+      <button type="button" class="btn-pagina" [disabled]="paginaActual === totalPaginas" (click)="paginaSiguiente()">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  }
 </section>

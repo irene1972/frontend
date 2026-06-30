@@ -82,22 +82,58 @@
         </div>
       </div>
 
-      <!-- Cambiar contraseña -->
-      <div class="card">
-        <div class="card-body cambiar-pass">
-          <div>
-            <h5 class="card-title">Cambiar contraseña</h5>
-            <p class="pass-sub">Actualiza tu contraseña de acceso</p>
-          </div>
-          <button type="button" class="link-btn">Cambiar</button>
-        </div>
-      </div>
-
       <div class="boton-guardar">
         <a class="btn btn-secondary cancelar" [routerLink]="['/user/panel/profile']">Cancelar</a>
         <button type="submit" class="btn btn-primary guardar">Guardar cambios</button>
       </div>
 
     </form>
+
+    <!-- Cambiar contraseña (formulario independiente) -->
+    <form [formGroup]="passwordForm" (ngSubmit)="guardarPassword()">
+      <div class="card">
+        <div class="card-body cambiar-pass">
+          <div>
+            <h5 class="card-title">Cambiar contraseña</h5>
+            <p class="pass-sub">Actualiza tu contraseña de acceso</p>
+          </div>
+          <button type="button" class="link-btn" (click)="toggleCambioPass()">
+            {{ mostrarCambioPass() ? 'Cerrar' : 'Cambiar' }}
+          </button>
+        </div>
+
+        @if (mostrarCambioPass()) {
+          <div class="card-body pass-campos">
+            <div class="form-group">
+              <label for="nuevaPassword">Nueva contraseña</label>
+              <input type="password" id="nuevaPassword" class="form-control" formControlName="nuevaPassword">
+              @if (nuevaPassword?.touched && nuevaPassword?.hasError('required')) {
+                <div class="text-danger">El campo es requerido</div>
+              } @else if (nuevaPassword?.touched && nuevaPassword?.hasError('minlength')) {
+                <div class="text-danger">La contraseña debe tener al menos 6 caracteres</div>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="repetirPassword">Repetir contraseña</label>
+              <input type="password" id="repetirPassword" class="form-control" formControlName="repetirPassword">
+              @if (repetirPassword?.touched && repetirPassword?.hasError('required')) {
+                <div class="text-danger">El campo es requerido</div>
+              } @else if (repetirPassword?.touched && !passwordsCoinciden()) {
+                <div class="text-danger">Las contraseñas no coinciden</div>
+              }
+            </div>
+
+          </div>
+        }
+      </div>
+
+      @if (mostrarCambioPass()) {
+        <div class="boton-guardar">
+          <button type="submit" class="btn btn-primary guardar">Guardar contraseña</button>
+        </div>
+      }
+    </form>
+
   </div>
 </section>

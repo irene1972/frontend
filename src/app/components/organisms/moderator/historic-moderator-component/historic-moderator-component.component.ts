@@ -16,6 +16,9 @@ export class HistoricModeratorComponentComponent {
   user: any = {};
   historial: any[] = [];
 
+  paginaActual = 1;
+  reportesPorPagina = 10;
+
   constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -61,12 +64,41 @@ export class HistoricModeratorComponentComponent {
     });
   }
 
+  get historialPaginado() {
+    const inicio = (this.paginaActual - 1) * this.reportesPorPagina;
+    const fin = inicio + this.reportesPorPagina;
+
+    return this.historial.slice(inicio, fin);
+  }
+
+  get totalPaginas() {
+    return Math.ceil(this.historial.length / this.reportesPorPagina);
+  }
+
+  get paginas() {
+    return Array.from({ length: this.totalPaginas }, (_, index) => index + 1);
+  }
+
+  cambiarPagina(pagina: number) {
+    if (pagina < 1 || pagina > this.totalPaginas) return;
+
+    this.paginaActual = pagina;
+  }
+
+  paginaAnterior() {
+    this.cambiarPagina(this.paginaActual - 1);
+  }
+
+  paginaSiguiente() {
+    this.cambiarPagina(this.paginaActual + 1);
+  }
+
   getAccion(reporte: any): string {
     const estado = reporte.estado?.toLowerCase();
-  
+
     if (estado === 'aceptado') return 'Reporte aceptado';
     if (estado === 'descartado') return 'Reporte descartado';
-  
+
     return 'Gestionado';
   }
 

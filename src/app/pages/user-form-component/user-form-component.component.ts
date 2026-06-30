@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Icon } from '../../components/atoms/icon/icon';
 import { UsersService } from '../../services/users-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-form-component',
@@ -37,6 +38,18 @@ export class UserFormComponentComponent implements OnInit {
   get ubicacion() { return this.miForm.get('ubicacion'); }
   get direccion() { return this.miForm.get('direccion'); }
   get cp() { return this.miForm.get('cp'); }
+
+  // Formulario independiente para el cambio de contraseña
+  mostrarCambioPass = signal(false);
+  passwordForm = new FormGroup({
+    nuevaPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    repetirPassword: new FormControl('', [Validators.required]),
+  });
+  get nuevaPassword() { return this.passwordForm.get('nuevaPassword'); }
+  get repetirPassword() { return this.passwordForm.get('repetirPassword'); }
+  passwordsCoinciden(): boolean {
+    return this.passwordForm.value.nuevaPassword === this.passwordForm.value.repetirPassword;
+  }
 
   ngOnInit(): void {
     this.userID = this.route.snapshot.params['userID'] ?? '';
@@ -127,6 +140,41 @@ export class UserFormComponentComponent implements OnInit {
         const backendMsg = err?.error?.detalles?.[0] ?? err?.error?.error;
         this.mensaje = backendMsg ? backendMsg : 'No se ha podido actualizar el perfil';
         this.cd.detectChanges();
+      }
+    });
+  }
+
+  // Despliega u oculta los campos de cambio de contraseña
+  toggleCambioPass(): void {
+    const nuevo = !this.mostrarCambioPass();
+    this.mostrarCambioPass.set(nuevo);
+    if (!nuevo) this.passwordForm.reset();
+  }
+
+  // Cambia la contraseña enviando solo el campo password (update parcial en el backend).
+  // NOTA: no se verifica la contraseña actual porque el backend no expone endpoint para ello;
+  // se sigue el mismo patron que admin-moderator. Pendiente: endpoint dedicado que valide la actual.
+  guardarPassword(): void {
+    if (!this.passwordForm.valid) {
+      this.passwordForm.markAllAsTouched();
+      return;
+    }
+    if (this.passwordForm.value.nuevaPassword !== this.passwordForm.value.repetirPassword) {
+      Swal.fire({ title: 'Las contraseñas no coinciden', text: 'Revisa que ambas contraseñas sean iguales.', icon: 'warning', confirmButtonColor: '#003594' });
+      return;
+    }
+    const passBody: any = { password: this.passwordForm.value.nuevaPassword };
+    this.usersService.updateUser(Number(this.userID), passBody).subscribe({
+      next: () => {
+        this.passwordForm.reset();
+        this.mostrarCambioPass.set(false);
+        this.cd.detectChanges();
+        Swal.fire({ title: 'Contraseña actualizada', text: 'Tu contraseña se ha cambiado correctamente.', icon: 'success', confirmButtonColor: '#003594' });
+      },
+      error: (err) => {
+        console.error(err);
+        const backendMsg = err?.error?.detalles?.[0] ?? err?.error?.error;
+        Swal.fire({ title: 'Error', text: backendMsg ? backendMsg : 'No se ha podido cambiar la contraseña.', icon: 'error', confirmButtonColor: '#003594' });
       }
     });
   }
