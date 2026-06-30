@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { RouterLink } from "@angular/router";
 
 @Component({
@@ -10,6 +10,9 @@ import { RouterLink } from "@angular/router";
 export class ModeratorMenuDrawerComponent {
   user: any = {};
 
+  //admin loggado?
+  isAdmin = signal<boolean>(false);
+
   @Output() closeMenu = new EventEmitter<void>();
 
   ngOnInit() {
@@ -17,6 +20,7 @@ export class ModeratorMenuDrawerComponent {
     
     if (usuarioString) {
       this.user = JSON.parse(usuarioString);
+      this.isAdmin.set(this.user.rol === 'Administrador');
     }
   }
 

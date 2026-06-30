@@ -28,6 +28,17 @@ export interface IUserPurchase extends IPurchase {
   fotos?: IPurchasePhoto[];
 }
 
+export interface ICreateOrderRequest {
+  comprador_id: number;
+  articulos_id: number;
+  estado: PurchaseStatus;
+  direccion_envio: string;
+}
+
+export interface ICreateOrderResponse {
+  id: number;
+  mensaje: string;
+}
 export interface IUserPurchaseSales {
   usuario_id: number;
   total_ventas: number;

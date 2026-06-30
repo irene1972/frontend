@@ -49,6 +49,15 @@
         </a>
     </section>
 
+    @if (isAdmin()) {
+        <section class="drawer-section">
+            <a [routerLink]="['/admin/panel/main']" (click)="close()">
+                Volver al panel de administrador
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </section>
+    }
+
     <section class="drawer-section">
         <button class="logout-button" type="button" (click)="logout()">
             Cerrar sesión

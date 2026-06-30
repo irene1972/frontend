@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { NavStepOptions } from './nav-step.config';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -48,9 +48,4 @@ export class NavStep {
     ),
     { initialValue: [] as string[] }
   );
-
-  protected isStepActive(query_param: string): boolean {
-    console.log(this.activeSteps().includes(query_param))
-    return this.activeSteps().includes(query_param);
-  }
 }

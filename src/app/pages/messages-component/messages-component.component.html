@@ -1,1 +1,35 @@
-<p>messages-component works!</p>
+<div class="messages-layout" [class.has-active]="selectedConversacion()">
+
+    <!-- Lista de conversaciones -->
+    <aside class="conversations-list">
+        <h2 class="conversations-list__title">Mensajes</h2>
+
+        @for (conv of conversaciones(); track conv.id) {
+            <div
+                class="conversation-item"
+                [class.conversation-item--active]="selectedConversacion()?.id === conv.id"
+                (click)="selectConversacion(conv)"
+            >
+                <div class="conversation-item__avatar">{{ conv.iniciales }}</div>
+                <div class="conversation-item__info">
+                    <span class="conversation-item__name">{{ conv.nombre }}</span>
+                    <span class="conversation-item__preview">{{ conv.ultimoMensaje }}</span>
+                </div>
+                <span class="conversation-item__time">{{ conv.hora }}</span>
+            </div>
+        }
+    </aside>
+
+    <!-- Chat activo -->
+    <div class="container-chat">
+        @if (selectedConversacion()) {
+        <app-chat [conversacion]="selectedConversacion()!" [mensajes]="mensajesActivos()" (closed)="selectedConversacion.set(null)">
+        </app-chat>
+        } @else {
+            <section class="chat-empty">
+                <i class="bi bi-chat-dots chat-empty__icon"></i>
+                <p class="chat-empty__text">Selecciona una conversación para empezar</p>
+            </section>
+        }
+    </div>
+</div>

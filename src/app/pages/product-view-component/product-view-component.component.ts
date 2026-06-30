@@ -15,6 +15,7 @@ import { ArticlePhotoService } from '../../services/article-photo-service';
 import { IArticlePhoto } from '../../interfaces/i-article-photo.interface';
 import { HomeBar } from "../../components/organisms/home-bar/home-bar";
 import { ReportModal } from "../../components/molecules/report-modal/report-modal";
+import { CheckoutService } from '../../services/checkout-service';
 import { FavoritesService } from '../../services/favorites-service';
 
 @Component({
@@ -49,6 +50,7 @@ export class ProductViewComponentComponent {
   favoritoId = signal<number | null>(null);
   
   private router = inject(Router);
+  private checkoutService = inject(CheckoutService);
 
   ngOnInit() { 
     this.loadProduct();
@@ -168,7 +170,11 @@ export class ProductViewComponentComponent {
     this.router.navigate(['/profile'])
   }
   onComprar(event: MouseEvent) {
-    this.router.navigate(['/product/checkout', this.productID()])
+    const article = this.product();
+    if (!article) return;
+
+    this.checkoutService.setCheckoutProduct(article);
+    this.router.navigate(['/user/product/checkout', article.id]);
   }
   onInformar(event: MouseEvent) {
     this.showReportModal.set(true);

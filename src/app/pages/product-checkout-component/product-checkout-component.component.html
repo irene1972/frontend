@@ -1,1 +1,105 @@
-<p>product-checkout-component works!</p>
+@if (product(); as article) {
+<section class="checkout">
+  <h1 class="checkout__title">Finalizar compra</h1>
+
+  <div class="checkout__layout">
+    <div class="checkout__main">
+      <article class="checkout-card checkout-product">
+        <div class="checkout-product__image" aria-hidden="true">
+          @if (productPhoto(); as photoUrl) {
+            <img
+              class="checkout-product__img"
+              [src]="photoUrl"
+              [alt]="article.titulo"
+            />
+          } @else {
+            <i class="bi bi-image"></i>
+          }
+        </div>
+
+        <div class="checkout-product__info">
+          <h2 class="checkout-product__name">{{ article.titulo }}</h2>
+          <p class="checkout-product__seller">Vendedor verificado</p>
+        </div>
+
+        <p class="checkout-product__price">{{ article.precio }} EUR</p>
+      </article>
+
+      <section class="checkout-card">
+        <h3 class="checkout-card__title">Entrega</h3>
+
+        <div class="checkout-options">
+          <button
+            type="button"
+            class="checkout-option"
+            [class.checkout-option--selected]="deliveryMethod() === 'home'"
+            (click)="selectDelivery('home')"
+          >
+            <span class="checkout-option__radio" aria-hidden="true"></span>
+            <span class="checkout-option__content">
+              <span class="checkout-option__label">Envío a domicilio</span>
+              <span class="checkout-option__detail">3-5 días · {{ formatPrice(shippingHome) }} EUR</span>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            class="checkout-option"
+            [class.checkout-option--selected]="deliveryMethod() === 'pickup'"
+            (click)="selectDelivery('pickup')"
+          >
+            <span class="checkout-option__radio" aria-hidden="true"></span>
+            <span class="checkout-option__content">
+              <span class="checkout-option__label">Punto de recogida</span>
+              <span class="checkout-option__detail">2-4 días · {{ formatPrice(shippingPickup) }} EUR</span>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section class="checkout-card">
+        <h3 class="checkout-card__title">Método de pago</h3>
+
+        <div class="checkout-payment">
+          <div class="checkout-payment__method">
+            <i class="bi bi-credit-card-2-front checkout-payment__icon" aria-hidden="true"></i>
+            <span>Tarjeta terminada en ••42</span>
+          </div>
+          <button type="button" class="checkout-payment__change">Cambiar</button>
+        </div>
+      </section>
+    </div>
+
+    <aside class="checkout-card checkout-summary">
+      <h3 class="checkout-card__title">Resumen</h3>
+
+      <dl class="checkout-summary__lines">
+        <div class="checkout-summary__line">
+          <dt>Artículo</dt>
+          <dd>{{ formatPrice(articlePrice()) }} EUR</dd>
+        </div>
+        <div class="checkout-summary__line">
+          <dt>Envío</dt>
+          <dd>{{ formatPrice(shippingCost()) }} EUR</dd>
+        </div>
+        <div class="checkout-summary__line">
+          <dt>Protección al comprador</dt>
+          <dd class="checkout-summary__free">Gratis</dd>
+        </div>
+      </dl>
+
+      <div class="checkout-summary__total">
+        <span>Total</span>
+        <span>{{ formatPrice(total()) }} EUR</span>
+      </div>
+
+      <atom-button
+        config_type="secondary"
+        [config_state]="isSubmitting() ? 'disabled' : 'enabled'"
+        [label]="isSubmitting() ? 'Procesando pago...' : 'Pagar ahora · ' + formatPrice(total()) + ' EUR'"
+        (click)="onPayNow($event)"
+      />
+    </aside>
+  </div>
+</section>
+}

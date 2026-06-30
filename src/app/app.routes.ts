@@ -17,7 +17,6 @@ import { AdminComponentComponent } from './pages/admin-component/admin-component
 import { C404componentComponent } from './errors/c404component/c404component.component';
 import { authGuard } from './guards/auth-guard';
 import { roleGuard } from './guards/role-guard';
-import { ChatComponentComponent } from './pages/chat-component/chat-component.component';
 import { C403componentComponent } from './errors/c403component/c403component.component';
 import { C500componentComponent } from './errors/c500component/c500component.component';
 import { UsuariosRoles } from './components/organisms/admin/usuarios-roles/usuarios-roles';
@@ -105,6 +104,10 @@ export const routes: Routes = [
                     {
                         path: 'edit-profile/:userID',
                         component: UserFormComponentComponent
+                    },
+                    {
+                        path: 'messages',
+                        component: MessagesComponentComponent
                     }
                 ]
              },
@@ -114,9 +117,6 @@ export const routes: Routes = [
             /*{ path: 'my-purchases', component: UserMyPurchasesComponentComponent },*/
             //reportes
             {path: 'report/product/:productID', component: ProductReportPage},
-            // Ruta Mensajeria
-            { path: 'messages', component: MessagesComponentComponent },
-            { path: 'messages/:userID', component: ChatComponentComponent },
             { path: 'sellers/:userID', component: SellerProfile },
         ]
     },
