@@ -15,8 +15,6 @@ export class PhotoUploader {
   private   files         = signal<(File | null)[]>([null, null, null, null]); 
   readonly  photoFiles    = output<(File | null)[]>();
   
-  
-
   onDragOver(event: DragEvent) {
     event.preventDefault();
     this.dragEvent.set(PUEvent.DRAG_OVER)
@@ -29,6 +27,7 @@ export class PhotoUploader {
 
   onDrop(event: DragEvent) {
     event.preventDefault();
+    this.dragEvent.set(PUEvent.DRAG_LEAVE);
     const files = event.dataTransfer?.files;
     this.uploadPhotoList(files);
   }
