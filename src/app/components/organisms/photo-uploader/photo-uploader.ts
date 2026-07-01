@@ -1,14 +1,11 @@
-import { Component, computed, model, output, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { PhotoUploaderEvent as PUEvent } from './photo-uploader.config';
 import { Icon } from "../../atoms/icon/icon";
 import { Button } from "../../atoms/button/button";
-import { Data } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { Badge } from "../../atoms/badge/badge";
 
 @Component({
   selector: 'organism-photo-uploader',
-  imports: [Icon, Button, Badge],
+  imports: [Icon, Button],
   templateUrl: './photo-uploader.html',
   styleUrl: './photo-uploader.css',
 })
