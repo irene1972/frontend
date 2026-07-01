@@ -25,7 +25,7 @@ export class AdminModeratorMenuDrawerComponent {
   }
 
   logout(): void {
-    localStorage.removeItem('usuarioBuy&Sell');
+    localStorage.clear();
     window.location.href = '/login';
   }
 
