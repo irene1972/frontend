@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, ViewChild } from '@angular/core';
+import { Component, computed, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { Button } from "../../components/atoms/button/button";
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavStep } from "../../components/organisms/navs/nav-step/nav-step";
@@ -18,8 +18,7 @@ import { PriceForm } from '../../components/organisms/price-form/price-form';
   templateUrl: './product-form-component.component.html',
   styleUrl: './product-form-component.component.css',
 })
-export class ProductFormComponentComponent {
-
+export class ProductFormComponentComponent implements OnInit{
   // Query parameters
   public readonly QUERYPARAM_NONE:     string = ""
   public readonly QUERYPARAM_DETAIL:   string = "detail"
@@ -36,14 +35,18 @@ export class ProductFormComponentComponent {
 
   protected photos = signal<(File|null)[]>([]);
 
-  
-
    //Services
   private router = inject(Router);
   private actived_route = inject(ActivatedRoute);
   private article_photos = inject(ArticlePhotosService)
 
   
+  ngOnInit(): void {
+    this.router.navigate([], {
+      queryParams: { step: this.QUERYPARAM_DETAIL },
+      queryParamsHandling: 'merge'
+    });
+  }
 
   // Pasos desde la URL
   protected steps = toSignal(
@@ -55,10 +58,10 @@ export class ProductFormComponentComponent {
 
   // currentStep derivado de la URL: 1 = ninguno, 2 = detail, 3 = price, 4 = pictures
   protected currentStep = computed(() => {
-    if (this.steps().includes(this.QUERYPARAM_PICTURES)) return 4;
-    if (this.steps().includes(this.QUERYPARAM_PRICE))    return 3;
-    if (this.steps().includes(this.QUERYPARAM_DETAIL))   return 2;
-    return 1;
+    if (this.steps().includes(this.QUERYPARAM_PICTURES)) return 3;
+    if (this.steps().includes(this.QUERYPARAM_PRICE))    return 2;
+    if (this.steps().includes(this.QUERYPARAM_DETAIL))   return 1;
+    return 0;
   });
 
   protected loadSteps(){
@@ -98,9 +101,9 @@ export class ProductFormComponentComponent {
   }
 
   protected isCurrentStepInvalid(): boolean {
-    if (this.currentStep() === 2) return !this.detailValid();
-    if (this.currentStep() === 3) return !this.priceValid();
-    if (this.currentStep() === 4) return !this.photosValid();
+    if (this.currentStep() === 1) return !this.detailValid();
+    if (this.currentStep() === 2) return !this.priceValid();
+    if (this.currentStep() === 3) return !this.photosValid();
     return false;
   }
 
