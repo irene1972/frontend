@@ -4,16 +4,16 @@
         <p>Completa los detalles para que miles de usuarios encuentren tu equipo</p>
         <organism-nav-step class="organism-nav-step d-flex flex-grow-1 w-100" [steps]="loadSteps()"></organism-nav-step>
         <organism-detail-form class="my-card"
-        [class.my-hidden]="currentStep() !== 2" 
+        [class.my-hidden]="currentStep() !== 1" 
         [showErrors]="detailShowErrors()"
         (formValid)="detailValid.set($event)"/>
         <organism-price-form class="my-card"
-        [class.my-hidden]="currentStep() !== 3" 
+        [class.my-hidden]="currentStep() !== 2" 
         [showErrors]="priceShowErrors()"
         (formValid)="priceValid.set($event)"/>
     
 
-        <div [class.my-hidden]="currentStep() !== 4" class="my-card">
+        <div [class.my-hidden]="currentStep() !== 3" class="my-card">
             <organism-photo-uploader (photoFiles)="onPhotos($event)"></organism-photo-uploader>
         </div>
 
@@ -22,7 +22,7 @@
             <atom-button [class.my-hidden]="currentStep() <= 1" class="btn-desktop ml-auto" config_type="outline" 
             label="Atrás" icon="arrow-left" iconPosition="left" (clickButton)="previousStep()"/>
             <atom-button
-            [class.my-hidden]="currentStep() >= 4"
+            [class.my-hidden]="currentStep() >= 3"
             [config_state]="isCurrentStepInvalid() ? 'disabled' : 'enabled'"
             class="btn-desktop ms-auto"
             config_type="secondary"
@@ -32,15 +32,15 @@
             (clickButton)="nextStep()"/>
            
             <atom-button 
-            [class.my-hidden]="currentStep() !== 4" 
-            [config_state]="isCurrentStepInvalid() ? 'disabled' : 'enabled'"
+            [class.my-hidden]="currentStep() !== 3" 
+            [config_state]="isAllValid() ? 'enabled' : 'disabled'"
             class="btn-desktop ms-auto" 
             config_type="primary" 
             label="Publicar artículo" />
         </div>
 
         <div class="d-flex flex-row flex-grow-1 w-100 justify-content-between">
-            <atom-button class="btn-mobile" config_type="outline" label="Borrador" (clickButton)="previousStep()"/>
+            <atom-button class="btn-mobile" [config_state]="isAllValid() ? 'enabled' : 'disabled'" config_type="outline" label="Borrador" (clickButton)="previousStep()"/>
             <atom-button class="btn-mobile" [config_state]="isAllValid() ? 'enabled' : 'disabled'" config_type="primary" label="Publicar artículo" (clickButton)="nextStep()"/>
         </div>
     </div>
