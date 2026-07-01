@@ -25,6 +25,6 @@ export class NLInicio {
   }
 
   goToExplore(): void {
-    this.router.navigate([(this.user.id)?`/explore`:'/login']);
+    this.router.navigate([`/explore`]);
   }
 }

@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-sales">
         
-            <div class="card-body cont" [routerLink]="['/product',articleId]">
+            <div class="card-body cont" [routerLink]="[(estado_articulo !== 'Vendido')?`/product/${articleId}`:'/user/panel/sales']">
                 <img class="article" src="{{url_foto}}" alt="">
                 <div class="user">
                     <h3 class="card-title">{{titulo}}</h3>
@@ -42,9 +42,11 @@
                     }
                 </div>
             </div>
+            @if(estado_articulo !== 'Vendido'){
             <div class="editar"><button (click)="editar(); $event.stopPropagation()">Editar</button></div>
             <!--<div class="pausar"><button (click)="pausar(); $event.stopPropagation()">Pausar</button></div>-->
             <div class="eliminar"><button (click)="eliminar(); $event.stopPropagation()">Eliminar</button></div>
+                }
         </div>
     </div>
 </div>

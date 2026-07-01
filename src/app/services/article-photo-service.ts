@@ -15,5 +15,8 @@ export class ArticlePhotoService {
   getFotosByArticuloId(articuloId: number): Observable<IArticlePhoto[]>{
     return this.httpClient.get<IArticlePhoto[]>(this.baseUrl + `get-all-by-article/${articuloId}`)
   }
+  insertFoto(body: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl, body, {});
+  }
   
 }

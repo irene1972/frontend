@@ -3,7 +3,7 @@
         username="{{user.username}}" 
         initials="{{user.iniciales}}" 
         role="{{user.rol}}" 
-        rating_average="{{ratings.puntuacion_media}}" 
+        rating_average="{{ratings.puntuacion_media.toFixed(1)}}" 
         rating_total="{{ratings.total_valoraciones}}"     
         ></molecule-header-profile>
     @if(role() === 'user'){

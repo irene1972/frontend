@@ -155,7 +155,7 @@ export class ProductViewComponentComponent {
 
   breadcrumbItemsOwner = computed(() => [
   { label: 'Inicio', route: '/' },
-  { label: 'Mis ventas', route: '/profile' },
+  { label: 'Mis productos', route: '/profile' },
   { label: this.product()?.titulo }
   ]);
 

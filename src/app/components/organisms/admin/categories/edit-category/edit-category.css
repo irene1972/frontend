@@ -31,7 +31,11 @@ p.descripcion {
     margin-top: 0.5rem;
 }
 
-
+.cancelar{
+    background-color: gray;
+    border: 1px solid gray;
+    margin-right: 1rem;
+}
 /* Mobile */
 @media (max-width: 768px) {
     .categorias {

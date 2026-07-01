@@ -19,8 +19,8 @@
                     <p class="card-text">{{bestSellers[0]?.provincia?.nombre}}. Vendedor verificado</p>
                     <span>849 €</span>
                     <div class="flex links">
-                        <button [routerLink]="[(user.id)?`/product/${bestSellers[0].id}`:'/login']" type="button" class="btn btn-warning">Comprar ahora</button>
-                        <a [routerLink]="[(user.id)?`/product/${bestSellers[0].id}`:'/login']" class="link">Ver detalle</a>
+                        <button [routerLink]="[`/product/${bestSellers[0].id}`]" type="button" class="btn btn-warning">Comprar ahora</button>
+                        <a [routerLink]="[`/product/${bestSellers[0].id}`]" class="link">Ver detalle</a>
                         
                     </div>
 

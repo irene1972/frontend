@@ -7,6 +7,7 @@ import { CategoriesService } from '../../../../services/categories-service';
 import { ICategory } from '../../../../interfaces/i-category';
 import { PhotosService } from '../../../../services/photos-service';
 import { IPhoto } from '../../../../interfaces/i-photo';
+import { ArticlePhotoService } from '../../../../services/article-photo-service';
 
 @Component({
   selector: 'app-edit-article',
@@ -16,6 +17,7 @@ import { IPhoto } from '../../../../interfaces/i-photo';
 })
 export class EditArticle {
   miForm: FormGroup;
+  miForm2: FormGroup;
   mensaje: string = '';
   tipo: boolean = false;
   articlesService = inject(ArticlesService);
@@ -25,6 +27,8 @@ export class EditArticle {
   photosService = inject(PhotosService);
   fotos: IPhoto[] = [];
   id!: string;
+  imagenFile!: File | null;
+  articlePhotoService=inject(ArticlePhotoService);
 
   constructor(private cd: ChangeDetectorRef, private route: ActivatedRoute, private router: Router) {
     this.miForm = new FormGroup({
@@ -46,6 +50,10 @@ export class EditArticle {
         Validators.required
       ]),
       provincia: new FormControl({ value: '', disabled: true }, [])
+    }, []);
+    this.miForm2 = new FormGroup({
+      principal: new FormControl('', []),
+      imagen: new FormControl('', []),
     }, []);
   }
   get titulo() {
@@ -146,5 +154,51 @@ export class EditArticle {
       });
       this.cd.detectChanges();
     }
+  }
+  onFileSelected(event: Event){
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.imagenFile = input.files[0];
+      
+    }
+  }
+  loadData2(article_id:number) {
+    console.log(article_id);
+    if (!this.miForm2.valid) {
+      this.miForm.markAllAsTouched();
+      return;
+    }
+    console.log(this.miForm2.value);
+
+    const formData = new FormData();
+
+    formData.append('principal', (this.miForm2.value.principal)?'1':'0');
+    formData.append('articulos_id', article_id.toString());
+
+    /*cambiar el nombre de icono */
+    if (this.imagenFile) {
+      formData.append('photo', this.imagenFile);
+    }
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    } 
+
+        this.articlePhotoService.insertFoto(formData).subscribe({
+          next: (data) => {
+            if (data.error) {
+            this.mensaje = data.error;
+            return;
+          } else {
+            this.mensaje=data.mensaje;
+            window.location.href='/admin/panel/categories';
+          }
+          },
+          error: (err) => {
+            console.error(err);
+            
+          }
+        });
+        
   }
 }

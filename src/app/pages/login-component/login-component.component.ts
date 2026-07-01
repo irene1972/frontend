@@ -73,8 +73,11 @@ export class LoginComponentComponent {
       }, 
 
       error: (err) => {
-        console.error(err);
-        
+        if(err.error.error==='Usuario bloqueado'){
+          this.mensaje = 'Usuario temporalmente bloqueado';
+          this.cd.detectChanges();
+          return;
+        }
         this.mensaje = 'Email y/o contraseña incorrectos. Inténtelo de nuevo.';
         this.cd.detectChanges();
       }

@@ -4,6 +4,8 @@ import { RouterLink } from '@angular/router';
 import { Chart } from 'chart.js/auto';
 import { StatisticsService } from '../../../../services/statistics-service';
 import { Breadcrum } from '../../../molecules/breadcrum/breadcrum';
+import { IUsuario } from '../../../../interfaces/i-usuario';
+import { UsersService } from '../../../../services/users-service';
 
 @Component({
   selector: 'app-statistics',
@@ -16,15 +18,34 @@ export class Statistics {
   mensaje: string = '';
   tipo: boolean = false;
   estadisticas: any = {};
-  ventas:any={};
+  ventas: any = {};
   statisticsService = inject(StatisticsService);
+  usuarios: IUsuario[] = [];
+  usersService = inject(UsersService);
 
   chart?: Chart;
 
   constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    const periodo:string='1m';
+    this.usersService.getAllUsers().subscribe({
+      next: (data) => {
+        if (data.error) {
+          this.mensaje = data.error;
+          return;
+        } else {
+          this.usuarios = data;
+          console.log(this.usuarios);
+          this.cd.detectChanges();
+        }
+      },
+      error: (err) => {
+        console.error(err);
+
+      }
+    });
+
+    const periodo: string = '1m';
     this.statisticsService.getStatisticsByPeriod(periodo)
       .subscribe(data => {
 
@@ -36,8 +57,8 @@ export class Statistics {
         });
       });
 
-      const meses:number=6;
-      this.statisticsService.getMonthlySales(meses)
+    const meses: number = 6;
+    this.statisticsService.getMonthlySales(meses)
       .subscribe(data => {
 
         this.ventas = data;
@@ -77,6 +98,6 @@ export class Statistics {
 
   protected breadcrumbItems = computed(() => [
     { label: 'Panel', route: '/admin/panel/' },
-    { label: 'Estadísticas', route: '/admin/panel/statistics'}
+    { label: 'Estadísticas', route: '/admin/panel/statistics' }
   ]);
 }
