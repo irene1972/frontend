@@ -119,6 +119,12 @@ label{
     border:1px solid gray;
     margin-right: 1rem;
 }
+.guardar-fotos{
+    margin-top: 1rem;
+}
+.check{
+    margin-top: .6rem;
+}
 /* Mobile */
 @media (max-width: 768px) {
     .header{

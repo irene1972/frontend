@@ -17,24 +17,38 @@
     </div>
     <div class="contenedor">
         <div [class.text-danger]="tipo===false" [class.text-success]="tipo===true">{{mensaje}}</div>
-        <form [formGroup]="miForm" (ngSubmit)="loadData()">
-        <h1>Editar artículo</h1>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Fotografías</h5>
-                <div class="fotos">
-                    @for(foto of fotos;track foto.id){
+        <form [formGroup]="miForm2" (ngSubmit)="loadData2(articulo.id)">
+            <h1>Editar artículo</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Fotografías</h5>
+                    <div class="fotos">
+                        @for(foto of fotos;track foto.id){
                         <img src="{{foto.url_foto}}" class="card-img-top" alt="...">
-                    }@empty{
+                        }@empty{
                         <p>No hay fotos</p>
-                    }
-                    
+                        }
+
+                    </div>
+                    <div class="formulario__campo">
+                        <label for="imagen" class="formulario__label">Imagen</label>
+                        <input class="form-control" type="file" #fileInput formControlName="imagen" id="imagen"
+                            (change)="onFileSelected($event)">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input check" type="checkbox" value="" id="principal" formControlName="principal">
+                        <label class="form-check-label" for="principal">
+                            Principal
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary guardar guardar-fotos">Guardar foto</button>
                 </div>
+
+
             </div>
-
-
-        </div>
-        
+        </form>
+        <div [class.text-danger]="tipo===false" [class.text-success]="tipo===true">{{mensaje}}</div>
+        <form [formGroup]="miForm" (ngSubmit)="loadData()">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Datos del artículo</h5>
@@ -54,9 +68,9 @@
                         <label for="categoria">Categoría</label>
                         <select id="categoria" class="form-control" formControlName="categoria">
                             @for(categoria of categorias;track categoria.id){
-                                <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+                            <option value="{{categoria.id}}">{{categoria.nombre}}</option>
                             }
-                            
+
                         </select>
                         @if(categoria?.touched && categoria?.hasError('required')){
                         <div class="text-danger">El campo es requerido</div>
@@ -82,39 +96,29 @@
 
                     <div class="precio-ubicacion">
                         <div class="form-group">
-                        <label for="precio">Precio (EUR)</label>
-                        <input type="number" id="precio" class="form-control" formControlName="precio">
+                            <label for="precio">Precio (EUR)</label>
+                            <input type="number" id="precio" class="form-control" formControlName="precio">
 
-                        @if(precio?.touched && precio?.hasError('required')){
-                        <div class="text-danger">El campo es requerido</div>
-                        }
-                    </div>
+                            @if(precio?.touched && precio?.hasError('required')){
+                            <div class="text-danger">El campo es requerido</div>
+                            }
+                        </div>
 
-                    <div class="form-group ubicacion">
-                        <label for="ubicacion">Código postal</label>
-                        <input 
-                            type="string" 
-                            id="ubicacion" 
-                            class="form-control" 
-                            formControlName="ubicacion"
-                            (keydown)="hideProvincia()"
-                            (blur)="putProvincia()"
-                            >
+                        <div class="form-group ubicacion">
+                            <label for="ubicacion">Código postal</label>
+                            <input type="string" id="ubicacion" class="form-control" formControlName="ubicacion"
+                                (keydown)="hideProvincia()" (blur)="putProvincia()">
 
-                        @if(ubicacion?.touched && ubicacion?.hasError('required')){
-                        <div class="text-danger">El campo es requerido</div>
-                        }
-                    </div>
+                            @if(ubicacion?.touched && ubicacion?.hasError('required')){
+                            <div class="text-danger">El campo es requerido</div>
+                            }
+                        </div>
 
-                    <div class="form-group ubicacion">
-                        <label class="label-provincia" for="provincia">Provincia</label>
-                        <input 
-                            type="string" 
-                            id="provincia" 
-                            class="form-control provincia" 
-                            formControlName="provincia"
-                            >
-                    </div>
+                        <div class="form-group ubicacion">
+                            <label class="label-provincia" for="provincia">Provincia</label>
+                            <input type="string" id="provincia" class="form-control provincia"
+                                formControlName="provincia">
+                        </div>
                     </div>
                 </div>
 
@@ -123,9 +127,9 @@
             <div class="boton-guardar">
                 <button [routerLink]="['/user/panel/sales']" class="btn btn-primary cancelar">Cancelar</button>
                 <button type="submit" class="btn btn-primary guardar">Guardar cambios</button>
-                
+
             </div>
-            
+
         </form>
 
     </div>
