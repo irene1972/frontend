@@ -11,11 +11,11 @@ import { lastValueFrom } from 'rxjs';
 import { UsersService } from '../../services/users-service';
 import { UserRatingCardData } from '../../components/molecules/user-card/user-rating-card/user-rating-card.config';
 import { UserRatingCard } from "../../components/molecules/user-card/user-rating-card/user-rating-card";
-import { ArticlePhotoService } from '../../services/article-photo-service';
 import { IArticlePhoto } from '../../interfaces/i-article-photo.interface';
 import { ButtonIcon } from '../../components/atoms/button-icon/button-icon';
 import { HomeBar } from "../../components/organisms/home-bar/home-bar";
 import { ReportModal } from "../../components/molecules/report-modal/report-modal";
+import { ArticlePhotosService } from '../../services/article-photos.service';
 
 @Component({
   selector: 'app-product-view-component',
@@ -31,7 +31,7 @@ export class ProductViewComponentComponent {
   articleService = inject(ArticlesService);
   ratingsService = inject(RatingsService);
   userService = inject(UsersService);
-  articlePhotoService = inject(ArticlePhotoService);
+  articlePhotoService = inject(ArticlePhotosService);
 
   //Datos Vendedor
   vendedorData = signal<UserRatingCardData | null>(null);
@@ -65,7 +65,7 @@ export class ProductViewComponentComponent {
       const [seller, sellerRatings, fotos] = await Promise.all([
         lastValueFrom(this.userService.getUserById((  sellerId).toString() )),
         lastValueFrom(this.ratingsService.getAverageRatingsByUser(sellerId)),
-        lastValueFrom(this.articlePhotoService.getFotosByArticuloId(Number(id)))
+        lastValueFrom(this.articlePhotoService.getArticlePhotoById(Number(id)))
       ]) 
 
       //fotos

@@ -89,7 +89,6 @@ export class ProductFormComponentComponent implements OnInit{
           },
           error: (err) => {
             console.error(err);
-            
           }
         });
       }
@@ -177,11 +176,11 @@ export class ProductFormComponentComponent implements OnInit{
   });
    }
 
-  protected saveDraftArticle() {
+  protected onPublish() {
 
   }
 
-  protected publishArticle() {
+  protected onSaveDraft() {
 
   }
 }

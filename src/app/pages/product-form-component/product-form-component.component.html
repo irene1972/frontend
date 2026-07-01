@@ -40,8 +40,8 @@
         </div>
 
         <div class="d-flex flex-row flex-grow-1 w-100 justify-content-between">
-            <atom-button class="btn-mobile" [config_state]="isAllValid() ? 'enabled' : 'disabled'" config_type="outline" label="Borrador"/>
-            <atom-button class="btn-mobile" [config_state]="isAllValid() ? 'enabled' : 'disabled'" config_type="primary" label="Publicar artículo"/>
+            <atom-button class="btn-mobile" [config_state]="isAllValid() ? 'enabled' : 'disabled'" config_type="outline" label="Borrador" (clickButton)="onSaveDraft()"/>
+            <atom-button class="btn-mobile" [config_state]="isAllValid() ? 'enabled' : 'disabled'" config_type="primary" label="Publicar artículo" (clickButton)="onPublish()"/>
         </div>
     </div>
 </div>
