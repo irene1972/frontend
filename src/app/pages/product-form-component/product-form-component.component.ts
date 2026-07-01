@@ -176,4 +176,12 @@ export class ProductFormComponentComponent implements OnInit{
       queryParamsHandling: 'merge'
   });
    }
+
+  protected saveDraftArticle() {
+
+  }
+
+  protected publishArticle() {
+
+  }
 }
