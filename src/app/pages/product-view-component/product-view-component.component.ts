@@ -96,6 +96,47 @@ export class ProductViewComponentComponent {
     }
   }
 
+  // edit estado
+  async productSelled() {
+    const id = this.productID();
+    if (!id) return;
+
+    const articulo = this.product();
+    if (!articulo) return;
+
+    const payload = {
+      usuarios_id:            articulo.usuarios_id,
+      titulo:                 articulo.titulo,
+      descripcion:            articulo.descripcion,
+      categorias_id:          articulo.categorias_id,
+      precio:                 articulo.precio,
+      estado_conservacion_id: articulo.estado_conservacion_id,
+      estado_articulo_id:     'Vendido',
+      cp:                     articulo.cp,
+    };
+
+    console.log('payload:', payload);
+
+    try {
+      await lastValueFrom(this.articleService.updateArticle(Number(id), payload));
+      this.product.set({ ...articulo, estado_articulo_id: 'Vendido' });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  // delete 
+  async deleteProduct() {
+    const id = this.productID();
+    if (!id) return;
+    try {
+      await lastValueFrom(this.articleService.deleteArticle(Number(id)));
+      this.router.navigate(['/']);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
   // isOwner
   isOwner = computed(() => {
     const raw = localStorage.getItem('usuarioBuy&Sell');
@@ -183,15 +224,13 @@ export class ProductViewComponentComponent {
   // eventos propietario
 
   onEditar(event: MouseEvent) {
-    this.router.navigate(['/product/edit', this.productID()])
+    this.router.navigate(['/user/panel/article/edit', this.productID()])
   }
   onMarcarComoVendido(event: MouseEvent) {
-    //servicio para marcar como vendido
-  }
-  onPausarArticulo(event: MouseEvent) {
-    //servicio para pausar articulo
+    this.productSelled();
   }
   onEliminarArticulo(event: MouseEvent) {
     //servicio para eliminar articulo
+    this.deleteProduct();
   }
 }

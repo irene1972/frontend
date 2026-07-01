@@ -18,16 +18,18 @@
                     <i class="bi bi-image"></i>
                 </div>
             }
-            <div class="image-main__like">
-                <button 
-                    type="button"
-                    class="btn-like btn rounded-circle border-0"
-                    [style.--size]="'18px'"
-                    (click)="toggleFav()"
-                >
-                    <i [class]="favoritoId() !== null ? 'bi bi-heart-fill icon--like actived' : 'bi bi-heart icon--like'"></i>
-                </button>
-            </div>
+            @if (!isOwner()) {
+                <div class="image-main__like">
+                    <button 
+                        type="button"
+                        class="btn-like btn rounded-circle border-0"
+                        [style.--size]="'18px'"
+                        (click)="toggleFav()"
+                        >
+                        <i [class]="favoritoId() !== null ? 'bi bi-heart-fill icon--like actived' : 'bi bi-heart icon--like'"></i>
+                    </button>
+                </div>
+            }
         </div>
         <div class="image-secondary">
             @for (foto of fotos(); track foto.id) {
@@ -65,7 +67,6 @@
             <div class="d-flex flex-column gap-2">
                 <atom-button config_type="secondary" label="Editar artículo" (click)="onEditar($event)"></atom-button>
                 <atom-button config_type="outline" label="Marcar como vendido" (click)="onMarcarComoVendido($event)"></atom-button>
-                <atom-button config_type="outline" label="Pausar artículo" (click)="onPausarArticulo($event)"></atom-button>
                 <atom-button config_type="delete" icon="trash" iconPosition="left" label="Eliminar artículo" class="deleteArt" (click)="onEliminarArticulo($event)"></atom-button>
             </div>
         } @else {

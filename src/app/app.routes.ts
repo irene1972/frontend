@@ -48,6 +48,16 @@ import { MyReviews } from './pages/my-reviews/my-reviews';
 import { AdminModeratorProfileComponent } from './components/organisms/moderator/admin-moderator-profile/admin-moderator-profile.component';
 import { ReportsDetailComponent } from './components/organisms/admin/reports/reports-detail/reports-detail.component';
 
+import { Privacidad } from './pages/legal/privacidad/privacidad';
+import { Terminos } from './pages/legal/terminos/terminos';
+import { Cookies } from './pages/legal/cookies/cookies';
+import { CentroAyuda } from './pages/legal/centro-ayuda/centro-ayuda';
+import { ReglasConvivencia } from './pages/legal/reglas-convivencia/reglas-convivencia';
+import { ConsejosSeguridad } from './pages/legal/consejos-seguridad/consejos-seguridad';
+import { QuienesSomos } from './pages/legal/quienes-somos/quienes-somos';
+import { Prensa } from './pages/legal/prensa/prensa';
+import { Empleo } from './pages/legal/empleo/empleo';
+
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: HomeComponentComponent },
@@ -57,6 +67,17 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponentComponent },
     { path: 'product/:productID', component: ProductViewComponentComponent },
     { path: 'product/published/:productID', component: ProductPublished },
+
+    // Páginas legales / institucionales (enlazadas desde el footer)
+    { path: 'privacidad', component: Privacidad },
+    { path: 'terminos', component: Terminos },
+    { path: 'cookies', component: Cookies },
+    { path: 'centro-ayuda', component: CentroAyuda },
+    { path: 'reglas-convivencia', component: ReglasConvivencia },
+    { path: 'consejos-seguridad', component: ConsejosSeguridad },
+    { path: 'quienes-somos', component: QuienesSomos },
+    { path: 'prensa', component: Prensa },
+    { path: 'empleo', component: Empleo },
 
     // // Rutas Home: Usuario Normal. 
     {
