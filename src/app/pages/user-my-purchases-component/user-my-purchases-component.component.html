@@ -13,7 +13,7 @@
         <li>
           <a
             class="purchase-card"
-            [routerLink]="['/user/panel/my-purchases/write-review', purchase.id]"
+            [routerLink]="[(purchase.estado==='Completado')?`/user/panel/my-purchases/write-review/${purchase.id}`:'/user/panel/my-purchases']"
           >
             <div class="purchase-card__image" aria-hidden="true">
               @if (getPrincipalPhoto(purchase); as photoUrl) {
