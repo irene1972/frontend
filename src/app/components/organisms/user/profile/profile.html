@@ -24,9 +24,9 @@
     <a class="stat-card-link" [routerLink]="['/user/panel/sales']">
       <molecule-status-card align="left" [status]="activos().toString()" text="ARTíCULOS ACTIVOS"></molecule-status-card>
     </a>
-    <div class="stat-card-link stat-card-static">
+    <a class="stat-card-link" [routerLink]="['/user/panel/my-reviews']">
       <molecule-status-card align="left" [status]="ratingAverage().toString()" text="VALORACIONES"></molecule-status-card>
-    </div>
+    </a>
   </div>
 
   <!-- Mis artículos publicados (reutiliza la article-card de Irene) -->

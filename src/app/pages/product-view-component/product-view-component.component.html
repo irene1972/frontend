@@ -103,3 +103,5 @@
 </div>
 
 <molecule-report-modal [isOpen]="showReportModal()" [productId]="productID()" (closed)="showReportModal.set(false)"></molecule-report-modal>
+
+<atom-toast [variant]="toastVariant()" [message]="toastMessage()" size="16px" [trigger]="showToast()"/>

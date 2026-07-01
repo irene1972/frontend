@@ -104,9 +104,13 @@ export class RegisterComponentComponent {
         });
       },
       error: (err) => {
-        console.error(err);
         this.tipo = false;
-        this.mensaje = 'No se ha podido crear la cuenta. Revisa los datos e intentalo de nuevo.';
+        // El backend responde 409 con el motivo exacto (email o nombre de usuario ya en uso)
+        if (err?.status === 409 && err?.error?.error) {
+          this.mensaje = err.error.error;
+        } else {
+          this.mensaje = 'No se ha podido crear la cuenta. Revisa los datos e inténtalo de nuevo.';
+        }
         this.cd.detectChanges();
       }
     });

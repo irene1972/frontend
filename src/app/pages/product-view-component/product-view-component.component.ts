@@ -17,10 +17,11 @@ import { HomeBar } from "../../components/organisms/home-bar/home-bar";
 import { ReportModal } from "../../components/molecules/report-modal/report-modal";
 import { CheckoutService } from '../../services/checkout-service';
 import { FavoritesService } from '../../services/favorites-service';
+import { Toast } from '../../components/atoms/toast/toast';
 
 @Component({
   selector: 'app-product-view-component',
-  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, HomeBar, ReportModal],
+  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, HomeBar, ReportModal, Toast],
   templateUrl: './product-view-component.component.html',
   styleUrl: './product-view-component.component.css',
 })
@@ -48,6 +49,11 @@ export class ProductViewComponentComponent {
 
   //favorito
   favoritoId = signal<number | null>(null);
+
+  //toast avisos de favoritos
+  showToast = signal<boolean>(false);
+  toastVariant = signal<'success' | 'warn' | 'trash'>('success');
+  toastMessage = signal<string>('');
   
   private router = inject(Router);
   private checkoutService = inject(CheckoutService);
@@ -182,7 +188,12 @@ export class ProductViewComponentComponent {
 
   async toggleFav() {
     const raw = localStorage.getItem('usuarioBuy&Sell');
-    if (!raw) return;
+    if (!raw) {
+      // Sin sesion: avisamos y redirigimos al login
+      this.lanzarToast('warn', 'Debes iniciar sesión para guardar favoritos');
+      setTimeout(() => this.router.navigate(['/login']), 1200);
+      return;
+    }
     const userId = JSON.parse(raw).id;
 
     try {
@@ -191,15 +202,24 @@ export class ProductViewComponentComponent {
           this.favoritesService.addFavorite(userId, Number(this.productID()))
         );
         this.favoritoId.set(res.id);
+        this.lanzarToast('success', 'El artículo ha sido añadido a la lista de favoritos');
       } else {
         await lastValueFrom(this.favoritesService.deleteFavorite(this.favoritoId()!));
         this.favoritoId.set(null);
-        
+        this.lanzarToast('trash', 'Artículo eliminado de favoritos');
       }
     } catch (error: any) {
       this.router.navigate(['/500error']);
     }
-}
+  }
+
+  // Dispara el toast reutilizando el patron del proyecto (senal trigger)
+  private lanzarToast(variant: 'success' | 'warn' | 'trash', message: string) {
+    this.toastVariant.set(variant);
+    this.toastMessage.set(message);
+    this.showToast.set(false);
+    setTimeout(() => this.showToast.set(true), 10);
+  }
 
   // Modal reporte
 
