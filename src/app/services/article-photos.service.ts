@@ -30,4 +30,8 @@ export class ArticlePhotosService {
     formData.append('articulos_id', String(articulo_id));
     return this.httpClient.post<any>(this.baseUrl, formData);
   }
+
+  insertFoto(body: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl, body, {});
+  }
 }

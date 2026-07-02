@@ -17,6 +17,8 @@ import { ReportModal } from "../../components/molecules/report-modal/report-moda
 import { CheckoutService } from '../../services/checkout-service';
 import { FavoritesService } from '../../services/favorites-service';
 import Swal from 'sweetalert2';
+import { ArticlePhotosService } from '../../services/article-photos.service';
+
 
 @Component({
   selector: 'app-product-view-component',
@@ -32,7 +34,7 @@ export class ProductViewComponentComponent {
   articleService = inject(ArticlesService);
   ratingsService = inject(RatingsService);
   userService = inject(UsersService);
-  articlePhotoService = inject(ArticlePhotoService);
+  photoService = inject(ArticlePhotosService);
   favoritesService = inject(FavoritesService);
 
   //Datos Vendedor
@@ -72,7 +74,7 @@ export class ProductViewComponentComponent {
       const [seller, sellerRatings, fotos] = await Promise.all([
         lastValueFrom(this.userService.getUserById((  sellerId).toString() )),
         lastValueFrom(this.ratingsService.getAverageRatingsByUser(sellerId)),
-        lastValueFrom(this.articlePhotoService.getPhotosByArticleId(Number(id)))
+        lastValueFrom(this.photoService.getPhotosByArticleId(Number(id)))
       ]) 
 
       //fav

@@ -9,7 +9,7 @@ import { IArticle } from '../../interfaces/i-article';
 import { IUsuario } from '../../interfaces/i-usuario';
 import { IRating } from '../../interfaces/i-rating.interface';
 import { UserRatingComment } from "../../components/molecules/user-card/user-rating-comment/user-rating-comment";
-import { ArticlePhotoService } from '../../services/article-photo-service';
+import { ArticlePhotosService } from '../../services/article-photos.service';
 import { IArticlePhoto } from '../../interfaces/i-article-photo.interface';
 import { DatePipe } from '@angular/common';
 import { Badge } from "../../components/atoms/badge/badge";
@@ -31,7 +31,7 @@ export class ReviewView {
   ratingService = inject(RatingsService);
   articleService = inject(ArticlesService);
   userService = inject(UsersService);
-  photoService = inject(ArticlePhotoService);
+  photoService = inject(ArticlePhotosService);
 
   //signals
   review = signal<IRating | null>(null);
@@ -96,9 +96,8 @@ export class ReviewView {
   async loadProduct(){
     this.product.set( await lastValueFrom(this.articleService.getArticleById(Number(this.review()?.articulos_id))))
     // img
-
     try {
-      this.photos.set(await lastValueFrom(this.photoService.getFotosByArticuloId(Number(this.product()?.id))));
+      this.photos.set(await lastValueFrom(this.photoService.getPhotosByArticleId(Number(this.product()?.id))));
     } catch (error) {
       this.router.navigate(['/500error']);
     }
