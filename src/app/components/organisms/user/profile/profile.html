@@ -37,7 +37,7 @@
         variant="owner"
         [like]="false"
         [estadoArticulo]="articulo.estado_articulo_id"
-        [img]="articulo.url_foto ?? 'imgs/no-photo.jpg'"
+        [img]="articulo.url_foto ?? assets.noPhoto"
         [price]="precio(articulo)"
         [name]="articulo.titulo"
       ></molecule-article-card>

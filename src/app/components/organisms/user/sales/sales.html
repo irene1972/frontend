@@ -24,7 +24,7 @@
             [precio]="articulo.precio" 
             [vendido]="articulo.comprador_nombre + ' ' + articulo.comprador_apellidos?.[0] + '.'" 
             [articleId]="articulo.id" 
-            [url_foto]="articulo.url_foto ?? 'imgs/no-photo.jpg'" 
+            [url_foto]="articulo.url_foto ?? assets.noPhoto" 
             (clicarEditar)="editar($event)" 
             (clicarEliminar)="eliminar($event)"
             (clicarPausar)="pausar($event)"
@@ -50,7 +50,7 @@
             [precio]="articulo.precio" 
             [vendido]="articulo.comprador_nombre + ' ' + articulo.comprador_apellidos?.[0] + '.'" 
             [articleId]="articulo.id" 
-            [url_foto]="articulo.url_foto ?? 'imgs/no-photo.jpg'" 
+            [url_foto]="articulo.url_foto ?? assets.noPhoto" 
             (clicarEditar)="editar($event)" 
             (clicarEliminar)="eliminar($event)"
         ></app-sales-article>

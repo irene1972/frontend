@@ -8,6 +8,7 @@ import { ArticlesService } from '../../../../services/articles-service';
 import { UsersService } from '../../../../services/users-service';
 import { RatingsService } from '../../../../services/ratings-service';
 import { OrdersService } from '../../../../services/orders-service';
+import { PUBLIC_ASSETS } from '../../../../constants/public-assets';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,7 @@ import { OrdersService } from '../../../../services/orders-service';
   styleUrl: './profile.css',
 })
 export class Profile implements OnInit {
+  readonly assets = PUBLIC_ASSETS;
   private articlesService = inject(ArticlesService);
   private usersService = inject(UsersService);
   private ratingsService = inject(RatingsService);

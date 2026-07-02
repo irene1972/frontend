@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { IArticle } from '../../../../interfaces/i-article';
 import { ArticlesService } from '../../../../services/articles-service';
 import { RouterLink } from '@angular/router';
+import { PUBLIC_ASSETS } from '../../../../constants/public-assets';
 
 @Component({
   selector: 'app-nl-inicio-hero',
@@ -10,6 +11,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './nl-inicio-hero.css',
 })
 export class NLInicioHero {
+  readonly assets = PUBLIC_ASSETS;
   mensaje: string = '';
   tipo: boolean = false;
   bestSellers:IArticle[] = [];

@@ -4,6 +4,7 @@ import { SalesArticle } from '../../../molecules/cards/sales-article/sales-artic
 import { IArticle } from '../../../../interfaces/i-article';
 import { ArticlesService } from '../../../../services/articles-service';
 import Swal from 'sweetalert2';
+import { PUBLIC_ASSETS } from '../../../../constants/public-assets';
 
 @Component({
   selector: 'app-sales',
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2';
   styleUrl: './sales.css',
 })
 export class Sales {
+  readonly assets = PUBLIC_ASSETS;
   vendido: any = { nombre: 'Carlos M.', tiempo: '1 semana' };
   activeTab: 'En venta' | 'Vendidos' = 'En venta';
   articlesService = inject(ArticlesService);

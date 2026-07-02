@@ -11,6 +11,7 @@ import { ArticlesService } from '../../services/articles-service';
 import { CategoriesService } from '../../services/categories-service';
 import { ICategory } from '../../interfaces/i-category';
 import { IExploreArticulo } from '../../interfaces/i-explore-articulos';
+import { PUBLIC_ASSETS } from '../../constants/public-assets';
 
 interface ExploreArticle {
   id: number;
@@ -46,8 +47,7 @@ export class ExploreComponent implements OnInit {
   private categoriesService = inject(CategoriesService);
   private cd = inject(ChangeDetectorRef);
 
-  private readonly placeholderImage =
-    'https://placehold.co/400x300/E5EEFF/747683?text=Sin+imagen';
+  private readonly placeholderImage = PUBLIC_ASSETS.noPhoto;
 
   searchQuery = '';
   priceMin: number | null = null;

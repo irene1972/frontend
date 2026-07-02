@@ -7,6 +7,7 @@ import { FavoriteArticle } from '../../../molecules/cards/favorite-article/favor
 import { FavoritesService } from '../../../../services/favorites-service';
 import { IFavorite } from '../../../../interfaces/i-favorite';
 import { IFavoriteUser } from '../../../../interfaces/i-favorite-user';
+import { PUBLIC_ASSETS } from '../../../../constants/public-assets';
 
 @Component({
   selector: 'app-favorites',
@@ -15,6 +16,7 @@ import { IFavoriteUser } from '../../../../interfaces/i-favorite-user';
   styleUrl: './favorites.css',
 })
 export class Favorites {
+  readonly assets = PUBLIC_ASSETS;
   activeTab: 'articulos' | 'usuarios' = 'articulos';
   articles:IArticle[]=[];
   users:IUsuario[]=[];

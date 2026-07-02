@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
 import { IArticle } from '../../../../interfaces/i-article';
 import { Router, RouterLink } from '@angular/router';
+import { PUBLIC_ASSETS } from '../../../../constants/public-assets';
 
 @Component({
   selector: 'app-nl-inicio',
@@ -9,6 +10,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './nl-inicio.css',
 })
 export class NLInicio {
+  readonly assets = PUBLIC_ASSETS;
   private router = inject(Router);
   user:any={};
 

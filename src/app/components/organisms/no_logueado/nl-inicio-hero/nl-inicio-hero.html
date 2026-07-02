@@ -3,7 +3,7 @@
         <div class="row g-0">
             <div class="col-md-4">
                 <a [routerLink]="['/product',bestSellers[0].id]">
-                    <img [src]="(bestSellers[0].url_foto)?bestSellers[0].url_foto:'/imgs/no-photo.jpg'"
+                    <img [src]="bestSellers[0].url_foto ? bestSellers[0].url_foto : assets.noPhoto"
                         class="img-fluid rounded-start" alt="">
                 </a>
             </div>
