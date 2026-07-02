@@ -239,5 +239,9 @@ export class ProductViewComponentComponent {
     //servicio para eliminar articulo
     this.deleteProduct();
   }
+
+  navigateToVendorProfile(){
+    this.router.navigate([`/user/sellers/${this.vendedorData()?.promedio.usuario_id}`])
+  }
 }
 

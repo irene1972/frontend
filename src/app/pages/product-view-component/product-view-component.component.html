@@ -60,7 +60,7 @@
         </div>
 
         @if (!isOwner()) {
-            <molecule-user-rating-card [user]="vendedorData()"></molecule-user-rating-card>
+            <molecule-user-rating-card [user]="vendedorData()" (click)="navigateToVendorProfile()"></molecule-user-rating-card>
         }
 
         @if (isOwner()) {

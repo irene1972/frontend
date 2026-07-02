@@ -16,7 +16,7 @@ export class ArticlePhotosService {
   }
 
   getPhotosByArticleId(articuloId: number): Observable<IArticlePhoto[]>{
-    return this.httpClient.get<IArticlePhoto[]>(this.baseUrl + `get-all-by-article/${articuloId}`)
+    return this.httpClient.get<IArticlePhoto[]>(this.baseUrl + `/get-all-by-article/${articuloId}`)
   }
 
   getArticlePhotoById(id: number): Observable<IArticlePhoto> {
