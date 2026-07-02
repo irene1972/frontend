@@ -1,3 +1,6 @@
+molecule-breadcrum {
+    padding: 0 10rem 0rem 10rem;
+}
 .product-fecha {
     color: var(--text-outline);
     margin-left: 5px;

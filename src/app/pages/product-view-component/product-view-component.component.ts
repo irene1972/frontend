@@ -18,6 +18,7 @@ import { CheckoutService } from '../../services/checkout-service';
 import { FavoritesService } from '../../services/favorites-service';
 import Swal from 'sweetalert2';
 import { ArticlePhotosService } from '../../services/article-photos.service';
+import { Role } from '../../enums/role.enum';
 
 
 @Component({
@@ -144,14 +145,15 @@ export class ProductViewComponentComponent {
     const raw = localStorage.getItem('usuarioBuy&Sell');
     if(!raw) return false;
     const user = JSON.parse(raw);
-    return user.id === this.product()?.usuarios_id;
+    
+    return Number(user.id) === Number(this.product()?.usuarios_id);
   });
 
   // breadcrumb items
 
   protected breadcrumbItems = computed(() => [
   { label: 'Inicio', route: '/' },
-  { label: 'Productos'},
+  { label: 'Productos', route: '/explore'},
   { label: this.product()?.titulo }
   ]);
 
@@ -163,6 +165,13 @@ export class ProductViewComponentComponent {
 
   selectFoto(foto: IArticlePhoto) {
     this.selectedPhoto.set(foto);
+  }
+
+  private isGuest(){
+    const raw = localStorage.getItem('usuarioBuy&Sell');
+    if (!raw) return "guest";
+    const rol = JSON.parse(raw).rol;  
+    return !(rol===Role.USUARIO || rol===Role.MODERADOR || rol===Role.ADMINISTRADOR);
   }
 
   //favoritos
@@ -217,14 +226,22 @@ export class ProductViewComponentComponent {
     });
   }
   onComprar(event: MouseEvent) {
-    const article = this.product();
-    if (!article) return;
-
-    this.checkoutService.setCheckoutProduct(article);
-    this.router.navigate(['/user/product/checkout', article.id]);
+    if(this.isGuest()){
+      this.router.navigate(['/login']);
+    } else {
+      const article = this.product();
+      if (!article) return;
+      this.checkoutService.setCheckoutProduct(article);
+      this.router.navigate(['/user/product/checkout', article.id]);
+    }
   }
+
   onInformar(event: MouseEvent) {
-    this.showReportModal.set(true);
+    if(this.isGuest()){
+      this.router.navigate(['/login'])
+    } else {
+      this.showReportModal.set(true);
+    }
   }
 
   // eventos propietario
@@ -241,7 +258,11 @@ export class ProductViewComponentComponent {
   }
 
   navigateToVendorProfile(){
-    this.router.navigate([`/user/sellers/${this.vendedorData()?.promedio.usuario_id}`])
+    if(this.isGuest()){
+      this.router.navigate(['/login'])
+    } else {
+      this.router.navigate([`/user/sellers/${this.vendedorData()?.promedio.usuario_id}`])
+    }
   }
 }
 
