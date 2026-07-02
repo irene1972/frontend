@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { IArticle } from '../interfaces/i-article';
+import { IArticle, INewArticleWithPhoto } from '../interfaces/i-article';
 import {
   IExploreArticulosParams,
   IExploreArticulosResponse,
@@ -51,6 +51,21 @@ export class ArticlesService {
 
   updateArticle(id: number, article: any): Observable<any> {
     return this.httpClient.put<any>(this.baseUrl + id, article);
+  }
+
+  createArticleWithPhotos(data: INewArticleWithPhoto): Observable<any> {
+    const formData = new FormData();
+    
+    formData.append('usuarios_id', data.usuarios_id.toString());
+    formData.append('titulo', data.titulo);
+    formData.append('descripcion', data.descripcion);
+    formData.append('categorias_id', data.categorias_id.toString());
+    formData.append('precio', Number(data.precio).toFixed(2).toString());
+    formData.append('estado_conservacion_id',data.estado_conservacion_id);
+    formData.append('estado_articulo_id', data.estado_articulo_id);
+    formData.append('principal_index', data.principal_index.toString());
+    data.photos.filter((photo): photo is File => photo !== null).forEach((photo) => formData.append('photos', photo));
+    return this.httpClient.post<INewArticleWithPhoto>(this.baseUrl + 'con-fotos', formData);
   }
 
 

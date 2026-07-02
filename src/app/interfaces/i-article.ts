@@ -5,18 +5,34 @@ interface Provincia {
     nombre: number;
 }
 
-export interface IArticle {
+export interface IArticleDetail {
+  titulo: string;
+  categorias_id: number;
+  estado_conservacion_id:string;
+  descripcion: string;
+}
+
+export interface IArticlePrice {
+  precio: number | string;
+  ubicacion?: string;
+  provincia?:Provincia;
+}
+
+
+export interface INewArticleWithPhoto  extends IArticleDetail, IArticlePrice {
+    usuarios_id: number;
+    estado_articulo_id:string;
+    principal_index: number;
+    photos: (File | null)[];
+}
+
+
+export interface IArticle extends IArticleDetail, IArticlePrice {
     id: number;
     usuarios_id: number;
-    titulo:string;
-    descripcion: string;
-    categorias_id:number;
-    precio:string;
-    estado_conservacion_id:string;
     estado_articulo_id:string;
-    updated_at: string;
-    provincia?:Provincia;
     cp?:string;
+    updated_at: string;
     created_at?:string;
     comprador_nombre?:string;
     comprador_apellidos?:string;
