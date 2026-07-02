@@ -2,15 +2,19 @@
     <div class="container d-flex flex-column justify-content-center align-items-center gap-3">
         <h2 class="page-title">Publicar nuevo artículo</h2>
         <p>Completa los detalles para que miles de usuarios encuentren tu equipo</p>
-        <organism-nav-step class="organism-nav-step d-flex flex-grow-1 w-100" [steps]="loadSteps()"></organism-nav-step>
+        <organism-nav-step class="organism-nav-step d-flex flex-grow-1 w-100" [steps]="loadSteps()"/>
+        
         <organism-detail-form class="my-card"
         [class.my-hidden]="currentStep() !== 1" 
         [showErrors]="detailShowErrors()"
-        (formValid)="detailValid.set($event)"/>
+        (formValid)="detailValid.set($event)"
+        (formValue)="detailValue.set($event)"/>
+
         <organism-price-form class="my-card"
         [class.my-hidden]="currentStep() !== 2" 
         [showErrors]="priceShowErrors()"
-        (formValid)="priceValid.set($event)"/>
+        (formValid)="priceValid.set($event)"
+        (formValue)="priceValue.set($event)"/>
     
 
         <div [class.my-hidden]="currentStep() !== 3" class="my-card">
@@ -21,9 +25,10 @@
         <div class="d-flex flex-row flex-grow-1 w-100">
             <atom-button [class.my-hidden]="currentStep() <= 1" class="btn-desktop ml-auto" config_type="outline" 
             label="Atrás" icon="arrow-left" iconPosition="left" (clickButton)="previousStep()"/>
+
             <atom-button
             [class.my-hidden]="currentStep() >= 3"
-            [config_state]="isCurrentStepInvalid() ? 'disabled' : 'enabled'"
+            [config_state]="isCurrentStepValid() ? 'enabled' : 'disabled'"
             class="btn-desktop ms-auto"
             config_type="secondary"
             label="Siguiente"
@@ -36,7 +41,8 @@
             [config_state]="isAllValid() ? 'enabled' : 'disabled'"
             class="btn-desktop ms-auto" 
             config_type="primary" 
-            label="Publicar artículo" />
+            label="Publicar artículo"  
+            (clickButton)="onPublish()"/>
         </div>
 
         <div class="d-flex flex-row flex-grow-1 w-100 justify-content-between">
