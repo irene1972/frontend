@@ -191,7 +191,7 @@ export class EditArticle {
             return;
           } else {
             this.mensaje=data.mensaje;
-            window.location.href='/admin/panel/categories';
+            window.location.reload();
           }
           },
           error: (err) => {
