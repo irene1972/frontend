@@ -102,12 +102,14 @@ button{
 }
 .editar button {
     color: #003594;
+    border-left: 1px solid #CBD2DC;
+    border-right: 1px solid #CBD2DC;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
 }
 
 .eliminar button {
     color: #DC2626;
-    border-left: 1px solid #CBD2DC;
-    padding-left: 1.2rem;
 }
 
 .precio-label {
