@@ -1,12 +1,10 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Badge } from "../../../atoms/badge/badge";
-import { Button } from "../../../atoms/button/button";
-import { RouterLink } from '@angular/router';
 import { UserCard } from "../user-card";
 
 @Component({
   selector: 'molecule-user-contact',
-  imports: [Badge, Button, RouterLink, UserCard],
+  imports: [Badge, UserCard],
   templateUrl: './user-contact.html',
   styleUrl: './user-contact.css',
 })
