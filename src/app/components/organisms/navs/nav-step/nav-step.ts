@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { NavStepOptions } from './nav-step.config';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -36,13 +36,27 @@ import { map } from 'rxjs';
 export class NavStep {
   // Public Inputs
   public steps = input<NavStepOptions[]>([{name:"1",label:"DETALLES",query_param:"detail"}, {name:"2",label:"PRECIO",query_param:"price"},{name:"3",label:"FOTOS",query_param:"photo"}]);
+ 
+
   // Services
   private activatedRoute = inject(ActivatedRoute);
+
+  protected current = toSignal(
+    this.activatedRoute.queryParamMap.pipe(
+      map(params => {
+        const steps = params.getAll('step');
+        return steps[steps.length - 1] ?? ''; // último elemento, o '' si no hay ninguno
+      })
+    ),
+    { initialValue: '' }
+  );
+
   // Signal query params change detection
   protected activeSteps = toSignal(
     this.activatedRoute.queryParamMap.pipe(
       map(params => {
         const parameters = params.getAll('step')
+
         return parameters;
       })
     ),

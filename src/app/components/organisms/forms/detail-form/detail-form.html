@@ -1,0 +1,71 @@
+<div class="my-card">
+  <h2 class="fs-1 fw-bold mb-2">1 · Datos del artículo</h2>
+  <form [formGroup]="dataForm">
+
+    <!-- Título -->
+    <div class="mb-4">
+      <label for="titulo" class="form-label fw-semibold text-secondary">Título del artículo</label>
+      <input
+        type="text"
+        id="titulo"
+        class="form-control"
+        formControlName="titulo"
+        [class.is-invalid]="dataForm.get('titulo')?.invalid && dataForm.get('titulo')?.touched"
+        placeholder="Ej.: Portátil Lenovo IdeaPad 3"
+      />
+      @if (dataForm.get('titulo')?.invalid && dataForm.get('titulo')?.touched) {
+        <div class="invalid-feedback d-block">El título es obligatorio (mínimo 3 caracteres).</div>
+      }
+    </div>
+
+    <!-- Categoría -->
+    <div class="mb-4">
+      <label for="categoria" class="form-label fw-semibold text-secondary">Categoría</label>
+      <div class="input-group">
+        <span class="input-group-text bg-white"><i class="bi bi-person"></i></span>
+        <select
+          id="categoria"
+          class="form-select"
+          formControlName="categorias_id"
+          [class.is-invalid]="dataForm.get('categoria')?.invalid && dataForm.get('categoria')?.touched"
+        >
+        <option value="" disabled>Selecciona una categoría</option>
+        @for(category of categories(); track category.id;){
+          <option [ngValue]="category.id">{{category.nombre}}</option>
+        }
+        </select>
+      </div>
+      @if (dataForm.get('categoria')?.invalid && dataForm.get('categoria')?.touched) {
+        <div class="invalid-feedback d-block">Selecciona una categoría.</div>
+      }
+    </div>
+
+    <!-- Estado de conservación -->
+    <div class="condition-field">
+      <label class="condition-label">Estado de conservación</label>
+      <div class="condition-group" role="group" aria-label="Estado de conservación">
+        @for (option of conservStatus; track option; let first=$first; let last = $last) {
+          <input type="radio" class="condition-input" formControlName="estado_conservacion_id" [value]="option" [id]="option">
+          <label [class]="'condition-btn condition-btn--'+ $index" [class.first]="first" [class.last]="last" [for]="option">{{ option }}</label>
+    }
+      </div>
+    </div>
+
+    <!-- Descripción -->
+    <div>
+      <label for="descripcion" class="form-label fw-semibold text-secondary">Descripción</label>
+      <textarea
+        id="descripcion"
+        class="form-control"
+        rows="4"
+        formControlName="descripcion"
+        [class.is-invalid]="dataForm.get('descripcion')?.invalid && dataForm.get('descripcion')?.touched"
+        placeholder="Describe el estado y las características..."
+      ></textarea>
+      @if (dataForm.get('descripcion')?.invalid && dataForm.get('descripcion')?.touched) {
+        <div class="invalid-feedback d-block">La descripción es obligatoria (mínimo 10 caracteres).</div>
+      }
+    </div>
+
+  </form>
+</div>

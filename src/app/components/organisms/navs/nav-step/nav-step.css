@@ -1,30 +1,34 @@
 :host{
-    --step-box-height:   4rem;
+    --step-box-height:   5rem;
     --step-label-height: calc(var(--step-box-height)*1.2);
     --nav-step-height:   calc(var(--step-label-height)*2);
 }
 
 .nav-step {
-    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
     height: var(--nav-step-height);
 
     .container {
-        width: 100%;
+        
         flex:1;
         display: flex;
         flex-direction: row;
         align-items: center;
-   
+        width: 100%;
         .separator {
             flex: 1;
-            height: 1px;
+            height: 0.5rem;
             background-color: var(--surface-high);
         }
 
-        div {
+        .separator.active{
+            background-color: var(--secondary-cta);
+        }
+
+        .step {
             position:relative;
             text-decoration: none;
     
@@ -35,44 +39,87 @@
                 align-items: center;
                 justify-content: center;
                 color: var(--text-tertiary);
-                font-size: 1.2rem;
+                font-size: 2rem;
                 font-weight: 600;
-                border: 2px solid var(--text-tertiary);
-                border-radius: 1rem;
+                border-radius: 50%;
                 background-color: var(--surface-container);
                 margin:0;
             }
 
-            .label {
+            
+            .label-state {
                 position:absolute;
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 top:var(--step-label-height);
                 left: 50%;
                 transform: translateX(-50%);  /* centra horizontalmente */
-        
-                &.first{
-                    left: 0%;
-                    transform: translateX(0%);  /* centra horizontalmente */
-                }
-                &.last {
-                    left: 100%;
-                    transform: translateX(-100%);  /* centra horizontalmente */
-                }
-
                 font-size: 1.5rem;
                 color: var(--text-tertiary);
+                p{
+                    margin:0;
+                }
+                
+            }
+
+            .label {
+                margin:0px;
             }
 
             &.active {
+                border: 0.7rem solid var(--surface-page);
+                border-radius: 50%;
                 .name {
                     color: var(--surface-card);
-                    border: none;
                     background-color: var(--secondary-cta);
                 }
 
                 .label {
-                    color: var(--secondary-cta);
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: var(--text-primary);
                 }
+
+                
             }
+
+            &.current {
+                border: 0.7rem solid var(--surface-high);
+                border-radius: 50%;
+            }
+
+           
         }
     }
+}
+
+.state-complete {
+    white-space: nowrap;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--secondary-cta);
+
+}
+
+.state-progress {
+    white-space: nowrap;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-cta);
+
+}
+
+.state-pending {
+    white-space: nowrap;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+  .nav-step {
+    display: none;
+  }
 }

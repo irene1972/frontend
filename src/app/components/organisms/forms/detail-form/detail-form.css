@@ -1,0 +1,76 @@
+.condition-field {
+  margin-bottom: 1.5rem;
+}
+
+.condition-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+/* Oculta el radio nativo (lo que hacía btn-check de Bootstrap) */
+.condition-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.condition-group {
+  display: flex;
+  border: 2px solid #e3e6ec;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0;
+}
+
+.condition-btn {
+  flex: 1;
+  text-align: center;
+  display: flex;            
+  align-items: center;      
+  justify-content: center; 
+  padding: 12px 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  &.first {
+    border-radius: 10px 0px 0px 10px;
+  }
+  &.last{
+    border-radius: 0px 10px 10px 0px;
+  }
+}
+
+.condition-btn:hover {
+  filter: brightness(0.97);
+}
+
+/* NUEVO - verde */
+.condition-btn--0 { color: #1aae7f; background: #e4f7f0; }
+.condition-input:checked + .condition-btn--0 { color: #fff; background: #1aae7f; }
+
+/* COMO NUEVO - azul */
+.condition-btn--1 { color: #3b5bdb; background: #dfe6fb; }
+.condition-input:checked + .condition-btn--1 { color: #fff; background: #3b5bdb; }
+
+/* BUEN ESTADO - amarillo */
+.condition-btn--2 { color: #cc8a04; background: #fdf3d3; }
+.condition-input:checked + .condition-btn--2 { color: #fff; background: #cc8a04; }
+
+/* USADO - gris */
+.condition-btn--3 { color: #6b7280; background: #eef1f6; }
+.condition-input:checked + .condition-btn--3 { color: #fff; background: #6b7280; }
+
+/* DAÑADO - rojo */
+.condition-btn--4 { color: #dc3545; background: #fbe4e6; }
+.condition-input:checked + .condition-btn--4 { color: #fff; background: #dc3545; }
+

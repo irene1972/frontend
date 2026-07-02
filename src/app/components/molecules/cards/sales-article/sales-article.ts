@@ -14,7 +14,7 @@ export class SalesArticle {
   @Input() titulo!: string;
   @Input() publicado!: string | undefined;
   @Input() estado_articulo!: string;
-  @Input() precio!: string;
+  @Input() precio!: string | number;
   @Input() vendido!: string | undefined;
   @Input() articleId!: number;
   @Input() url_foto!: string;

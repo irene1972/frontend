@@ -1,12 +1,31 @@
 <div class="nav-step">
     <div class="container">
         @for (step of steps(); track $index;let first = $first; let last = $last) {
-        <div [class.active]="activeSteps().includes(step.query_param)"> 
-            <p class="name">{{ step.name }}</p>
-            <p class="label"  [class.first]="first" [class.last]="last" >{{ step.label }}</p>
+        <div class="step" 
+        [class.active]="activeSteps().includes(step.query_param)" 
+        [class.current]="current()===step.query_param"> 
+            @if (current() === step.query_param) {
+               <p class="name">{{ step.name }}</p>
+            } @else if (activeSteps().includes(step.query_param)) {
+               <i class="name b bi-check " style="font-size: 4rem;"></i>
+            } @else {
+               <p class="name">{{ step.name }}</p>
+            }
+            
+            <div class="label-state" [class.first]="first" [class.last]="last">
+                <span class="label"   >{{ step.label }}</span>
+                @if (current() === step.query_param) {
+                    <span class="state-progress">En curso</span>
+                } @else if (activeSteps().includes(step.query_param)) {
+                    <span class="state-complete">Completado</span>
+                } @else {
+                    <span class="state-pending">Pendiente</span>
+                }
+            </div>
+            
         </div>
         @if(!last){
-            <div class="separator"></div>
+            <div class="separator" [class.active]="activeSteps().includes(step.query_param) && current()!==step.query_param" ></div>
         }
     }
     </div>

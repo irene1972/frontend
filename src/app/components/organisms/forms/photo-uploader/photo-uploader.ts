@@ -1,11 +1,11 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, output, signal, WritableSignal } from '@angular/core';
 import { PhotoUploaderEvent as PUEvent } from './photo-uploader.config';
-import { Icon } from "../../atoms/icon/icon";
-import { Button } from "../../atoms/button/button";
+import { Icon } from "../../../atoms/icon/icon";
+import { Button } from "../../../atoms/button/button";
 
 @Component({
   selector: 'organism-photo-uploader',
-  imports: [Icon, Button],
+  imports: [Icon, Button, ],
   templateUrl: './photo-uploader.html',
   styleUrl: './photo-uploader.css',
 })
@@ -15,8 +15,6 @@ export class PhotoUploader {
   private   files         = signal<(File | null)[]>([null, null, null, null]); 
   readonly  photoFiles    = output<(File | null)[]>();
   
-  
-
   onDragOver(event: DragEvent) {
     event.preventDefault();
     this.dragEvent.set(PUEvent.DRAG_OVER)
@@ -29,51 +27,45 @@ export class PhotoUploader {
 
   onDrop(event: DragEvent) {
     event.preventDefault();
+    this.dragEvent.set(PUEvent.DRAG_LEAVE);
     const files = event.dataTransfer?.files;
-    this.uploadPhotoList(files);
+    this.addPhotos(files);
   }
 
-  protected onChange(event:Event){
+  protected onSelect(event:Event){
     const input = event.target as HTMLInputElement;
-    this.uploadPhotoList(input.files) 
-    // Resetea el input para permitir seleccionar el mismo archivo otra vez
+    this.addPhotos(input.files) ;
     input.value = '';
   }
 
   protected selectFile(event:Event, index:number){
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.addPhoto(input.files[0], index); 
+      this.updatePhoto(input.files[0], index); 
     }
-     // Resetea el input para permitir seleccionar el mismo archivo otra vez
     input.value = '';
   }
 
 
-  protected uploadPhotoList(files: FileList | undefined | null) {
-    if(files){
-      for (let i=0; i<files.length; i++) {
-        if (files.length>this.photoPreviews().length) return;
-        const preview_url = URL.createObjectURL(files[i]);
+  protected addPhotos(files: FileList | undefined | null) {
+    if (!files) return;
 
-        this.photoPreviews.update(current => {
-          const freeIndex = current.findIndex(p => !p); // primer slot vacío/null/""
-          if (freeIndex === -1) return current; // no hay sitio libre, no hace nada
-          return current.map((p, i) => i === freeIndex ? preview_url : p);
-        });
+    for (const file of files) {
+      const freeIndex = this.files().findIndex(f => f === null);
+      if (freeIndex === -1) break; 
+      
+      this.photoPreviews.update(current =>
+        current.map((p, i) => i === freeIndex ? URL.createObjectURL(file) : p)
+      );
 
-        this.files.update(current => {
-          const freeIndex = current.findIndex(p => !p); // primer slot vacío/null/""
-          if (freeIndex === -1) return current; // no hay sitio libre, no hace nada
-          return current.map((p, i) => i === freeIndex ? files[i] : p);
-        });
-
-        this.photoFiles.emit(this.files())
-      }  
+      this.files.update(current =>
+        current.map((f, i) => i === freeIndex ? file : f)
+      );
     }
+    this.photoFiles.emit(this.files());
   }
 
-  protected addPhoto(file: File | undefined | null , index: number) {
+  protected updatePhoto(file: File | undefined | null , index: number) {
     if(file){
       const preview_url = URL.createObjectURL(file);
       this.photoPreviews.update(current => [...current.slice(0, index), preview_url, ...current.slice(index + 1)]);
@@ -93,8 +85,8 @@ export class PhotoUploader {
       files[index] = null; 
       return [...files];
     } );
-
     this.photoFiles.emit(this.files());
   }
 
 }
+

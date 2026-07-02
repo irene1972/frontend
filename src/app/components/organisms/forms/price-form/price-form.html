@@ -1,0 +1,27 @@
+<div class="my-card">
+  <h2 class="fs-1 fw-bold mb-4">2 · Precio</h2>
+  <form [formGroup]="priceForm">
+
+    <!-- Precio de venta -->
+    <div class="mb-4">
+      <label for="precio" class="form-label fw-semibold text-secondary">Precio de venta (€)</label>
+      <div class="input-group">
+        <span class="input-group-text bg-white">€</span>
+        <input
+          type="number"
+          id="precio"
+          min="1"
+          step="1"
+          class="form-control"
+          formControlName="precio"
+          [class.is-invalid]="priceForm.get('precio')?.invalid && priceForm.get('precio')?.touched"
+          placeholder="0"
+        />
+      </div>
+      @if (priceForm.get('precio')?.invalid && priceForm.get('precio')?.touched) {
+        <div class="invalid-feedback d-block">Introduce un precio válido (mínimo 1€).</div>
+      }
+    </div>
+
+  </form>
+</div>

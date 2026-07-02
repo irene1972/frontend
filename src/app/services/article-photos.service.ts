@@ -15,16 +15,19 @@ export class ArticlePhotosService {
     return this.httpClient.get<IArticlePhoto[]>(this.baseUrl);
   }
 
+  getPhotosByArticleId(articuloId: number): Observable<IArticlePhoto[]>{
+    return this.httpClient.get<IArticlePhoto[]>(this.baseUrl + `get-all-by-article/${articuloId}`)
+  }
+
   getArticlePhotoById(id: number): Observable<IArticlePhoto> {
     return this.httpClient.get<IArticlePhoto>(`${this.baseUrl}/${id}`);
   }
 
-  postPhotoByArticleId(file: File, principal: number, articulos_id: number): Observable<any> {
+  postPhotosByArticleId(file: File, principal: number, articulo_id: number): Observable<any> {
     const formData = new FormData();
-    formData.append('photo', file);
-    formData.append('url_photo', "");
+    formData.append('imagen', file);
     formData.append('principal', String(principal));
-    formData.append('articulos_id', String(articulos_id));
+    formData.append('articulos_id', String(articulo_id));
     return this.httpClient.post<any>(this.baseUrl, formData);
   }
 }

@@ -11,7 +11,6 @@ import { lastValueFrom } from 'rxjs';
 import { UsersService } from '../../services/users-service';
 import { UserRatingCardData } from '../../components/molecules/user-card/user-rating-card/user-rating-card.config';
 import { UserRatingCard } from "../../components/molecules/user-card/user-rating-card/user-rating-card";
-import { ArticlePhotoService } from '../../services/article-photo-service';
 import { IArticlePhoto } from '../../interfaces/i-article-photo.interface';
 import { HomeBar } from "../../components/organisms/home-bar/home-bar";
 import { ReportModal } from "../../components/molecules/report-modal/report-modal";
@@ -73,7 +72,7 @@ export class ProductViewComponentComponent {
       const [seller, sellerRatings, fotos] = await Promise.all([
         lastValueFrom(this.userService.getUserById((  sellerId).toString() )),
         lastValueFrom(this.ratingsService.getAverageRatingsByUser(sellerId)),
-        lastValueFrom(this.articlePhotoService.getFotosByArticuloId(Number(id)))
+        lastValueFrom(this.articlePhotoService.getPhotosByArticleId(Number(id)))
       ]) 
 
       //fav
@@ -239,3 +238,4 @@ export class ProductViewComponentComponent {
     this.deleteProduct();
   }
 }
+

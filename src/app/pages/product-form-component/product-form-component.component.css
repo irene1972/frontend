@@ -12,18 +12,50 @@
     }
 }
 
+
+.my-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 1rem; /* rounded-4 */
+  padding: 1.5rem;     /* p-4 */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* shadow-sm (aprox) */
+}
+
+.my-hidden {
+    display: none;
+}
+
+.btn-mobile {
+    display:none
+}
 /* Mobile */
 @media(max-width: 768px) {
+    .my-hidden{
+        display: flex;
+    }
+    .card {
+        display:flex;
+    }
+
     .new-article{
-        h2{
-           display: none;
+        .page-title {
+            text-align:center;
+        }
+        p{
+          text-align:center;
         }
 
-        p{
-          display:none;
+        .btn-desktop {
+            display:none;
         }
-        atom-button {
-            display:none
+        .btn-mobile {
+            display:flex;
         }
     }
 
