@@ -171,7 +171,6 @@ export class SellerProfile {
 
   protected breadcrumbItems = () => [
     { label: 'Inicio', route: '/home' },
-    { label: 'Vendedores', route: `/sellers`},
     { label: this.breadcrumb_name(), route: `/sellers/${this.userID()}`}
   ];
 
