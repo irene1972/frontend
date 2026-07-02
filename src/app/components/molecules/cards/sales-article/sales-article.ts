@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sales-article',
@@ -28,5 +29,31 @@ export class SalesArticle {
   }
   eliminar(): void {
     this.clicarEliminar.emit(this.articleId);
+  }
+  actualizarAVendido(articleId:number){
+    Swal.fire({
+          title: '¿Estás seguro de marcar este producto como vendido?',
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: 'Confirmar',
+          confirmButtonColor: '#ff0000',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log(articleId);
+    /*
+            this.categoriesService.deleteCategory(id).subscribe({
+              next: (data) => {
+                Swal.fire('Actualizado!', '', 'success');
+              },
+              error: (err) => {
+                console.error(err);
+                Swal.fire('Ha habido un error', '', 'info');
+    
+              }
+            });
+            */
+          }
+        });
   }
 }

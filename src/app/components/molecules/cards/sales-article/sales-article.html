@@ -43,6 +43,7 @@
                 </div>
             </div>
             @if(estado_articulo !== 'Vendido'){
+            <div class="vendido"><button (click)="actualizarAVendido(articleId); $event.stopPropagation()">Marcar como vendido</button></div>
             <div class="editar"><button (click)="editar(); $event.stopPropagation()">Editar</button></div>
             <!--<div class="pausar"><button (click)="pausar(); $event.stopPropagation()">Pausar</button></div>-->
             <div class="eliminar"><button (click)="eliminar(); $event.stopPropagation()">Eliminar</button></div>
