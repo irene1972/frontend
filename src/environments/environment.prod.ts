@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000/api',
-  socketUrl: 'http://localhost:3000',
+  apiUrl: 'https://bk-buy-sell-prod.up.railway.app/api',
+  socketUrl: 'https://bk-buy-sell-prod.up.railway.app',
 };
