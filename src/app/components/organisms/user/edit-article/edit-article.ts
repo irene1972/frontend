@@ -7,7 +7,7 @@ import { CategoriesService } from '../../../../services/categories-service';
 import { ICategory } from '../../../../interfaces/i-category';
 import { PhotosService } from '../../../../services/photos-service';
 import { IPhoto } from '../../../../interfaces/i-photo';
-import { ArticlePhotoService } from '../../../../services/article-photo-service';
+import { ArticlePhotosService } from '../../../../services/article-photos.service';
 
 @Component({
   selector: 'app-edit-article',
@@ -28,7 +28,7 @@ export class EditArticle {
   fotos: IPhoto[] = [];
   id!: string;
   imagenFile!: File | null;
-  articlePhotoService=inject(ArticlePhotoService);
+  articlePhotoService=inject(ArticlePhotosService);
 
   constructor(private cd: ChangeDetectorRef, private route: ActivatedRoute, private router: Router) {
     this.miForm = new FormGroup({

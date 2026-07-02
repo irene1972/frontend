@@ -40,7 +40,7 @@ export class MessagingSocketService {
       this.unreadCount.set(payload.total);
     });
 
-    this.socket.on('connect_error', (error) => {
+    this.socket.on('connect_error', (error:any) => {
       console.error('Error de conexión Socket.io:', error.message);
     });
   }

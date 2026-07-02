@@ -32,8 +32,9 @@ export class ProductCheckoutComponentComponent implements OnInit {
   readonly shippingPickup = 2.99;
 
   articlePrice = computed(() => {
-    const price = this.product()?.precio;
-    return price ? parseFloat(price) : 0;
+    let price = this.product()?.precio;
+  
+    return price ? parseFloat(String(price)) : 0;
   });
 
   shippingCost = computed(() =>
