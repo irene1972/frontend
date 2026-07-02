@@ -92,14 +92,15 @@ section div.active p {
         background-color: #DCE9FF;
     }
     section div p {
-        color: #444652 !important;
+        color: #444652;
         padding-left: .3rem;
     }
     section div.active {
         background-color: #003594;
         border: 1px solid #003594;
     }
-    section div.active p { color: white !important; }
+    section div.active p { color: white; }
+
     /* En mobile el icono vuelve a inline pequeno, sin tile */
     section div .cat-icon {
         width: auto;
@@ -113,4 +114,14 @@ section div.active p {
         color: white;
         background: transparent;
     }
+
+
+    section div:hover {
+        background-color: #003594;
+        .cat-icon, p {
+            background: transparent;
+            color: white;
+        }
+
+    } 
 }
