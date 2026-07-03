@@ -72,14 +72,7 @@
         } @else {
             @if (product()?.estado_articulo_id === "Publicado") {
                 <div class="d-flex flex-column gap-2">
-                    <atom-button config_type="secondary" icon="chat-left" label="Compra el artículo para chatear" (clickButton)="onContactar($event)"></atom-button>
-                    <atom-button config_type="primary" label="Comprar ahora" (clickButton)="onComprar($event)"></atom-button>
-                    <atom-button config_type="link" icon="flag" label="Informar de un problema con este producto" (clickButton)="onInformar($event)"></atom-button>
-                </div>
-            } @else {
-                <div class="d-flex flex-column gap-2">
-                    <atom-button config_state="disabled" config_type="secondary" icon="chat-left" label="Compra el artículo para chatear" (clickButton)="onContactar($event)"></atom-button>
-                    <atom-button config_state="disabled" config_type="primary" label="Comprar ahora" (clickButton)="onComprar($event)"></atom-button>
+                    <atom-button config_type="secondary" label="Comprar ahora" (clickButton)="onComprar($event)"></atom-button>
                     <atom-button config_type="link" icon="flag" label="Informar de un problema con este producto" (clickButton)="onInformar($event)"></atom-button>
                 </div>
             }
