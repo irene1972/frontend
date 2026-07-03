@@ -20,7 +20,7 @@
         @if(activeTab() === QUERYPARAM_ON_SELL)
         {
             <div class="row row-cols-1 row-cols-md-3 g-2 m-0">
-                @for (article of articles(); track article) {
+                @for (article of articlesPublished(); track article) {
                 <div class="col">
                     <molecule-article-card [id]="article.id" [img]="article.url_foto" [name]="article.titulo" 
                     [state]="article.estado_articulo_id" [price]="article.precio" location="Madrid"/>

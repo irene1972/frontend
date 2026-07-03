@@ -15,6 +15,7 @@ import { UsersService } from '../../services/users-service';
 import { RatingsService } from '../../services/ratings-service';
 import { OrdersService } from '../../services/orders-service';
 import { ArticlesService } from '../../services/articles-service';
+import { ArticleStatus } from '../../enums/article-status.enum';
 
 @Component({
   selector: 'app-seller-profile',
@@ -43,7 +44,7 @@ export class SellerProfile {
   protected routeReport  = computed(() => [`/user/report/user/${this.userID()}`]);
   protected routeContact = computed(() => [`/user/messages/${this.userID()}`]);
   protected breadcrumb_name = computed(() => (`${this.name()} ${this.last_name()[0]}.`));
-  
+  protected articlesPublished = computed(() => this.articles().filter(a => a.estado_articulo_id === ArticleStatus.PUBLISHED));
 
   protected datetimeToTimestamp(rating: any){
     const datetime = new Date(rating.creada_en)
@@ -57,6 +58,8 @@ export class SellerProfile {
   private articleService = inject(ArticlesService)
   private ratingService = inject(RatingsService)
   private orderService = inject(OrdersService)
+
+  
 
   ngOnInit() { 
     this.router.navigate([], {
@@ -122,7 +125,7 @@ export class SellerProfile {
           if (data.error) {
             return;
           } else {
-            console.log(data)
+  
             this.articles.set(data)
          }
         },
