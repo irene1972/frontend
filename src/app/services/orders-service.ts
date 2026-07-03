@@ -28,8 +28,16 @@ export class OrdersService {
     return this.httpClient.get<any>(this.baseUrl + `${id}/todos-datos`);
   }
 
+  getLastOrderByArticleId(articleId: number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + `article/${articleId}`);
+  }
+
   createOrder(body: ICreateOrderRequest): Observable<ICreateOrderResponse> {
     return this.httpClient.post<ICreateOrderResponse>(this.baseUrl, body);
+  }
+
+   updateOrder(id:number,body:any):Observable<any>{
+    return this.httpClient.put(this.baseUrl + `${id}/actualiza-estado`,body,{})
   }
 
   getSalesByUser(user_id: number): Observable<IUserPurchaseSales> {
