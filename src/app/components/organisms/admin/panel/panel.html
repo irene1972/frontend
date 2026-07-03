@@ -6,7 +6,7 @@
   </div>
 
   <div class="stats-grid">
-    <molecule-status-card [status]="estadisticas.usuarios_activos?.total"     text="USUARIOS"/>
+    <molecule-status-card [status]="usuarios.length.toString()"     text="USUARIOS"/>
     <molecule-status-card [status]="estadisticas.articulos_publicados?.total" text="ARTÍCULOS"/>
     <molecule-status-card [status]="estadisticas.articulos_vendidos?.total"   text="VENDIDOS"/>
     <molecule-status-card class="desktop-only" [status]="estadisticas.categorias_activas?.total"   text="CATEGORÍAS"/>
