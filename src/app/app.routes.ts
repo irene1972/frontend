@@ -90,46 +90,16 @@ export const routes: Routes = [
             { path: 'panel', component: UserPanel,
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'profile' },
-                    {
-                        path: 'profile',
-                        component: Profile
-                    },
-                    {
-                        path: 'favorites',
-                        component: Favorites
-                    },
-                    {
-                        path: 'sales',
-                        component: Sales
-                    },
-                    {
-                        path: 'my-purchases',
-                        component: UserMyPurchasesComponentComponent
-                    },
-                    {
-                        path: 'my-purchases/write-review/:id',
-                        component: WriteReview
-                    },
-                    {
-                        path: 'my-reviews',
-                        component: MyReviews
-                    },
-                    {
-                        path: 'my-reviews/:reviewID',
-                        component: ReviewView
-                    },
-                    {
-                        path: 'article/edit/:id',
-                        component: EditArticle
-                    },
-                    {
-                        path: 'edit-profile/:userID',
-                        component: UserFormComponentComponent
-                    },
-                    {
-                        path: 'messages',
-                        component: MessagesComponentComponent
-                    }
+                    { path: 'profile', component: Profile },
+                    { path: 'favorites', component: Favorites },
+                    { path: 'sales', component: Sales },
+                    { path: 'my-purchases', component: UserMyPurchasesComponentComponent },
+                    { path: 'my-purchases/write-review/:id', component: WriteReview },
+                    { path: 'my-reviews', component: MyReviews },
+                    { path: 'my-reviews/:reviewID', component: ReviewView },
+                    { path: 'article/edit/:id', component: EditArticle },
+                    { path: 'edit-profile/:userID', component: UserFormComponentComponent },
+                    { path: 'messages', component: MessagesComponentComponent }
                 ]
              },
             /*{ path: 'profile/:userID', component: UserProfileComponentComponent }, */

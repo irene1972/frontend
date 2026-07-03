@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
-import { AdminModeratorMenuDrawerComponent } from "../admin-moderator-header/admin-moderator-menu-drawer/admin-moderator-menu-drawer.component";
 import { ModeratorMenuDrawerComponent } from './moderator-menu-drawer/moderator-menu-drawer.component';
 
 @Component({

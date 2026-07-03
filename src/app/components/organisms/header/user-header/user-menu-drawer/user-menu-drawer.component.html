@@ -1,56 +1,60 @@
-<div class="drawer-backdrop" (click)="closeMenuOnly()"></div>
+<div class="drawer-backdrop" (click)="close()"></div>
 
 <aside class="drawer-menu">
     <div class="drawer-header">
         <h5>Menú</h5>
 
-        <button class="btn close-button" type="button" (click)="closeMenuOnly()">
+        <button class="btn close-button" type="button" (click)="close()">
             <i class="bi bi-x-lg"></i>
         </button>
     </div>
 
     <div class="drawer-user">
-        <a class="drawer-avatar" [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
+        <a class="drawer-avatar" [routerLink]="['/user/profile']" (click)="close()">
             {{userInitials}}
         </a>
 
         <div>
             <p class="drawer-user-name">{{userName}}</p>
-            <a class="drawer-user-rating" [routerLink]="['/user/profile']" (click)="closeMenuOnly()">
+            <a class="drawer-user-rating" [routerLink]="['/user/profile']" (click)="close()">
                 ★ {{(!userRating)?0:userRating}} · Ver mi perfil
             </a>
         </div>
     </div>
 
     <section class="drawer-section">
-        <h6>Categorías</h6>
-
-        <a href="#">Todo <i class="bi bi-chevron-right"></i></a>
-        <a href="#">GPUs <i class="bi bi-chevron-right"></i></a>
-        <a href="#">CPUs <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Portátiles <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Consolas <i class="bi bi-chevron-right"></i></a>
-        <a href="#">RAM <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Placas base <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Discos <i class="bi bi-chevron-right"></i></a>
-    </section>
-
-    <section class="drawer-section">
         <h6>Mi cuenta</h6>
 
-        <a [routerLink]="['/user/favorites']" (click)="closeMenuOnly()">Favoritos <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Mis productos <i class="bi bi-chevron-right"></i></a>
-        <a href="/user/panel/my-purchases">Mis compras <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Mis valoraciones <i class="bi bi-chevron-right"></i></a>
-        <a [routerLink]="['/user/panel/edit-profile/:userID']" (click)="closeMenuOnly()">Editar perfil <i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/user/new-product']" (click)="close()">Subir producto<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/user/panel/sales']" (click)="close()">Mis productos<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/user/panel/my-purchases']" (click)="close()">Mis compras<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/user/panel/messages']" (click)="close()">Mensajes<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/user/panel/favorites']" (click)="close()">Mis favoritos<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/user/panel/notifications']" (click)="close()">Notificaciones<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/user/panel/my-reviews']" (click)="close()">Mis valoraciones<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/user/panel/profile']" (click)="close()">Mi perfil<i class="bi bi-chevron-right"></i></a>
+        
     </section>
 
     <section class="drawer-section">
-        <h6>Ayuda</h6>
+        <h6>Soporte</h6>
 
-        <a href="#">Centro de ayuda <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Reglas de convivencia <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Consejos de seguridad <i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/centro-ayuda']" (click)="close()">Centro de ayuda<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/reglas-convivencia']" (click)="close()">Reglas de convivencia<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/consejos-seguridad']" (click)="close()">Consejos de seguridad<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/cookies']" (click)="close()">Cookies<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/privacidad']" (click)="close()">Privacidad<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/terminos']" (click)="close()">Términos<i class="bi bi-chevron-right"></i></a>
+
+    </section>
+
+    <section class="drawer-section">
+        <h6>Buy&Sell</h6>
+        
+        <a [routerLink]="['/quienes-somos']" (click)="close()">Quiénes somos<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/prensa']" (click)="close()">Prensa<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/empleo']" (click)="close()">Empleo<i class="bi bi-chevron-right"></i></a>
+
     </section>
 
     <section class="drawer-section">

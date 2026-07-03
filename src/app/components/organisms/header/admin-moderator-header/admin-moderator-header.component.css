@@ -24,14 +24,6 @@
     margin-left: auto;
 }
 
-.icon-button {
-    color: white;
-    font-size: 1.2rem;
-    padding: 0;
-    display: flex;
-    align-items: center;
-}
-
 .avatar {
     width: 2rem;
     height: 2rem;

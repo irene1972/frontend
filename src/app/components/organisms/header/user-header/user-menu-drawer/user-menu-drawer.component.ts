@@ -40,7 +40,7 @@ export class UserMenuDrawerComponent {
     }
   }
 
-  closeMenuOnly(): void {
+  close(): void {
     this.closeMenu.emit();
   }
 

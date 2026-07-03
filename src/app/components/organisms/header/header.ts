@@ -19,7 +19,6 @@ export class Header {
   isLogged = true;
   role!: UserRole;
 
-  // admin en moderador panel
   isAdminInModeratorPanel = false;
 
   constructor(private router: Router){}
@@ -42,7 +41,6 @@ export class Header {
     this.setRole();
     this.checkRoute(this.router.url);
 
-    //cambio de ruta
     this.router.events.pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
     .subscribe((event) => {
       this.checkRoute(event.urlAfterRedirects)

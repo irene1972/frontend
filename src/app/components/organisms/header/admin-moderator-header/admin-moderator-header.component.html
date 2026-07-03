@@ -1,21 +1,15 @@
 <div class="admin-moderator-header w-100">
     <div class="admin-moderator-top d-flex align-items-center">
 
-        <!-- Menú hamburguesa -->
         <button class="btn menu-button d-md-none" type="button" (click)="openMenu()">
             <i class="bi bi-list"></i>
         </button>
 
-        <!-- Logo -->
         <a [routerLink]="['/admin/panel/main']">
             <img src="logo_blue.svg" alt="Buy&Sell" class="logo-img">
         </a>
 
-        <!-- Acciones Admin/Moderator -->
         <div class="admin-moderator-actions d-flex align-items-center gap-3">
-            <button class="btn icon-button" type="button">
-                <i class="bi bi-bell"></i>
-            </button>
             <a class="avatar" [routerLink]="['/admin/panel/profile']">
                 {{userInitials}}
             </a>             

@@ -1,28 +1,14 @@
 <div class="user-header w-100">
     <div class="user-top d-flex align-items-center">
 
-        <!-- Menú hamburguesa -->
         <button class="btn menu-button d-md-none" type="button" (click)="openMenu()">
             <i class="bi bi-list"></i>
         </button>
 
-        <!-- Logo -->
         <a [routerLink]="['/home']">
             <img src="logo_white.svg" alt="Buy&Sell" class="logo-img">
-        </a>
+        </a> 
 
-        <!-- Buscador -->
-        <!--  <div class="flex-grow-1 d-none d-md-block">
-            <div class="search-box d-flex align-items-center">
-                <span class="search-icon">
-                    <i class="bi bi-search"></i>
-                </span>
-
-                <input type="text" class="form-control search-input w-100" placeholder="¿Qué estás buscando hoy?">
-            </div>
-        </div>    -->    
-
-        <!-- Acciones user desktop -->
         <div class="user-actions d-none d-md-flex align-items-center gap-3">
             <a class="header-link" [routerLink]="['/user/panel/favorites']">
                 <i class="bi bi-heart"></i>
@@ -51,7 +37,6 @@
             </a>
         </div>
 
-        <!-- Acciones user mobile -->
         <div class="user-actions-mobile d-flex d-md-none align-items-center gap-3 ms-auto">
             <button class="btn icon-button" type="button">
                 <i class="bi bi-bell"></i>

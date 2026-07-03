@@ -20,23 +20,23 @@
     </div>
 
     <section class="drawer-section">
-        <h6>Categorías</h6>
+        <h6>Soporte</h6>
 
-        <a href="#">Todo <i class="bi bi-chevron-right"></i></a>
-        <a href="#">GPUs <i class="bi bi-chevron-right"></i></a>
-        <a href="#">CPUs <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Portátiles <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Consolas <i class="bi bi-chevron-right"></i></a>
-        <a href="#">RAM <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Placas base <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Discos <i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/centro-ayuda']" (click)="close()">Centro de ayuda<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/reglas-convivencia']" (click)="close()">Reglas de convivencia<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/consejos-seguridad']" (click)="close()">Consejos de seguridad<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/cookies']" (click)="close()">Cookies<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/privacidad']" (click)="close()">Privacidad<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/terminos']" (click)="close()">Términos<i class="bi bi-chevron-right"></i></a>
+
     </section>
 
     <section class="drawer-section">
-        <h6>Ayuda</h6>
+        <h6>Buy&Sell</h6>
+        
+        <a [routerLink]="['/quienes-somos']" (click)="close()">Quiénes somos<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/prensa']" (click)="close()">Prensa<i class="bi bi-chevron-right"></i></a>
+        <a [routerLink]="['/empleo']" (click)="close()">Empleo<i class="bi bi-chevron-right"></i></a>
 
-        <a href="#">Centro de ayuda <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Reglas de convivencia <i class="bi bi-chevron-right"></i></a>
-        <a href="#">Consejos de seguridad <i class="bi bi-chevron-right"></i></a>
     </section>
 </aside>
