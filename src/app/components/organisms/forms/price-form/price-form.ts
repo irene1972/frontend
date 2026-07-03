@@ -16,7 +16,7 @@ export class PriceForm implements OnInit {
  formValue = output<IArticlePrice>();
 
   priceForm = new FormGroup({
-    precio: new FormControl<number>(0, {nonNullable: true,validators:[Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)]}),
+    precio: new FormControl<number>(0, {nonNullable: true,validators:[Validators.required, Validators.min(1),Validators.pattern(/^\d+(\.\d{1,2})?$/)]}),
   });
 
 

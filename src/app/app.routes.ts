@@ -4,7 +4,7 @@ import { LoginComponentComponent } from './pages/login-component/login-component
 import { RegisterComponentComponent } from './pages/register-component/register-component.component';
 import { UserFormComponentComponent } from './pages/user-form-component/user-form-component.component';
 import { ProductViewComponentComponent } from './pages/product-view-component/product-view-component.component';
-import { ProductFormComponentComponent } from './pages/product-form-component/product-form-component.component';
+import { ProductFormPage } from './pages/product-form/product-form.component';
 import { ProductCheckoutComponentComponent } from './pages/product-checkout-component/product-checkout-component.component';
 import { FavoritesComponentComponent } from './pages/favorites-component/favorites-component.component';
 import { UserMyPurchasesComponentComponent } from './pages/user-my-purchases-component/user-my-purchases-component.component';
@@ -83,9 +83,9 @@ export const routes: Routes = [
     {
         path: 'user', component: UserComponentComponent, canActivate: [authGuard], children: [
             { path: '', pathMatch: 'full', redirectTo: 'profile' },
-            { path: 'new-product', component: ProductFormComponentComponent },
+            { path: 'new-product', component: ProductFormPage },
             { path: 'product/:productID', component: ProductViewComponentComponent },
-            { path: 'product/edit/:productID', component: ProductFormComponentComponent },
+            { path: 'product/edit/:productID', component: ProductFormPage },
             { path: 'product/checkout/:productID', component: ProductCheckoutComponentComponent },
             { path: 'panel', component: UserPanel,
                 children: [

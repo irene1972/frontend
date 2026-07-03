@@ -19,10 +19,10 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-form-component',
   imports: [Button, NavStep, PhotoUploader, DetailForm, PriceForm, ReactiveFormsModule, LoadingOverlay],
-  templateUrl: './product-form-component.component.html',
-  styleUrl: './product-form-component.component.css',
+  templateUrl: './product-form.component.html',
+  styleUrl: './product-form.component.css',
 })
-export class ProductFormComponentComponent implements OnInit{
+export class ProductFormPage implements OnInit{
   private userId: number = 0;
   // Query parameters
   public readonly QUERYPARAM_NONE:     string = ""
@@ -92,28 +92,10 @@ export class ProductFormComponentComponent implements OnInit{
 
   onPhotos(photos: (File | null)[] ) {
     this.photos.set(photos);
-    this.photosValid.set(photos.filter(p => p !== null).length >= 4);
+    // Validamos que el usuario ponga almenos la foto principal
+    this.photosValid.set(this.photos()[0] !== null);
   }
 
-  private sendPhotos() {
-    for(let photo of this.photos()) {
-      if(photo){
-        this.article_photos.postPhotosByArticleId(photo,1,2).subscribe({
-          next: (data) => {
-            if (data.error) {
-              return;
-            } else {
-              console.log(data)
-          }
-          },
-          error: (err) => {
-            console.error(err);
-          }
-        });
-      }
-     
-    }
-  }
   protected isAllValid(): boolean {
     return this.detailValid() && this.priceValid() && this.photosValid();
   }
