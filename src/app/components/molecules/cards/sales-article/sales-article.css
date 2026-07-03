@@ -146,7 +146,7 @@ button{
 }
 /* Mobile */
 @media (max-width: 768px) {
-    .editar,.pausar,.eliminar{
+    .editar,.pausar,.eliminar,.vendido,.estado-pedido{
         display: none;
     }
     

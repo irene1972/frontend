@@ -47,6 +47,17 @@
             <div class="editar"><button (click)="editar(); $event.stopPropagation()">Editar</button></div>
             <!--<div class="pausar"><button (click)="pausar(); $event.stopPropagation()">Pausar</button></div>-->
             <div class="eliminar"><button (click)="eliminar(); $event.stopPropagation()">Eliminar</button></div>
+                }@else{
+                    <div class="form-group estado-pedido">
+                        <label for="estado">Estado del pedido</label>
+                        <select id="estado" class="form-control" formControlName="estado" (change)="modificarEstado(articleId,$event)">
+                            <option value="Aceptado" [selected]="(pedido.estado==='Aceptado')?true:false">Aceptado</option>
+                            <option value="Cancelado" [selected]="(pedido.estado==='Cancelado')?true:false">Cancelado</option>
+                            <option value="Completado" [selected]="(pedido.estado==='Completado')?true:false">Completado</option>
+                            <option value="Enviado" [selected]="(pedido.estado==='Enviado')?true:false">Enviado</option>
+                            <option value="Pendiente" [selected]="(pedido.estado==='Pendiente')?true:false">Pendiente</option>
+                        </select>
+                    </div>
                 }
         </div>
     </div>
