@@ -5,7 +5,7 @@ import { NavStep } from "../../components/organisms/navs/nav-step/nav-step";
 import { NavStepOptions } from '../../components/organisms/navs/nav-step/nav-step.config';
 import { PhotoUploader } from "../../components/organisms/forms/photo-uploader/photo-uploader";
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
+import { delay, map } from 'rxjs';
 import { ArticlePhotosService } from '../../services/article-photos.service';
 import { FormGroup, Validators, ReactiveFormsModule, FormControl, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { DetailForm } from '../../components/organisms/forms/detail-form/detail-form';
@@ -13,10 +13,11 @@ import { PriceForm } from '../../components/organisms/forms/price-form/price-for
 import { ArticlesService } from '../../services/articles-service';
 import { IArticleDetail, IArticlePrice, INewArticleWithPhoto } from '../../interfaces/i-article';
 import { ArticleStatus } from '../../enums/article-status.enum';
+import { LoadingOverlay } from "../../components/molecules/loading-overlay/loading-overlay";
 
 @Component({
   selector: 'app-product-form-component',
-  imports: [Button, NavStep, PhotoUploader, DetailForm, PriceForm, ReactiveFormsModule],
+  imports: [Button, NavStep, PhotoUploader, DetailForm, PriceForm, ReactiveFormsModule, LoadingOverlay],
   templateUrl: './product-form-component.component.html',
   styleUrl: './product-form-component.component.css',
 })
@@ -40,7 +41,7 @@ export class ProductFormComponentComponent implements OnInit{
   protected photosValid = signal<boolean>(false);
 
   protected photos = signal<(File | null)[]>([]);
-
+  protected isValidating = signal(false);
    //Services
   private router = inject(Router);
   private actived_route = inject(ActivatedRoute);
@@ -198,11 +199,13 @@ export class ProductFormComponentComponent implements OnInit{
       principal_index: 0,
       photos: this.photos()
     }
+    this.isValidating.set(true);
     this.article.createArticleWithPhotos(article).subscribe({
       next: (data) => {
         if (data.error) {
           return;
         } else {
+          this.isValidating.set(false);
           this.router.navigate([`product/published/${data.id}`]);
       }
       },

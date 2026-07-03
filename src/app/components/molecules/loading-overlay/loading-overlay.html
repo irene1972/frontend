@@ -1,0 +1,11 @@
+@if (isLoading()) {
+  <div class="loading-overlay" role="alert" aria-live="assertive">
+    <div class="loading-card">
+      <svg class="spinner" width="58" height="58" viewBox="0 0 58 58" aria-hidden="true">
+        <circle class="spinner-track" cx="29" cy="29" r="23" fill="none" stroke-width="5"></circle>
+        <circle class="spinner-arc" cx="29" cy="29" r="23" fill="none" stroke-width="5" stroke-linecap="round"></circle>
+      </svg>
+      <p class="loading-message">{{ message() }}</p>
+    </div>
+  </div>
+}

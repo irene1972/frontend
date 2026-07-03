@@ -50,4 +50,5 @@
             <atom-button class="btn-mobile" [config_state]="isAllValid() ? 'enabled' : 'disabled'" config_type="primary" label="Publicar artículo" (clickButton)="onPublish()"/>
         </div>
     </div>
+    <molecule-loading-overlay [isLoading]="true" message="Validando producto"/>
 </div>
