@@ -1,4 +1,4 @@
-export type NotificacionTipo = 'sale' | 'review' | 'moderation';
+export type NotificacionTipo = 'sale' | 'purchase' | 'review' | 'moderation';
 
 export interface INotificacion {
   id: number;
@@ -7,6 +7,7 @@ export interface INotificacion {
   tipo: NotificacionTipo;
   titulo: string;
   mensaje: string;
+  redirect_url: string | null;
   leida: number;
   created_at: string;
 }

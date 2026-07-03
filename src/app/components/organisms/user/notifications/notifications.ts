@@ -47,6 +47,8 @@ export class Notifications implements OnInit {
     switch (tipo) {
       case 'sale':
         return '€';
+      case 'purchase':
+        return '🛒';
       case 'review':
         return '⭐';
       case 'moderation':
