@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { toSignal } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 import { UserMenuDrawerComponent } from './user-menu-drawer/user-menu-drawer.component';
 import { Icon } from '../../../atoms/icon/icon';
 import { MessagingSocketService } from '../../../../services/messaging-socket-service';
@@ -10,8 +10,7 @@ import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-user-header',
-  imports: [CommonModule, RouterLink, UserMenuDrawerComponent, Icon],
-  providers: [NotificacionesService],
+  imports: [RouterLink, UserMenuDrawerComponent, Icon],
   templateUrl: './user-header.component.html',
   styleUrl: './user-header.component.css',
 })
@@ -21,25 +20,29 @@ export class UserHeaderComponent implements OnInit {
   private readonly notificacionesService = inject(NotificacionesService);
 
   readonly unreadTotal = this.messagingSocket.unreadTotal;
+  readonly sinLeer = toSignal(this.notificacionesService.sinLeer$, { initialValue: 0 });
 
-  numSinLeer = 0;
-  usuarioId = 1;
   userInitials = '';
   isMenuOpen = false;
 
   ngOnInit(): void {
     const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    let usuarioId: number | null = null;
+
     if (usuarioString) {
       const usuario = JSON.parse(usuarioString);
-      this.userInitials = usuario.iniciales;
-      if (usuario.id) {
-        this.usuarioId = usuario.id;
+      this.userInitials = usuario.iniciales ?? '';
+      if (usuario?.id) {
+        usuarioId = Number(usuario.id);
       }
     }
 
     this.messagingSocket.connect();
     void this.loadUnreadCount();
-    this.loadNotificacionesCount();
+
+    if (usuarioId !== null) {
+      this.notificacionesService.refreshSinLeer(usuarioId);
+    }
   }
 
   private async loadUnreadCount(): Promise<void> {
@@ -48,15 +51,6 @@ export class UserHeaderComponent implements OnInit {
       this.messagingSocket.setUnreadCount(total);
     } catch {
     }
-  }
-
-  private loadNotificacionesCount(): void {
-    this.notificacionesService.getContarSinLeer(this.usuarioId).subscribe({
-      next: (res: any) => {
-        this.numSinLeer = res.sinLeer;
-      },
-      error: (err: any) => console.error(err)
-    });
   }
 
   openMenu(): void {

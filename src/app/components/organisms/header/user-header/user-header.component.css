@@ -55,6 +55,10 @@
     position: relative;
 }
 
+.header-link--notifications {
+    position: relative;
+}
+
 .header-link__badge {
     min-width: 18px;
     height: 18px;
@@ -67,6 +71,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+.header-link__badge--floating {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 14px;
+    height: auto;
+    padding: 2px 6px;
+    font-size: 10px;
 }
 
 .icon-button {

@@ -14,3 +14,8 @@ export interface INotificacion {
 export interface INotificacionesSinLeer {
   sinLeer: number;
 }
+
+export interface INotificacionLeidaResponse {
+  message: string;
+  sinLeer: number;
+}

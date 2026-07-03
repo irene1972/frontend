@@ -7,14 +7,14 @@
 
         <a [routerLink]="['/home']">
             <img src="logo_white.svg" alt="Buy&Sell" class="logo-img">
-        </a> 
+        </a>
 
         <div class="user-actions d-none d-md-flex align-items-center gap-3">
             <a class="header-link" [routerLink]="['/user/panel/favorites']">
                 <i class="bi bi-heart"></i>
                 <span>Favoritos</span>
             </a>
-        
+
             <a class="header-link header-link--messages" [routerLink]="['/user/panel/messages']">
                 <i class="bi bi-chat"></i>
                 <span>Mensajes</span>
@@ -22,65 +22,37 @@
                     <span class="header-link__badge">{{ unreadTotal() }}</span>
                 }
             </a>
-        
+
             <a class="btn upload-button" [routerLink]="['/user/new-product']">
                 <i class="bi bi-plus-lg"></i>
                 Subir producto
             </a>
-        
-            <!-- Campana Desktop con número naranja -->
-            <a class="header-link" [routerLink]="['/user/panel/notifications']" style="position: relative; display: inline-block;">
+
+            <a class="header-link header-link--notifications" [routerLink]="['/user/panel/notifications']">
                 <i class="bi bi-bell"></i>
                 <span>Notificaciones</span>
-                <!-- <span *ngIf="numSinLeer > 0" style="
-                    position: absolute; 
-                    top: -5px; 
-                    right: -5px; 
-                    background-color: #ff6b00; 
-                    color: white; 
-                    border-radius: 50%; 
-                    padding: 2px 6px; 
-                    font-size: 11px; 
-                    font-weight: bold;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-                    min-width: 14px;
-                    text-align: center;
-                ">
-                    {{ numSinLeer }}
-                </span> -->
+                @if (sinLeer() > 0) {
+                    <span class="header-link__badge">{{ sinLeer() }}</span>
+                }
             </a>
-        
+
             <a [routerLink]="['/user/panel/profile']">
-                <atom-icon variant="profile-primary-circle" [text_icon]="userInitials" size="1rem" link="/user/panel/profile" ></atom-icon>
+                <atom-icon variant="profile-primary-circle" [text_icon]="userInitials" size="1rem" link="/user/panel/profile"></atom-icon>
             </a>
         </div>
 
         <div class="user-actions-mobile d-flex d-md-none align-items-center gap-3 ms-auto">
-            <!-- Campana Móvil con número naranja -->
-            <a [routerLink]="['/user/panel/notifications']" style="position: relative; display: inline-block; color: inherit; text-decoration: none;">
-                <button class="btn icon-button" type="button" style="padding: 0;">
+            <a class="header-link header-link--notifications" [routerLink]="['/user/panel/notifications']">
+                <button class="btn icon-button" type="button">
                     <i class="bi bi-bell"></i>
                 </button>
-                <span *ngIf="numSinLeer > 0" style="
-                    position: absolute; 
-                    top: -5px; 
-                    right: -5px; 
-                    background-color: #ff6b00; 
-                    color: white; 
-                    border-radius: 50%; 
-                    padding: 2px 6px; 
-                    font-size: 10px; 
-                    font-weight: bold;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-                    min-width: 12px;
-                    text-align: center;
-                ">
-                    {{ numSinLeer }}
-                </span>
+                @if (sinLeer() > 0) {
+                    <span class="header-link__badge header-link__badge--floating">{{ sinLeer() }}</span>
+                }
             </a>
-        
+
             <a [routerLink]="['/user/panel/profile']">
-                <atom-icon variant="profile-primary-circle" [text_icon]="userInitials" size="1rem" link="/user/panel/profile" ></atom-icon>
+                <atom-icon variant="profile-primary-circle" [text_icon]="userInitials" size="1rem" link="/user/panel/profile"></atom-icon>
             </a>
         </div>
     </div>
