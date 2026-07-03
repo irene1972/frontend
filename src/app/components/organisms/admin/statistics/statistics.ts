@@ -22,6 +22,7 @@ export class Statistics {
   statisticsService = inject(StatisticsService);
   usuarios: IUsuario[] = [];
   usersService = inject(UsersService);
+  usuarios_filtrados: IUsuario[] = [];
 
   chart?: Chart;
 
@@ -35,7 +36,7 @@ export class Statistics {
           return;
         } else {
           this.usuarios = data;
-          console.log(this.usuarios);
+          this.usuarios_filtrados=this.usuarios.filter(usuario=>usuario.bloqueado==0);
           this.cd.detectChanges();
         }
       },
