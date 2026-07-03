@@ -1,0 +1,50 @@
+<div class="sidebar">
+    <div class="header">
+        <div class="initials">{{user.iniciales}}</div>
+        <div class="admin">
+            <p class="text-admin">User</p>
+            <div class="stars">
+                <i class="bi bi-star-fill"></i>
+                <p>{{puntuacion_media}} <span>({{ratings.total_valoraciones}})</span> </p>
+            </div>
+
+        </div>
+    </div>
+    <nav class="nav-sidebar">
+        <a [routerLink]="['/user/panel/profile']" routerLinkActive="active">
+            <i class="bi bi-person"></i>
+            <p>Mi perfil</p>
+        </a>
+        <a [routerLink]="['/user/panel/notifications']" routerLinkActive="active">
+            <i class="bi bi-bell"></i>
+            <p>Notificaciones</p>
+        </a>
+        <a [routerLink]="['/user/panel/sales']" routerLinkActive="active">
+            <i class="bi bi-box"></i>
+            <p>Productos</p>
+        </a>
+        <a [routerLink]="['/user/panel/my-purchases']" routerLinkActive="active">
+            <i class="bi bi-handbag"></i>
+            <p>Compras</p>
+        </a>
+        <a routerLinkActive="active">
+            <i class="bi bi-chat"></i>
+            <p>Mensajes</p>
+        </a>
+        <a class="historial" [routerLink]="['/user/panel/favorites']" routerLinkActive="active">
+            <i class="bi bi-heart"></i>
+            <p>Favoritos</p>
+        </a>
+        <a class="mis-valoraciones" routerLinkActive="active">
+            <i class="bi bi-star"></i>
+            <p>Mis valoraciones</p>
+        </a>
+        <a class="ajustes"  routerLinkActive="active">
+            <i class="bi bi-gear"></i>
+            <p>Ajustes</p>
+        </a>
+        <a class="cerrar-sesion"  (click)="logout()">
+            <p>Cerrar sesión</p>
+        </a>
+    </nav>
+</div>
