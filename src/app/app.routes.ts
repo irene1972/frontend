@@ -11,9 +11,6 @@ import { UserMyPurchasesComponentComponent } from './pages/user-my-purchases-com
 import { MessagesComponentComponent } from './pages/messages-component/messages-component.component';
 import { ModeratorPanelComponentComponent } from './components/organisms/moderator/moderator-panel-component/moderator-panel-component.component';
 import { IncidentViewComponentComponent } from './components/organisms/moderator/incidents-component/incident-view-component/incident-view-component.component';
-import { UserComponentComponent } from './pages/user-component/user-component.component';
-import { ModeratorComponentComponent } from './pages/moderator-component/moderator-component.component';
-import { AdminComponentComponent } from './pages/admin-component/admin-component.component';
 import { C404componentComponent } from './errors/c404component/c404component.component';
 import { authGuard } from './guards/auth-guard';
 import { roleGuard } from './guards/role-guard';
@@ -81,8 +78,8 @@ export const routes: Routes = [
 
     // // Rutas Home: Usuario Normal. 
     {
-        path: 'user', component: UserComponentComponent, canActivate: [authGuard], children: [
-            { path: '', pathMatch: 'full', redirectTo: 'profile' },
+        path: 'user', canActivate: [authGuard], children: [
+            { path: '', pathMatch: 'full', redirectTo: 'panel' },
             { path: 'new-product', component: ProductFormPage },
             { path: 'product/:productID', component: ProductViewComponentComponent },
             { path: 'product/edit/:productID', component: ProductFormPage },
@@ -115,7 +112,7 @@ export const routes: Routes = [
     // // Rutas Moderator Panel: Usuario Moderador.
 
     {
-        path: 'moderator', component: ModeratorComponentComponent, canActivate: [authGuard, roleGuard], data: {roles: ['Moderador', 'Administrador']}, children: [
+        path: 'moderator', canActivate: [authGuard, roleGuard], data: {roles: ['Moderador', 'Administrador']}, children: [
             { path: '', pathMatch: 'full', redirectTo: 'panel' },
             { path: 'panel', component: ModeratorComponent, children: [
                     { path: '', pathMatch: 'full', redirectTo: 'main' },
@@ -133,7 +130,7 @@ export const routes: Routes = [
     // // Rutas Admin Panel: Usuario Administrador. 
 
     {
-        path: 'admin', component: AdminComponentComponent, canActivate: [authGuard, roleGuard], data: {roles: ['Administrador']}, children: [
+        path: 'admin', canActivate: [authGuard, roleGuard], data: {roles: ['Administrador']}, children: [
             { path: '', pathMatch: 'full', redirectTo: 'panel' },
             { path: 'panel', component: Admin, children: [
                     { path: '', pathMatch: 'full', redirectTo: 'main' },
