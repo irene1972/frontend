@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, effect, inject, OnInit, signal, untracked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HomeBar } from '../../components/organisms/home-bar/home-bar';
@@ -90,26 +90,7 @@ export class ExploreComponent implements OnInit {
 
 
   // Signal query params change detection
-  protected selectedCategory = toSignal(
-    this.activedRoute.queryParamMap.pipe(
-      map(params => {
-        const categoryId = Number(params.getAll('categoria')[0]);
-        
-        //clear all filters
-        this.clearFilters();
-        
-        // Apply filter category
-        this.categories.map((category)=> {
-          if(category.id === categoryId) category.checked = true
-          return category;
-          });
-        this.loadArticles(1);
-        return categoryId;
-      })
-    ),
-    { initialValue: null }
-  );
-
+ 
 
   get showingFrom(): number {
     if (this.totalResults === 0) return 0;
@@ -128,9 +109,30 @@ export class ExploreComponent implements OnInit {
     return this.currentPage < this.totalPages && !this.loading;
   }
 
+  constructor() {
+    effect(() => {
+      this.selectedCategory();   // dependencia: se re-ejecuta al cambiar la URL
+      untracked(() => this.applyCategoryAndLoad()); // Untracked para que no se registren las signals de dentro de esta función ()
+    });
+  }
+
   ngOnInit(): void {
     this.loadCategories();
-    this.loadArticles();
+  }
+
+
+  protected selectedCategory = toSignal(
+    this.activedRoute.queryParamMap.pipe(
+      map(params => Number(params.get('categoria')) || null)
+    ),
+    { initialValue: null }
+  );
+
+  private applyCategoryAndLoad(): void {
+    if (this.categories.length === 0) return;
+    const categoryId = this.selectedCategory();
+    this.categories.forEach(c => (c.checked = c.id === categoryId));
+    this.loadArticles(1);
   }
 
   private loadCategories(): void {
@@ -143,6 +145,7 @@ export class ExploreComponent implements OnInit {
             checked: false,
           }));
           this.cd.detectChanges();
+          this.applyCategoryAndLoad(); 
         }
       },
       error: (err) => console.error(err),

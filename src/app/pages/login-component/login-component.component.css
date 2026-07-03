@@ -1,11 +1,26 @@
+:host {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+
+}
+
 .login-page {
+    flex:1;
     display: flex;
+    flex-direction:row;
     font-family: "Inter", sans-serif;
 }
 
-.login-register {
-    flex: 0 0 42%;
+
+app-login-register {
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+    height:auto;
 }
+
+
 
 .mobile-logo {
     display: none;

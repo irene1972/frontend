@@ -73,7 +73,7 @@ export class LoginComponentComponent {
       }, 
 
       error: (err) => {
-        if(err.error.error==='Usuario bloqueado'){
+        if (err.status === 423 || err.error?.error === 'Usuario bloqueado') {
           this.mensaje = 'Usuario temporalmente bloqueado';
           this.cd.detectChanges();
           return;
