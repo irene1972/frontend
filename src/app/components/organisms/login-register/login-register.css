@@ -1,6 +1,6 @@
 .head{
+    flex:1;
 	font-family: "Inter", sans-serif;
-    flex: 0 0 40%;
     min-width: 0;
     background: #003594;
     color:white;
@@ -9,6 +9,7 @@
 }
 .head img:last-child {
     width: 100%;
+    max-width: 700px;
     height: auto;
     display: block;
     border-radius: 5px;
