@@ -34,6 +34,7 @@ import { HistoricModeratorComponentComponent } from './components/organisms/mode
 import { ModeratorComponent } from './pages/moderator/moderator.component';
 import { IncidentReportDetailComponent } from './components/organisms/moderator/incidents-component/incident-report-detail-component/incident-report-detail-component';
 import { Sales } from './components/organisms/user/sales/sales';
+import { Notifications } from './components/organisms/user/notifications/notifications';
 import { EditArticle } from './components/organisms/user/edit-article/edit-article';
 import { ExploreComponent } from './pages/explore-component/explore-component';
 import { WriteReview } from './components/organisms/user/write-review/write-review';
@@ -87,16 +88,50 @@ export const routes: Routes = [
             { path: 'panel', component: UserPanel,
                 children: [
                     { path: '', pathMatch: 'full', redirectTo: 'profile' },
-                    { path: 'profile', component: Profile },
-                    { path: 'favorites', component: Favorites },
-                    { path: 'sales', component: Sales },
-                    { path: 'my-purchases', component: UserMyPurchasesComponentComponent },
-                    { path: 'my-purchases/write-review/:id', component: WriteReview },
-                    { path: 'my-reviews', component: MyReviews },
-                    { path: 'my-reviews/:reviewID', component: ReviewView },
-                    { path: 'article/edit/:id', component: EditArticle },
-                    { path: 'edit-profile/:userID', component: UserFormComponentComponent },
-                    { path: 'messages', component: MessagesComponentComponent }
+                    {
+                        path: 'profile',
+                        component: Profile
+                    },
+                    {
+                        path: 'favorites',
+                        component: Favorites
+                    },
+                    {
+                        path: 'sales',
+                        component: Sales
+                    },
+                    {
+                        path: 'notifications',
+                        component: Notifications
+                    },
+                    {
+                        path: 'my-purchases',
+                        component: UserMyPurchasesComponentComponent
+                    },
+                    {
+                        path: 'my-purchases/write-review/:id',
+                        component: WriteReview
+                    },
+                    {
+                        path: 'my-reviews',
+                        component: MyReviews
+                    },
+                    {
+                        path: 'my-reviews/:reviewID',
+                        component: ReviewView
+                    },
+                    {
+                        path: 'article/edit/:id',
+                        component: EditArticle
+                    },
+                    {
+                        path: 'edit-profile/:userID',
+                        component: UserFormComponentComponent
+                    },
+                    {
+                        path: 'messages',
+                        component: MessagesComponentComponent
+                    }
                 ]
              },
             /*{ path: 'profile/:userID', component: UserProfileComponentComponent }, */
