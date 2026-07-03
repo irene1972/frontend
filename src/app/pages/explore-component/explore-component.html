@@ -21,13 +21,6 @@
         (click)="onSearch()"
       />
     </div>
-
-    <div class="explore-search__trends">
-      <span class="explore-search__trends-label">TENDENCIAS</span>
-      @for (trend of trends; track trend) {
-        <button type="button" class="trend-tag" (click)="applyTrend(trend)">{{ trend }}</button>
-      }
-    </div>
   </section>
 
   <div class="explore-body">
