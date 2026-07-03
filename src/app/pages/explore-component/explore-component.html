@@ -49,13 +49,13 @@
         <div class="filters__price-row">
           <div class="filters__price-field">
             <span class="filters__price-prefix">Mín</span>
-            <input type="number" [(ngModel)]="priceMin" />
+            <input [min]="PRICE_MIN" type="number" [ngModel]="priceMin()" (ngModelChange)="onPriceMinChange($event)"/>
             <span class="filters__price-suffix">€</span>
           </div>
           <div class="filters__price-field">
             <span class="filters__price-prefix">Máx</span>
-            <input type="number" [(ngModel)]="priceMax" />
-            <span class="filters__price-suffix">€</span>
+            <input [min]="PRICE_MAX" type="number" [ngModel]="priceMax()" (ngModelChange)="onPriceMaxChange($event)" />
+            <span  class="filters__price-suffix">€</span>
           </div>
         </div>
       </div>

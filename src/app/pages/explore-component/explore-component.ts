@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HomeBar } from '../../components/organisms/home-bar/home-bar';
 import { Button } from '../../components/atoms/button/button';
 import { Badge } from '../../components/atoms/badge/badge';
@@ -11,6 +11,8 @@ import { ArticlesService } from '../../services/articles-service';
 import { CategoriesService } from '../../services/categories-service';
 import { ICategory } from '../../interfaces/i-category';
 import { IExploreArticulo } from '../../interfaces/i-explore-articulos';
+import { map } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 interface ExploreArticle {
   id: number;
@@ -41,7 +43,10 @@ interface ExploreCategoryFilter {
   styleUrl: './explore-component.css',
 })
 export class ExploreComponent implements OnInit {
+
+
   private router = inject(Router);
+  private activedRoute = inject(ActivatedRoute);
   private articlesService = inject(ArticlesService);
   private categoriesService = inject(CategoriesService);
   private cd = inject(ChangeDetectorRef);
@@ -49,9 +54,11 @@ export class ExploreComponent implements OnInit {
   private readonly placeholderImage =
     'https://placehold.co/400x300/E5EEFF/747683?text=Sin+imagen';
 
+  protected readonly PRICE_MIN: number = 0;
+  protected readonly PRICE_MAX: number = 1;
   searchQuery = '';
-  priceMin: number | null = null;
-  priceMax: number | null = null;
+  priceMin = signal<number | null>(null);
+  priceMax = signal<number | null>(null);
   locationFilter = '';
   sortBy = 'relevancia';
   currentPage = 1;
@@ -80,6 +87,29 @@ export class ExploreComponent implements OnInit {
   articles: ExploreArticle[] = [];
   totalResults = 0;
   totalPages = 0;
+
+
+  // Signal query params change detection
+  protected selectedCategory = toSignal(
+    this.activedRoute.queryParamMap.pipe(
+      map(params => {
+        const categoryId = Number(params.getAll('categoria')[0]);
+        
+        //clear all filters
+        this.clearFilters();
+        
+        // Apply filter category
+        this.categories.map((category)=> {
+          if(category.id === categoryId) category.checked = true
+          return category;
+          });
+        this.loadArticles(1);
+        return categoryId;
+      })
+    ),
+    { initialValue: null }
+  );
+
 
   get showingFrom(): number {
     if (this.totalResults === 0) return 0;
@@ -140,8 +170,8 @@ export class ExploreComponent implements OnInit {
         categorias_id: selectedCategories.length
           ? selectedCategories.join(',')
           : undefined,
-        precio_min: this.priceMin ?? undefined,
-        precio_max: this.priceMax ?? undefined,
+        precio_min: this.priceMin() ?? undefined,
+        precio_max: this.priceMax() ?? undefined,
         estado_conservacion: selectedConditions.length
           ? selectedConditions.join(',')
           : undefined,
@@ -198,6 +228,22 @@ export class ExploreComponent implements OnInit {
     this.loadArticles(1);
   }
 
+  onPriceMinChange(value: number | null) {
+    if (value !== null && value < this.PRICE_MIN) {
+      this.priceMin.set(this.PRICE_MIN);
+    } else {
+      this.priceMin.set(value);
+    }
+  } 
+
+   onPriceMaxChange(value: number | null) {
+    if (value !== null && value < this.PRICE_MAX) {
+      this.priceMax.set(this.PRICE_MAX);
+    } else {
+      this.priceMax.set(value);
+    }
+  } 
+
   applyTrend(trend: string): void {
     this.searchQuery = trend;
     this.onSearch();
@@ -206,8 +252,8 @@ export class ExploreComponent implements OnInit {
   clearFilters(): void {
     this.categories.forEach((c) => (c.checked = false));
     this.conditions.forEach((c) => (c.checked = false));
-    this.priceMin = null;
-    this.priceMax = null;
+    this.priceMin.set(null);
+    this.priceMax.set(null);
     this.locationFilter = '';
     this.loadArticles(1);
   }

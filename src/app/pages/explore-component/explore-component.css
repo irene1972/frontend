@@ -8,6 +8,7 @@
   min-height: 100%;
 }
 
+
 .explore-search {
   margin: 0 auto;
   padding: var(--page-padding);
@@ -99,12 +100,14 @@
   margin: 0 auto;
   padding: var(--page-padding);
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 310px 1fr; /*TODO*/
   gap: 2rem;
   align-items: start;
 }
 
 .filters {
+  display:flex;
+  flex-direction: column;
   background-color: var(--surface-card);
   border: 1px solid var(--outline-var);
   border-radius: 0.75rem;
@@ -162,6 +165,7 @@
   border-radius: 0.4rem;
   overflow: hidden;
   background-color: var(--surface-page);
+
 }
 
 .filters__price-prefix,
@@ -179,7 +183,6 @@
   padding: 0.4rem 0;
   font-size: 0.85rem;
   color: var(--text-primary);
-  min-width: 0;
 }
 
 .filters__price-field input:focus {
@@ -522,6 +525,8 @@
   min-width: 8rem;
   text-align: center;
 }
+
+
 
 @media (max-width: 1024px) {
   .explore-body {
