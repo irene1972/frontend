@@ -28,7 +28,7 @@ export class EditArticle {
   fotos: IPhoto[] = [];
   id!: string;
   imagenFile!: File | null;
-  articlePhotoService=inject(ArticlePhotosService);
+  articlePhotoService = inject(ArticlePhotosService);
 
   constructor(private cd: ChangeDetectorRef, private route: ActivatedRoute, private router: Router) {
     this.miForm = new FormGroup({
@@ -43,13 +43,14 @@ export class EditArticle {
         Validators.required,
         Validators.minLength(3)
       ]),
+      estado_articulo_id: new FormControl({ value: '', disabled: true }, []),
       precio: new FormControl('', [
         Validators.required
       ]),
       ubicacion: new FormControl('', [
         Validators.required
       ]),
-      provincia: new FormControl({ value: '', disabled: true }, [])
+      provincia: new FormControl('', [])
     }, []);
     this.miForm2 = new FormGroup({
       principal: new FormControl('', []),
@@ -84,9 +85,15 @@ export class EditArticle {
           descripcion: this.articulo?.descripcion,
           precio: this.articulo?.precio,
           ubicacion: this.articulo?.cp,
-          provincia: this.articulo?.provincia?.nombre
+          provincia: this.articulo?.provincia?.nombre,
+          estado_articulo_id: this.articulo?.estado_articulo_id
         });
 
+        if (this.articulo.estado_articulo_id === 'Retirado' || this.articulo.estado_articulo_id === 'En_revision') {
+          this.miForm.get('estado_articulo_id')?.disable();
+        } else {
+          this.miForm.get('estado_articulo_id')?.enable();
+        }
 
         this.photosService.getAllPhotosByArticle(this.articulo.id).subscribe({
           next: (data) => {
@@ -128,7 +135,7 @@ export class EditArticle {
 
     this.miForm.value.usuarios_id = this.articulo.usuarios_id;
     this.miForm.value.estado_conservacion_id = this.articulo.estado_conservacion_id;
-    this.miForm.value.estado_articulo_id = this.articulo.estado_articulo_id;
+    /*this.miForm.value.estado_articulo_id = this.articulo.estado_articulo_id;*/
 
     this.articlesService.updateArticleAndCP(Number(this.id), this.miForm.value).subscribe({
       next: (data) => {
@@ -155,15 +162,15 @@ export class EditArticle {
       this.cd.detectChanges();
     }
   }
-  onFileSelected(event: Event){
+  onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
 
     if (input.files && input.files.length > 0) {
       this.imagenFile = input.files[0];
-      
+
     }
   }
-  loadData2(article_id:number) {
+  loadData2(article_id: number) {
     console.log(article_id);
     if (!this.miForm2.valid) {
       this.miForm.markAllAsTouched();
@@ -173,7 +180,7 @@ export class EditArticle {
 
     const formData = new FormData();
 
-    formData.append('principal', (this.miForm2.value.principal)?'1':'0');
+    formData.append('principal', (this.miForm2.value.principal) ? '1' : '0');
     formData.append('articulos_id', article_id.toString());
 
     /*cambiar el nombre de icono */
@@ -182,23 +189,23 @@ export class EditArticle {
     }
     for (const [key, value] of formData.entries()) {
       console.log(key, value);
-    } 
+    }
 
-        this.articlePhotoService.insertFoto(formData).subscribe({
-          next: (data) => {
-            if (data.error) {
-            this.mensaje = data.error;
-            return;
-          } else {
-            this.mensaje=data.mensaje;
-            window.location.reload();
-          }
-          },
-          error: (err) => {
-            console.error(err);
-            
-          }
-        });
-        
+    this.articlePhotoService.insertFoto(formData).subscribe({
+      next: (data) => {
+        if (data.error) {
+          this.mensaje = data.error;
+          return;
+        } else {
+          this.mensaje = data.mensaje;
+          window.location.reload();
+        }
+      },
+      error: (err) => {
+        console.error(err);
+
+      }
+    });
+
   }
 }
