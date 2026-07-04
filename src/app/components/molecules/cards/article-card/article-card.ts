@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, model, output } from '@angular/core';
 import { ButtonIcon } from '../../../atoms/button-icon/button-icon';
 import { Badge } from '../../../atoms/badge/badge';
 import { BadgeCondition } from '../../../atoms/badge/badge.types';
@@ -72,11 +72,7 @@ export class ArticleCard {
 
   private router = inject(Router);
 
-  public articleCardClick = output<ButtonIconStates>();
-
-  protected selectArticle(event: ButtonIconStates){
-    this.articleCardClick.emit(event);
-  }
+  public articleFavorite = model<ButtonIconStates>(ButtonIconStates.WAIT);
 
   protected navArticleDetail() {
     this.router.navigate([this.route()]);

@@ -20,14 +20,7 @@
             }
             @if (!isOwner()) {
                 <div class="image-main__like">
-                    <button 
-                        type="button"
-                        class="btn-like btn rounded-circle border-0"
-                        [style.--size]="'18px'"
-                        (click)="toggleFav()"
-                        >
-                        <i [class]="favoritoId() !== null ? 'bi bi-heart-fill icon--like actived' : 'bi bi-heart icon--like'"></i>
-                    </button>
+                    <atom-button-icon variant="like" size="1rem" [state]="favoriteState()" (buttonIconClick)="toggleFav()"> </atom-button-icon>  
                 </div>
             }
         </div>

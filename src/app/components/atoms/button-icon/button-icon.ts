@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal } from '@angular/core';
+import { Component, computed, input, model, output } from '@angular/core';
 import { ButtonIconVariant, ButtonIconStates} from  './button-icon.config';
 import { STYLES } from './button-icon.styles';
 /**
@@ -26,7 +26,6 @@ import { STYLES } from './button-icon.styles';
   imports: [],
   templateUrl: './button-icon.html',
   styleUrl: './button-icon.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonIcon {
   /* Public inputs */
@@ -34,11 +33,10 @@ export class ButtonIcon {
   public size      = input<string>('400px');
   public text_icon = input<string>('');
 
-  /* Public outputs */
+  /* Component State (two way data binding)*/
+  public state = input<ButtonIconStates>(ButtonIconStates.INACTIVED);
+
   public buttonIconClick = output<ButtonIconStates>();
-  
-  /* Component State*/
-  private state = signal<ButtonIconStates>(ButtonIconStates.INACTIVED);
   
   /* Component Computed Styles */
   protected btnClass = computed(() =>  {
@@ -78,7 +76,6 @@ export class ButtonIcon {
   
   /** Methods */
   protected onClick(): void {
-    this.state.update(state => (state === ButtonIconStates.ACTIVED) ? ButtonIconStates.INACTIVED:ButtonIconStates.ACTIVED );
-    this.buttonIconClick.emit(this.state());
+    this.buttonIconClick.emit((this.state() === ButtonIconStates.ACTIVED) ? ButtonIconStates.INACTIVED:ButtonIconStates.ACTIVED );
   }
 }

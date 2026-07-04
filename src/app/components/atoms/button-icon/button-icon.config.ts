@@ -3,6 +3,7 @@ export type ButtonIconVariant = 'like' | 'star' | 'trash-button' | 'add-photo' |
 
 /** Component States */
 export enum ButtonIconStates {
+    WAIT      = "wait",
     ACTIVED   = "actived",
     HOVER     = "hover",
     INACTIVED = "inactived"
@@ -10,6 +11,7 @@ export enum ButtonIconStates {
 
 /** Component Configuration Interface */
 export interface ButtonIconConfig {
+    wait?:      string;
     actived?:   string;
     hover?:     string;
     inactived?: string;

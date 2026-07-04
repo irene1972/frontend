@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
 import { Button } from "../../components/atoms/button/button";
 import { ArticlesService } from '../../services/articles-service';
 import { IArticle } from '../../interfaces/i-article';
@@ -20,11 +20,13 @@ import { Toast } from '../../components/atoms/toast/toast';
 import Swal from 'sweetalert2';
 import { ArticlePhotosService } from '../../services/article-photos.service';
 import { Role } from '../../enums/role.enum';
+import { ButtonIcon } from "../../components/atoms/button-icon/button-icon";
+import { ButtonIconStates } from '../../components/atoms/button-icon/button-icon.config';
 
 
 @Component({
   selector: 'app-product-view-component',
-  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, HomeBar, ReportModal, Toast],
+  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, HomeBar, ReportModal, Toast, ButtonIcon],
   templateUrl: './product-view-component.component.html',
   styleUrl: './product-view-component.component.css',
 })
@@ -51,7 +53,9 @@ export class ProductViewComponentComponent {
   product = signal<IArticle | null>(null);
 
   //favorito
-  favoritoId = signal<number | null>(null);
+  favoritoId = null;
+  favoriteState = signal<ButtonIconStates>(ButtonIconStates.WAIT);
+
 
   //toast avisos de favoritos
   showToast = signal<boolean>(false);
@@ -63,7 +67,6 @@ export class ProductViewComponentComponent {
 
   ngOnInit() { 
     this.loadProduct();
-    this.checkFavorito();
   }
 
   //carga de producto y datos
@@ -154,7 +157,6 @@ export class ProductViewComponentComponent {
   });
 
   // breadcrumb items
-
   protected breadcrumbItems = computed(() => [
   { label: 'Inicio', route: '/' },
   { label: 'Productos', route: '/explore'},
@@ -185,11 +187,13 @@ export class ProductViewComponentComponent {
     const userId = JSON.parse(raw).id;
 
     try {
-      const favs = await lastValueFrom(this.favoritesService.getAllFavoritesByUser(userId));     
-      const favorito = favs.find((fav: any) => fav.id === Number(this.productID()));
-      
-      this.favoritoId.set(favorito?.favoritos_id || null);
-      
+      /* Devuelve todos los artículos favoritos de un usuario concreto */
+      const articleFavs = await lastValueFrom(this.favoritesService.getAllFavoritesByUser(userId));   // obtenemos los articulos favoritos de un usuario
+      const articleFav = articleFavs.find((article: any) => article.id === Number(this.productID())); // buscamos si nuestro articuo se encuentra en la lista de favoritos
+    
+      this.favoritoId = articleFav?.favoritos_id || null;
+      this.favoriteState.set(articleFav ? ButtonIconStates.ACTIVED : ButtonIconStates.INACTIVED)
+   
     } catch (error) {
       this.router.navigate(['/500error']);
     }
@@ -197,6 +201,7 @@ export class ProductViewComponentComponent {
 
   async toggleFav() {
     const raw = localStorage.getItem('usuarioBuy&Sell');
+    
     if (!raw) {
       // Sin sesion: preguntamos si quiere iniciar sesion
       const result = await Swal.fire({
@@ -215,17 +220,17 @@ export class ProductViewComponentComponent {
     const userId = JSON.parse(raw).id;
 
     try {
-      if (this.favoritoId() === null) {
-        const res = await lastValueFrom(
-          this.favoritesService.addFavorite(userId, Number(this.productID()))
-        );
-        this.favoritoId.set(res.id);
+      if (this.favoriteState() === ButtonIconStates.INACTIVED) {
+        const res = await lastValueFrom(this.favoritesService.addFavorite(userId, Number(this.productID())));
+        this.favoritoId = res.id;
+        this.favoriteState.set(ButtonIconStates.ACTIVED);
         this.lanzarToast('success', 'El artículo ha sido añadido a la lista de favoritos');
-      } else {
-        await lastValueFrom(this.favoritesService.deleteFavorite(this.favoritoId()!));
-        this.favoritoId.set(null);
+      } else if (this.favoriteState() === ButtonIconStates.ACTIVED){
+        await lastValueFrom(this.favoritesService.deleteFavorite(this.favoritoId!));
+        this.favoritoId = null;
+        this.favoriteState.set(ButtonIconStates.INACTIVED);
         this.lanzarToast('info', 'Artículo eliminado de favoritos');
-      }
+      } 
     } catch (error: any) {
       this.router.navigate(['/500error']);
     }
@@ -240,11 +245,9 @@ export class ProductViewComponentComponent {
   }
 
   // Modal reporte
-
   showReportModal = signal<boolean>(false);
 
   // Eventos compra
-
   onContactar(event: MouseEvent) {
     void Swal.fire({
       title: 'Mensajes',
@@ -272,7 +275,6 @@ export class ProductViewComponentComponent {
   }
 
   // eventos propietario
-
   onEditar(event: MouseEvent) {
     this.router.navigate(['/user/panel/article/edit', this.productID()])
   }
