@@ -40,11 +40,24 @@
                         <div class="user">
                             <h3 class="card-title">{{usuario.nombre}} {{usuario.apellidos[0]}}.</h3>
                             <p class="card-subtitle mb-2 text-muted">{{usuario.email}}</p>
+                            <div class="label label-mobile">
+                                <div class="label-rol" [ngStyle]="{
+                                    'background-color':
+                                    usuario.roles_id === 'Administrador' ? '#DCE9FF' :
+                                    usuario.roles_id === 'Moderador' ? '#DCE9FF' :
+                                    '#EFF1F5'
+                                }">
+                                    {{ usuario.roles_id.toUpperCase() }}
+                                </div>
+                                @if(usuario.bloqueado > 0){
+                                    <div class="label-bloqueado">BLOQUEADO</div>
+                                }
+                            </div>
                         </div>
                     </div>
                 </a>
                 <div class="acciones">
-                    <div class="label">
+                    <div class="label label-desktop">
                         <div class="label-rol" [ngStyle]="{
                             'background-color':
                             usuario.roles_id === 'Administrador' ? '#DCE9FF' :
@@ -54,11 +67,14 @@
                             {{ usuario.roles_id.toUpperCase() }}
                         </div>
                         @if(usuario.bloqueado > 0){
-                        <div class="label-bloqueado">BLOQUEADO</div>
+                            <div class="label-bloqueado">BLOQUEADO</div>
                         }
-
                     </div>
-                    <div><button class="btn btn-primary eliminar" (click)="borrar(usuario.id)">Eliminar</button>
+                    <div>
+                        <button class="btn eliminar" (click)="borrar(usuario.id)">
+                            <span class="eliminar-texto">Eliminar</span>
+                            <i class="bi bi-trash eliminar-icono"></i>
+                        </button>
                     </div>
                 </div>
             </div>

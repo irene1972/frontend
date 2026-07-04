@@ -88,7 +88,7 @@ export class SalesArticle {
       },
       error: (error) => {
         console.error(error);
-        Swal.fire('Ha habido un error', '', 'info');
+        Swal.fire('Ha habido un error', 'No existe pedido asociado a este producto', 'info');
       }
     });
   }

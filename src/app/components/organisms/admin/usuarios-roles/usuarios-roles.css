@@ -15,13 +15,10 @@ a {
   }
 }
 
-
-/* Buscador */
 .buscador {
   margin-bottom: 1rem;
 }
 
-/* Cards resumen */
 .resumen {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -51,7 +48,6 @@ a {
   }
 }
 
-/* Lista usuarios */
 .users {
   margin-bottom: 1rem;
 
@@ -100,7 +96,6 @@ a {
   }
 }
 
-/* Labels */
 .label {
   font-size: .7rem;
   margin-right: 1rem;
@@ -123,10 +118,16 @@ a {
   color: #b91c1c;
   margin-top: .5rem;
 }
+
+.label-mobile {
+  display: none;
+}
+
 .acciones{
   display: flex;
   align-items: center;
 }
+
 .eliminar{
   margin-right: 1rem;
   background: #DC2626;
@@ -134,7 +135,14 @@ a {
   font-weight: bold;
 }
 
-/* Paginación */
+.eliminar-texto {
+  color: white;
+}
+
+.eliminar-icono {
+  display: none;
+}
+
 .paginacion {
   display: flex;
   justify-content: center;
@@ -226,7 +234,6 @@ a {
       min-width: 2.9rem;
       font-size: .9rem;
     }
-
     .user {
       h3 {
         font-size: .95rem;
@@ -246,6 +253,45 @@ a {
   .label-rol,
   .label-bloqueado {
     padding: .25rem .4rem;
+  }
+
+  .label-desktop {
+    display: none;
+  }
+
+  .label-mobile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .35rem;
+    flex-wrap: wrap;
+    margin-top: .3rem;
+  }
+
+  .label-mobile .label-bloqueado {
+    margin-top: 0;
+  }
+
+  .eliminar {
+    margin: 0;
+    padding: .45rem;
+    width: 2.3rem;
+    height: 2.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #DC2626;
+  }
+
+  .eliminar-texto {
+    display: none;
+  }
+
+  .eliminar-icono {
+    display: inline-block;
+    font-size: 1.25rem;
   }
 
   .paginacion {
