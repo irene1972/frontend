@@ -8,7 +8,7 @@ import { Icon } from "../../../atoms/icon/icon";
 import { Button } from "../../../atoms/button/button";
 import { ButtonIconStates } from '../../../atoms/button-icon/button-icon.config';
 import { Router } from '@angular/router';
-
+import { ArticleStatus } from '../../../../enums/article-status.enum';
 
 /**
  * Molécula para mostrar un artículo de segunda mano en formato tarjeta.
@@ -54,16 +54,21 @@ import { Router } from '@angular/router';
   styleUrl: './article-card.css',
 })
 export class ArticleCard {
+  protected readonly ARTICLE_STATUS = ArticleStatus;
+
   public variant   = input<ArticleCardVariant>('minimal')
   public like      = input<boolean>(true);
   public state     = input<BadgeCondition>('Como nuevo');
   public img       = input<string>("https://placehold.co/400x200");
   public price_old = input<number>(750);
   public price     = input<number>(650);
-  public name      = input<string>("Article Name");
+  public article_name = input<string>("Article Name");
+  public user_name = input<string>("Name");
+  public user_last_name = input<string>("Lastname");
   public location  = input<string>("Madrid, Centro");
+  public ratings   = input<string>("");
   public route     = input<string>("");
-  public estadoArticulo = input<string>('Publicado');
+  public estadoArticulo = input<string>(this.ARTICLE_STATUS.PUBLISHED);
 
   private router = inject(Router);
 

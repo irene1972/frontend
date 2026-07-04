@@ -1,6 +1,11 @@
-<div class="article-card" [class.owner]="variant() === 'owner'">
+<article class="article-card" [class.owner]="variant() === 'owner'">
     <div class="image">
         <img [src]="img()" alt="">
+        @if (estadoArticulo() === ARTICLE_STATUS.SOLD) {
+            <div class="sold-overlay">
+                <span class="sold-label">VENDIDO</span>
+            </div>
+        }
         @if(variant() !== 'owner'){<atom-badge [variant]="state()" class="article-badge desktop"/>}
         @if(like()){
             <atom-button-icon variant="like" size="1rem" class="article-like" (buttonIonClick)="selectArticle($event)"/>
@@ -9,7 +14,7 @@
     @if(variant() !== 'owner'){<atom-badge [variant]="state()" class="article-badge mobile"/>}
     @if(variant() === 'minimal'){
     <p class="price">{{price()}} €</p>
-    <h2 >{{name()}}</h2>
+    <h2 >{{article_name()}}</h2>
     @if(location()) {
     <div class="article-location">
             <i class="bi bi-geo-alt"></i>
@@ -18,16 +23,16 @@
     }
     }
     @else if (variant() === 'normal') {
-    <h2 >{{name()}}</h2>
+    <h2 >{{article_name()}}</h2>
     <div class="article-location">
         <i class="bi bi-geo-alt"></i>
         <p>{{location()}}</p>
     </div>
     <div class="separator"></div>
-    <molecule-user-card [shadow]="false" [transparent]="true">
+    <molecule-user-card [name]="user_name()" [last_name]="user_last_name()" [shadow]="false" [transparent]="true">
         <div class="d-flex flex-row gap-2">
             <atom-icon variant="star" size="1rem"></atom-icon>
-            <p>4.9 · 128 valoraciones</p>
+            <p>{{ratings()}}</p>
         </div>
     </molecule-user-card>
     <div class="detail d-flex flex-row align-items-center">
@@ -49,7 +54,7 @@
     </div>
     }
     @else if (variant() === 'outstanding') {
-    <h2 >{{name()}}</h2>
+    <h2 >{{article_name()}}</h2>
     <p class="price">{{price()}} €</p>
     <atom-button class="btn-outstanding" label="Comprar ahora" icon="cart"/>
     }
@@ -62,9 +67,9 @@
             @else { {{estadoArticulo()}} }
         </div>
         <p class="owner-price">{{price()}} €</p>
-        <h3 class="owner-name">{{name()}}</h3>
+        <h3 class="owner-name">{{article_name()}}</h3>
     </div>
     }
-</div>
+</article>
 
 

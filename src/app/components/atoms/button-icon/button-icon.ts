@@ -35,7 +35,7 @@ export class ButtonIcon {
   public text_icon = input<string>('');
 
   /* Public outputs */
-  public buttonIonClick   = output<ButtonIconStates>();
+  public buttonIconClick = output<ButtonIconStates>();
   
   /* Component State*/
   private state = signal<ButtonIconStates>(ButtonIconStates.INACTIVED);
@@ -79,6 +79,6 @@ export class ButtonIcon {
   /** Methods */
   protected onClick(): void {
     this.state.update(state => (state === ButtonIconStates.ACTIVED) ? ButtonIconStates.INACTIVED:ButtonIconStates.ACTIVED );
-    this.buttonIonClick.emit(this.state());
+    this.buttonIconClick.emit(this.state());
   }
 }
