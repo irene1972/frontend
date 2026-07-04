@@ -49,6 +49,10 @@
     gap: 0.4rem;
     white-space: nowrap;
     position: relative;
+    transition: color 1 ease-in-out;
+    &:hover {
+        color: #fe6b00;
+    }
 }
 
 .header-link--messages {

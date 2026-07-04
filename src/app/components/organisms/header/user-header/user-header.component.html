@@ -23,11 +23,6 @@
                 }
             </a>
 
-            <a class="btn upload-button" [routerLink]="['/user/new-product']">
-                <i class="bi bi-plus-lg"></i>
-                Subir producto
-            </a>
-
             <a class="header-link header-link--notifications" [routerLink]="['/user/panel/notifications']">
                 <i class="bi bi-bell"></i>
                 <span>Notificaciones</span>
@@ -35,6 +30,13 @@
                     <span class="header-link__badge">{{ sinLeer() }}</span>
                 }
             </a>
+
+            <a class="btn upload-button" [routerLink]="['/user/new-product']">
+                <i class="bi bi-plus-lg"></i>
+                Subir producto
+            </a>
+
+            
 
             <a [routerLink]="['/user/panel/profile']">
                 <atom-icon variant="profile-primary-circle" [text_icon]="userInitials" size="1rem" link="/user/panel/profile"></atom-icon>
