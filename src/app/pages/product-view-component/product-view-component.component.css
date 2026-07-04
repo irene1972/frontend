@@ -199,3 +199,18 @@ molecule-breadcrum {
         font-size: 24px;
     }
 }
+
+.fav-toast{
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 1080;
+}
+
+/* En movil, subir el toast por encima de la barra inferior de navegacion (80px) */
+@media (max-width: 767px){
+  .fav-toast{
+    bottom: 108px;
+  }
+}

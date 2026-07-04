@@ -96,3 +96,7 @@
 </div>
 
 <molecule-report-modal [isOpen]="showReportModal()" [productId]="productID()" (closed)="showReportModal.set(false)"></molecule-report-modal>
+
+<div class="fav-toast">
+    <atom-toast [variant]="toastVariant()" [message]="toastMessage()" size="18px" [trigger]="showToast()"/>
+</div>

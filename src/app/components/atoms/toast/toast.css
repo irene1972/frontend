@@ -64,3 +64,8 @@
   from { opacity: 1; transform: translateY(0); }
   to   { opacity: 0; transform: translateY(8px); }
 }
+
+/* Aire a la derecha del mensaje cuando no hay boton (variantes no-trash) */
+.toast--message:last-child {
+  padding-right: var(--size);
+}

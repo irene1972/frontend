@@ -16,6 +16,7 @@ import { HomeBar } from "../../components/organisms/home-bar/home-bar";
 import { ReportModal } from "../../components/molecules/report-modal/report-modal";
 import { CheckoutService } from '../../services/checkout-service';
 import { FavoritesService } from '../../services/favorites-service';
+import { Toast } from '../../components/atoms/toast/toast';
 import Swal from 'sweetalert2';
 import { ArticlePhotosService } from '../../services/article-photos.service';
 import { Role } from '../../enums/role.enum';
@@ -23,7 +24,7 @@ import { Role } from '../../enums/role.enum';
 
 @Component({
   selector: 'app-product-view-component',
-  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, HomeBar, ReportModal],
+  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, HomeBar, ReportModal, Toast],
   templateUrl: './product-view-component.component.html',
   styleUrl: './product-view-component.component.css',
 })
@@ -51,6 +52,11 @@ export class ProductViewComponentComponent {
 
   //favorito
   favoritoId = signal<number | null>(null);
+
+  //toast avisos de favoritos
+  showToast = signal<boolean>(false);
+  toastVariant = signal<'success' | 'info' | 'warn' | 'trash'>('success');
+  toastMessage = signal<string>('');
   
   private router = inject(Router);
   private checkoutService = inject(CheckoutService);
@@ -192,17 +198,20 @@ export class ProductViewComponentComponent {
   async toggleFav() {
     const raw = localStorage.getItem('usuarioBuy&Sell');
     if (!raw) {
-      Swal.fire({
-        title: 'Debes iniciar sesión para agregar a favoritos',
-        icon: 'warning',
+      // Sin sesion: preguntamos si quiere iniciar sesion
+      const result = await Swal.fire({
+        title: 'Inicia sesión',
+        text: 'Debes iniciar sesión para guardar artículos en favoritos.',
+        icon: 'info',
+        showCancelButton: true,
         confirmButtonText: 'Iniciar sesión',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(['/login']);
-        }
+        cancelButtonText: 'Cancelar',
       });
+      if (result.isConfirmed) {
+        this.router.navigate(['/login']);
+      }
       return;
-    };
+    }
     const userId = JSON.parse(raw).id;
 
     try {
@@ -211,20 +220,24 @@ export class ProductViewComponentComponent {
           this.favoritesService.addFavorite(userId, Number(this.productID()))
         );
         this.favoritoId.set(res.id);
-        Swal.fire({
-          title: 'Artículo agregado a favoritos',
-          icon: 'success',})
+        this.lanzarToast('success', 'El artículo ha sido añadido a la lista de favoritos');
       } else {
         await lastValueFrom(this.favoritesService.deleteFavorite(this.favoritoId()!));
         this.favoritoId.set(null);
-        Swal.fire({
-          title: 'Artículo eliminado de favoritos',
-          icon: 'info',})
+        this.lanzarToast('info', 'Artículo eliminado de favoritos');
       }
     } catch (error: any) {
       this.router.navigate(['/500error']);
     }
-}
+  }
+
+  // Dispara el toast reutilizando el patron del proyecto (senal trigger)
+  private lanzarToast(variant: 'success' | 'info' | 'warn' | 'trash', message: string) {
+    this.toastVariant.set(variant);
+    this.toastMessage.set(message);
+    this.showToast.set(false);
+    setTimeout(() => this.showToast.set(true), 10);
+  }
 
   // Modal reporte
 
@@ -279,4 +292,5 @@ export class ProductViewComponentComponent {
     }
   }
 }
+
 

@@ -105,16 +105,15 @@ export class RegisterComponentComponent {
       },
       error: (err) => {
         this.tipo = false;
-
+        // El backend responde 409 con el motivo (email o usuario ya en uso) o 400 con los detalles de validacion
         if (err.status === 409 && err.error?.error) {
           this.mensaje = err.error.error;
         } else if (err.status === 400 && err.error?.detalles) {
           const detalles = Object.values(err.error.detalles) as string[];
           this.mensaje = detalles[0] ?? 'Revisa los datos del formulario.';
         } else {
-          this.mensaje = 'No se ha podido crear la cuenta. Revisa los datos e inténtalo de nuevo.';
+          this.mensaje = 'No se ha podido crear la cuenta. Revisa los datos e intentalo de nuevo.';
         }
-
         this.cd.detectChanges();
       }
     });
