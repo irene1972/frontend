@@ -20,11 +20,13 @@ import { Toast } from '../../components/atoms/toast/toast';
 import Swal from 'sweetalert2';
 import { ArticlePhotosService } from '../../services/article-photos.service';
 import { Role } from '../../enums/role.enum';
+import { ButtonIcon } from "../../components/atoms/button-icon/button-icon";
+import { ButtonIconStates } from '../../components/atoms/button-icon/button-icon.config';
 
 
 @Component({
   selector: 'app-product-view-component',
-  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, HomeBar, ReportModal, Toast],
+  imports: [Button, TimeAgoPipe, Badge, Breadcrum, UserRatingCard, HomeBar, ReportModal, Toast, ButtonIcon],
   templateUrl: './product-view-component.component.html',
   styleUrl: './product-view-component.component.css',
 })
@@ -173,11 +175,18 @@ export class ProductViewComponentComponent {
     this.selectedPhoto.set(foto);
   }
 
+  
   private isGuest(){
     const raw = localStorage.getItem('usuarioBuy&Sell');
     if (!raw) return "guest";
     const rol = JSON.parse(raw).rol;  
     return !(rol===Role.USUARIO || rol===Role.MODERADOR || rol===Role.ADMINISTRADOR);
+  }
+
+  protected getUserId(){
+    const raw = localStorage.getItem('usuarioBuy&Sell');
+    if (!raw) return null;
+    return JSON.parse(raw).id;  
   }
 
   //favoritos
@@ -197,25 +206,15 @@ export class ProductViewComponentComponent {
     }
   }
 
-  async toggleFav() {
-    const raw = localStorage.getItem('usuarioBuy&Sell');
-    if (!raw) {
-      // Sin sesion: preguntamos si quiere iniciar sesion
-      const result = await Swal.fire({
-        title: 'Inicia sesión',
-        text: 'Debes iniciar sesión para guardar artículos en favoritos.',
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonText: 'Iniciar sesión',
-        cancelButtonText: 'Cancelar',
-      });
+  async toggleFav(state: ButtonIconStates) {
+    const userId = this.getUserId();
+    if(userId === null) {
+      const result = await this.swalModalLogin()
       if (result.isConfirmed) {
         this.router.navigate(['/login']);
+        return;
       }
-      return;
-    }
-    const userId = JSON.parse(raw).id;
-
+    };
     try {
       if (this.favoritoId() === null) {
         const res = await lastValueFrom(
@@ -246,14 +245,12 @@ export class ProductViewComponentComponent {
   showReportModal = signal<boolean>(false);
 
   // Eventos compra
-
   onContactar(event: MouseEvent) {
-    void Swal.fire({
-      title: 'Mensajes',
-      text: 'Compra el artículo para chatear con el vendedor.',
-      icon: 'info',
-    });
+    this.swalModalBuyForContact()
   }
+
+
+
   onComprar(event: MouseEvent) {
     if(this.isGuest()){
       this.router.navigate(['/login']);
@@ -292,6 +289,27 @@ export class ProductViewComponentComponent {
     } else {
       this.router.navigate([`/user/sellers/${this.vendedorData()?.promedio.usuario_id}`])
     }
+  }
+
+  // Swal Modals
+  private swalModalBuyForContact(){
+     void Swal.fire({
+      title: 'Mensajes',
+      text: 'Compra el artículo para chatear con el vendedor.',
+      icon: 'info',
+    });
+  }
+
+  private async swalModalLogin() {
+    // Sin sesion: preguntamos si quiere iniciar sesion
+    return await Swal.fire({
+      title: 'Inicia sesión',
+      text: 'Debes iniciar sesión para guardar artículos en favoritos.',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Iniciar sesión',
+      cancelButtonText: 'Cancelar',
+    });
   }
 }
 
