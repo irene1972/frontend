@@ -1,7 +1,7 @@
 <section>
     <div [routerLink]="['/explore']" routerLinkActive="active" [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'exact', matrixParams: 'ignored', fragment: 'ignored' }">
         <i class="bi cat-icon bi-grid" aria-hidden="true"></i>
-        <p class="todo">Todo</p>
+        <p class="todo">Explorar</p>
     </div>
     @if(categorias){
     @for(categoria of categorias.slice(0,8);track categoria.id){
