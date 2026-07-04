@@ -43,8 +43,6 @@ interface ExploreCategoryFilter {
   styleUrl: './explore-component.css',
 })
 export class ExploreComponent implements OnInit {
-
-
   private router = inject(Router);
   private activedRoute = inject(ActivatedRoute);
   private articlesService = inject(ArticlesService);
@@ -151,8 +149,15 @@ export class ExploreComponent implements OnInit {
       error: (err) => console.error(err),
     });
   }
+  // userId
+  private getUserId() {
+    const raw = localStorage.getItem('usuarioBuy&Sell');
+    if(!raw) return 0;
+    return Number(JSON.parse(raw).id);
+  };
 
   loadArticles(page = 1, scroll = false): void {
+    const userId = this.getUserId();
     this.currentPage = page;
     this.loading = true;
     this.errorMessage = '';
@@ -183,9 +188,13 @@ export class ExploreComponent implements OnInit {
       })
       .subscribe({
         next: (response) => {
-          this.articles = response.articulos.map((article) =>
+          // Filtramos los articulos que son del propio usuario para que no se muestren
+          const fltr_articles = response.articulos.filter(articulo => articulo.vendedor.id !== userId);
+          // Obtenemos la lista de articulos para el explorador
+          this.articles = fltr_articles.map((article) =>
             this.mapArticle(article)
           );
+          
           this.totalResults = response.paginacion.total;
           this.totalPages = response.paginacion.total_paginas;
           this.loading = false;

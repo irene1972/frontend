@@ -94,6 +94,10 @@ label {
 
 /* Mobile */
 @media (max-width: 768px) {
+   app-login-register {
+    display:none;
+  }
+
   .login-page {
     display: block;
     min-height: auto;
