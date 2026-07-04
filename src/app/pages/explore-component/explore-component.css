@@ -538,6 +538,14 @@
   text-align: center;
 }
 
+.fav-toast{
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 1080;
+}
+
 
 
 @media (max-width: 1024px) {
@@ -557,6 +565,10 @@
 
   .explore-card__badge--mobile {
     display: inline-flex;
+  }
+
+    .fav-toast{
+    bottom: 108px;
   }
 }
 

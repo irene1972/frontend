@@ -99,12 +99,12 @@
         <p class="results__status">Cargando artículos...</p>
       } @else if (errorMessage) {
         <p class="results__status results__status--error">{{ errorMessage }}</p>
-      } @else if (!articles.length) {
+      } @else if (!articles().length) {
         <p class="results__status">No se encontraron artículos con los filtros actuales.</p>
       }
 
       <div class="results__grid">
-        @for (article of articles; track article.id) {
+        @for (article of articles(); track article.id) {
           <molecule-article-card variant="normal" [like]="true" [img]="article.imageUrl" [article_name]="article.title"  [user_name]="article.sellerName"  [user_last_name]="article.sellerLastName" 
           [state]="article.condition" [price_old]="article.priceOld!" [price]="article.price" [location]="article.location" 
           [route]="`/product/${article.id}`" [estadoArticulo]="article.sold===true ? 'Vendido' : 'Publicado' " [ratings]="ratingLabel(article)"
@@ -141,4 +141,8 @@
       }
     </main>
   </div>
+</div>
+
+<div class="fav-toast">
+    <atom-toast [variant]="toastVariant()" [message]="toastMessage()" size="18px" [trigger]="showToast()"/>
 </div>

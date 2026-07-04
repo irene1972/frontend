@@ -3,8 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HomeBar } from '../../components/organisms/home-bar/home-bar';
 import { Button } from '../../components/atoms/button/button';
-import { Badge } from '../../components/atoms/badge/badge';
-import { ButtonIcon } from '../../components/atoms/button-icon/button-icon';
 import { BadgeCondition } from '../../components/atoms/badge/badge.types';
 import { ArticlesService } from '../../services/articles-service';
 import { CategoriesService } from '../../services/categories-service';
@@ -16,6 +14,7 @@ import { ArticleCard } from "../../components/molecules/cards/article-card/artic
 import { ButtonIconStates } from '../../components/atoms/button-icon/button-icon.config';
 import { FavoritesService } from '../../services/favorites-service';
 import Swal from 'sweetalert2';
+import { Toast } from "../../components/atoms/toast/toast";
 
 interface ExploreArticle {
   id: number;
@@ -30,8 +29,8 @@ interface ExploreArticle {
   price: number;
   priceOld?: number;
   sold?: boolean;
-  favId?:number;
-  favState?:ButtonIconStates;
+  favId?: number | null;
+  favState?: ButtonIconStates;
   imageUrl: string;
 }
 
@@ -43,7 +42,7 @@ interface ExploreCategoryFilter {
 
 @Component({
   selector: 'app-explore-component',
-  imports: [HomeBar, Button, FormsModule, ArticleCard],
+  imports: [HomeBar, Button, FormsModule, ArticleCard, Toast],
   templateUrl: './explore-component.html',
   styleUrl: './explore-component.css',
 })
@@ -92,17 +91,10 @@ export class ExploreComponent implements OnInit {
   totalResults = 0;
   totalPages = 0;
 
-  //favorito
-  favoritoId = null;
-  favoriteState = signal<ButtonIconStates>(ButtonIconStates.INACTIVED);
-
-  //toast avisos de favoritos
+  // Toast avisos de favoritos
   showToast = signal<boolean>(false);
   toastVariant = signal<'success' | 'info' | 'warn' | 'trash'>('success');
   toastMessage = signal<string>('');
-
-  // Signal query params change detection
- 
 
   get showingFrom(): number {
     if (this.totalResults === 0) return 0;
@@ -124,14 +116,13 @@ export class ExploreComponent implements OnInit {
   constructor() {
     effect(() => {
       this.selectedCategory();   // dependencia: se re-ejecuta al cambiar la URL
-      untracked(() => this.applyCategoryAndLoad()); // Untracked para que no se registren las signals de dentro de esta función ()
+      untracked(() => this.applyCategoryAndLoad()); // Untracked para que no se registren las signals de dentro de esta función
     });
   }
 
   ngOnInit(): void {
     this.loadCategories();
   }
-
 
   protected selectedCategory = toSignal(
     this.activedRoute.queryParamMap.pipe(
@@ -144,7 +135,7 @@ export class ExploreComponent implements OnInit {
     if (this.categories.length === 0) return;
     const categoryId = this.selectedCategory();
     this.categories.forEach(c => (c.checked = c.id === categoryId));
-    this.loadArticles(1);
+    void this.loadArticles(1);
     this.cd.detectChanges();
   }
 
@@ -158,21 +149,21 @@ export class ExploreComponent implements OnInit {
             checked: false,
           }));
           this.cd.detectChanges();
-          this.applyCategoryAndLoad(); 
-          
+          this.applyCategoryAndLoad();
         }
       },
       error: (err) => console.error(err),
     });
   }
-  // userId
-  private getUserId() {
-    const raw = localStorage.getItem('usuarioBuy&Sell');
-    if(!raw) return 0;
-    return Number(JSON.parse(raw).id);
-  };
 
-  loadArticles(page = 1, scroll = false): void {
+  // userId
+  private getUserId(): number {
+    const raw = localStorage.getItem('usuarioBuy&Sell');
+    if (!raw) return 0;
+    return Number(JSON.parse(raw).id);
+  }
+
+  async loadArticles(page = 1, scroll = false): Promise<void> {
     const userId = this.getUserId();
     this.currentPage = page;
     this.loading = true;
@@ -185,6 +176,11 @@ export class ExploreComponent implements OnInit {
     const selectedConditions = this.conditions
       .filter((c) => c.checked)
       .map((c) => c.label);
+
+    // Favoritos UNA sola vez por carga (lista vacía si no hay sesión o si falla)
+    const favs: any[] = userId
+      ? await lastValueFrom(this.favoritesService.getAllFavoritesByUser(userId)).catch(() => [])
+      : [];
 
     this.articlesService
       .getArticlesExplore({
@@ -204,16 +200,12 @@ export class ExploreComponent implements OnInit {
         usuario_id: userId,
       })
       .subscribe({
-        next: async (response) => {
-          console.log(userId)
-          // Obtenemos la lista de articulos para el explorador
-          this.articles = await Promise.all(
-          response.articulos.map((article) => this.mapArticle(article)));
-          
+        next: (response) => {
+          this.articles.set(response.articulos.map((a) => this.mapArticle(a, favs)));
           this.totalResults = response.paginacion.total;
           this.totalPages = response.paginacion.total_paginas;
           this.loading = false;
-          this.cd.detectChanges();
+          this.cd.detectChanges(); // para totalResults/totalPages/loading (no son signals)
           if (scroll) {
             this.scrollToResults();
           }
@@ -225,87 +217,64 @@ export class ExploreComponent implements OnInit {
           this.cd.detectChanges();
         },
       });
-  }   
+  }
 
-   //favoritos
-  async checkFavorito(productId: number){
-      const raw = localStorage.getItem('usuarioBuy&Sell');
-  
-      if (!raw) return { favId: null, favState: ButtonIconStates.INACTIVED };
-      const userId = JSON.parse(raw).id;
-  
-      try {
-        /* Devuelve todos los artículos favoritos de un usuario concreto */
-        const articleFavs = await lastValueFrom(this.favoritesService.getAllFavoritesByUser(userId));   // obtenemos los articulos favoritos de un usuario
-        const articleFav = articleFavs.find((article: any) => article.id === Number(productId)); // buscamos si nuestro articuo se encuentra en la lista de favoritos
-        
-       
-        return {
-          favId: articleFav?.favoritos_id ?? null,
-          favState: articleFav ? ButtonIconStates.ACTIVED : ButtonIconStates.INACTIVED,
-        };
-       
-     
-      } catch (error) {
-        this.router.navigate(['/500error']);
-        return { favId: null, favState: ButtonIconStates.INACTIVED };
+  // Favoritos: toggle desde la card
+  async toggleFav(article: ExploreArticle): Promise<void> {
+    const raw = localStorage.getItem('usuarioBuy&Sell');
+
+    if (!raw) {
+      // Sin sesión: preguntamos si quiere iniciar sesión
+      const result = await Swal.fire({
+        title: 'Inicia sesión',
+        text: 'Debes iniciar sesión para guardar artículos en favoritos.',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Iniciar sesión',
+        cancelButtonText: 'Cancelar',
+      });
+      if (result.isConfirmed) {
+        this.router.navigate(['/login']);
       }
+      return;
     }
+    const userId = JSON.parse(raw).id;
 
-  async toggleFav(article: ExploreArticle) {
-      const raw = localStorage.getItem('usuarioBuy&Sell');
-      
-      if (!raw) {
-        // Sin sesion: preguntamos si quiere iniciar sesion
-        const result = await Swal.fire({
-          title: 'Inicia sesión',
-          text: 'Debes iniciar sesión para guardar artículos en favoritos.',
-          icon: 'info',
-          showCancelButton: true,
-          confirmButtonText: 'Iniciar sesión',
-          cancelButtonText: 'Cancelar',
-        });
-        if (result.isConfirmed) {
-          this.router.navigate(['/login']);
-        }
-        return;
+    try {
+      if (article.favState === ButtonIconStates.INACTIVED) {
+        const res = await lastValueFrom(
+          this.favoritesService.addFavorite(userId, article.id)
+        );
+        this.updateArticleFav(article.id, res.id, ButtonIconStates.ACTIVED);
+        this.lanzarToast('success', 'El artículo ha sido añadido a la lista de favoritos');
+      } else {
+        await lastValueFrom(this.favoritesService.deleteFavorite(article.favId!));
+        this.updateArticleFav(article.id, null, ButtonIconStates.INACTIVED);
+        this.lanzarToast('info', 'Artículo eliminado de favoritos');
       }
-      const userId = JSON.parse(raw).id;
-  
-      try {
-        if (article.favState  === ButtonIconStates.INACTIVED) {
-          const res = await lastValueFrom(this.favoritesService.addFavorite(userId, article.id));
-          
-          article.favId = res.id;
-          article.favState = ButtonIconStates.ACTIVED
-      
-          this.lanzarToast('success', 'El artículo ha sido añadido a la lista de favoritos');
-        } else if (article.favState  === ButtonIconStates.ACTIVED){
-          await lastValueFrom(this.favoritesService.deleteFavorite(this.favoritoId!));
-
-          article.favId = undefined;
-          article.favState = ButtonIconStates.INACTIVED
-
-          this.lanzarToast('info', 'Artículo eliminado de favoritos');
-        } 
-        this.cd.detectChanges();
-      } catch (error: any) {
-        this.router.navigate(['/500error']);
-      }
+    } catch (error) {
+      this.router.navigate(['/500error']);
     }
-  
-    // Dispara el toast reutilizando el patron del proyecto (senal trigger)
-    private lanzarToast(variant: 'success' | 'info' | 'warn' | 'trash', message: string) {
-      this.toastVariant.set(variant);
-      this.toastMessage.set(message);
-      this.showToast.set(false);
-      setTimeout(() => this.showToast.set(true), 10);
-    }
-  
+  }
 
-  private async mapArticle(article: IExploreArticulo): Promise<ExploreArticle> {
+  // Reemplaza el artículo por una copia con el nuevo estado de favorito (inmutable)
+  private updateArticleFav(id: number, favId: number | null, favState: ButtonIconStates): void {
+    this.articles.update((list) =>
+      list.map((a) => (a.id === id ? { ...a, favId, favState } : a))
+    );
+  }
+
+  // Dispara el toast reutilizando el patrón del proyecto (señal trigger)
+  private lanzarToast(variant: 'success' | 'info' | 'warn' | 'trash', message: string): void {
+    this.toastVariant.set(variant);
+    this.toastMessage.set(message);
+    this.showToast.set(false);
+    setTimeout(() => this.showToast.set(true), 10);
+  }
+
+  private mapArticle(article: IExploreArticulo, favs: any[]): ExploreArticle {
     const rol = article.vendedor.rol_vendedor;
-    const {favId, favState} = await this.checkFavorito(article.id);
+    const fav = favs.find((f: any) => f.id === article.id);
 
     return {
       id: article.id,
@@ -320,35 +289,35 @@ export class ExploreComponent implements OnInit {
       price: article.precio,
       priceOld: article.precio_anterior ?? undefined,
       sold: article.vendido,
-      favId: favId,
-      favState: favState,
+      favId: fav?.favoritos_id ?? null,
+      favState: fav ? ButtonIconStates.ACTIVED : ButtonIconStates.INACTIVED,
       imageUrl: article.url_foto ?? this.placeholderImage,
     };
   }
 
   onSearch(): void {
-    this.loadArticles(1);
+    void this.loadArticles(1);
   }
 
   onSortChange(): void {
-    this.loadArticles(1);
+    void this.loadArticles(1);
   }
 
-  onPriceMinChange(value: number | null) {
+  onPriceMinChange(value: number | null): void {
     if (value !== null && value < this.PRICE_MIN) {
       this.priceMin.set(this.PRICE_MIN);
     } else {
       this.priceMin.set(value);
     }
-  } 
+  }
 
-   onPriceMaxChange(value: number | null) {
+  onPriceMaxChange(value: number | null): void {
     if (value !== null && value < this.PRICE_MAX) {
       this.priceMax.set(this.PRICE_MAX);
     } else {
       this.priceMax.set(value);
     }
-  } 
+  }
 
   applyTrend(trend: string): void {
     this.searchQuery = trend;
@@ -361,7 +330,7 @@ export class ExploreComponent implements OnInit {
     this.priceMin.set(null);
     this.priceMax.set(null);
     this.locationFilter = '';
-    this.loadArticles(1);
+    void this.loadArticles(1);
   }
 
   sellerInitials(article: ExploreArticle): string {
@@ -387,7 +356,7 @@ export class ExploreComponent implements OnInit {
     if (page < 1 || page > this.totalPages || page === this.currentPage || this.loading) {
       return;
     }
-    this.loadArticles(page, true);
+    void this.loadArticles(page, true);
   }
 
   goToPreviousPage(): void {
