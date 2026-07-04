@@ -39,7 +39,7 @@
         [estadoArticulo]="articulo.estado_articulo_id"
         [img]="articulo.url_foto ?? 'imgs/no-photo.jpg'"
         [price]="precio(articulo)"
-        [name]="articulo.titulo"
+        [article_name]="articulo.titulo"
       ></molecule-article-card>
     } @empty {
       <p class="empty">Aún no tienes artículos publicados.</p>

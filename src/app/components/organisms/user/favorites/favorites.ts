@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { IArticle } from '../../../../interfaces/i-article';
 import { IUsuario } from '../../../../interfaces/i-usuario';
 import { Router } from '@angular/router';
-import { FavoriteUser } from '../../../molecules/cards/favorite-user/favorite-user';
 import { FavoriteArticle } from '../../../molecules/cards/favorite-article/favorite-article';
 import { FavoritesService } from '../../../../services/favorites-service';
 import { IFavorite } from '../../../../interfaces/i-favorite';
@@ -10,7 +9,7 @@ import { IFavoriteUser } from '../../../../interfaces/i-favorite-user';
 
 @Component({
   selector: 'app-favorites',
-  imports: [FavoriteUser,FavoriteArticle],
+  imports: [FavoriteArticle],
   templateUrl: './favorites.html',
   styleUrl: './favorites.css',
 })
