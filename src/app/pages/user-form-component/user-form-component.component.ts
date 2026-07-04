@@ -26,6 +26,8 @@ export class UserFormComponentComponent implements OnInit {
   fotoPreview: string | null = null;
 
   miForm = new FormGroup({
+    nombre: new FormControl('', [Validators.required, Validators.maxLength(45)]),
+    apellidos: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     username: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     ubicacion: new FormControl('', [Validators.required]),
@@ -33,6 +35,8 @@ export class UserFormComponentComponent implements OnInit {
     cp: new FormControl('', [Validators.pattern(/^\d{5}$/)]),
   });
 
+  get nombre() { return this.miForm.get('nombre'); }
+  get apellidos() { return this.miForm.get('apellidos'); }
   get username() { return this.miForm.get('username'); }
   get email() { return this.miForm.get('email'); }
   get ubicacion() { return this.miForm.get('ubicacion'); }
@@ -62,7 +66,9 @@ export class UserFormComponentComponent implements OnInit {
         next: (usuario) => {
           if (usuario) {
             this.miForm.patchValue({
-              username: usuario.username ?? '',
+              nombre: usuario.nombre ?? '',
+          apellidos: usuario.apellidos ?? '',
+          username: usuario.username ?? '',
               email: usuario.email ?? '',
               direccion: usuario.direccion ?? '',
               cp: usuario.cp ?? '',
@@ -113,6 +119,8 @@ export class UserFormComponentComponent implements OnInit {
     // en la BBDD. Lo que no enviamos (incluida la password) se conserva.
     // El email no se envia (no editable) y la password se conserva en el backend.
     const body: any = {
+      nombre: this.miForm.value.nombre,
+      apellidos: this.miForm.value.apellidos,
       username: this.miForm.value.username,
       zona_geografica: this.miForm.value.ubicacion,
     };
