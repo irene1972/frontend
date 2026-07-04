@@ -8,7 +8,7 @@
         }
         @if(variant() !== 'owner'){<atom-badge [variant]="state()" class="article-badge desktop"/>}
         @if(like()){
-            <atom-button-icon variant="like" size="1rem" class="article-like" [(state)]="articleFavorite"/>
+            <atom-button-icon variant="like" size="1rem" class="article-like" (state)="articleFavorite()" (buttonIconClick)="onLikeButton($event)"/>
         }
     </div>
     @if(variant() !== 'owner'){<atom-badge [variant]="state()" class="article-badge mobile"/>}

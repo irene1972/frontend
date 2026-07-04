@@ -72,10 +72,14 @@ export class ArticleCard {
 
   private router = inject(Router);
 
-  public articleFavorite = model<ButtonIconStates>(ButtonIconStates.WAIT);
+  public articleFavorite = input<ButtonIconStates>(ButtonIconStates.INACTIVED);
+  public articleCardLikeClick = output<ButtonIconStates>();
 
   protected navArticleDetail() {
     this.router.navigate([this.route()]);
   }
   
+  protected onLikeButton(event: ButtonIconStates) {
+    this.articleCardLikeClick.emit(event );
+  }
 }

@@ -107,7 +107,8 @@
         @for (article of articles; track article.id) {
           <molecule-article-card variant="normal" [like]="true" [img]="article.imageUrl" [article_name]="article.title"  [user_name]="article.sellerName"  [user_last_name]="article.sellerLastName" 
           [state]="article.condition" [price_old]="article.priceOld!" [price]="article.price" [location]="article.location" 
-          [route]="`/product/${article.id}`" [estadoArticulo]="article.sold===true ? 'Vendido' : 'Publicado' " [ratings]="ratingLabel(article)"></molecule-article-card>
+          [route]="`/product/${article.id}`" [estadoArticulo]="article.sold===true ? 'Vendido' : 'Publicado' " [ratings]="ratingLabel(article)"
+          [articleFavorite]="article.favState!" (articleCardLikeClick)="toggleFav(article)"></molecule-article-card>
         }
       </div>
 

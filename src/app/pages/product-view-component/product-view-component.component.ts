@@ -54,7 +54,7 @@ export class ProductViewComponentComponent {
 
   //favorito
   favoritoId = null;
-  favoriteState = signal<ButtonIconStates>(ButtonIconStates.WAIT);
+  favoriteState = signal<ButtonIconStates>(ButtonIconStates.INACTIVED);
 
 
   //toast avisos de favoritos

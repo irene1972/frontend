@@ -10,9 +10,12 @@ import { ArticlesService } from '../../services/articles-service';
 import { CategoriesService } from '../../services/categories-service';
 import { ICategory } from '../../interfaces/i-category';
 import { IExploreArticulo } from '../../interfaces/i-explore-articulos';
-import { map } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ArticleCard } from "../../components/molecules/cards/article-card/article-card";
+import { ButtonIconStates } from '../../components/atoms/button-icon/button-icon.config';
+import { FavoritesService } from '../../services/favorites-service';
+import Swal from 'sweetalert2';
 
 interface ExploreArticle {
   id: number;
@@ -27,6 +30,8 @@ interface ExploreArticle {
   price: number;
   priceOld?: number;
   sold?: boolean;
+  favId?:number;
+  favState?:ButtonIconStates;
   imageUrl: string;
 }
 
@@ -47,6 +52,7 @@ export class ExploreComponent implements OnInit {
   private activedRoute = inject(ActivatedRoute);
   private articlesService = inject(ArticlesService);
   private categoriesService = inject(CategoriesService);
+  private favoritesService = inject(FavoritesService);
   private cd = inject(ChangeDetectorRef);
 
   private readonly placeholderImage =
@@ -82,10 +88,18 @@ export class ExploreComponent implements OnInit {
     { value: 'recientes', label: 'Más recientes' },
   ];
 
-  articles: ExploreArticle[] = [];
+  articles = signal<ExploreArticle[]>([]);
   totalResults = 0;
   totalPages = 0;
 
+  //favorito
+  favoritoId = null;
+  favoriteState = signal<ButtonIconStates>(ButtonIconStates.INACTIVED);
+
+  //toast avisos de favoritos
+  showToast = signal<boolean>(false);
+  toastVariant = signal<'success' | 'info' | 'warn' | 'trash'>('success');
+  toastMessage = signal<string>('');
 
   // Signal query params change detection
  
@@ -131,6 +145,7 @@ export class ExploreComponent implements OnInit {
     const categoryId = this.selectedCategory();
     this.categories.forEach(c => (c.checked = c.id === categoryId));
     this.loadArticles(1);
+    this.cd.detectChanges();
   }
 
   private loadCategories(): void {
@@ -144,6 +159,7 @@ export class ExploreComponent implements OnInit {
           }));
           this.cd.detectChanges();
           this.applyCategoryAndLoad(); 
+          
         }
       },
       error: (err) => console.error(err),
@@ -188,12 +204,11 @@ export class ExploreComponent implements OnInit {
         usuario_id: userId,
       })
       .subscribe({
-        next: (response) => {
+        next: async (response) => {
           console.log(userId)
           // Obtenemos la lista de articulos para el explorador
-          this.articles = response.articulos.map((article) =>
-            this.mapArticle(article)
-          );
+          this.articles = await Promise.all(
+          response.articulos.map((article) => this.mapArticle(article)));
           
           this.totalResults = response.paginacion.total;
           this.totalPages = response.paginacion.total_paginas;
@@ -210,10 +225,87 @@ export class ExploreComponent implements OnInit {
           this.cd.detectChanges();
         },
       });
-  }
+  }   
 
-  private mapArticle(article: IExploreArticulo): ExploreArticle {
+   //favoritos
+  async checkFavorito(productId: number){
+      const raw = localStorage.getItem('usuarioBuy&Sell');
+  
+      if (!raw) return { favId: null, favState: ButtonIconStates.INACTIVED };
+      const userId = JSON.parse(raw).id;
+  
+      try {
+        /* Devuelve todos los artículos favoritos de un usuario concreto */
+        const articleFavs = await lastValueFrom(this.favoritesService.getAllFavoritesByUser(userId));   // obtenemos los articulos favoritos de un usuario
+        const articleFav = articleFavs.find((article: any) => article.id === Number(productId)); // buscamos si nuestro articuo se encuentra en la lista de favoritos
+        
+       
+        return {
+          favId: articleFav?.favoritos_id ?? null,
+          favState: articleFav ? ButtonIconStates.ACTIVED : ButtonIconStates.INACTIVED,
+        };
+       
+     
+      } catch (error) {
+        this.router.navigate(['/500error']);
+        return { favId: null, favState: ButtonIconStates.INACTIVED };
+      }
+    }
+
+  async toggleFav(article: ExploreArticle) {
+      const raw = localStorage.getItem('usuarioBuy&Sell');
+      
+      if (!raw) {
+        // Sin sesion: preguntamos si quiere iniciar sesion
+        const result = await Swal.fire({
+          title: 'Inicia sesión',
+          text: 'Debes iniciar sesión para guardar artículos en favoritos.',
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonText: 'Iniciar sesión',
+          cancelButtonText: 'Cancelar',
+        });
+        if (result.isConfirmed) {
+          this.router.navigate(['/login']);
+        }
+        return;
+      }
+      const userId = JSON.parse(raw).id;
+  
+      try {
+        if (article.favState  === ButtonIconStates.INACTIVED) {
+          const res = await lastValueFrom(this.favoritesService.addFavorite(userId, article.id));
+          
+          article.favId = res.id;
+          article.favState = ButtonIconStates.ACTIVED
+      
+          this.lanzarToast('success', 'El artículo ha sido añadido a la lista de favoritos');
+        } else if (article.favState  === ButtonIconStates.ACTIVED){
+          await lastValueFrom(this.favoritesService.deleteFavorite(this.favoritoId!));
+
+          article.favId = undefined;
+          article.favState = ButtonIconStates.INACTIVED
+
+          this.lanzarToast('info', 'Artículo eliminado de favoritos');
+        } 
+        this.cd.detectChanges();
+      } catch (error: any) {
+        this.router.navigate(['/500error']);
+      }
+    }
+  
+    // Dispara el toast reutilizando el patron del proyecto (senal trigger)
+    private lanzarToast(variant: 'success' | 'info' | 'warn' | 'trash', message: string) {
+      this.toastVariant.set(variant);
+      this.toastMessage.set(message);
+      this.showToast.set(false);
+      setTimeout(() => this.showToast.set(true), 10);
+    }
+  
+
+  private async mapArticle(article: IExploreArticulo): Promise<ExploreArticle> {
     const rol = article.vendedor.rol_vendedor;
+    const {favId, favState} = await this.checkFavorito(article.id);
 
     return {
       id: article.id,
@@ -228,6 +320,8 @@ export class ExploreComponent implements OnInit {
       price: article.precio,
       priceOld: article.precio_anterior ?? undefined,
       sold: article.vendido,
+      favId: favId,
+      favState: favState,
       imageUrl: article.url_foto ?? this.placeholderImage,
     };
   }
