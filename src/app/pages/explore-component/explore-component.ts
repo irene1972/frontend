@@ -5,7 +5,6 @@ import { HomeBar } from '../../components/organisms/home-bar/home-bar';
 import { Button } from '../../components/atoms/button/button';
 import { Badge } from '../../components/atoms/badge/badge';
 import { ButtonIcon } from '../../components/atoms/button-icon/button-icon';
-import { Icon } from '../../components/atoms/icon/icon';
 import { BadgeCondition } from '../../components/atoms/badge/badge.types';
 import { ArticlesService } from '../../services/articles-service';
 import { CategoriesService } from '../../services/categories-service';
@@ -13,6 +12,7 @@ import { ICategory } from '../../interfaces/i-category';
 import { IExploreArticulo } from '../../interfaces/i-explore-articulos';
 import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ArticleCard } from "../../components/molecules/cards/article-card/article-card";
 
 interface ExploreArticle {
   id: number;
@@ -38,7 +38,7 @@ interface ExploreCategoryFilter {
 
 @Component({
   selector: 'app-explore-component',
-  imports: [HomeBar, Button, Badge, ButtonIcon, Icon, FormsModule],
+  imports: [HomeBar, Button, FormsModule, ArticleCard],
   templateUrl: './explore-component.html',
   styleUrl: './explore-component.css',
 })
@@ -185,13 +185,13 @@ export class ExploreComponent implements OnInit {
           : undefined,
         ubicacion: this.locationFilter.trim() || undefined,
         ordenar: this.sortBy,
+        usuario_id: userId,
       })
       .subscribe({
         next: (response) => {
-          // Filtramos los articulos que son del propio usuario para que no se muestren
-          const fltr_articles = response.articulos.filter(articulo => articulo.vendedor.id !== userId);
+          console.log(userId)
           // Obtenemos la lista de articulos para el explorador
-          this.articles = fltr_articles.map((article) =>
+          this.articles = response.articulos.map((article) =>
             this.mapArticle(article)
           );
           

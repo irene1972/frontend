@@ -105,69 +105,9 @@
 
       <div class="results__grid">
         @for (article of articles; track article.id) {
-          <article class="explore-card" [class.explore-card--sold]="article.sold">
-            <div class="explore-card__image">
-              <img [src]="article.imageUrl" [alt]="article.title" />
-              @if (article.sold) {
-                <div class="explore-card__sold-overlay">
-                  <span class="explore-card__sold-label">VENDIDO</span>
-                </div>
-              }
-              <atom-badge [variant]="article.condition" class="explore-card__badge explore-card__badge--desktop" />
-              <atom-button-icon variant="like" size="1rem" class="explore-card__like" />
-            </div>
-
-            <atom-badge [variant]="article.condition" class="explore-card__badge explore-card__badge--mobile" />
-
-            <h2 class="explore-card__title">{{ article.title }}</h2>
-
-            <div class="explore-card__location">
-              <i class="bi bi-geo-alt"></i>
-              <span>{{ article.location }}</span>
-            </div>
-
-            <div class="explore-card__separator"></div>
-
-            <div class="explore-card__seller">
-              <atom-icon
-                variant="profile-primary-circle"
-                [text_icon]="sellerInitials(article)"
-                size="1rem"
-              />
-              <div class="explore-card__seller-info">
-                <div class="explore-card__seller-row">
-                  <span class="explore-card__seller-name">{{ sellerDisplayName(article) }}</span>
-                  @if (article.sellerRole === 'pro') {
-                    <span class="explore-card__seller-badge explore-card__seller-badge--pro">VENDEDOR PRO</span>
-                  } @else if (article.sellerRole === 'new') {
-                    <span class="explore-card__seller-badge explore-card__seller-badge--new">VENDEDOR NUEVO</span>
-                  }
-                </div>
-                <div class="explore-card__rating">
-                  <atom-icon variant="star" size="0.85rem" />
-                  <span>{{ ratingLabel(article) }}</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="explore-card__footer">
-              <div class="explore-card__pricing">
-                @if (article.priceOld) {
-                  <div class="explore-card__discount-row">
-                    <span class="explore-card__price-old">{{ article.priceOld }} €</span>
-                    <span class="explore-card__rebajado">REBAJADO</span>
-                  </div>
-                }
-                <p class="explore-card__price">{{ article.price }} €</p>
-              </div>
-              <atom-button
-                config_type="outline"
-                label="Ver detalle"
-                class="explore-card__detail-btn"
-                (click)="goToDetail(article.id)"
-              />
-            </div>
-          </article>
+          <molecule-article-card variant="normal" [like]="true" [img]="article.imageUrl" [article_name]="article.title"  [user_name]="article.sellerName"  [user_last_name]="article.sellerLastName" 
+          [state]="article.condition" [price_old]="article.priceOld!" [price]="article.price" [location]="article.location" 
+          [route]="`/product/${article.id}`" [estadoArticulo]="article.sold===true ? 'Vendido' : 'Publicado' " [ratings]="ratingLabel(article)"></molecule-article-card>
         }
       </div>
 
