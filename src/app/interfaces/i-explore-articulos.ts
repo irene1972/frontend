@@ -52,6 +52,7 @@ export interface IExploreArticulosParams {
   estado_conservacion?: string;
   ubicacion?: string;
   ordenar?: string;
+  usuario_id?:number;
 }
 
 export interface IExploreArticulosResponse {
