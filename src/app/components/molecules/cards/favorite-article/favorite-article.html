@@ -3,7 +3,7 @@
     <img src="{{url_foto}}" class="card-img-top" alt="">
   </a>
   <button class="favorite-btn">
-    <i class="bi bi-heart-fill"></i>
+    <i (click)="removerFavorito()" class="bi bi-heart-fill"></i>
   </button>
   <div class="card-body">
     <h5 class="card-title">{{texto_articulo}}</h5>

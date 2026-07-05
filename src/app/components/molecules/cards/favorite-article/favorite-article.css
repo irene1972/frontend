@@ -29,7 +29,7 @@
 
 .favorite-btn i {
   font-size: 1.2rem;
-  cursor:auto;
+  cursor:pointer;
 }
 /*css articulo*/
 .card{
