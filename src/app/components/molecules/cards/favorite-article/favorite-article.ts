@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Icon } from '../../../atoms/icon/icon';
 import { Button } from '../../../atoms/button/button';
 import { RouterLink } from '@angular/router';
+import { FavoritesService } from '../../../../services/favorites-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-favorite-article',
@@ -22,7 +24,29 @@ export class FavoriteArticle {
   @Input() url_foto!:string | undefined;
   @Output() clicar = new EventEmitter<number>();
 
+  favoritesService = inject(FavoritesService);
+
   onClick():void {
   this.clicar.emit(this.articleId);
 }
+  removerFavorito(){
+    console.log(this.articleId);
+    const usuarioString = localStorage.getItem('usuarioBuy&Sell');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      //
+      this.favoritesService.deleteFavoriteByArticleIdAndUserId(this.articleId,usuario.id).subscribe({
+                next: (data) => {
+                  /*Swal.fire('Eliminado!', '', 'success');*/
+                  window.location.reload();
+                },
+                error: (err) => {
+                  console.error(err);
+                  Swal.fire('Ha habido un error', '', 'info');
+      
+                }
+              });
+    }
+    
+  }
 }
