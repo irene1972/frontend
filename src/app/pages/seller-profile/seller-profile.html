@@ -14,7 +14,7 @@
         <div class="d-flex flex-row justify-content-between gap-4">
             <molecule-status-card class="d-flex flex-grow-1" text="PUBLICADOS" [status]="published()"/>
             <molecule-status-card class="d-flex flex-grow-1" text="VENDIDOS" [status]="selled()"/>
-            <molecule-status-card class="d-flex flex-grow-1" text="VALORACIÓN" [status]="rating_avg()"/>
+            <molecule-status-card class="d-flex flex-grow-1" text="VALORACIÓN MEDIA" [status]="rating_avg()"/>
         </div>
         <molecule-nav-tab [tabs]="sellerTabs()"/>
         @if(activeTab() === QUERYPARAM_ON_SELL)
@@ -23,7 +23,8 @@
                 @for (article of articlesPublished(); track article) {
                 <div class="col">
                     <molecule-article-card [id]="article.id" [img]="article.url_foto" [article_name]="article.titulo" 
-                    [state]="article.estado_articulo_id" [price]="article.precio" location="Madrid"/>
+                    [state]="article.estado_articulo_id" [price]="article.precio" location="Madrid"
+                    [articleFavorite]="article.favState!" (articleCardLikeClick)="toggleFav(article)"/>
                 </div>
             }
             </div>
