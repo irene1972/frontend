@@ -62,7 +62,9 @@ export class SalesArticle {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.articlesService.updateArticleVendido(articleId, { estado: 'Vendido' }).subscribe({
+        this.ordersService.getLastOrderByArticleId(this.articleId).subscribe({
+        next: (data) => {
+          this.articlesService.updateArticleVendido(articleId, { estado: 'Vendido' }).subscribe({
           next: (data) => {
             Swal.fire('Actualizado!', '', 'success');
             setTimeout(() => {
@@ -75,6 +77,13 @@ export class SalesArticle {
 
           }
         });
+        },
+        error: (error) => {
+          console.error('Error cargando datos:', error);
+          Swal.fire('Ha habido un error', 'Debe producirse la compra del artículo primero', 'info');
+        }
+      });        
+        
 
       }
     });
