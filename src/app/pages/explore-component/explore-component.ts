@@ -177,7 +177,7 @@ export class ExploreComponent implements OnInit {
       .filter((c) => c.checked)
       .map((c) => c.label);
 
-    // Favoritos UNA sola vez por carga (lista vacía si no hay sesión o si falla)
+    // Favoritos una sola vez por carga (lista vacía si no hay sesión o si falla)
     const favs: any[] = userId
       ? await lastValueFrom(this.favoritesService.getAllFavoritesByUser(userId)).catch(() => [])
       : [];
