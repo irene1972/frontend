@@ -44,10 +44,11 @@ export class AdminModeratorProfileComponent {
             apellidos: data.apellidos,
             username: data.username,
             email: data.email,
-            password: data.password || '********',
+            password: '********',
             foto: data.foto,
             direccion: data.direccion,
-            zona_geografica: data.zona_geografica || data['zona_geográfica'],
+            zona_geografica:
+              data.zona_geografica || data['zona_geográfica'],
             cp: data.cp,
             roles_id: data.roles_id,
             bloqueado: data.bloqueado
@@ -74,60 +75,85 @@ export class AdminModeratorProfileComponent {
   }
 
   guardarCambios() {
-    if (this.nuevaPassword.trim() && this.nuevaPassword.trim().length < 6) {
+
+    if (
+      this.nuevaPassword.trim() &&
+      this.nuevaPassword.trim().length < 8
+    ) {
       Swal.fire({
         title: 'Contraseña demasiado corta',
-        text: 'La nueva contraseña debe tener al menos 6 caracteres.',
+        text: 'La nueva contraseña debe tener al menos 8 caracteres.',
         icon: 'warning',
         confirmButtonColor: '#003594'
       });
       return;
     }
 
-    const body: any = {
-      nombre: this.form.nombre,
-      apellidos: this.form.apellidos,
-      username: this.form.username,
-      email: this.form.email,
-      password: this.nuevaPassword.trim() ? this.nuevaPassword : this.formOriginal.password,
-      foto: this.form.foto,
-      direccion: this.form.direccion,
-      zona_geografica: this.form.zona_geografica,
-      cp: this.form.cp,
-      roles_id: this.form.roles_id,
-      bloqueado: this.form.bloqueado
-    };
+    const body: any = {};
+
+    if (this.form.nombre !== this.formOriginal.nombre) {
+      body.nombre = this.form.nombre;
+    }
+
+    if (this.form.apellidos !== this.formOriginal.apellidos) {
+      body.apellidos = this.form.apellidos;
+    }
+
+    if (this.form.username !== this.formOriginal.username) {
+      body.username = this.form.username;
+    }
+
+    if (this.form.foto !== this.formOriginal.foto) {
+      body.foto = this.form.foto;
+    }
+
+    if (this.form.direccion !== this.formOriginal.direccion) {
+      body.direccion = this.form.direccion;
+    }
+
+    if ( this.form.zona_geografica !== this.formOriginal.zona_geografica) {
+      body.zona_geografica = this.form.zona_geografica;
+    }
+
+    if (this.form.cp !== this.formOriginal.cp) {
+      body.cp = this.form.cp;
+    }
+
+    if (this.nuevaPassword.trim()) {
+      body.password = this.nuevaPassword.trim();
+    }
+
+    if (Object.keys(body).length === 0) {
+      this.editando = false;
+      return;
+    }
 
     this.usersService.updateUser(this.user.id, body).subscribe({
       next: (data) => {
+
         this.user = {
-          ...data,
-          iniciales: this.user.iniciales
+          ...this.user,
+          ...data
         };
 
         this.form = {
-          nombre: data.nombre,
-          apellidos: data.apellidos,
-          username: data.username,
-          email: data.email,
-          password: data.password || '********',
-          foto: data.foto,
-          direccion: data.direccion,
-          zona_geografica: data.zona_geografica || data['zona_geográfica'],
-          cp: data.cp,
-          roles_id: data.roles_id,
-          bloqueado: data.bloqueado
+          ...this.form,
+          ...data,
+          password: '********'
         };
 
         this.formOriginal = { ...this.form };
         this.nuevaPassword = '';
 
-        localStorage.setItem('usuarioBuy&Sell', JSON.stringify({
-          id: this.user.id,
-          username: this.user.username,
-          rol: this.user.roles_id,
-          iniciales: this.user.iniciales
-        }));
+        localStorage.setItem(
+          'usuarioBuy&Sell',
+          JSON.stringify({
+            id: this.user.id,
+            username: this.user.username,
+            rol: this.user.roles_id,
+            iniciales: this.user.iniciales
+          })
+        );
 
         this.editando = false;
         this.cd.detectChanges();
@@ -144,14 +170,12 @@ export class AdminModeratorProfileComponent {
 
         const campo = error?.error?.campo;
 
-        let mensaje = '';
+        let mensaje = 'No se ha podido actualizar el perfil.';
 
         if (campo === 'username') {
           mensaje = 'Ese nombre de usuario ya está en uso. Prueba con otro.';
-        } else {
-          mensaje = 'No se ha podido actualizar el perfil.';
         }
-      
+
         Swal.fire({
           title: 'Error',
           text: mensaje,
